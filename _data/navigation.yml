@@ -1,16 +1,11 @@
 # main links links
 main:
-  - title: "Quick-Start Guide"
-    url: https://embeddedinn.github.io/minimal-mistakes/docs/quick-start-guide/
-
   - title: "About"
-    url: https://embeddedinn.github.io/minimal-mistakes/
+    url: https://embeddedinn.github.io/about/
 
-  - title: "Sample Posts"
-    url: https://embeddedinn.github.io/minimal-mistakes/year-archive/
+  - title: "Tutorials and writeups"
+    url: https://embeddedinn.github.io/Tutorials/
 
-  - title: "Sample Pages"
-    url: https://embeddedinn.github.io/minimal-mistakes/page-archive/
+  - title: "Blog"
+    url: https://embeddedinn.github.io/Blog-posts/
 
-  - title: "Sample Collections"
-    url: https://embeddedinn.github.io/minimal-mistakes/collection-archive/
