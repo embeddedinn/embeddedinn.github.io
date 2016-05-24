@@ -1,11 +1,11 @@
 # main links links
 main:
   - title: "About"
-    url: https://embeddedinn.github.io/about/
+    url: /about/
 
   - title: "Tutorials and writeups"
-    url: https://embeddedinn.github.io/Tutorials/
+    url: /tutorials/
 
   - title: "Blog"
-    url: https://embeddedinn.github.io/Blog-posts/
+    url: /blog/
 
