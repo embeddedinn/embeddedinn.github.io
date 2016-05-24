@@ -17,10 +17,10 @@ gh_repo                  : "https://github.com/embeddedinn/embeddedinn.github.io
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : true #false # true, false (default)
 words_per_minute         : 200
-comments:
-  provider               : # false (default), "disqus", "facebook", "google-plus", custom"
+comments:		
+  provider               : "disqus" # false (default), "disqus", "facebook", "google-plus", custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "embeddedinn" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   facebook:
     # https://developers.facebook.com/docs/plugins/comments
     appid                :

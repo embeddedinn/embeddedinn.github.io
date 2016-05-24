@@ -2,5 +2,6 @@
 layout: single
 title: About
 permalink: /about/
-author: vysakh p pillai
+author_profile: true
+comments: true
 ---
