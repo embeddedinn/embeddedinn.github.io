@@ -2,6 +2,14 @@
 layout: single
 title: Tutorials
 permalink: /tutorials/
-author: vysakh p pillai
+comments: true
 ---
 
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
