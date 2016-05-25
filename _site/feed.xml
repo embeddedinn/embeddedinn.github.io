@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator>
+<link href="/feed.xml" rel="self" type="application/atom+xml" />
+<link href="/" rel="alternate" type="text/html" />
+<updated>2016-05-25T09:32:43+05:30</updated>
+<id>/</id>
+<title>Vysakh P Pillai</title>
+<subtitle>EmbeddedInn is a blog/site where I will be uploading all  tutorials, experiment updates, tips tricks (and all other junk ) about all things technical .</subtitle>
+<author>
+<name>Vysakh P Pillai</name>
+</author>
+</feed>
