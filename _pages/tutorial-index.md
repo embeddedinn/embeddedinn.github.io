@@ -1,8 +1,9 @@
 ---
 layout: single
+type: pages
 title: Tutorials
+author_profile: true
 permalink: /tutorials/
-comments: true
 ---
 
 <ul>
