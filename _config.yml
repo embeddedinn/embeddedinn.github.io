@@ -11,7 +11,7 @@ title                    : "embeddedinn"
 title_separator          : "-"
 name                     : "Vysakh P Pillai"
 description              : "EmbeddedInn is a blog/site where I will be uploading all  tutorials, experiment updates, tips tricks (and all other junk ) about all things technical ."
-url                      : "http://embeddedinn.github.io" # 
+url                      : "https://embeddedinn.github.io"  
 baseurl                  : # the subpath of your site, e.g. "/blog"
 gh_repo                  : "https://github.com/embeddedinn/embeddedinn.github.io"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
