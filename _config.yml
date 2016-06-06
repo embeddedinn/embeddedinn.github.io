@@ -11,7 +11,7 @@ title                    : "embeddedinn"
 title_separator          : "-"
 name                     : "Vysakh P Pillai"
 description              : "EmbeddedInn is a blog/site where I will be uploading all  tutorials, experiment updates, tips tricks (and all other junk ) about all things technical ."
-url                      : "https://embeddedinn.github.io"  
+url                      : "http://embeddedinn.github.io" # 
 baseurl                  : # the subpath of your site, e.g. "/blog"
 gh_repo                  : "https://github.com/embeddedinn/embeddedinn.github.io"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -50,9 +50,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-78854603-1"
 
 # Google AdSense
 google_ad_client         :
@@ -137,6 +137,7 @@ incremental: false
 # Markdown Processing
 kramdown:
   input: GFM
+  line_numbers: true
   hard_wrap: false
   auto_ids: true
   footnote_nr: 1
@@ -144,8 +145,6 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-
-
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
