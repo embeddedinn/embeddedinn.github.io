@@ -21,6 +21,8 @@ In this article/tutorial I will jot down one of my experiences with building an 
 {: .text-justify}  
 <!--more-->
 
+{% include toc title="Table of contents" icon="file-text" %}
+
 ## The system
 
 **<u>DISCLAIMER</u>**:   
