@@ -7,11 +7,12 @@ categories:
  - Tutorial
 tags: 
  - IoT
- - RaspberryPi
+ - Raspberry Pi
  - Linux
  - buildroot
  - ThreeJs
  - websocketServer
+excerpt: " My experiences with building an end to end IoT system using a Raspberry Pi, an Arduino and a MPU6050. The post describes the details of how to compile and setup a minimal kernel with networking and web server support and developing a minimal websocket server to get real time data into the web page based user interface."
 ---
 {% include base_path %}
 
