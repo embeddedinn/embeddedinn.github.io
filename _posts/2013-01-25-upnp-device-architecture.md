@@ -256,7 +256,7 @@ UPnP introduces 3 new headers to resolve issues arising from HTTP over UDP.
 Request-URI in case of MulticastHTTP means the recipient and not the requested resource.  Thus the “*” request URI means, send to all.   
 `Eg: M-SEARCH “*” HTTP/1.1`
 
-## 5.5 Extensible Markup Language (XML)
+### 5.5 Extensible Markup Language (XML)
 
 XML is a documentation language used to specify structure of data and how various elements relate. An XML document contains markup and character data. Markup gives the document its structure while character data is the actual content of the document. An XML document type definition (DTD) or XML schema (template) taht specifies teh constraints of data in teh document.
 
