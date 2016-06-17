@@ -69,7 +69,8 @@ A service description will define “actions” ,input and output parameters , r
 A “Control point” invokes the services provided by a device. They can control the device and request updates on state change of a service.
 
 We will visit each of  these topics in depth in later sections. However, first we need to get an understanding of the underlying technologies used in UPnP.
-5.Groundwork
+
+## 5.Groundwork
 
 In this section, we will try and get a quick glance of the underlying technologies used in UPnP. This include
 
