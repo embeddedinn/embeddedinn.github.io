@@ -1,7 +1,7 @@
 ---
 title: PIC microcontrollers
 date: 2009-07-29 10:23:00.000000000 +05:30
-published: false
+published: false 
 categories: 
  - Articles
  - Tutorial
@@ -75,6 +75,6 @@ The data sheet is the document in which the device vendor release with the produ
 
 {% include image.html
             img="/images/posts/PIC/arch.jpg"
-            title="title for image"
-            caption="caption for image" %}
+            caption="General Processor Architecture" %}
+
 
