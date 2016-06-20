@@ -1,0 +1,24 @@
+<!-- reference from : https://superdevresources.com/image-caption-jekyll/-->
+<style>
+.image-wrapper {
+  text-align: center;
+}    
+
+.image-wrapper .image-caption {
+  color: gray;
+  margin-top: em / 3;
+}
+
+</style>
+
+<!-- _includes/image.html -->
+<div class="image-wrapper" >
+    <a href="{{ site.url }}/{{ include.img }}" title="{{ include.title }}" target="_blank">
+    <img src="{{ site.url }}/{{ include.img }}" alt="{{ include.title }}" width="480"/>
+    </a>
+    {% if include.caption %}
+        <p class="image-caption">{{ include.caption }}</p>
+    {% endif %}
+</div>
+
+
