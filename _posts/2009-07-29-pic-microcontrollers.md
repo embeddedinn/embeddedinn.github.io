@@ -29,6 +29,8 @@ The first instance of this article originated at my [google site page](https://s
 
 ## INTRODUCTION TO MICRO-CONTROLLERS
 
+{% include toc title="Table of contents" icon="file-text" %}
+
 A micro-controller, in simple words, is a miniature computer with a central processing unit and some peripherals integrated into a single integrated circuit package.
 
 The central processing unit can can execute some instructions resulting in some outcomes. This instructions define the architecture of the controllers central processor in a macro scale.This gives rise to the a major classifications in processor architecture as
