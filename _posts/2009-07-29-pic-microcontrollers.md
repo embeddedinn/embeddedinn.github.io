@@ -1,7 +1,7 @@
 ---
 title: PIC microcontrollers
 date: 2009-07-29 10:23:00.000000000 +05:30
-published: false 
+published: true 
 categories: 
  - Articles
  - Tutorial
@@ -400,6 +400,198 @@ Before actually beginning the simulation, there are a couple of settings to be m
             img="/images/posts/PIC/config.jpg"
 %}
 
+To switch off the watchdog timer, uncheck the configuration bits set in code check box indicated in the figure and select the option from the drop down menu.
 
+In the watch window, add the relevant register names by double clicking under the corresponding tab (Adddress/ Symbol name) and typing it in or in the case of SFRs, selecting it from the ‘AddSFR’ drop down.
 
+The Program memory window gives us an idea as to where our program is residing in the program memory. It will be interesting to note this change in location by Changing the ‘org 0x00’ line to some other locations like say, ‘org 0x20’. But corresponding lines will have to be added at the reset vector (0x00) for successful execution. the next example will demonstrate that.
 
+{% include image.html
+            img="/images/posts/PIC/watch.jpg"
+%}
+
+Now we are ready to run our simulation.  The required  buttons are shown in the workspace figure.
+
+Click on the ‘step into’ button to execute each instruction sequentially. The green arrow shows the current execution that has been decoded and ready for execution. The corresponding trace of the program memory location can also be seen in the program memory window. The resulting change of values in the registers after each operation can be noticed in the watch window. Once the execution reaches the `end` statement, the program fetch and decode continues and can be noticed in the PM window, but the instructions are all `NOP`s. however, leaving the controller to blindly execute instructions in unhealthy practice, and the control should be rightly directed using `CALL` or `GOTO` operations.
+
+{% include image.html
+        img="/images/posts/PIC/test1.gif"
+	width="300"
+%}
+
+The reset button can be used to regain the control to the reset vector .
+
+**Note**: Each click to the ‘step into’ button can be considered to be generating a pulse of the execution clock.
+
+## Simulator Tweaks
+
+After the first program, we are now all set to try out more interesting stuff. I’ve introduced the basic simulation technique in the previous ‘Hello World’ page. Let us explore some more cool features of the simulator, that will allow us to further explore the architecture and functionality of the device.
+
+These sections introduce the simulator as well as the coding styles. So pay attention to the codes and comments…
+
+### Animation
+
+In the previous example, we ran the simulation by manually clicking the ‘Step Into’ button to execute each instruction. This is like manually providing the execution cycle clock for each instruction. In realtime, the execution clock is automatically generated from the crystal and is continuous. This can be simulated using the animate button.
+
+Before jumping into the implementation, a couple of settings are to be made so that we can observe the animation sequence.
+
+*Go to debugger>settings* .
+
+In the Osc/Trace tab set processor frequency as `4Mhz`. (We are using it so that it’ll comply with the hardware experiments later)
+
+In the Animation/Realtime updates tab set, set animate step time as `500ms` and check the ‘enable realtime watch updates’ check box and set the value to `5` (`x100`) ms.
+
+The later step is to keep the animation steps visible. otherwise, the animation will be too fast for us to see. (The snapshot in the ‘Hello World’ page is running with these settings. (see it [here](/images/posts/PIC/test1.gif))). The animate step time of 500ms is the execution frequency for the simulation (only!).
+
+### Simulator Logic Analyzer
+
+The simulator logic analyzer tool is a very handy tool that gives the feel of the familiar oscilloscope interface. The following example of generating a square wave in `RB0` shows a rookie level example of how cool this tool is.
+
+The tool is available at *View>Simulator* Logic Analyzer
+
+#### Problem Statement
+
+Generate a square wave of 50% duty cycle at `RB0`. and verify the output using the Simulator Logic Analyzer.
+
+#### Code
+
+```
+list p = 16f 877a ; compiler directive to set the device used
+#include <p16f 877a.inc> ; Compiler directive to include library
+org 0x 00 ; Initial location of program memory
+goto start ; instruction at PM location 0x 00
+
+org 0x20
+start ; label marking PM location 0x 20
+  banksel TRISB;a compiler directive that eases
+                ;the bank selection job
+  movlw 0x00
+  movwf TRISB ;setting PORTB as output port
+  banksel PORTB
+
+loop ;infinite loop generating the SQW
+  bcfPORTB,0
+  call delay ;used to set the time period
+  bsf PORTB,0
+  call delay
+  goto loop
+
+delay  ;This code segment counts down from 255 to 0
+       ;each count takes up some time thus
+;generating a delay loop
+  banksel 0x20;bank selection
+  movlw 0xff ; initial value
+  movwf 0x20 ;count register
+
+decloop ; The decrement loop
+  decfsz 0x20 ;decrement 0x20, skip next instruction is value in
+;0x20 is 0
+  goto decloop ; executes if value in 0x20 is not 0
+  return   ; executes when value in 0x20 is 0.
+end
+```
+
+**Notes:**   
+{% include image.html
+        img="/images/posts/PIC/pm_monitor.gif"
+	width="380"
+%}
+
+-    Note here that at reset, the control jumps to `0x20` since it is the instruction at the reset vector
+-    When Delay is called, the next PM value (`0x0028`) is pushed into the stack and the PC is loaded with `0x2D`
+-    When return is called, the Stack is popped. This can be observed in the hardware stack window.
+
+ The Delay: Delay routines are generated usually using timers inside the controller. here, we are using a decremental counter. The decrement operation takes one execution cycle per operation. i.e. once the control enters the routine , it takes 256 execution times to pop the stack. When converted to time, it will be a delay of (256x1us) assuming a oscillator frequency of 4Mhz.
+
+#### Result
+
+{% include image.html
+        img="/images/posts/PIC/scope.gif"
+%}
+
+The animation result as seen in the logic analyzer is shown in fast forward here. Without the tool, we will have to visualize the square wave from the alternating ones and zeros in the watch window. This is also shown in the image.
+
+The binary view can be availed by right-clicking within the watch window and selecting the corresponding option.
+
+### Breakpoints and the Run button…
+
+When we where dealing with the delay routine, you would have noticed that the execution time of the instructions in the animation mode is equal to the animate step time we have set in the debugger options and not the actual time the microcontroller takes in the field. This is rather annoying when we have to run the entire sequence (code) for a while to see say, 10 square waves in the logic analyzer, since the operations are in “slow motion”. Also, the time period of the square wave is not what the original hardware would produce.
+
+{% include image.html
+        img="/images/posts/PIC/sim-running.gif"
+	width="380"
+%}
+
+To solve this problem, we use the concept of breakpoints and the ‘Run’ button.
+
+#### Problem statement
+
+Generate a 10 second (real time) delay using delay loops.
+
+#### Code
+
+```
+list p=16f877a ; compiler directive to set the device used
+#include <p16f877a.inc> ; Compiler directive to include library
+
+org 0x 00 ; Initial location of program memory
+goto start ; instruction at PM location 0x 00
+org 0x20
+start
+  calldelay ; Calling the delay loop
+  nop ; Breakpoint is set here
+
+  delay ;This is a 3 level
+  cascadeof our previous delay loop
+  movlw 0x 35 ;value 1
+  movwf 0x 22 ;Total = 53 x 256 x 256 x 256
+  loop6
+  decfsz 0x22
+  gotoloop1
+  gotoend1
+loop1
+  movlw 0xff ;Value 2
+  movwf 0x21
+  loop4
+  decfsz 0x21
+  gotoloop2
+  gotoloop6
+loop2
+  movlw 0xff ;Value 3
+  movwf 0x20
+  loop3
+  decfsz 0x20 ;Innermost loop
+  gotoloop3
+  gotoloop4
+end1
+return
+end
+```
+
+The functionality is somewhat self explanatory 3 level cascade of the previous delay loop. It can also be observed using the simulator for clarification.
+
+Our primary aim is to measure the amount of delay this loop can give us.
+
+The Run button executes the command eliminating the visual effects we get from the animation. But we need to have a control as to in which step of the execution, we need to pause to read out the register values from the watch window. For this, we use the concept of breakpoints.
+
+{% include image.html
+        img="/images/posts/PIC/breakpoint.jpg"
+	width=""
+%}
+
+To set a breakpoint, double click in the grey area near the line we need to breakpoint. The breakpoint symbol will appear. The execution pauses when it reaches this step. We can use this pause to make required readings and continue with the simulation.
+
+Now, to simulate real-time execution data, we have to use the ‘Stopwatch’ feature in the *Debugger> menu*. The readings it shows is dependent on the processor frequency that has been set in the *Debuggre>settings>Osc/Trace* tab. This is the crystal frequency we anticipate to implement in hardware.
+
+Now, let us find out how much delay our routine can give us…
+
+Set the breakpoint near the `nop` in line 10, and hit the run button.
+
+The entire routine will be executed and the execution halts at the breakpoint. the exact time taken to execute the routine viz our delay will be shown in the stopwatch…
+
+{% include image.html
+        img="/images/posts/PIC/stopwatch.jpg"
+	width="stopwatch.jpg"
+%}
+
+ To change the delay value, experiment changing the different seed values indicated in the comments.
