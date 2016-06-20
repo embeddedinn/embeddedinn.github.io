@@ -104,15 +104,15 @@ Reach of multicast is controlled by using the Time To Live (TTL) field of IPv4 h
 
 Reach of multicast can also be restricted with administrative scope of IP multicast. `239.0.0.0` to `239.255.255.255` is administratively scoped IPv4 multicasts address space. (Termed IPv4 Local Scope). Network administrators partition this space and limit multicast range. Generally `239.255.255.250` falls within the IPv4 Local Scope and is the smallest of the administrative scopes.
 
-## 5.3 HTTP
+### 5.3 HTTP
 
-### 5.3.1 HTTP 1.0
+#### 5.3.1 HTTP 1.0
 
 Hyper Test Transfer Protocol 1.0 is a simple request-response protocol. The current HTTP 1.1 is built on top of this protocol. The major features of this protocol are discussed below.
 
 In HTTP 1.0, connection is closed by server after each request. This makes it a stateless protocol. States are stored in “cookies” and are presented to the server with each request.
 
-#### Request structure:
+##### Request structure:
 
 The initial line of the request specifies the  `METHOD` `(GET,PUT,POST etc)`. This is followed by more `header` lines specifying variables and values and an optional message body (file, query data etc). Below are some of the components of an HTTP request-response.
 
