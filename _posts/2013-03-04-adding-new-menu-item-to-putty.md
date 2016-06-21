@@ -6,8 +6,9 @@ categories:
  - Articles
  - Tutorial
 tags: 
- - PIC microcontrollers
- - MPLAB IDE
+ - putty
+ - putty menu
+ - putty customisation
 
 excerpt: "I came across a requirement to add a new easy access menu item to the putty terminal window for Windows. This article explains how I did it."
 ---
