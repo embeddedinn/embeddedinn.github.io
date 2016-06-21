@@ -87,7 +87,7 @@ For now, choose “Do not use a Virtual disk image”
             img="/images/posts/quemu/qemuconf3.jpg"
 %}
 
-Once this si done, Select the virtual machine from the panel in the left and do the following configuration.
+Once this is done, Select the virtual machine from the panel in the left and do the following configuration.
 
 {% include image.html
             img="/images/posts/quemu/qemuman1.jpg"
