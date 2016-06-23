@@ -19,6 +19,11 @@ div {
 
 {% include base_path %}
 
+
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/test-coverage-analysis-with-gcov/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
+
 Any large code base needs to be incrementally tested for each release for regressions and bugs. When the code base grows, manual testing fails to meet the requirements and we have to move into automated systems for testing. Once a test is written, we have excellent continuous integration systems like Jenkins or Cruise Control to validate the tests against any changes made on the code. However, the CI system is only as effective as the test. If the test does not cover all use cases, then there is no point in running the tests in CI.
 
 This article intends to illustrate the use of ‘gcov’ to estimate the dynamic coverage of a test. The article speaks solely from the viewpoint of a C programmer working on a Linux PC (or similar systems)

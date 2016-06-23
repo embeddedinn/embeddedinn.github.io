@@ -21,6 +21,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/xml-parser-pitfalls/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 In the wake of technology revolutions like Internet of Things (IoT), XML is gaining more importance than ever as the language of inter-platform communication. Most embedded system developers who use XML in their system write their own parser to limit the footprint. However, XML can very easily become the point of vulnerability in your system if you are not careful to include some sanity checks.
 
 In this article, I will introduce some of the well-known XML based attacks and will discuss some of the tips to avoid the pitfalls

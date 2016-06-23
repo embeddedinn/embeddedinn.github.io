@@ -20,6 +20,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/docker-scratching-an-itch-to-build-from-ground-up/){:target="_blank"} at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 If you have never heard of docker the server container holder ever before, then this post is not for you. For a tech enthusiast, Docker is an interesting and current piece of tech that you should at least be aware of. But there are hundreds of well written and well produced tutorials out there to help you with that.
 
 By nature, I need to understand how things work. And, I prefer hands on trial and error as the way to gain this understanding. So, when the tutorials started off by telling me how to run existing Docker containers and how to build on top of existing ones using a Dockerfile, that was not enough for me. Useless as it is, I wanted to build a lean , bare minimal , functional Linux container using my experience with bringing up Linux on new platforms.Be aware that Docker is just a container that uses the hostOS kernel and the docker image contents as a file system. So , even though you might see that the kernel is being compiled in the below steps, it is simply because that is the simplest approach to the given problem. The compiled kernel image will not be used as such.

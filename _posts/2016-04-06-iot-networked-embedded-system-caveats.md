@@ -21,6 +21,11 @@ div {
 
 {% include base_path %}
 
+
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/iot-networked-embedded-system-caveats/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
+
 If you have experience developing software over the linux TCP/IP stack and start to develop something similar for an embedded system, you will soon realize that there are some things that cannot be granted while you work a level closer to silicon.
 
 I recently got cocky with my experience and commuted to deliver a simple IoT device that uses a brand new platform and a well known service (foolishly) thinking that it can be done in a fairly small amount of time. Afterall, at the heart of it was a HTTP client and a couple of sockets . Boy was I wrong!!! Anyhow, finally after many sleepless nights and a ruined week end, I was able to deliver it a day before the deadline.

@@ -22,6 +22,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/booting-your-first-cross-compiled-linux-based-embedded-system/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 This tutorial introduces you to the world of Linux based embedded systems. Here we will learn to cross-compile your own Linux kernel and bring up a complete system with that kernel. And the best part is, you do not have to own a development board or [brick](http://en.wikipedia.org/wiki/Brick_(electronics)){:target="_blank"} your PC while learning this.
 
 The main components involved in our tutorial today are

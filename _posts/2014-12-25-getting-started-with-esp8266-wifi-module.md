@@ -21,6 +21,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/getting-started-with-esp8266-wifi-module/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 I recently purchased an ESP8266-03 module from [hacktronics](http://hacktronics.co.in/home/970-esp8266-esp-03-serial-wifi-wireless-transceiver-smd-module-with-extra-pinouts.html){:target="_blank"} for ₹549/- and was pumped up by the fact that I can WiFi enable virtually any of my microcontroller projects with a spare serial interface, at a very small cost. But, Little did I know that it was just the tip of the iceberg.
 
 However, First things first – How to get started with the module?

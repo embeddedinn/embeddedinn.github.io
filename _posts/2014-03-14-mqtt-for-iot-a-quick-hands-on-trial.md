@@ -21,6 +21,10 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/mqtt-for-iot-a-quick-hands-on-trial/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
+
 MQTT is a light weight, opensource, publish-subscribe protocol designed with small devices and IoT in mind. MQTT stands for Message Queue Telemetry Transport and aims at devices with a small code footprint requirement. The smallest valid packed is 2 bytes in length with the fixed header.
 
 MQTT is primarily designed to work over TCP/IP with optional TLS security. However, there also exist a variant called MQTT-SN for sensor networks over non-TCP transports like Zigbee.

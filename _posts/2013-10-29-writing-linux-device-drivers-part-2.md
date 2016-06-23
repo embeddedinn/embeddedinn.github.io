@@ -21,6 +21,11 @@ div {
 }
 </style>
 
+
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/writing-linux-device-drivers-part-2/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
+
 The first part of this article is available [here](/articles/tutorial/device drivers/writing-linux-device-drivers-part-1/){:target="_blank"}.
 
 In this second part we will discuss some of the advanced topics related to writing Linux device drivers

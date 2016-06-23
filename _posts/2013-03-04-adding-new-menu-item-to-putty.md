@@ -24,6 +24,9 @@ div {
 {% include base_path %}
 
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/adding-new-menu-item-to-putty/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 I came across a requirement to add a new easy access menu item to the putty terminal window for Windows. This article explains how I did it.
 
 ## Requirement

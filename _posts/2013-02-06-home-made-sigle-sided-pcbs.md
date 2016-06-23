@@ -20,6 +20,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/home-made-sigle-sided-pcbs/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 There are numerous tutorials available in the internet about home made PCBs and the toner transfer method. Here is my addition to that :smile: )
 
 <b><u>Step 1</u></b>: Design your PCB in your favorite tool. I personally prefer CadSoft EagleCAD.

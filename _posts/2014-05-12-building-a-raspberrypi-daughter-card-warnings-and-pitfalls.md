@@ -21,6 +21,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/building-a-raspberrypi-daughter-card-warnings-and-pitfalls/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 Raspberry Pi is a $35, credit card sized, single board computer that can run Linux and decode HD videos . There are many articles that describe how to bring up the board and play around with interfaces and GPIO. This article is for the DIY enthusiast who wants to extend the functionality of the “Pi” by building your own hardware around it.
 
 I made a lot of silly mistakes wile I fabricated my first board at home. So, here I am sharing the experience I gained so that you wont repeat them in your trials.

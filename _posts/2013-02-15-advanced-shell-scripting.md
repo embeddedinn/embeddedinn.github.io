@@ -12,6 +12,19 @@ tags:
 excerpt: "A collection of advanced tips and tricks to create wonderful shell scripts"
 ---
 
+<style>
+div {
+    text-align: justify;
+    text-justify: inter-word;
+}
+</style>
+
+{% include base_path %}
+
+
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/advanced-shell-scripting/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 Shell scripting refers to an automated way of interacting with a computer system over command line interface (CLI) . This article deals specifically with scripting with the bash shell
 
 ## Shebang

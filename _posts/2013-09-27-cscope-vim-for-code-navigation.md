@@ -21,6 +21,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/cscope-vim-for-code-navigation/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 When you are working with a large code base, you need a powerful tool to navigate through the code seamlessly . There are many paid tools put there that does this efficiently and for the open source enthusiast in you, you have [OpenGrok](http://opengrok.github.io/OpenGrok/){:target="_blank"} that gives and web interface to your code and [Cscope](http://cscope.sourceforge.net/){:target="_blank"} that provides a command line interface to code navigation.
 
 In my project where I had to make changes to parts of code that includes thousands of file that pours in from teams across geographies, I found it difficult to open up Cscope each time I had to find the reference to a variable or search for a definition. Then I came across [this](http://cscope.sourceforge.net/cscope_vim_tutorial.html){:target="_blank"} tutorial in the cscope website that illustrates how we can integrate cscope with my favorite editor – [vim](http://www.vim.org/){:target="_blank"} .

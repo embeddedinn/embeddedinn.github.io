@@ -20,6 +20,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/upnp-device-architecture/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.
+{: .notice--info}
+
 ## 1. Motivation For UPnP
 
 {% include toc title="Table of contents" icon="file-text" %}

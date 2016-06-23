@@ -24,7 +24,7 @@ div {
 <b>NOTE:</b> The IDE used in this article has been phased out by Microchip. However, basic techniques and architecture described herein holds good. 
 {: .notice--warning}
 
-The first instance of this article originated at my [google site page](https://sites.google.com/site/vysakhpillai/pic-microcontrollers){:target="_blank"}. It was further migrated to wordpress and not this page. 
+The first instance of this article originated at my [google site page](https://sites.google.com/site/vysakhpillai/pic-microcontrollers){:target="_blank"}. It was further migrated to [wordpress](https://embeddedinn.wordpress.com/tutorials/pic-microcontrollers/){:target="_blank"} and then this page. 
 {: .notice--info}
 
 ## INTRODUCTION TO MICRO-CONTROLLERS

@@ -21,6 +21,9 @@ div {
 
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/buildroot-and-raspberry-pi/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 I reticently got a RaspberryPi on loan and started exploring the options. Being an embedded guy, I did not want to go with the miniature computer concept where you write and compile your programs in the target (RPi) itself. Rather, I wanted to cross compile and boot my own kernel and bring up a minimalist system up on the RPi .
 
 ## Compiling and booting the image

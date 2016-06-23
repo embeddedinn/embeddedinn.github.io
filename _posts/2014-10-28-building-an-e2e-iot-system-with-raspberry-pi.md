@@ -16,6 +16,9 @@ excerpt: " My experiences with building an end to end IoT system using a Raspber
 ---
 {% include base_path %}
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/building-an-e2e-iot-system-with-raspberry-pi/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 Internet of things (IoT) is the future of embedded systems . Though it is nothing new (technically), it brings together advances in hardware engineering, software architecture, networking etc into a small package that makes our life easier and exciting. There are huge umber of articles throughout the internet that explains various aspects of IoT .   
 {: .text-justify}  
 In this article/tutorial I will jot down one of my experiences with building an end to end IoT node.

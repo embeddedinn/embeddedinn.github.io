@@ -20,6 +20,9 @@ div {
 }
 </style>
 
+This article has been migrated from my [original post](https://embeddedinn.wordpress.com/tutorials/writing-linux-device-drivers-part-1/){:target="_blank"}  at [embeddedinn.wordpress.com](http://embeddedinn.wordpress.com){:target="_blank"}.   
+{: .notice--info}
+
 ## Step 1:- Setup
 
 This is the most important component that you require to start writing Linux device drivers. I use an Oracle VirtualBox with a 32 bit Ubuntu desktop image . This is essential when you start experimenting with kernel code and drivers since mistakes like a simple pointer corruption can even wipe your disk.
