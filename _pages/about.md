@@ -6,6 +6,13 @@ author_profile: true
 comments: true
 ---
 
+<style>
+div {
+    text-align: justify;
+    text-justify: inter-word;
+}
+</style>
+
 # About embeddedInn
 
 Embeddedinn is a place where I keep a tab of the technical thinkering and professional activities that I do on a day to day basis. It is more of a journal of activities than full fledged tutorial site. However, I try to put in as much details as possible so that it will benefit others trying to do something similar. 
