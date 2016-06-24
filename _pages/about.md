@@ -15,7 +15,7 @@ div {
 
 # About embeddedInn
 
-Embeddedinn is a place where I keep a tab of the technical thinkering and professional activities that I do on a day to day basis. It is more of a journal of activities than full fledged tutorial site. However, I try to put in as much details as possible so that it will benefit others trying to do something similar. 
+Embeddedinn is a place where I keep tab of the technical thinkering and professional activities that I do on a day to day basis. It is more of a journal of activities than full fledged tutorial site. However, I try to put in as much details as possible so that it will benefit others trying to do something similar. 
 
 # about me
 
@@ -27,4 +27,4 @@ My experiences has brought me to a level where I can contribute to system archit
 
 Some of my favourite pastimes include carpentry, tinkering with PCB design and building utility boards, python programming, tech evangelism at university levels and learning new technologies from basics.
 
-Contact me @ vysakhpillai [ at ] gmail.com
+Contact me : vysakhpillai [ at ] gmail [dot] com
