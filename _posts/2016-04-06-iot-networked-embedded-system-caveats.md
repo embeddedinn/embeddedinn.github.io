@@ -9,7 +9,7 @@ tags:
  - IoT
  - embedded networking
 
-excerpt: "A tutorial on 8 bit PIC Microcontroller architecture and development tools"
+excerpt: "Points to keep in mind when you are moving to an embedded networking stack from a fulle fledged one."
 ---
 <style>
 div {
