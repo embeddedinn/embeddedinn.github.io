@@ -377,7 +377,7 @@ My preferred development infrastructure is [Digitalocean](https://github.com/jer
 
 here is the `Dockerfile` that I wrote. It is pretty self explanatory
 
-```Dockerfile
+```bash
 FROM ubuntu:16.04
 MAINTAINER vysakhpillai
 
