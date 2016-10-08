@@ -151,7 +151,7 @@ http://<server ip>/api/mdtweet/for/<thingID>?key1=value1&key2=value2
 
 This will trigger a MQTT message on the thingID topic with a json payload which has the key and values that are in the URI query string. This will also return a json with the values sent in the message along with some timestamp and serializing information for tracking and debugging.  
 
-The "send" API was implemented as a C code with no dependency on external libraries . So, to compile and install it, just issue the following command:
+The "send" API was implemented in C code with no dependency on external libraries ([link to source](/files/posts/dashboard/sendMessage.c){:target="blank"}) . So, to compile and install it, just issue the following command:
 
 ```bash
 gcc sendMessage.c -o <cgi api path>/for
