@@ -92,7 +92,7 @@ Once the server is configured properly, with the following API, a "long living" 
 http://<serverIP>/api/listen/to/<thingID>
 ```
 
-The CGI script copied to <cgi path>/api/listen/to` ( script named "to" ) is:
+The CGI script copied to `<cgi path>/api/listen/to` ( script named `to` ) is:
 
 ```bash
 #!/bin/bash
@@ -105,7 +105,7 @@ thingID=${path[-1]}
 mosquitto_sub -t $thingID -q 1
 ```
 
-When this script is called from the CGI framework, it parses the thing ID out of the URL used to call it and starts a connection on Port 80 to send all messages published to the thingID topic.
+When this script is called from the CGI framework, it parses the `thingID` out of the URL query string and starts a connection on Port 80 to send all messages published to the thingID topic.
 
 The following `curl` command can be used to test this implementation:
 
