@@ -110,8 +110,27 @@ When this script is called from the CGI framework, it parses the `thingID` out o
 The following `curl` command can be used to test this implementation:
 
 ```bash
-curl -i https://<server ip>/api/listen/to/<thingID>
+curl -i http://<server ip>/api/listen/to/<thingID>
 ```
+
+The server sneds back an acknowledgement in the form below and closes the connection. 
+
+```js
+{
+	"with": {
+		"topic": "thingID",
+		"created": "Sat Oct  8 07:27:34 2016",
+		"content": {
+			"key1": "value1",
+			"key2": "value2"
+		},
+		"session": "127.0.0.1:59406-157a3309ae0"
+	}
+}
+```
+
+Here the session ID is the remote IP + remote port + epoch time down to the millisecond. 
+
 
 > It is not a good practice to rely on a long living HTTP connection for reliable message transfer. There are numerous reliability and load balancing issues associated with this. However , this method was used here since it is not a production grade system design.
 
