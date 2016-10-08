@@ -107,6 +107,12 @@ mosquitto_sub -t $thingID -q 1
 
 When this script is called from the CGI framework, it parses the thing ID out of the URL used to call it and starts a connection on Port 80 to send all messages published to the thingID topic.
 
+The following `curl` command can be used to test this implementation:
+
+```bash
+curl -i https://<server ip>/api/listen/to/<thingID>
+```
+
 > It is not a good practice to rely on a long living HTTP connection for reliable message transfer. There are numerous reliability and load balancing issues associated with this. However , this method was used here since it is not a production grade system design.
 
 The API to send messages is a bit more complicated. Though at the heart it uses `mosquitto_pub` CLI utility, there is a lot of preprocessing that has to be done to extract the information out of the query in the URI
