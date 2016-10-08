@@ -40,6 +40,13 @@ The primary components of the system are
 
 Each device will be configured with a `thingID` that will be used to pair the dashboard and device and the complete server side installation will be rolled into a `Docker` that would enable anyone to spwan their own dashboard by just running a script.
 
+The final dashboard looks like this:
+
+{% include image.html
+            img="/images/posts/dashboard/dashboard-Full.png"
+%}
+
+
 ## Messaging Server
 
 In the traditional embedded systems development framework that I was operating from, the tribes advice was to go for a HTTP server with "API" to poll for peripheral data from a web page. The very idea made me sick and I decided to go rouge with the *"unconventional"* path.
@@ -142,18 +149,18 @@ Once setup properly, the following HTTP API (GET request) can be used to send a 
 http://<server ip>/api/mdtweet/for/<thingID>?key1=value1&key2=value2
 ```
 
-This will trigger a MQTT message on the thingID topic with with a json payload which has the key and values that are in the URI query string. This will also return a json with the values sent in the message along with some timestamp and serializing information for tracking and debugging.  
+This will trigger a MQTT message on the thingID topic with a json payload which has the key and values that are in the URI query string. This will also return a json with the values sent in the message along with some timestamp and serializing information for tracking and debugging.  
 
 The "send" API was implemented as a C code with no dependency on external libraries . So, to compile and install it, just issue the following command:
 
 ```bash
 gcc sendMessage.c -o <cgi api path>/for
 ```
-This will compile and "install" the send API with the name `for` in the CGI directory.
+This will compile and "install" the send API with the name `for` in the CGI API directory.
 
 ### CGI configurations
 
- For the APIs to function as intended, the CGI framework of Apache had to be tweaked
+ For the APIs to function as intended, the CGI framework of Apache had to be configured 
 
 Following configuration had to be done in `/etc/conf-available/serve-cgi-bin.conf` and `./conf-enabled/serve-cgi-bin.conf` to enable CGI scripts to execute from `/var/www/api` folder.
 
@@ -167,9 +174,9 @@ Following configuration had to be done in `/etc/conf-available/serve-cgi-bin.con
  </Directory>
  </IfDefine>
 ```
-To enable CGI module in Apache, do: `sudo a2enmod cgi`
+Finally, to enable CGI module in Apache, do: `sudo a2enmod cgi` and restart the Apache service. 
 
-Since we are going with the suboptimal approach of using a long living HTTP connection, the server will be configured to accept infinitely long living HTTP keep-alive tunnels. to achieve this, keepalive timeout and max request in `/etc/apache2/apache2.conf` was increased. The number of 'keep-alive' requests that the server can accept was also increased to a large number (`1000`). However, this is not mandatory and this will in fact cause huge resource utilisation issues in a production environment.  
+Since we are going with the suboptimal approach of using a long living HTTP connection, the server will be configured to accept infinitely long living HTTP `keep-alive` tunnels. to achieve this, keepalive timeout and max request in `/etc/apache2/apache2.conf` was increased. The number of 'keep-alive' requests that the server can accept was also increased to a large number (`1000`). However, this is not mandatory and this will in fact cause huge resource utilisation issues in a production environment.  
 
 ```
  MaxKeepAliveRequests 1000
@@ -391,6 +398,12 @@ Now, to get these color options when I create a new widget instance, I added the
   ]
 }
 ```
+
+The new settings window for the widget looks like this:
+
+{% include image.html
+            img="/images/posts/dashboard/ledColors.png"
+%}
 
 ## Dockerizing the server
 
