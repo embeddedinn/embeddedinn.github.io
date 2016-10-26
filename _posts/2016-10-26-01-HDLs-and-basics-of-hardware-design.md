@@ -37,7 +37,7 @@ Verilog and VHDL are the two most commonly used HDLs, and we will be using Veril
 
 There are numerous in-depth articles available to wrap your head around the nitty gritties of Verilog and I will not be covering it here. I will however guide you through setting up a free and open-source Verilog simulator to experiment with the concepts. I will also run through the basic concepts that will help us go ahead with HDL based design in the following parts of [Fun With FPGAs](/articles/tutorial/fun-with-fpga/){:target="blank"}.
 
-##Icarus Verilog
+## Icarus Verilog
 
 Icarus Verilog (or [iverilog](http://iverilog.icarus.com/){:target="blank"}) is a free and open sourced Verilog synthesizer and simulator. It runs on Linux as well as windows and is powerful enough to work with complex designs.
 
@@ -113,6 +113,7 @@ myInv notGate(clock,out);
 endmodule
 
 ```
+
 ### Breaking it down:
 
 As described above, there are no I/O lines for a test bench. However, there is an internal register named `clock` that will act as an input to `myInv` and a wire `out` that will capture the output.
