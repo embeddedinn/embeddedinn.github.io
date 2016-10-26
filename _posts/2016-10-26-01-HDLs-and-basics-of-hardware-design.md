@@ -1,6 +1,6 @@
 ---
 title: HDLs and basics of hardware design
-date: 2016-26-10 13:22:55.000000000 +05:30
+date: 2016-10-26 13:22:55.000000000 +05:30
 published: true
 categories:
 - Articles
@@ -163,7 +163,7 @@ gtkwave inv.vcd
 
 {% include image.html
 	img="/images/posts/hdlIntro/gtkwave.png"
-		width="480"
-		caption="myInv simulation results"
-		%}
+	width="480"
+	caption="myInv simulation results"
+%}
 
