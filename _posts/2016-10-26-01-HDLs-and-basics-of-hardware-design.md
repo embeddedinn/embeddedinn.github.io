@@ -1,7 +1,7 @@
 ---
 title: HDLs and basics of hardware design
 date: 2016-10-26 13:22:55.000000000 +05:30
-published: true
+published: false
 categories:
 - Articles
 - Tutorial
