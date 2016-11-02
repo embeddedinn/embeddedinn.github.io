@@ -1,7 +1,7 @@
 ---
 title: HDLs and basics of hardware design
 date: 2016-10-26 13:22:55.000000000 +05:30
-published: false
+published: true
 categories:
 - Articles
 - Tutorial
@@ -33,7 +33,7 @@ The design cycle of an application specific integrated circuit (ASIC) starts off
 
 Verilog and VHDL are the two most commonly used HDLs, and we will be using Verilog here.
 
-**Note**: A caveat to using a high level language is the tendency for a noob to describe all the hardware logic as "behavioral logic" and leaving it for the tool to synthesize the hardware for it. Take extra care to avoid this mistake.
+> **Note**: A caveat to using a high level language is the tendency for a noob to describe all the hardware logic as "behavioral logic" and leaving it for the tool to synthesize the hardware for it. Take extra care to avoid this mistake.
 
 There are numerous in-depth articles available to wrap your head around the nitty gritties of Verilog and I will not be covering it here. I will however guide you through setting up a free and open-source Verilog simulator to experiment with the concepts. I will also run through the basic concepts that will help us go ahead with HDL based design in the following parts of [Fun With FPGAs](/articles/tutorial/fun-with-fpga/){:target="blank"}.
 
@@ -167,4 +167,25 @@ gtkwave inv.vcd
 	width="480"
 	caption="myInv simulation results"
 %}
+
+## More Verilog concepts
+
+To introduce more verilog concepts, let us design a simple arbitrator. An arbitrator is a mechanism to avoid a collision (much like a mutex in software) . For example, when a device wants to access a bus along with many other devicec connected to the bus, instead of directly accessing it, the device will place a request the arbitrator for bus access and wait for the “grant” signal. The arbitrator liaisons all such requests.
+
+Internally, an arbitrator is a simple statemachine with the below state diagram
+
+{% include image.html
+	img="/images/posts/hdlIntro/arbitrator.png"
+	width="480"
+	caption="arbitrator state diagram"
+%}
+
+At a block level, an arbitrator looks like the below figure:
+
+{% include image.html
+	img="/images/posts/hdlIntro/arbitrator_block.png"
+	width="240"
+	caption="arbitrator block diagram"
+%}
+
 
