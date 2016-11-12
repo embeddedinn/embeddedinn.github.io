@@ -188,4 +188,5 @@ At a block level, an arbitrator looks like the below figure:
 	caption="arbitrator block diagram"
 %}
 
-
+This article is a work in progress. I will be updating it soon with more infomration as soon as I get some time off my dayjob. :smile:
+{: .notice--success}
