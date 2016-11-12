@@ -30,13 +30,6 @@ div {
 
 {% include base_path %}
 
-
-
-{% include image.html
-	img="/images/posts/certificates/rainbow.png"
-	width="980"
-%}
-
 ## Introduction
 
 Digital certificates are one of the most widely used yet largely misunderstood pieces of technologies in today's world. I happened to have a chat with some of my friends working on building  IoT devices which are using certificate based mutual authentication and realized that certs are largely taken for granted without appreciating the underlying technologies. So, I decided to write this blogpost to explain some of the core concepts involved in the usage and implementation of digital certificates and secure systems that rely on them.
