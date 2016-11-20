@@ -96,7 +96,7 @@ wire out;
 reg clock;
 
 initial begin
-$dumpfile(&amp;amp;quot;inv.vcd&amp;amp;quot;);
+$dumpfile("inv.vcd");
 $dumpvars(0,notGate);
 
 clock=0;
