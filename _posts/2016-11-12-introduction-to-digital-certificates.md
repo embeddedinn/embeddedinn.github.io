@@ -1,5 +1,5 @@
 ---
-title: 
+title: Introduction to digital certificates 
 date: 2016-11-12 10:36:19.000000000 +05:30
 published: true
 categories:
@@ -30,9 +30,15 @@ div {
 
 {% include base_path %}
 
+
 ## Introduction
 
-Digital certificates are one of the most widely used yet largely misunderstood pieces of technologies in today's world.They are are largely taken for granted without appreciating the underlying technologies. This blogpost explains some of the core concepts involved in the usage and implementation of digital certificates and secure systems that rely on them.
+Digital certificates are one of the most widely used yet largely misunderstood pieces of technologies in today's world.They are are largely taken for granted without appreciating the underlying technologies. 
+
+{% include toc title="Table of contents" icon="file-text" %}
+
+This blogpost explains some of the core concepts involved in the usage and implementation of digital certificates and secure systems that rely on them.
+
 
 ## Foundation
 
