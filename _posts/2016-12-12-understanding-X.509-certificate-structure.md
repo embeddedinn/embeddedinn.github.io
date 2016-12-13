@@ -1,7 +1,7 @@
 ---
 title: Understanding X.509 Certificate Sructure 
 date: 2016-12-12 18:36:19.000000000 +05:30
-published: false
+published: true
 categories:
 - Articles
 - Tutorial
@@ -126,7 +126,7 @@ Though the e-mail securing proposal in PEM was not a success, the certificate an
 
 Essentially PEM is a BASE64 encoded DER file. 
 
-### Key identifiers
+### Key identifiers and usage
 
 X.509 PKI certificate format defines some methods to generate unique identifiers for a public key. This is especially useful to identify the relevant keys when a CA has multiple active Public keys that can be used to sign certificates. These IDs appear in two forms in a certificate as part of certificate extensions.
 
@@ -139,6 +139,23 @@ Two recommended methods for generating unique key IDs from public keys as per th
 - type indicator `0100` followed by least significant 60 bits of subjectPublicKey (excluding tag and length)
 
 other methods of generating unique IDs can also be used. 
+
+Each key will be marked with a marked with a usage bitmap in the extension portion of the certificate. The defined bitmap and meanings are :
+
+|Bit position|   Name       |            Description                                      |
+|------------|--------------|-------------------------------------------------------------|
+|0  |digitalSignature       |subject public key is used for verifying digital signatures (except CRL and its own)|
+|1  |nonRepudiation         |used to provide a non-repudiation service that protects against the signing entity falsely denying some action|
+|2  |keyEncipherment        |subject public key is used for enciphering private or secret keys  |  
+|3  |dataEncipherment       |subject public key is used for directly enciphering raw user data without the use of an intermediate symmetric cipher|
+|4  |keyAgreement           |subject public key is used for key agreement (like in the case of D-H|
+|5  |keyCertSign            |subject public key is used for verifying signatures on public key certificates. This also mandates marking the certificate as a CA certificate|
+|6  |cRLSign                |subject public key is used for verifying signatures on certificate revocation lists |
+|7  |encipherOnly           | When the encipherOnly bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for enciphering data while performing key agreement|
+|8  |decipherOnly           |When the decipherOnly bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for deciphering data while performing key agreement.|
+
+So, for exmple, 0xa0 for keyUsage (2.5.29.15) would mean that the key can be used for `digitalSignature` and `keyEncipherment`
+ 
 
 ### Public Key Cryptography Standards (PKCS)
 
@@ -381,10 +398,9 @@ SEQUENCE
   BITSTRING 0084a89a11a7d8bd0b267e52247bb2559dea30895108876fa9ed10ea5b3e0bc72d47044edd4537c7cabc387fb66a1c65426a73742e5a9785d0cc92e22e3889d90d69fa1b9bf0c16232654f3d98dbdad666da2a5656e31133ece0a5154cea7549f45def15f5121ce6f8fc9b04214bcf63e77cfcaadcfa43d0c0bbf289ea916dcb858e6a9fc8f994bf553d4282384d08a4a70ed3654d3361900d3f80bf823e11cb8f3fce7994691bf2da4bc897b811436d6a2532b9b2ea2262860da3727d4fea573c653b2f2773fc7c16fb0d03a40aed01aba423c68d5f8a21154292c034a220858858988919b11e20ed13205c045564ce9db365fdf68f5e99392115e271aa6a8882
 ```
 
-The basic tree structure and relevent information in this tree are:
+The basic tree structure and relevent information in this tree are annoted below:
 
 ```
- 
 TLS version (02 for V03)
 Serial Number (0e64c5fbc236ade14b172aeb41c78cb0)
 Certificate signature Algorithm (SHA256withRSA)
@@ -409,11 +425,20 @@ SubjectPublicKeyInfo
 Extensions
 	AuthorityKeyIdentifier  - (5168ff90af0207753cccd9656462a212b859723b)
 	subjectKeyIdentifier  -  (a64f601e1f2dd1e7f123a02a9516e4e89aea6e48)
-	
+	subjectAltName - (list of identities bound to the same subject entity)
+	keyUsage - (digitalSignature and keyEncipherment)
+	extended key usage - (serverAuth and clientAuth)
+	cRLDistributionPoints - (2 links to get the revoked serial numbers)
+	certificatePolicies
+		ssl-server-certificates
+			certificate policy statement link provide by CA
+		organization-validated (legal)
+	authorityInfoAccess
+		Online Certificate Status Protocol (OCSP)  - (CA OCSP URL)
+		Certificate Authority Issuers (caIssuers)  - (link pointing to CA cert for verification)
+	basicConstraints (used to identify whether this is a CA . Not a CA in this case)
+certificate signature algotighm - (SHA256withRSA)
+certificate signature value - (bitstring)
 ```
-
-to decode an ASN1 string, use the following command:
-
-openssl asn1parse -in google.com.pem
 
 
