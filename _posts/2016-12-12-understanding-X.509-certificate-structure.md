@@ -11,7 +11,7 @@ tags:
 - Security
 - Networking
 
-excerpt: "An insight into the format and technologies used to pack a X.509 certificate. This tutorial introduces the concepts by parsing through a TLS certificate using easily accessible tools"
+excerpt: "An insight into the format and technologies used to pack a X.509 certificate. This tutorial introduces the concepts and parses through a TLS certificate to bring the concepts together."
 ---
 <style>
 div {
@@ -30,7 +30,7 @@ div {
 
 ## Introduction
 
-Digital certificates are now prevalent and its significance is growing in the current market where we need to deploy and manage many embedded devices into a network.
+Digital certificates are now prevalent and its significance is growing in the current market where an increasing number of embedded devices are deployed into secure networks.
 
 {% include toc title="Table of contents" icon="file-text" %}
 
