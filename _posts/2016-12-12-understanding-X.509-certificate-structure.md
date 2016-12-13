@@ -34,9 +34,9 @@ Digital certificates are now prevalent and its significance is growing in the cu
 
 {% include toc title="Table of contents" icon="file-text" %}
 
-Even with the increasing significance of Digital certificates, engineers are largely unaware of the underlying concepts and standards that dictate the certificate formats and contents. This is primarily because of the availability of hardened and stable software like OpenSSL that abstracts many things under friendly top level APIs. However, with the new wave of embedded devices using these technologies, we need to understand and re-visit the underlying technology to optimize them for the new-age requirements.  
+Even with increasing significance of Digital certificates, engineers are largely unaware of underlying concepts and standards that dictate certificate formats and contents. This is primarily because of the availability of hardened and stable software like OpenSSL that abstracts many things under friendly top level APIs. However, with the new wave of embedded devices using these technologies, we need to understand and re-visit the underlying technology to optimize them for new-age requirements.  
 
-When it comes to parsing a X.509 certificate by hand, the required information is scattered all over the place. This article aims at bringing in the basics together without going too much into specification details so that you can use it as a starting point to understand where and what to look for. 
+When it comes to parsing and understanding a X.509 certificate by hand, information is scattered all over the place. This article aims at bringing in the basics together without going too much into specification details so that you can use it as a starting point to understand where and what to look for. 
 
 ## Basics
 
@@ -44,39 +44,39 @@ First a little bit of glossary and background. Some seemingly disconnected termi
 
 ### Abstract Syntax Notation One (ASN.1) 
 
-ASN.1 is an abstract syntax that defines a machine encoding independent way of representing ( encoding, transmitting and decoding) data. Being an abstract syntax, it only defines the structure of the data tree and leaves the actual data representation to application specific implementations. In other words, ASN.1 is a schema language (simply put). To give an idea of what this means, ASN.1 can be used to define the schema for formats like JSON, XML etc.
+ASN.1 is an abstract syntax that defines a machine encoding independent way of representing ( encoding, transmitting and decoding) data. Being an abstract syntax, it only defines the structure of a data tree and leaves actual data representation (encoding) to application specific implementations. In other (simple) words, ASN.1 is a schema language. To give an idea of what this means, ASN.1 can be used to define the schema for formats like JSON, XML etc.
 
 A tip for later: In the schema representation , a `SEQUENCE` models an ordered collection of variables of different type
 
 ### Object identifier (OID)
 
-In the context of digital certificates, OID refers to the ITU-T maintained tree based object identifier hierarchy that allows unambiguous representation of information in the form of a dot separated number.
+In the context of digital certificates, OID refers to ITU-T maintained tree based object identifier hierarchy that allows unambiguous representation of information in the form of a dot separated number.
 
-For example 2.5.4.8 is the doted representation of the OID of the tree `{joint-iso-itu-t(`2`) ds(`5`) attributeType(`4`) stateOrProvinceName(`8`)}` . A certificate will use this OID to indicate that the following string is the state or province of the entoty to which the certificate was issued. 
+For example `2.5.4.8` is the doted OID representation of `{joint-iso-itu-t(`2`) ds(`5`) attributeType(`4`) stateOrProvinceName(`8`)}` . A certificate will use this OID as the tag of a string tthat represents the state or province of the entity to which a certificate was issued. 
 
 [OID Repository](http://www.oid-info.com){:target="_blank"} is a good place to lookup entities in the OID tree. 
 
 #### OID encoding (for DER)
 
-Special encoding rules have been defined to represent OIDs inside the ASN.1 tree . Note that ASN.1 by itself is agnostic of encoding rules. The rule illustrated below is part of the `DER` specification . (More on DER in the next session) 
+Special encoding rules have been defined to represent OIDs inside the ASN.1 tree . Note that ASN.1 by itself is agnostic of encoding rules. The rule illustrated below is part of `DER` specification . (More on DER in the next session) 
 
-For directly encoded OID components, the individual octets should have the first bit as `0`.
+For directly encoded OID components, the individual octets should have first bit as `0`.
 
 Consider a dummy OID `1.2.62329.4`. OID binary encoding for octet representation is done using the following rules.
 
 **Step 1**: The first two components (`A.B`) are encoded as `40*A+B` . In this case, it would be `2A` (Hex of `42`)
 
-**Step 2**: Since the third component (`62329`) has more than 7 bits in it, we need to split it into multiple octets with only the leading octet having MSB =1.
+**Step 2**: Since the third component (`62329`) has more than 7 bits in it, we need to split it into multiple octets with only leading octet having MSB =1.
 
-For this, first convert the number into binary and split into groups of 7 bits (Pad 0s to form the leading set to form an octet)
+For this, first convert the number into binary and split into groups of 7 bits (Pad 0s to form a leading set to form an octet)
 `000_0011 110_0110 111_1001`
 
-Set the MSB of all octets except last to 1. Set MSB of last octet to 0. Now, convert the resulting decimal into hex  
+Set MSB of all octets except last to 1. Set MSB of last octet to 0. Now, convert resulting decimal into hex  
 `1000_0011 1110_0110 0111_1001` = `0x83E679`
 
 **Step 3**: since the last component has a value with less than 7 bits, it can be converted to hex directly.
 
-So the final HEX encoded OID of `1.2.62329.4` would be `2A 83 E6 79 04`
+Final HEX encoded OID of `1.2.62329.4` would be `2A 83 E6 79 04`
 
 ### Distinguished Encoding Rules (DER)
 
@@ -84,7 +84,7 @@ DER defines rules for unambiguous encoding of data into ASN.1. This is one of th
 
 A portion an ASN.1 tree within a certificate is given below:
 
-Here the `SET` contains a `SEQUENCE` that contains an `ObjectIdentifier` conforming to the ITU-T OIDs and a "value" for the identified object. In the example here, all the OIDs have been mapped to the corresponding string notation as well. DER defines that for OID 2.3.4.6, the next element in the `SEQUENCE` should be of type `PrintableString` and further goes on into the definition of how a `PrintableString` appears in the ASN.1 tree.
+Here a `SET` contains a `SEQUENCE` that contains an IUT-T OID `ObjectIdentifier` and a "value" for the identified object. In the example here, all OIDs have been mapped to corresponding string notation as well. DER defines that for OID `2.3.4.6`, the next element in `SEQUENCE` should be of type `PrintableString` and further goes on into definition of how a `PrintableString` appears in ASN.1 tree.
 
 ```
 SET
@@ -122,7 +122,7 @@ There are well deifined methods to handle corner cases and there are variants (l
 
 ### Privacy Enhanced Mail format (PEM)
 
-Though the e-mail securing proposal in PEM was not a success, the certificate and key encoding format described by PEM is one of the most widely used for certificate storage and transmission. PEM files are used for storage of single certificates, complete certificate chain or just keys. 
+Though the e-mail securing proposal in PEM was not a success, PEMs certificate and key encoding format described by PEM is one of the most widely used for certificate storage and transmission. PEM files are used for storage of single certificates, complete certificate chain or just keys. 
 
 Essentially PEM is a BASE64 encoded DER file. 
 
@@ -130,17 +130,17 @@ Essentially PEM is a BASE64 encoded DER file.
 
 X.509 PKI certificate format defines some methods to generate unique identifiers for a public key. This is especially useful to identify the relevant keys when a CA has multiple active Public keys that can be used to sign certificates. These IDs appear in two forms in a certificate as part of certificate extensions.
 
-- authorityKeyIdentifier - key ID of the CA public key used to sign the certificate.
-- subjectKeyIdentifier - key ID of the public key present in the certificate. This is a mandatory field for a certificate marked as `CA`
+- authorityKeyIdentifier - key ID of CA public key used to sign the certificate.
+- subjectKeyIdentifier - key ID of public key present in the certificate. This is a mandatory field for a certificate marked as `CA`
 
 Two recommended methods for generating unique key IDs from public keys as per the x.509 RFC are:
 
-- compute the 160 bit SHA-1 hash of the BIT STRING value of subjectPublicKey (excluding tag and length)
+- compute 160 bit SHA-1 hash of the BIT STRING value of subjectPublicKey (excluding tag and length)
 - type indicator `0100` followed by least significant 60 bits of subjectPublicKey (excluding tag and length)
 
-other methods of generating unique IDs can also be used. 
+Other methods for generating unique IDs can also be used. 
 
-Each key will be marked with a marked with a usage bitmap in the extension portion of the certificate. The defined bitmap and meanings are :
+Each key will be marked with a usage bitmap in the "extension" portion of the certificate. The defined bitmap and meanings are :
 
 |Bit position|   Name       |            Description                                      |
 |------------|--------------|-------------------------------------------------------------|
@@ -151,8 +151,8 @@ Each key will be marked with a marked with a usage bitmap in the extension porti
 |4  |keyAgreement           |subject public key is used for key agreement (like in the case of D-H|
 |5  |keyCertSign            |subject public key is used for verifying signatures on public key certificates. This also mandates marking the certificate as a CA certificate|
 |6  |cRLSign                |subject public key is used for verifying signatures on certificate revocation lists |
-|7  |encipherOnly           | When the encipherOnly bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for enciphering data while performing key agreement|
-|8  |decipherOnly           |When the decipherOnly bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for deciphering data while performing key agreement.|
+|7  |encipherOnly           | When the `encipherOnly` bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for enciphering data while performing key agreement|
+|8  |decipherOnly           |When the `decipherOnly` bit is asserted and the keyAgreement bit is also set, the subject public key may be used only for deciphering data while performing key agreement.|
 
 So, for exmple, 0xa0 for keyUsage (2.5.29.15) would mean that the key can be used for `digitalSignature` and `keyEncipherment`
  
@@ -167,7 +167,7 @@ The pkcs12 standard defines a password protected container format for storing pr
 
 Each cryptographic algorithm requires a set of instance specific parameters to be fed into it for operation. The generalized term used for these set of parameters is called a "Key".
 
-In the case of certificates and keys stored in certificates, there are well defined formats for storing key parameters for every supported cipher suite . 
+In case of certificates and keys stored in certificates, there are well defined formats for storing key parameters for every supported cipher suite . 
 
 The generalised ASN.1 Schema for public key storage in a certificate as per TLS 1.2 RFC is :
 
@@ -177,9 +177,9 @@ SubjectPublicKeyInfo ::= SEQUENCE {
     publicKey BIT STRING }
 ```
 
-For example, `ECCDSA` public key is essentially two points in the curve. These points are encoded as an octet string and placed inside the certificate. Section 2.3.4 (OctetString-to-EllipticCurvePoint Conversion) of SEC 1: Elliptic Curve Cryptography V1 spec defines how to decode an octet string representation of the public key (that is generally seen in the certificate) into the curve points (a,b).  
+For example, `ECCDSA` public key is essentially a set of two points in the curve. These points are encoded as an octet string and placed inside the certificate. Section 2.3.4 (OctetString-to-EllipticCurvePoint Conversion) of SEC 1: Elliptic Curve Cryptography V1 spec defines how to decode an octet string representation of the public key (that is generally seen within the certificate) into curve points (a,b).  
 
-In a sample certificate using this algorithm, the following will appear in the ASN.1 tree: 
+In a sample certificate using this algorithm, the following will appear in its ASN.1 tree: 
 
 ```
 SEQUENCE
@@ -193,7 +193,7 @@ DER has defined rules for decoding `BIT STRING` which is essentially a padded AS
                 
 ## Parsing a certificate
 
-In the "Server Certificate" stage of TLS handshake, the server presents a "certificate_list" to the client. As per rfc5246 (TLS 1.2), a certificate list is a sequence (chain) of certificates.  The sender's certificate MUST come first in the list.  Each following certificate MUST directly certify the one preceding it. This chain transmission happens in  ASN.1 schema defined in the rfc and can have up to a maximum of 2^24-1 certificates in the chain.
+In "Server Certificate" stage of TLS handshake, the server presents a "certificate_list" to the client. As per RFC5246 (TLS 1.2), a certificate list is a sequence (chain) of certificates.  The sender's certificate MUST come first in the list.  Each following certificate MUST directly certify the one preceding it. This chain transmission happens in  ASN.1 schema defined in the rfc and can have up to a maximum of 2^24-1 certificates in the chain.
 
 The root certificate can be omitted as it does not make sense to validate a chain with a root sent in the chain. 
 
@@ -207,7 +207,7 @@ When exported, certificates are generally stored between string tags:
 
 We will use the certificate of `https://example.com` to understand the basic structure of an X.509 certificate. 
 
-Execute the following command to fetch the certificate chain:
+Following command will fetch the certificate chain:
 
 `openssl s_client -showcerts -connect www.example.com:443 </dev/null`
 
