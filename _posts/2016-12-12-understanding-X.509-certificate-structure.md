@@ -441,4 +441,10 @@ certificate signature algotighm - (SHA256withRSA)
 certificate signature value - (bitstring)
 ```
 
+You can see the same set of information in Firefox certificate viewer.
 
+{% include image.html
+	img="/images/posts/certStructure/exampleCertFirefox.png"
+	width="480"
+	caption="example.com cert as parsed by Firefox"
+%}
