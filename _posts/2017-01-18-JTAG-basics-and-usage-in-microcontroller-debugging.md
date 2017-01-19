@@ -1,7 +1,7 @@
 ---
 title: JTAG basics and usage in microcontroller debugging
 date: 2017-01-18 08:36:19.000000000 +05:30
-published: false
+published: false 
 categories:
 - Articles
 - Tutorial
@@ -81,5 +81,39 @@ While the last bit is being latched in, TMS need to be modified to go into `capt
 Once an instruction has been captured, the corresponding data register will be placed between TDI and TDO in the next "capture-**DR**" state. In this case, a data register containing the device identifier will be placed between TDI and TDO. So, once the TAP enters "capture-DR" state, contents of the ID register can be serially shifted out into TDO line at subsequent falling edges of TCK.
 
 > while the data register is being shifted out at falling edges of TCK, data in TDI will be shifted into the same register. So, assuming that TDI is held low during the process of reading out data via TDO, the register will end up with all `0`s at the end of read. 
+
+## MIPS debug subsystem
+
+Since JTAG has a lot of implementation specific provisions, a specific processor family should be selected to understand how debugging (and programming) is achieved using JTAG. 
+
+For this study, we will be selecting  MIPS32 family that has a debug subsystem named EJTAG that ties into the TAP and CPU debug features. The spec is available [here](http://downloads.buffalo.nas-central.org/LS2_MIPSel/DevelopmentTools/JTAG/MD00047-2B-EJTAG-SPC-03.10.pdf){:target="\_blank"}
+
+### EJTAG extensions and external virtual memory access
+
+One of the primary features of MIPS with EJTAG extensions is the ability to virtually map the processors address space into the debugger. This essentially means that the processor will be able to execute instructions and process data coming from the debug probe instead of its own in-device memory (RAM/executable flash etc ). One of the ways to trigger this mode of operation is the `EJTAGBOOT` JTAG instruction that will cause the processor to cause a reset and start accessing instructions from `kseg3` that is virtually mapped into the TAP controller. (another mechanism is the `SDBBP` instruction).
+
+Reset following `EJTAGBOOT` would would put the system in debug mode where all access restrictions are removed. The following bits in the ECR (32 bit EJTAG control register) will be set following this reset.
+
+- Debug Interrupt Exception Request bit (`EjtagBrk`) indicating that a debug interrupt exception request is pending 
+- Debug Exception Vector Control Location bit (`ProbTrap`) indicating that the debug exception vector is at `0xFF200200` in the DMSEG region instead of `0xBFC00480` in normal boot case
+- Processor Access Service Control bit (`ProbeEn`) indicating that the "probe" services processor accesses to DMSEG.
+
+> `Rocc` bit in ECR remains `1` following a reset until cleared by the probe. This is to force the probe to acknowledge a device reset. Until it is cleared, `update-DR` will not update the control register.  
+
+`CONTROL` JTAG instruction will place the ECR between TDI and TDO for access in data phase of the TAP controller. When an EJTAG memory access is triggered following a debug reset with probe access the following is applicable: 
+
+- `PrAcc` bit in control register will be set to 1
+- `ADDRESS` JTAG instruction can be used to shift out the 32-bit address that the CPU is trying to access
+- `DATA` JTAG instruction can be used to shift in/out the 32-bit data that the CPU is trying to read/write
+- `Psz` will indicate size of data (`0` for byte through `3` for triple word)
+- `PRnW` bit in control register will indicate whether it is a read (0) or write(1) operation pending on the address in `ADDRESS` register by the CPU.
+
+CPU will be stalled until `PrAcc` bit is cleared . EJTAG probe (and debug software like the IDE) periodically polls the TAP control register for `PrAcc` and handles the request accordingly by shifting in/out data and clearing `PrAcc` once data access requested by CPU is ready. 
+
+This set of provisions lets the MIPS CPU execute instructions that are provided over JTAG. When this is used in conjunction with the CPU debug features that we will be seeing soon, a full fledged debugging system can be developed over the JTAG interface.
+
+> CPU stalls with PrAcc only when access to dmseg addresses (starting at 0xFF20_0000) are made. So, for instance if an execution passed from the probe tries to access a RAM location, CPU will go ahead and fetch the data from RAM and stall only for next instruction to be passed on via the probe. In case of a jump to a non-dmseg address, CPU will jump to that location and continue execution and not stall until the next access to dmseg address is made. 
+
+### CPU debug features
 
 
