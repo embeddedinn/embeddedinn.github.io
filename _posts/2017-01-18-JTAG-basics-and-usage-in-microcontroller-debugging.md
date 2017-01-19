@@ -1,5 +1,5 @@
 ---
-title: JTAG basics and IDE based debugging
+title: JTAG basics and usage in microcontroller debugging
 date: 2017-01-18 08:36:19.000000000 +05:30
 published: false
 categories:
