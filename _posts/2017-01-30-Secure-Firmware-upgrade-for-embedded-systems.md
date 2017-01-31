@@ -1,5 +1,5 @@
 ---
-title: Secure Firmware upgrade for embedded systems
+title: Secure firmware upgrade for embedded systems
 date: 2017-01-30 23:31:19.000000000 +05:30
 published: true 
 categories:
