@@ -194,11 +194,16 @@ quilt push -a
 instlall debhelper package using `sudo apt install debhelper` before building.
 {: .notice--info}
 
-Now, make the same changes to SSL_read() as we did before and issue the following command to compile the package
+Now, compile the package using the following command.
 
 ```bash
 debian/rules
 ```
+
+Once compiled, make the same changes to SSL_read() as we did before and re-compile the library by issuing `make` command.
+
+Compiling using `debian\rules` will cause tests that are run as part of the script to fail since we are adding additional prints. This way, we just re-compile the files effected by `ssl_lib.c` changes and re-package the lobrary.
+
 
 Once compilation is through, run `mosquitto_pub` using the following command to see the patch in action. Wireshark based decryption uses the same method above
 
