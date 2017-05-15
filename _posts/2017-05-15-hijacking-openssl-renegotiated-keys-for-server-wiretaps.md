@@ -36,7 +36,7 @@ openssl s_client -host vysakh-testHub1.azure-devices.net -port 443 -cert selfsig
 
 This command will connect to Azure IoT hub over a secure channel, do a full ssl handshake and derive a session specific `Master secret`. This key will be printed in the console and it can be used to decrypt application logs using wireshark. At this point, device certificate is not requested.
 
-When the actual request is posted, if authentication mode of the requesting device is X.509, Azure IoT hub will perform a TLS re-negotiation by sending a `hello request` TLS handshake. This triggers a full handshake between the device and server but this time, it would include a `certificate request` handshake. At the end of this re-negotiation, a new `Master secret` is derived and it would be used for further application data transfer. However, s_client does not print this re-negotiated key and using default setups, it would be impossible to decrypt further application data exchange between the device and client.
+When the actual request is posted, if authentication mode of the requesting device is X.509, Azure IoT hub will perform a TLS re-negotiation by sending `hello request` TLS handshake. This triggers a full handshake between the device and server but this time, it would include a `certificate request` handshake. At the end of this re-negotiation, a new `Master secret` is derived and it would be used for further application data transfer. However, s_client does not print this re-negotiated key and using default setups, it would be impossible to decrypt further application data exchange between the device and client.
 
 {% include image.html
 	img="/images/posts/opensslMqttHack/masterSecret1.png"
