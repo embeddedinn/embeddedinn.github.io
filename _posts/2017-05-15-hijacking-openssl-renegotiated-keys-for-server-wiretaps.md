@@ -41,13 +41,13 @@ When the actual request is posted, if authentication mode of the requesting devi
 {% include image.html
 	img="/images/posts/opensslMqttHack/masterSecret1.png"
 	width="480"
-	caption="s_client Master Secret"
+	caption="default s_client Master Secret"
 %}
 
 {% include image.html
 	img="/images/posts/opensslMqttHack/helloRequest.png"
 	width="480"
-	caption="helloRequest followed by encrypted data in case of re-negotiation"
+	caption="`Hello Request` followed by encrypted data in case of re-negotiation"
 %}
 
 Another issue is that while using a standard MQTT client like `mosquitto_pub` over secure channels there is no way to observe application level data once secure channel is established.
