@@ -38,8 +38,6 @@ This command will connect to Azure IoT hub over a secure channel, do a full ssl 
 
 When the actual request is posted, if authentication mode of the requesting device is X.509, Azure IoT hub will perform a TLS re-negotiation by sending a `hello request` TLS handshake. This triggers a full handshake between the device and server but this time, it would include a `certificate request` handshake. At the end of this re-negotiation, a new `Master secret` is derived and it would be used for further application data transfer. However, s_client does not print this re-negotiated key and using default setups, it would be impossible to decrypt further application data exchange between the device and client.
 
-Another issue is while using a standard MQTT client like `mosquitto_pub` over secure channels. Once the channel is established, there is no way to observe application level data.
-
 {% include image.html
 	img="/images/posts/opensslMqttHack/masterSecret1.png"
 	width="480"
@@ -49,8 +47,10 @@ Another issue is while using a standard MQTT client like `mosquitto_pub` over se
 {% include image.html
 	img="/images/posts/opensslMqttHack/helloRequest.png"
 	width="480"
-	caption="helloRequest followed by encrypted data"
+	caption="helloRequest followed by encrypted data in case of re-negotiation"
 %}
+
+Another issue is that while using a standard MQTT client like `mosquitto_pub` over secure channels there is no way to observe application level data once secure channel is established.
 
 I will be describing how to decrypt TLS traffic using wireshark in upcoming sections
 {: .notice--info}
@@ -63,7 +63,7 @@ These API takes an argument (`s`) of type `struct ssl_st`. On digging a bit thro
 
 ## modifying and compiling libssl
 
-Latest release version of openssl can be downloaded from its website. To compile the code, use the following commands after unpacking the archives. At the time of writing, latest version was `openssl-1.1.0e`
+Latest release version of openssl can be downloaded from its website. To compile, use following commands after unpacking the archives. At the time of writing, latest release version was `openssl-1.1.0e`
 
 ```bash
 ./config
@@ -94,9 +94,9 @@ Once the session is established, send a dummy `GET /` request to see the patch i
 
 ## using the hack with re-negotiating servers
 
-Now that we have the capability to print out the session master_key using our modified openssl library, we can use it with Azure to see the re-negotiated key.
+Now that we have the capability to print out session master_key using our modified version of openssl, we can use it with Azure to see the re-negotiated key.
 
-I have already created a device that uses X.509 certificates for authentication. Issue the following command to connect to Azure IoT and POST  an event request as this device:
+I have already created a device that uses X.509 certificates for authentication. Issue the following command to connect to Azure IoT hub and POST  an event request as this device:
 
 ```bash
 LD_LIBRARY_PATH=. apps/openssl s_client -connect vysakh-TestHub1.azure-devices.net:443 -cert ../selfsigned.crt -key ../selfsigned.key
@@ -132,7 +132,9 @@ You can tell Wireshark where to find the key file via Edit→Preferences→Proto
 CLIENT_RANDOM <space> <64 bytes of hex encoded client_random> <space> <96 bytes of hex encoded master secret>
 ```
 
-Client random can be obtained form the encrypted logs itself. In this case, we will first log the entire transaction using wireshark, fetch the initial client random from the logs and then match them to the master_keys printed by our patch.
+when there are more than one CLIENT_RANDOMs involved, add more similar lines to the file and Wireshark will select the appropriate master key for decryption.
+
+Initial client_random can be obtained form the logs itself. In this case, we will first log the entire transaction using wireshark, fetch the initial client_random from the logs and then match them to the master_keys printed by our patch.
 
 {% include image.html
 	img="/images/posts/opensslMqttHack/clientRandom1.png"
