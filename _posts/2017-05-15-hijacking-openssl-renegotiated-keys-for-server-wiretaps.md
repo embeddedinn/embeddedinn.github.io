@@ -126,7 +126,7 @@ From the console output of our patch, you can see that a new key has been negoti
 
 Wireshark comes with an inbuilt capability to decrypt TLS traffic if master_key can be provided. Master key is matched to the sessions `random` send as part of `Client hello` using a "master-secret log file"
 
-You can tell Wireshark where to find the key file via Edit→Preferences→Protocols→SSL→(Pre)-Master-Secret log filename. Key log file format is :
+You can tell Wireshark where to find the key file via `Edit→Preferences→Protocols→SSL→(Pre)-Master-Secret log filename`. Key log file format is :
 
 ```bash
 CLIENT_RANDOM <space> <64 bytes of hex encoded client_random> <space> <96 bytes of hex encoded master secret>
@@ -224,5 +224,15 @@ mosquitto_pub -h iot.eclipse.org -p 8883 -t "testTopic" -m "testMessage" --capat
 	img="/images/posts/opensslMqttHack/mqttDecrypt.png"
 	width="480"
 	caption="decrypted MQTT traffic"
+%}
+
+In case MQTT server uses a non-standard port (e.g. 8884 in case of `test.mosquitto.org` for mutual authentication), the captured logs will not be identified as TLS. To get this detected as TLS, add the port into a comma separated list in  `Edit→Preferences→Protocols→HTTP→SSL/TLS Ports`
+
+The above step would enable us to get `CLIENT_RANDOM` out of the dissected handshake. However, application data after TLS negotiation is not detected as MQTT packets. For this, right click on the application data packet and click `Decode As...` and enter `MQTT` in the `Current` field.
+
+{% include image.html
+	img="/images/posts/opensslMqttHack/decodeAs.png"
+	width="480"
+	caption="decode packet As MQTT"
 %}
 
