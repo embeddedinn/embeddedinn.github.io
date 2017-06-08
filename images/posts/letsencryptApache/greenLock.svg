@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Lock</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Lock">
+            <polygon id="Layout" opacity="0.5" points="0 0 18 0 18 18 0 18"></polygon>
+            <path d="M12,7 L12,6 C12,4.34002686 10.6600342,3 9,3 C7.33996582,3 6,4.34002686 6,6 L6,7 C6,7 6.67004395,7.00000002 5.5,7.00000002 C4.32995605,7.00000002 4,7.79230798 4,8.5 L4,14.5 C4,15.3300171 4.67004395,16 5.5,16 L12.5,16 C13.3299561,16 14,15.3300171 14,14.5 C14,13.6699829 14,9.33001709 14,8.5 C14,7.66998291 13.3299561,7 12.5,7 C11.6700439,7 12,7 12,7 Z M7,7 C7,7 7,7.09997559 7,6 C7,4.90002441 7.89333089,4 9,4 C10.1066691,4 11,4.90002441 11,6 L11,7 L7,7 Z" id="Shape" fill="#0B8043"></path>
+        </g>
+    </g>
+</svg>
