@@ -229,9 +229,15 @@ SSLCertificateKeyFile /etc/letsencrypt/live/test.com/privkey_rsa.pem
 After apache restart, an analysis with the openssl tool shows that both ECDSA and RSA based ciphers are supported by the  server now in the order we configured in the server.
 
 {% include image.html
-	img="/images/posts/letsencryptApache/ssllSupportAll.png"
+	img="/images/posts/letsencryptApache/sslSupportAll.png"
 	width="480"
 	caption="ssllab analysis showing ECC and RSA support"
 %}
 
+A firefox plugin names [toggle-cipher-suites](https://github.com/dillbyrne/toggle-cipher-suites){:target="\_blank"} allows us to disable certain ciphers and see corresponding cipher selection in the server we just configured. 
 
+{% include image.html
+	img="/images/posts/letsencryptApache/toggleCipher.png"
+	width="240"
+	caption="toggle-cipher-suites firefox plugin lets us try the 2 certificate configuration"
+%}
