@@ -201,3 +201,16 @@ This configuration can be checked by running an ssltest on the domain using the 
 
 The renewal crontab we setup will renew the certificate to use a default (RSA) certificate which will break the ECC certificate we setup and fallback to the default RSA certificate. 
 {: .notice--warning}
+
+{% include image.html
+	img="/images/posts/letsencryptApache/ssllabBefore.png"
+	width="480"
+	caption="ssllab analysis before renewal"
+%}
+
+
+{% include image.html
+	img="/images/posts/letsencryptApache/ssllabAfter.png"
+	width="480"
+	caption="ssllab analysis after renewal"
+%}
