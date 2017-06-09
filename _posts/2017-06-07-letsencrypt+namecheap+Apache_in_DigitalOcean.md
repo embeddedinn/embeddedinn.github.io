@@ -133,7 +133,7 @@ Run the following command to fetch a certificate for the domain we setup with `s
 
 At a stage you will be asked to choose between redirecting all traffic to HTTPS and allowing HTTP as well as HTTPS . It is preferred to redirect to HTTPS.
 
-Let's Encrypt's certificates are only valid for ninety days. To setup auto renewals, execute: `sudo crontab -e`. you will be asked to select an editor and once the files open, enter the following line to the end of the file. 
+Let's Encrypt's certificates are only valid for ninety days. To setup auto renewals, execute: `sudo crontab -e`. You will be asked to select an editor and once the files open, enter the following line to the end of the file. 
 
 ```
 15 3 * * * /usr/bin/certbot renew --quiet
@@ -143,3 +143,61 @@ This will automatically run the renewal step daily and renew the certificate whe
 
 At the end of this process, we get the glorious ![little green Lock](/images/posts/letsencryptApache/greenLock.svg)  
 
+## Eleptic curve certificates
+
+Letsencrypt signs certificates using RSA. However, it allows the client certificates to include public keys for ECC. Since certbot tool does not provide a mechanism for automatically fetching ECC certificates, we will have to manually generate a CSR and get it signed by letsencrypt. 
+
+letsencrypt uses alternate subject names to issue the same certificates for multiple (alternate) domains. However, default openssl configuration does not ask for adding alternate subject names while generating signing requests using `openssl req`. So, as the first step, we need to set up a temporary configuration to do this. This will allow us to use the same certificate for `test.com` as well as `www.test.com`
+
+- copy the default openssl configuration file into the current working directory `cp /etc/ssl/openssl.cnf .`
+- uncomment `req_extensions=v3_req` line in the config file. This will let openssl read the v3_req section while creating requests. 
+- go to `[v3_req]` section in to config file and add `subjectAltName = @alt_names` to the existing lines.
+- next add a new section `[alt_names]` with the following contents
+
+```
+ [ alt_names ]
+ DNS.1 = test.com
+ DNS.2 = www.test.com
+```
+
+Now that the setup is ready to create a CSR for EC\* certificates, we need to first create a key pair to place the public key in our CSR. Issue the following command to create a key pair.
+
+`openssl ecparam -genkey -name secp384r1 | openssl ec -out ec.key`
+
+Now, issue the CSR request command as follows to generate the CSR including the public key we just generated. 
+
+`openssl req -new -sha256 -key ec.key -nodes -out ec.csr -outform pem -config openssl.cnf`
+
+To use this CSR and generate a certificate, issue the following certbot command. 
+
+`certbot certonly -w /var/www/test.com/ -d test.com -d www.test.com --email "admin@test.com" --csr ./ec.csr --agree-tos`
+
+This will create files (`0000_cert.pem`, `0000_chain.pem`, `0001_chain.pem`) corresponding to the signed certificate, chain and full chain that certbot generates. 
+
+To make Apache use these manually generated certificates,
+
+- identify the `SSLCertificateFile` and `SSLCertificateKeyFile` configured in `/etc/apache2/sites-available/test.com-le-ssl.conf`.
+- Mostly, this will be a softlink to some files in `/etc/letsencrypt/archive/test.com/fullchain.pem`
+- replace the corresponding files with the newly generated certificates.
+
+To enable strong server side TLS, we follow the [recommendations from mozilla](https://wiki.mozilla.org/Security/Server_Side_TLS){:target="\_blank"} and edit the  configuration in `/etc/letsencrypt/options-ssl-apache.conf` to:
+
+```
+ SSLProtocol             all -SSLv2 -SSLv3
+ SSLCipherSuite          ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
+ SSLHonorCipherOrder     on
+ SSLCompression          off
+```
+
+Restart apache with `sudo service apache2 restart`
+
+This configuration can be checked by running an ssltest on the domain using the online service provided by [](https://www.ssllabs.com/ssltest/){:target="\_blank"}
+
+{% include image.html
+	img="/images/posts/letsencryptApache/secureFox.png"
+	width="240"
+	caption="AES256 negotiated with firefox"
+%}
+
+The renewal crontab we setup will renew the certificate to use a default (RSA) certificate which will break the ECC certificate we setup and fallback to the default RSA certificate. 
+{: .notice--warning}
