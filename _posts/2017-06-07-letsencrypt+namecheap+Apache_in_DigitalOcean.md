@@ -62,6 +62,10 @@ Enter the domain name and click ![Add Domain](/images/posts/letsencryptApache/DO
 -  ![A Record](/images/posts/letsencryptApache/DOARec.png) 
 -  ![CNAME](/images/posts/letsencryptApache/DOCNAME.png)
 
+Optionally, you can host your own mailinator domain by adding the below MX record:
+
+-  ![A Record](/images/posts/letsencryptApache/DOMXRec.png) 
+
 This will result in 1 A, 1 CNAME and 3 NS records for this domain. Once the DNS controllers sync up, the domain will be accessible for ping.
 
 Now that we have setup a domain name and mapped it to our droplet, we can go ahead and setup a web server in the instance. 
