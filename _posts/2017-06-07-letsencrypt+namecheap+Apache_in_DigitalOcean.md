@@ -131,7 +131,7 @@ The automation tool used in this process is certbot. To install certbot, follow 
 
 - Add the repo with `sudo add-apt-repository ppa:certbot/certbot`
 - Update with `sudo apt-get update`
-- Install certboot with `sudo apt-get install certbot`
+- Install certboot with `sudo apt-get install python-certbot-apache`
 
 Run the following command to fetch a certificate for the domain we setup with `sudo certbot --apache -d example.com -d www.example.com`
 
