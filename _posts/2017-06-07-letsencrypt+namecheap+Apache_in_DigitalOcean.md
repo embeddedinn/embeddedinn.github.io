@@ -89,10 +89,10 @@ Once these steps are done, the domain we setup in the previous step can be used 
 
 For these steps , we need to log in as the non-root user we created. Use `su webadmin` for this. We will setup our web server to have multiple virtual hosts. For this, follow these steps:
 
-- Create the document root folder folder with `sudo mkdir -p /var/www/test.com/public_html`
-- Grant permissions with `sudo chown -R $USER:$USER /var/www/test.com/public_html`
+- Create the document root folder folder with `sudo mkdir -p /var/www/ `<code class="highlighter-rogue" style="color:red;">test.com</code>`/public_html`
+- Grant permissions with `sudo chown -R $USER:$USER /var/www/`<code class="highlighter-rogue" style="color:red;">test.com</code>`/public_html`
 - Ensure read access with `sudo chmod -R 755 /var/www`
-- Create a test page with `vi /var/www/test.com/public_html/index.html` and enter the following contents
+- Create a test page with `vi /var/www/`<code class="highlighter-rogue" style="color:red;">test.com</code>`/public_html/index.html` and enter the following contents
 
 ```html
 <html>
