@@ -245,3 +245,11 @@ A firefox plugin names [toggle-cipher-suites](https://github.com/dillbyrne/toggl
 	width="240"
 	caption="toggle-cipher-suites firefox plugin lets us try the 2 certificate configuration"
 %}
+
+## SNI considerations for multiple named hosts
+
+By default the initial SSL connection handshake (client hello) will not indicate the host name to which the request is being made. This is a problem when we have different certificates and SSL settings for different virtual hosts behind the same IP address. TLS has an extension named **S**erver **N**ame **I**ndication that allows client hello to include the host name to which the connection request is being made. Apache uses this to select the corresponding server certificate to use in setting up the session. 
+
+Most modern browsers supports SNI by default. When using clients like `openssl s_client` make sure to use the `-servername` argument to connect to the appropriate virtual host. If this is not provided, connection will be made to the default virtual host.
+
+
