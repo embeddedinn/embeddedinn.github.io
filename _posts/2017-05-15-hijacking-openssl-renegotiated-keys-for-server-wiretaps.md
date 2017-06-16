@@ -165,6 +165,14 @@ Decryption of re-negotiated traffic was recently fixed in wireshark. I was not a
 	caption="decrypted re-negotiated traffic"
 %}
 
+### Wifi Decryption
+
+In case you are sniffing WiFi traffic from a secure AP, the packets in air themselves will be encrypted.
+
+In case of WPA authenticated network, first generate the PSK by entering SSID and passphrase in the online Wireshark Raw key geenrator tool [here](https://www.wireshark.org/tools/wpa-psk.html){:target="\_blank"}
+
+Next, open wireshark and go to `Edit>Preferences>IEEE 802.11` and click "Edit" next to Decryption keys". Add a new key under `wpa-psk` and enter the generated PSK there.  
+
 ## decrypting secure MQTT traffic
 
 Now that we have a modified TLS library that can provide us required information, we can use it to have more fun. For instance, I used it to decrypt MQTT traffic that is going through a secure channel. An alternate option would have been to modify the MQTT client source to print the session keys. But where is the fun in that??
