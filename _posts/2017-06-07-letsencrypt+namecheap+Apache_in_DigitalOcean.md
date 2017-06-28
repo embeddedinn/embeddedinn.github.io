@@ -252,4 +252,16 @@ By default the initial SSL connection handshake (client hello) will not indicate
 
 Most modern browsers supports SNI by default. When using clients like `openssl s_client` make sure to use the `-servername` argument to connect to the appropriate virtual host. If this is not provided, connection will be made to the default virtual host.
 
+## Client authentication using certificates
 
+If you need to enable client authentication using certificates add the following configuration into the SSL configuration of the corresponding virtual host
+
+```
+#Enable client authentication
+SSLVerifyClient require
+SSLVerifyDepth 1
+SSLCACertificateFile "/etc/letsencrypt/archive/<host>/<expected Root CA>"
+SSLOptions +StdEnvVars
+```
+
+Optionally, `SSLCACertificatePath` can be used to support multiple CAs. `StdEnvVars` helps with getting the connecting client's certificate information. 
