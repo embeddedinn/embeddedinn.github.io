@@ -11,7 +11,7 @@ tags:
 - IoT
 - Smart Home
 
-excerpt: "Quick start guide on developing smart home skills for voice based control of smart devices."
+excerpt: "Quick start guide on developing smart home skills for voice based control of smart devices using Amazon Alexa."
 
 ---
 <style>
