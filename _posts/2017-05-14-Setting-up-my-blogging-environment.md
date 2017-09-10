@@ -40,10 +40,12 @@ bundle install
 
 ```
 
-In the case where I wass etting it up to write this page, I had to re-run `bundle install` after running the following commands since I did not install zlib in the forst place. 
+In the case where I wass etting it up to write this page, I had to re-run `bundle install` after running the following commands since I did not install zlib in the first place. 
 
+```
 sudo apt-get install zlib1g-dev
 sudo gem install nokogiri -v '1.6.7.2'
+```
 
 Once all installations are successful, run the following command to serve the blog in localhost
 
