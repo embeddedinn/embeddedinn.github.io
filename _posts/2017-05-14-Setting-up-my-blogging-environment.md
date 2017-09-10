@@ -40,7 +40,7 @@ bundle install
 
 ```
 
-In the case where I wass etting it up to write this page, I had to re-run `bundle install` after running the following commands since I did not install zlib in the first place. 
+In the case where I was setting it up to write this page, I had to re-run `bundle install` after running the following commands since I did not install zlib in the first place. 
 
 ```
 sudo apt-get install zlib1g-dev
