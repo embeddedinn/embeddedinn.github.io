@@ -1,7 +1,7 @@
 ---
 title: Developing an MQTT Custom Skill for Alexa 
 date: 2017-09-10 19:55:19.000000000 +05:30
-published: false 
+published: true 
 categories:
 - Articles
 - Tutorial
@@ -146,4 +146,6 @@ Once we have the price, we will send an MQTT message to the email address topic 
 
 The skill I built can be seen in action here:
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=6dMyTTsihLw" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="300" src="https://www.youtube.com/embed/6dMyTTsihLw" frameborder="0" allowfullscreen></iframe>
+
+
