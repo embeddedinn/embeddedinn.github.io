@@ -1,5 +1,5 @@
 ---
-title: Developing an MQTT Custom Skill for Alexa 
+title: Developing a MQTT Custom Skill for Alexa 
 date: 2017-09-10 19:55:19.000000000 +05:30
 published: false 
 categories:
@@ -12,7 +12,7 @@ tags:
 - Smart Home
 - MQTT
 
-excerpt: "Steps to setup a custom Alexa skill that would trigger an MQTT message to the users e-mail address topic"
+excerpt: "Steps to setup a custom Alexa skill that would trigger a MQTT message to the users e-mail address topic"
 
 ---
 <style>
@@ -37,8 +37,8 @@ A custom skill is different from a smart home skill in the fact that it allows y
 
 In this case, here is the use-case we are going to build
 
-- The skill basically announces the last traded value of the share price of a fixed symbol
-- While announcing the value, the skill will also trigger an MQTT message to the test broker at test.mosquitto.org
+- The skill will announces the last traded value of the share price of a fixed symbol over the audio interface
+- While announcing , the skill will also trigger a MQTT message to the test broker at test.mosquitto.org
 - Topic to which the message is triggered will be the email id of the user who installed the skill. We will be using account linking for this.
 
 This will teach us the important concepts associated with developing custom skills, user identification using account liking, Alexa cards, third party API integration etc.
@@ -83,10 +83,10 @@ The lambda function for a custom skill will be a bit different from that of a sm
 
 - User identification
 - Fetching share price
-- Sending an MQTT message
+- Sending a MQTT message
 - Forming and sending a response
 
-Since the default lambda ecosystem does not include an MQTT library for use with node js, we will not be able to live with just the code written in web console. So we will use the below steps to create a zip file with all dependencies and upload it to the lambda. For this first setup the command line upload interface as below:
+Since the default lambda ecosystem does not include a MQTT library for use with node js, we will not be able to live with just the code written in web console. So we will use the below steps to create a zip file with all dependencies and upload it to the lambda. For this first setup the command line upload interface as below:
 
 - install AWS CLI (`sudo apt-get install awscli`)
 - If you do not have the access keys created for your AWS user, do so in IAM console and make a note of the access key ID and secret
@@ -142,7 +142,7 @@ In case the user has not done account linking yet, the token field will be empty
 "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22MCHP%22)&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 ```
 
-Once we have the price, we will send an MQTT message to the email address topic and form our response speech text. Since we are not setting up a conversational skill, we will also end the session.
+Once we have the price, we will send a MQTT message to the email address topic and form our response speech text. Since we are not setting up a conversational skill, we will also end the session.
 
 The skill I built can be seen in action here:
 
