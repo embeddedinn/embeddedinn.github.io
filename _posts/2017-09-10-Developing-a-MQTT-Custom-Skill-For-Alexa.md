@@ -29,7 +29,7 @@ div {
 
 Last time, I wrote about developing a smart home skill for Alexa. (It is available [here](https://embeddedinn.github.io/articles/tutorial/Developing-an-Alexa-Smart-Home-Skill/){:target="\_blank"}.in case you missed it). 
 
-In the last tutorial, we did not go into the depths of actually setting up a lambda function beyond the scope of Amazon's template. Also, we did not talk about developing custom skills that goes beyond the scope and restrictions of a smart home skill. So, here we go...
+In the last tutorial, we did not go into the depths of actually setting up a lambda function beyond the scope of an Amazon's template. Also, we did not talk about developing custom skills that goes beyond the scope and restrictions of a smart home skill. So, here we go...
 
 Most of the steps explained here will assume that you have tried out the previous example and hence will not be as elaborate as before. You will easily be able to get around the consoles and portals with the verbal explanation here. 
 
@@ -47,9 +47,9 @@ This will teach us the important concepts associated with developing custom skil
 
 As in the smart home skill. Log-in to [Alexa developer console](https://developer.amazon.com/home.html){:target="\_blank"} and navigate to `Alexa skill kit > Add new skill`. But this time, select ` Custom Interaction Model ` and enter a name and invocation name. The name will be shown to the users trying to install your skill while invocation name will be used to call up on the skill from your echo device. Leave the otehr fields as-is and navigate to `interaction model` in the left pane. 
 
-Interaction model defines an intent schema, custom slot types if any and sample utterances. An intent schema defines the different distinct commands that can be issued to the skill. Sample utterances links spoken sentences with one of the intents in teh intent schema and a slot is a position in the sample utterance where a user variable can come in. For instance, if there is a `getWeather` intent, one of the corresponding sample utterance can be `get me the weather in {PlaceName}`. Now, for instance if the user ask the skill - `get me the weather in  Kerala`, the sample utterance would be used to match the request to the intent and the only parameter that needs to be passed on to the back-end while calling the function that would handle `getWeather` is the place name (Kerala) from the slot. Amazon provides a lot of pre-defined slot types. The optional custom slots field lets you define new slot types and add enumerators into it.
+Interaction model defines an intent schema, custom slot types if any and sample utterances. An intent schema defines a set of distinct commands that can be issued to a skill. Sample utterances links spoken sentences with an intent in the intent schema and a slot is a position in a sample utterance where a user variable can come in. For instance, if there is a `getWeather` intent, one of the corresponding sample utterance can be `get me the weather in {placeName}`. Now, for instance if the user ask : `get me the weather in  Kerala`, that utterance would be used to match an intend and the only parameter that needs to be passed on to the back-end while calling the (lambda) function that would handle `getWeather` is  `placeName` (Kerala) from the slot. Amazon provides a set of pre-defined slot types. The optional custom slots field lets you define new slot types and add enumerators into it.
 
-In the case of our skill, we are not going to deal with slots and slot types since we are always fetching the share price of a fixed symbol. So, the intent schema will look like :
+In the case of our skill, we are not going to deal with slots and slot types since we are always fetching share price of a fixed symbol. So, the intent schema will look like :
 
 ```json
 {
@@ -75,7 +75,7 @@ HelloIntent how much is the share
 
 Save and navigate to Configuration in the left pane.
 
-Lambda creation and account linking steps will be the same as the previous tutorial and I will not be repeating it here. Just make sure that a new security profile is created. For now , create a lambda function with template code and we will modify this in the next section.
+Lambda creation and account linking steps will be the same as in previous tutorial and I will not be repeating it here. Just make sure that a new security profile is created. For now , create a lambda function with template code and we will modify this in the next section.
 
 ## Custom skill lambda function
 
@@ -86,11 +86,11 @@ The lambda function for a custom skill will be a bit different from that of a sm
 - Sending a MQTT message
 - Forming and sending a response
 
-Since the default lambda ecosystem does not include a MQTT library for use with node js, we will not be able to live with just the code written in web console. So we will use the below steps to create a zip file with all dependencies and upload it to the lambda. For this first setup the command line upload interface as below:
+Since default lambda libraries does not include a MQTT library for use with node js, we will not be able to live with just the code written in web console. So we will use  steps below to create a zip file with all dependencies and upload it to the lambda. For this first setup a command line based file upload interface to AWS as below:
 
 - install AWS CLI (`sudo apt-get install awscli`)
-- If you do not have the access keys created for your AWS user, do so in IAM console and make a note of the access key ID and secret
-- run `aws configure` and enter the details prompted for. (I selected region `us-east-1` and format `json`)
+- If you do not have access keys created for your AWS user, do so in IAM console and make a note of the access key ID and secret
+- run `aws configure` and enter details prompted for. (I selected region `us-east-1` and format `json`) 
 - once the account is setup, you can start uploading zip files with code and dependencies using the below command 
 
 ```
@@ -116,7 +116,7 @@ Once upload is complete, the index file can still be edited in the web console.
 
 ## Execution 
 
-Now that the lambda is setup, you can go to the Alexa web-app, enable your test skill and try to use it. In case you skip account linking, the echo device will prompt you to do so and an account link card will be shown in the webapp. To monitor the MQTT messages, run the following command:
+Now that a lambda is setup, you can go to the Alexa web-app, enable your test skill and try to use it. In case you skip account linking, the echo device will prompt you to do so and an account link card will be shown in the webapp. To monitor MQTT messages, run the following command:
 
 ```
 mosquitto_sub -h test.mosquitto.org -p 1883 -t <email address>
