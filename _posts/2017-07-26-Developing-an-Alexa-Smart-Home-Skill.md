@@ -47,7 +47,7 @@ Now, we need to create a back-end Lambda function that will process smart home r
 
 ## Creating a Lambda function
 
-After logging into console, select `Ireland` region and go to Lambda service. Click ![CreateLambda](/images/posts/alexaSmartHome/createLambda.png) and select `alexa-smart-home-skill-adapter` blueprint. This will select `Alexa Smart Home` as the Lambda trigger. Now enter `skill ID` that we copied from developer console into `Application Id` and select `Enable trigger` before clicking  ![lambdaNext](/images/posts/alexaSmartHome/lambdaNext.png).
+After logging into console, select `Ireland` region and go to Lambda service. Click ![CreateLambda](/images/posts/alexaSmartHome/createLambda.png) and select `alexa-smart-home-skill-adapter` blueprint for nodeJs. This will select `Alexa Smart Home` as the Lambda trigger. Now enter `skill ID` that we copied from developer console into `Application Id` and select `Enable trigger` before clicking  ![lambdaNext](/images/posts/alexaSmartHome/lambdaNext.png).
 
 Lambda function code for a dummy household would have been already populated. We will look into the relevant parts later on. For now, just provide a function name and select a role. If you do not have an existing role that you have created, create a custom `service-role/execute_my_lambda` role.
 
