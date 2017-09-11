@@ -99,7 +99,7 @@ aws lambda update-function-code --function-name <lambdaARN> --zip-file fileb://i
 
 Now create a new directory and enter the following command to install all our required decencies into a `node_modules` folder.
 
-````
+```
 npm install mqtt
 ```
 
