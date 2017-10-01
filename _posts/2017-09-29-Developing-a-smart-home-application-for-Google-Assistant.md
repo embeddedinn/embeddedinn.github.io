@@ -195,12 +195,9 @@ Log on to [Amazon developer console](https://developer.amazon.com/){:target="\_b
 https://oauth-redirect.googleusercontent.com/r/<ActionsProjectName>
 ```
 
-Go back to Actions Console and click `Add` under account linking. Select `Authorization Code` as grand type and click `Next`. Enter the `ClientId` and `Client Secret` from the security profile in previous step and enter the following URLs.
+Go back to Actions Console and click `Add` under account linking. Select `Implicit` as grand type and click `Next`. Enter `ClientId` from the security profile in previous step (from Amazon) and enter the Authorization URL as https://www.amazon.com/ap/oa. Add `profile` as scope and complete this step. Since this app is not going to be published, enter some dummy test instructions.
 
-- Authorization URL : https://www.amazon.com/ap/oa
-- Token URL : https://api.amazon.com/auth/o2/token
-
-Add `profile` as scope and complete this step. Now the actions app is ready for testing. So, click `Test Draft`
+Now the actions app is ready for testing. So, click `Test Draft`
 
 ## Testing the smart home app
 
