@@ -1,5 +1,5 @@
 ---
-title: A refresher of new C coding features for embedded system developers 
+title: A refresher of new C features for embedded system developers 
 date: 2017-12-25 22:36:19.000000000 +05:30
 published: true
 categories:
@@ -31,7 +31,7 @@ As embedded system developers, we are often baned to work with archaic vendor co
 
 Traditionally the C compiler compiles each file in to an object file and does optimization within these compilation units. Potential cross file optimizations where not visible to the compiler until recently. For a while, the gcc and Clang compilers have been supporting LTO. With LTO, the compiler compiles each file into a source aware annotated object file that has enough information to perform an additional round of optimization at link time. In gcc use the `-flto` flag to enable this. 
 
-## data types
+## Data types
 
 Gone are the days where you write long declarations like `unsigned long long int` . The best way to do this now is to use the standard definitions like `int8_t`, `uint32_t` etc. that is offered by `stdint.h`. But then, this is not very new to embedded system developers since we already had this convention going for a while. 
 
@@ -41,7 +41,7 @@ The use of `char` to indicate 8 bit data is frowned upon. You should instead use
 
 For pointer math, `stdint.h` provides `uintptr_t`,`intptr_t` etc. This is in addition to `ptrdiff_t` from `stddef.h`
 
-`intmax_t`/`uintmax_t` is the safest cast to hold the largest integer that a given platform can hold.
+`intmax_t` / `uintmax_t` is the safest cast to hold the largest integer that a given platform can hold.
 
 ## variable declaration
 
