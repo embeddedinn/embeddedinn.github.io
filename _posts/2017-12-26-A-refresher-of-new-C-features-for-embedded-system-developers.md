@@ -8,7 +8,7 @@ categories:
 tags:
 - C programming
 
-excerpt: "A refresher of new C coding features included in C99 and C11 for embedded system developers."
+excerpt: "A refresher of new C coding features included in C99 and C11 for embedded system developers. (Inspired by blank stares during code reviews)"
 
 ---
 <style>
@@ -23,7 +23,7 @@ div {
 
 ## Introduction
 
-As embedded system developers, we are often baned to work with archaic vendor compilers and more often than not, to base our work on historic code bases. One of the major flip sides of this is that we do not get to use and slowly lose touch with some of the relatively new and exciting C standard and compiler features. We will look at some of them in this article. 
+Often during a code review, I get blank stares from people who see some of the new features in C being used in my code. Digging down to the root cause of this, I realized that as embedded system developers, we are often baned to work with archaic versions of compilers from silicon vendors and more often than not, to base our work on historic code bases. One of the major flip sides of this is that we do not get to use and slowly lose touch with some of the relatively new and exciting C standard and compiler features. We will look at some of them in this article. 
 
 **Note** you might have to use the `--std=c11` flag with your compiler to try out some of these features. I will be using `clang` throughout this article. Since clang uses an extended version of C11, the explicit flag is not required. To keep things simple, I am not enabling any extra compilation flags unless otherwise specified. 
 
