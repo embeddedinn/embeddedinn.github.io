@@ -3,8 +3,7 @@ title: Setting up my blogging environment
 date: 2017-05-14 23:00:19.000000000 +05:30
 published: true 
 categories:
-- Articles
-- Tutorial
+- Tutorials
 tags:
 - Blogging
 

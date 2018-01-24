@@ -39,7 +39,7 @@ I operate in AWS console as an IAM user with following permissions enabled:
 
 ## Creating an Alexa smart home skill
 
-Go to Amazon developer site, login and click on ![AddSkill](/images/posts/alexaSmartHome/addSkillBtn.png) button under ![Alexa](/images/posts/alexaSmartHome/alexaTab.png) tab. Select `Smart Home Skill API` radio button, `English (U.S)` as language and select an appropriate skill name.
+Go to Amazon developer site, login and click on ![AddSkill]({{base_path}}/images/posts/alexaSmartHome/addSkillBtn.png) button under ![Alexa]({{base_path}}/images/posts/alexaSmartHome/alexaTab.png) tab. Select `Smart Home Skill API` radio button, `English (U.S)` as language and select an appropriate skill name.
 
 After saving initial entries, there is nothing to be done for interaction model since Smart Home Skills rely on pre-build interaction models that are build into the ecosystem.
 
@@ -47,14 +47,14 @@ Now, we need to create a back-end Lambda function that will process smart home r
 
 ## Creating a Lambda function
 
-After logging into console, select `Ireland` region and go to Lambda service. Click ![CreateLambda](/images/posts/alexaSmartHome/createLambda.png) and select `alexa-smart-home-skill-adapter` blueprint for nodeJs. This will select `Alexa Smart Home` as the Lambda trigger. Now enter `skill ID` that we copied from developer console into `Application Id` and select `Enable trigger` before clicking  ![lambdaNext](/images/posts/alexaSmartHome/lambdaNext.png).
+After logging into console, select `Ireland` region and go to Lambda service. Click ![CreateLambda]({{base_path}}/images/posts/alexaSmartHome/createLambda.png) and select `alexa-smart-home-skill-adapter` blueprint for nodeJs. This will select `Alexa Smart Home` as the Lambda trigger. Now enter `skill ID` that we copied from developer console into `Application Id` and select `Enable trigger` before clicking  ![lambdaNext]({{base_path}}/images/posts/alexaSmartHome/lambdaNext.png).
 
 Lambda function code for a dummy household would have been already populated. We will look into the relevant parts later on. For now, just provide a function name and select a role. If you do not have an existing role that you have created, create a custom `service-role/execute_my_lambda` role. Make sure that this role has the follwoing permissions enabled in IaM console. 
 
 - AWSLambdaFullAccess 
 - AWSIoTDataAccess 
 
-Review settings in next screen and create the function. You can test it by configuring a test event of type `Alexa Smart Home - Discovery` from ![lambdaActions](/images/posts/alexaSmartHome/lambdaActions.png). Once Discovery test is successful, copy the Lambda ARN and go back to developer console. 
+Review settings in next screen and create the function. You can test it by configuring a test event of type `Alexa Smart Home - Discovery` from ![lambdaActions]({{base_path}}/images/posts/alexaSmartHome/lambdaActions.png). Once Discovery test is successful, copy the Lambda ARN and go back to developer console. 
 
 ## Configuring Account Linking
 
@@ -66,7 +66,7 @@ When an end-user of our skill install it using Alexa mobile/web app, they will b
 
 In this case, to understand the account linking process, we will link our skill using Amazon credentials itself. So, when we enable the skill in our Alexa app, we will be presented an Amazon login page into which we can login using regular Amazon credentials. Since we will be setting up only `Profile` access as part of account linking, the Lambda will not be able to access anything other than user profile from the end users Amazon account.
 
-In developer console go to ![AppsAndServices](/images/posts/alexaSmartHome/appsServ.png) and select `Login with Amazon`. Select ![CreateNewSecProfile](/images/posts/alexaSmartHome/createNewSecProf.png) and enter details in the next page. I selected Amazons privacy policy page http link since this is a dummy example.
+In developer console go to ![AppsAndServices]({{base_path}}/images/posts/alexaSmartHome/appsServ.png) and select `Login with Amazon`. Select ![CreateNewSecProfile]({{base_path}}/images/posts/alexaSmartHome/createNewSecProf.png) and enter details in the next page. I selected Amazons privacy policy page http link since this is a dummy example.
 
 Once a profile has been created, click on `Show Client ID and Client Secret` and make a note of `Client ID` and `Client Secret` and go back to the Alexa skill that we where developing.
 
@@ -80,13 +80,13 @@ Under Account Linking in Configuration, enter the following details:
 
 You can enter the same privacy policy URL as we did while creating security profile here as well.
 
-Now we need to provide the unique redirect URLs for this skill in the security profile. Click on ![SecProfSettings](/images/posts/alexaSmartHome/secSettings.png) corresponding to your security profiles, go to `web settings` and add the two redirect URLs from Alexa Skill into `Allowed Return URLs`.
+Now we need to provide the unique redirect URLs for this skill in the security profile. Click on ![SecProfSettings]({{base_path}}/images/posts/alexaSmartHome/secSettings.png) corresponding to your security profiles, go to `web settings` and add the two redirect URLs from Alexa Skill into `Allowed Return URLs`.
 
-Now that all the required details and setup has been done, we will see a ![testingYes](/images/posts/alexaSmartHome/testingYes.png) in the `Test` section of this skill. this means that our skill is ready to be tested in a real Alexa capable device. I use an Amazon Echo dot. In case you do not have a device, you can use  [echosim.io](https://echosim.io/welcome){:target="\_blank"}. Make sure that the device language is set to `English (U.S)` since we developed our skill for only that language.   
+Now that all the required details and setup has been done, we will see a ![testingYes]({{base_path}}/images/posts/alexaSmartHome/testingYes.png) in the `Test` section of this skill. this means that our skill is ready to be tested in a real Alexa capable device. I use an Amazon Echo dot. In case you do not have a device, you can use  [echosim.io](https://echosim.io/welcome){:target="\_blank"}. Make sure that the device language is set to `English (U.S)` since we developed our skill for only that language.   
 
 ## Testing the Skill
 
-Navigate to `alexa.amazon.com` and go to `your skills` under `skills`. Here the new skill will be visible with an explicit banner statting that account linking is required. ![dummyAcLinkReq](/images/posts/alexaSmartHome/dummyAcLinkReq.png). Click on it and enable it.
+Navigate to `alexa.amazon.com` and go to `your skills` under `skills`. Here the new skill will be visible with an explicit banner statting that account linking is required. ![dummyAcLinkReq]({{base_path}}/images/posts/alexaSmartHome/dummyAcLinkReq.png). Click on it and enable it.
 
 When `enable` is clicked, you will be taken to the amazon login page for this skill. You should login using your regular Amazon user ID and password here. 
 
@@ -104,7 +104,7 @@ Upon successful login, you will be shown a prompt to discover all devices in you
 	caption="device discovery prompt"
 %}
 
-Following this, the dummy devices from our lambda blueprint will be visible under ![smartHomeBtn.png](/images/posts/alexaSmartHome/smartHomeBtn.png) 
+Following this, the dummy devices from our lambda blueprint will be visible under ![smartHomeBtn.png]({{base_path}}/images/posts/alexaSmartHome/smartHomeBtn.png) 
 
 
 {% include image.html

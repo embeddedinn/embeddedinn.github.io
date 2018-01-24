@@ -443,7 +443,7 @@ In the Osc/Trace tab set processor frequency as `4Mhz`. (We are using it so that
 
 In the Animation/Realtime updates tab set, set animate step time as `500ms` and check the ‘enable realtime watch updates’ check box and set the value to `5` (`x100`) ms.
 
-The later step is to keep the animation steps visible. otherwise, the animation will be too fast for us to see. (The snapshot in the ‘Hello World’ page is running with these settings. (see it [here](/images/posts/PIC/test1.gif))). The animate step time of 500ms is the execution frequency for the simulation (only!).
+The later step is to keep the animation steps visible. otherwise, the animation will be too fast for us to see. (The snapshot in the ‘Hello World’ page is running with these settings. (see it [here]({{base_path}}{{base_path}}/images/posts/PIC/test1.gif))). The animate step time of 500ms is the execution frequency for the simulation (only!).
 
 ### Simulator Logic Analyzer
 

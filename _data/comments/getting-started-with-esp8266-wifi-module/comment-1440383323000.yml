@@ -1,0 +1,5 @@
+name: vysakhpillai
+date: '2015-08-24 07:58:43'
+url: ''
+message: "Hi, \r\n For Arduino, you just have to connect TX, RX, VCC  and GND to the board. Other connections are as shown in the figure. (I think Scargill's page is down).\r\n\r\nHave you checked your baud rate? It is always a better idea to directly connect the board to the computer and check it at first. You can use Arduino's serial monitor to send a simple AT command. If things are fine, you chould get an OK from the module"
+email: 7da9aab128f966a7878f5a28152b3e55

@@ -1,0 +1,5 @@
+name: habeeb
+date: '2016-03-14 12:28:37'
+url: ''
+message: "My question is related to GCOV\r\nI know that in order to get coverage details we need to add -fprofile-arcs and -ftest-coverage flags\r\n\r\nIn my case project contain a lot of files (actually project was not created by myself), i know how to make that project by using make command.\r\n\r\nMyquestion is: How I can add the above flags while making, in such a way that after execution of the projects i need to get coverage of the execution in project source files"
+email: 5d54c72eb97317c3571389fa95db65c8

@@ -13,11 +13,11 @@
 
 <!-- _includes/image.html -->
 <div class="image-wrapper" >
-    <a href="{{ site.url }}/{{ include.img }}" title="{{ include.caption }}" target="_blank">
+    <a href="{{ site.url }}{{ site.baseurl }}/{{ include.img }}" title="{{ include.caption }}" target="_blank">
     {% if include.width %}
-    <img src="{{ site.url }}/{{ include.img }}" alt="{{ include.caption }}" width="{{ include.width  }}" />
+    <img src="{{ site.url }}{{ site.baseurl }}/{{ include.img }}" alt="{{ include.caption }}" width="{{ include.width  }}" />
     {% else %}
-    <img src="{{ site.url }}/{{ include.img }}" alt="{{ include.caption }}" width="480"/>
+    <img src="{{ site.url }}{{ site.baseurl }}/{{ include.img }}" alt="{{ include.caption }}" width="480"/>
     {% endif %}
     </a>
 

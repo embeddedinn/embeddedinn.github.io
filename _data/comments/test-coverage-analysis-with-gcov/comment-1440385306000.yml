@@ -1,0 +1,9 @@
+name: vysakhpillai
+date: '2015-08-24 08:31:46'
+url: ''
+message: >-
+  Are you talking about an embedded system with or without a filesystem? If a
+  standard filesystem is present, the above method should work. If it is a
+  system without a FS, you will have to make corresponding provisions to store
+  the gcda files
+email: 7da9aab128f966a7878f5a28152b3e55
