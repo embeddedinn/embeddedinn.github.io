@@ -1,7 +1,7 @@
 ---
 title: Developing a smart home application for Google Assistant 
 date: 2017-09-29 22:36:19.000000000 +05:30
-published: false 
+published: true 
 categories:
 - Articles
 - Tutorial
