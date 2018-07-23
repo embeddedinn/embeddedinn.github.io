@@ -25,26 +25,19 @@ I use jekyll with minimal mistakes for publishing the blog. Here are the steps t
 In this case I am starting off with a fresh install of Ubuntu17.04 in a virtual machine. It came with ruby installed so, `gem` command was already available, but `ruby-dev` had to be installed along with couple of other tools.
 
 ```bash
-sudo apt-get install ruby-dev
-sudo gem install jekyll bundler
-sudo apt-get install zlib1g-dev
+sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev jekyll bundler
 
 ```
 
 Once the tools are installed, got to the cloned blog folder and run the following command to install missing gems and dependencies. 
 
 ```bash
-
+bundle config build.nokogiri --use-system-libraries     --with-xml2-lib=/usr/lib     --with-xml2-include=/usr/include/libxml2     --with-xslt-lib=/usr/lib     --with-xslt-include=/usr/include
 bundle install
 
 ```
 
-In the case where I was setting it up to write this page, I had to re-run `bundle install` after running the following commands since I did not install zlib in the first place. 
-
-```
-sudo apt-get install zlib1g-dev
-sudo gem install nokogiri -v '1.6.7.2'
-```
+`nokogiri` setup is required for latest version to compile with system versions of xml libs.
 
 Once all installations are successful, run the following command to serve the blog in localhost
 
