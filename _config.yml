@@ -24,7 +24,9 @@ url                      : "https://www.embeddedinn.xyz"
 baseurl                  :  #"/pageTestRepo/"
 repository               : "embeddedinn/embeddedinn.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-breadcrumbs              : true # true, false (default)
+logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+# breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : "staticman_v2" 
@@ -37,6 +39,9 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
+  utterances:
+    theme                : # "github-light" (default), "github-dark"
+    issue_term           : # "pathname" (default)
 staticman:
   allowedFields          :  ['name', 'email', 'url', 'message']
   branch                 :  "master"
@@ -53,6 +58,7 @@ staticman:
       type               :  "date"
       options:
         format           :  "iso8601" #(default), "timestamp-seconds", "timestamp-milliseconds"
+  endpoint               : # URL of your own deployment with trailing slash, will fallback to the public instance
 reCaptcha:
   siteKey                : "6LexGz8UAAAAAPzZExkmYhx-KKpen0-a95-h23Sd"
   secret                 : "NzFahHccRWrpststqUgMBzRMk+zHY1xDAXlSkHQyJUOJYb4dABRwyhCBPtpwaKfiEgf1CGYqoMJUK+Qs5cAsLLIVPeZcCEwkH7OVCL3f4etIK7t2tk47g9fBBHx/EB5Pi9nkitWewYZbQNNVnFOhYQoxX/PAYx3PuBpkhqU5h90="
@@ -104,32 +110,42 @@ author:
   avatar           : "bio-photo.jpg" 
   bio              : "maker, tech enthusiast, embedded systems expert and system integration specialist"
   location         : "Bangalore, India"
-  email            : "vysakhpillai@gmail.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         : "vysakhpillai"
-  foursquare       :
-  github           : "vppillai"
-  gitlab           :
-  google_plus      :
-  keybase          :
-  instagram        :
-  lastfm           :
-  linkedin         : "vysakh-pillai"
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
-  steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
-  tumblr           :
-  twitter          : "vysakhpillai"
-  vine             :
-  weibo            :
-  xing             :
-  youtube          : # "https://youtube.com/c/MichaelRoseDesign"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:vysakhpillai@gmail.com
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://embeddedinn.xyz"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/vysakhpillai"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/vysakhpillai"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vppillai"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/in/vysakh-pillai/"
+# Site Footer
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/vysakhpillai"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/vysakhpillai"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vppillai"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/in/vysakh-pillai/"
 
 
 # Reading Files
@@ -195,7 +211,7 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
 # Outputting
@@ -211,7 +227,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -219,7 +235,7 @@ whitelist:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  - jemoji
+  - jekyll-include-cache
 
 
 # Archives
@@ -230,8 +246,8 @@ whitelist:
 #  - Archive page should exist at path when using Liquid method or you can
 #    expect broken links (especially with breadcrumbs enabled)
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path/my-awesome-category/index.html ~> path: /
+#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path>/my-awesome-category/index.html ~> path: /
 category_archive:
   type: liquid
   path: /categories/
@@ -252,7 +268,7 @@ tag_archive:
 
 
 # HTML Compression
-# - http://jch.penibelst.de/
+# - https://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
