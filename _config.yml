@@ -116,9 +116,9 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:vysakhpillai@gmail.com
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://embeddedinn.xyz"
+#    - label: "Website"
+#      icon: "fas fa-fw fa-link"
+#      url: "https://embeddedinn.xyz"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/vysakhpillai"
