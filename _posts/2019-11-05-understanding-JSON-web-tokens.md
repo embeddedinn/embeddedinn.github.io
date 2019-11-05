@@ -1,6 +1,6 @@
 ---
 title: Understanding JSON Web Tokens 
-date: 2019-11-05 18:30:19.000000000 +05:30
+date: 2019-11-05 20:30:19.000000000 +05:30
 published: true
 categories:
 - Articles
@@ -166,3 +166,11 @@ A sample JWK:
     "kid": "1"
 }
 ```
+
+### Reference
+
+- [RFC7515 - JSON Web Signature](https://tools.ietf.org/html/rfc7515)
+- [RFC7516 - JSON Web Encryption](https://tools.ietf.org/html/rfc7516)
+- [Registered JOSE Headers](https://www.iana.org/assignments/jose/jose.xhtml)
+- [jwt.io](https://jwt.io/)
+- The JWT Handbook by Sebastián E. Peyrott, Auth0 Inc.
