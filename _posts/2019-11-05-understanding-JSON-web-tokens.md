@@ -24,6 +24,8 @@ div {
 {% include base_path %}
 
 ## Introduction
+{% include toc title="Table of contents" icon="file-text" %}
+
 JSON Web Token, or JWT (“jot”) for short, is a standard for safely passing claims securely in memory constrained environment. It is part of the JSON Object Signing and Encryption group (JOSE) set of standards. 
 
 **Usecase**: For instance upon logging into a server initially using a user name and password, the server can provide a JWT to be used for subsequent requests for a defined period of time. The users authorizations and claims can be encoded into the JWT itself. This is especially useful for stateless systems like HTTPS requests. In this case, JWT will use JSON web signature (JWS) and optionally JSON web encryption (JWE) from JOSE along with JWT itself. 
