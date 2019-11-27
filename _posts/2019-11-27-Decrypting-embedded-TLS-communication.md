@@ -1,6 +1,8 @@
 ---
 title: Decrypting embedded TLS communication
 date: 2019-11-26 16:30:19.000000000 +05:30
+header:
+  og_image: /images/posts/wolfDecrypt/header.png
 published: true
 categories:
 - Articles
