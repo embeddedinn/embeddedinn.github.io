@@ -46,7 +46,7 @@ More details about the file format can be found [here](https://developer.mozilla
 
 ## Code changes
 
- We get this dumped out of the firmware by adding the following lines of code in WolfSSL's `tls.c` file.
+ We get this dumped out of the firmware by adding the following lines of code in WolfSSL's `tls.c` file  under the `SHOW_SECRETS` flag.
 
  ```c
 printf("CLIENT_RANDOM ");
