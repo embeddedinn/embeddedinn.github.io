@@ -184,6 +184,6 @@ Results can be observed in the "Actions" tab of GitHub repo by clicking on the s
 {% include image.html
 	img="/images/posts/githubActions/results.png"
 	width="480"
-	caption="Runner executing."
+	caption="Workflow Results."
 %}
 
