@@ -244,3 +244,24 @@ The above step would enable us to get `CLIENT_RANDOM` out of the dissected hands
 	caption="decode packet As MQTT"
 %}
 
+**Note added on 10-Mar-2020**
+
+In case you want to modify mosquitto-client source to print the complete SSLKEYLOGFILE contents and you are using a newer version of openssl, follow the steps below:
+
+- Newer versions of openssl (1.1.1 and bove) have exposed a SSL_CTX_set_keylog_callback() function for this purpose. 
+- Download mosquitto source. 
+- In `net_mosq.c`, under `net__init_ssl_ctx()` add the following code after as an else condition to the check `if(!mosq->ssl_ctx)`
+
+```c
+SSL_CTX_set_keylog_callback(mosq->ssl_ctx, SSL_CTX_keylog_cb_func_cb);
+```
+
+- Define the callback function as below:
+
+```c
+void SSL_CTX_keylog_cb_func_cb(const SSL *ssl, const char *line){
+	printf("%s\r\n",line);
+}
+```
+
+The complete SSLKEYLOGFILE contents will be printed out whenever TLS key material is generated or received.
