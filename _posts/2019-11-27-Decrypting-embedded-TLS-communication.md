@@ -102,3 +102,6 @@ Once this file is provided, Wireshark will decrypt all traffic in the stream tha
 	width="480"
 	caption="Decrypted traffic"
 %}
+
+## updated method (24-Mar-20)
+Wolfssl aready has a function to dump `SSLKEYLOGFILE` by enabling the `SHOW_SECRETS` flag under `MakeTlsMasterSecret` of `tls.c`. However this function tries to write to a file. On an embedded system without a FS, you can modify the function to print `pmsBuf` to the console. 
