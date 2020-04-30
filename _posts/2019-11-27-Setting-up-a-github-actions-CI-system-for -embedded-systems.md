@@ -117,6 +117,11 @@ DFP_DIR="/opt/microchip/mplabx/v5.30/packs/Microchip/PIC32MZ-EF_DFP/1.1.45" -j4
 ```
 
 This will compile your project using the newly installed toolchain. 
+If you dont want to do this step manually, the easiest is to execute the tool in the followig path. This will regeenrate all the makefiles for you just as if you opened the project in the IDE.
+
+```
+/opt/microchip/mplabx/v5.30/mplab_platform/bin/prjMakefilesGenerator.sh <proj.X> 
+```
 
 ### Attaching the build runner to your repo
 
