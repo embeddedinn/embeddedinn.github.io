@@ -27,7 +27,7 @@ div {
 
 {% include base_path %}
 
-Source code for this article is at  [vppillai/MPLABXMemoryAnalyzer] (https://github.com/vppillai/MPLABXMemoryAnalyzer){:target="_blank"}.
+Source code for this article is at [vppillai/MPLABXMemoryAnalyzer](https://github.com/vppillai/MPLABXMemoryAnalyzer){:target="\_blank"}.
 {: .notice--info}
 
 ## Introduction
@@ -39,7 +39,7 @@ optimization and the standard tips and tricks wont cut it any more, you
 will have to break out your work boots and the hardhat and get to
 digging. A map file typically gives you a fair idea of what pieces in
 your code is taking up the most memory. There are even wonderful tools
-like [amap](http://www.sikorskiy.net/prj/amap/) that gives you a
+like [amap](https://www.sikorskiy.net/prj/amap/) that gives you a
 graphical interface to look into the map file output and analyze the
 memory distribution in your image. However, IDEs tend to have their own
 ways of dealing with how your code is rearranged to facilitate a build.
@@ -91,7 +91,7 @@ together my own implementation.
 
 ### amap
 
-First in the group is [amap](http://www.sikorskiy.net/prj/amap/). It
+First in the group is [amap](https://www.sikorskiy.net/prj/amap/). It
 is a cross-platform Map File Browser that gives a visual interface to
 navigate and filter map file entries. It is a wonderful tool for manual
 analysis. However, the issues I faced were:
