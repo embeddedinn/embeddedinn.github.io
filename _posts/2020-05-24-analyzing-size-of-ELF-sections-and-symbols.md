@@ -1,6 +1,6 @@
 ---
 title: Analyzing size of ELF sections and symbols to generate a modular report.
-date: 2020-02-13 19:50:19.000000000 +05:30
+date: 2020-05-24 19:50:19.000000000 +05:30
 published: true
 categories:
 - Articles
