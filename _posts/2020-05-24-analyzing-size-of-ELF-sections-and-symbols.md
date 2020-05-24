@@ -27,6 +27,9 @@ div {
 
 {% include base_path %}
 
+Source code for this article is at  [vppillai/MPLABXMemoryAnalyzer] (https://github.com/vppillai/MPLABXMemoryAnalyzer){:target="_blank"}.
+{: .notice--info}
+
 ## Introduction
 
 If you are working on any serious embedded systems project, you will
