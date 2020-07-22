@@ -55,11 +55,52 @@ This is the relatively trivial part of this project which most of you would alre
 
 GitHub Actions essentially runs a bunch of scripts to clone your repo and execute commands that you provide in a .yaml file every time a git action is performed on the repo. For mainstream software project configurations, GitHub provides free "runners". Runners are essentially sandboxed environments where the commands execute. 
 
-In the case of an embedded project, it will be tricky to find a build environment in the standard offering. (Unless you are using a hobbyist platform like Arduino). Even if the environment is available, for serious projects, we would want to have tight control over the toolchain versions and configurations. So, in this case we will build our own runner and register it with GitHub Actions.
+In the case of an embedded project, it will be tricky to find a build environment in the standard offering. (Unless you are using a hobbyist platform like Arduino). Even if the environment is available, for serious projects, we would want to have tight control over the toolchain versions and configurations. So, in this case we will build our own runner and register it with GitHub Actions. If you really want to go with a GitHub remote Runner, you can spin up a docker with the required tools installed. 
+
+The docker file for this would look like this:
+
+```dockerfile
+
+FROM ubuntu:20.04
+
+ENV XC32VER v2.40
+ENV MPLABXVER v5.40
+
+MAINTAINER Vysakh P Pillai 
+
+# Install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+
+RUN dpkg --add-architecture i386 \
+    && apt-get update -yq \
+    && apt-get install -yq --no-install-recommends ca-certificates wget unzip libc6:i386 git \
+        libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 \
+        libxext6 libxrender1 libxtst6 libgtk2.0-0 make \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install MPLAB
+RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-linux-installer.tar -q --show-progress --progress=bar:force:noscroll -O MPLABX-${MPLABXVER}-linux-installer.tar \
+    && tar xf MPLABX-${MPLABXVER}-linux-installer.tar && rm -f MPLABX-${MPLABXVER}-linux-installer.tar \
+    && USER=root ./*-installer.sh --nox11 \
+    -- --unattendedmodeui none --mode unattended \
+    && rm -f MPLABX-${MPLABXVER}-linux-installer.sh
+
+# Install XC32
+RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-${XC32VER}-full-install-linux-installer.run -q --show-progress --progress=bar:force:noscroll -O xc32-${XC32VER}-full-install-linux-installer.run\
+    && chmod a+x xc32-${XC32VER}-full-install-linux-installer.run \
+    && ./xc32-${XC32VER}-full-install-linux-installer.run \
+    --mode unattended --unattendedmodeui none \
+    --netservername localhost --LicenseType FreeMode \
+    && rm -f xc32-${XC32VER}-full-install-linux-installer.run
+
+ENV PATH $PATH:/opt/microchip/xc32/${XC32VER}/bin
+ENV PATH $PATH:/opt/microchip/mplabx/${MPLABXVER}/mplab_platform/bin
+
+```
 
 ### Compiling your MPLAB X (windows) project in a Linux shell
 
-One of the key features of MPLABX that I like the most is its ability to dynamically generate Makefiles for the project in such a way that it can be used in automated build systems with ease. It does get some getting used to. However, once you figure out the bits and pieces, you will realize that there is quiet a few powerful features built into the system. However, one pain point is that the generated Makefiles rely on some IDE utilities which makes IDE installation in the build machine mandatory. It would have been better if we can get away with just installing the Compiler.
+One of the key features of MPLABX that I like the most is its ability to dynamically generate Makefiles for the project in such a way that it can be used in automated build systems with ease. It does take some getting used to. However, once you figure out the bits and pieces, you will realize that there are quiet a few powerful features built into the system. However, one pain point is that the generated Makefiles rely on some IDE utilities which makes IDE installation in the build machine mandatory. It would have been better if we can get away with just installing the Compiler.
 
 ### Setting up a build VM
 
@@ -117,7 +158,7 @@ DFP_DIR="/opt/microchip/mplabx/v5.30/packs/Microchip/PIC32MZ-EF_DFP/1.1.45" -j4
 ```
 
 This will compile your project using the newly installed toolchain. 
-If you dont want to do this step manually, the easiest is to execute the tool in the followig path. This will regeenrate all the makefiles for you just as if you opened the project in the IDE.
+If you don't want to do this step manually, the easiest is to execute the tool in the following path. This will re-generate all the Makefiles for you just as if you opened the project in the IDE.
 
 ```
 /opt/microchip/mplabx/v5.30/mplab_platform/bin/prjMakefilesGenerator.sh <proj.X> 
@@ -176,6 +217,8 @@ jobs:
 
 ```
 
+If `prjMakefilesGenerator` was used, you can just provide the `make` command. 
+
 As soon as the file is committed, you can see that the runner will be executing a build. This is because the script calls for the workflow to be executed as soon as a `push` is made into the repo.
 
 {% include image.html
@@ -192,3 +235,4 @@ Results can be observed in the "Actions" tab of GitHub repo by clicking on the s
 	caption="Workflow Results."
 %}
 
+ 
