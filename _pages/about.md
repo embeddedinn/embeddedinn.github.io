@@ -15,7 +15,9 @@ div {
 
 # About embeddedInn
 
-Embeddedinn is a place where I keep tab of the technical thinkering and professional activities that I do on a day to day basis. It is more of a journal of activities than full fledged tutorial site. However, I try to put in as much details as possible so that it will benefit others trying to do something similar. 
+Embeddedinn is the place where I keep a tab on the technical tinkering and professional work that I do on a day to day basis. It is more of a journal of activities than a full fledged tutorial site. However, I try to put in as many details as possible so that it will benefit others trying to do something similar. 
+Visit the tutorials page to access my in-depth tutorials on various technical topics. 
+
 
 # about me
 
