@@ -97,7 +97,7 @@ void MyCallback ( uintptr_t context){
 }
 ```
 
-Then we implement the time function with
+Then we implement the `time()` function with
 
 ```c
 time_t time(time_t *tod)
