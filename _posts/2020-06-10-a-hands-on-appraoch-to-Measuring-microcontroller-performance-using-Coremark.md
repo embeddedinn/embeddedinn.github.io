@@ -1,5 +1,5 @@
 ---
-title: Measuring microcontroller performance using Coremark.
+title: A hands-on approach to measuring microcontroller performance using Coremark.
 date: 2020-06-10 20:03:16.000000000 +05:30
 published: true
 categories:
