@@ -54,13 +54,13 @@ The source code for Coremark includes the main() routine. So, we configure the h
 
 {% include image.html
 	img="/images/posts/coremark/image2.png"
-	width="480"
+	width="320"
 	caption="Disable main file generation"
 %}
 
 {% include image.html
 	img="/images/posts/coremark/image3.png"
-	width="480"
+	width="320"
 	caption="Disable app file generation"
 %}
 
@@ -72,7 +72,7 @@ The default Coremark package is straightforward to use with a system with 'Make.
 
 {% include image.html
 	img="/images/posts/coremark/image4.png"
-	width="480"
+	width="280"
 	caption="Include Coremark Source files"
 %}
 
@@ -100,7 +100,7 @@ void MyCallback ( uintptr_t context){
 
 Then we implement the time function with
 
-```C
+```c
 time_t time(time_t *tod)
 
 {
@@ -109,7 +109,7 @@ time_t time(time_t *tod)
   return timeSec;
 }
 
->> **Note**: The code compiles even without the implementation of `time()` using a stub. However, functionality is impaired, and execution fails.
+> **Note**: The code compiles even without the implementation of `time()` using a stub. However, functionality is impaired, and execution fails.
 
 Next, we define the execution parameter macros under project properties.
 
