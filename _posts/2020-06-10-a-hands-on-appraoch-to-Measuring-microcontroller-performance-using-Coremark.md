@@ -90,7 +90,6 @@ SYS_TIME_CallbackRegisterMS(MyCallback, (uintptr_t)0, 1000, SYS_TIME_PERIODIC);
 Within the callback, we increment a variable to keep track of the number of seconds elapsed since init.
 
 ```c
-
 uint32_t timeSec=0;
 
 void MyCallback ( uintptr_t context){
@@ -108,6 +107,8 @@ time_t time(time_t *tod)
     *tod = timeSec;
   return timeSec;
 }
+
+```
 
 > **Note**: The code compiles even without the implementation of `time()` using a stub. However, functionality is impaired, and execution fails.
 
