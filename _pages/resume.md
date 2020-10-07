@@ -1,6 +1,7 @@
 ---
 layout: cv
-title: Isaac Newtons's CV
+title: resume
+permalink: /resume/
 ---
 # Isaac Newton
 Physicist, Mathematician, Cambridge professor.
