@@ -58,7 +58,7 @@ staticman:
       type               :  "date"
       options:
         format           :  "iso8601" #(default), "timestamp-seconds", "timestamp-milliseconds"
-  endpoint               :  https://embeddedinn-staticman.herokuapp.com/v3/entry/github/ # URL of your own deployment with trailing slash, will fallback to the public instance
+  endpoint               :  https://embeddedinn-staticman.herokuapp.com/v2/entry/github/ # URL of your own deployment with trailing slash, will fallback to the public instance
 reCaptcha:
   siteKey                : "6LexGz8UAAAAAPzZExkmYhx-KKpen0-a95-h23Sd"
   secret                 : "NzFahHccRWrpststqUgMBzRMk+zHY1xDAXlSkHQyJUOJYb4dABRwyhCBPtpwaKfiEgf1CGYqoMJUK+Qs5cAsLLIVPeZcCEwkH7OVCL3f4etIK7t2tk47g9fBBHx/EB5Pi9nkitWewYZbQNNVnFOhYQoxX/PAYx3PuBpkhqU5h90="
