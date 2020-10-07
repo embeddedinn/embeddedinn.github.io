@@ -3,18 +3,6 @@
    ========================================================================== */
 
 $(document).ready(function() {
-  // Sticky footer
-  var bumpIt = function() {
-    $("body").css("margin-bottom", $(".page__footer").outerHeight(true));
-  };
-
-  bumpIt();
-  $(window).resize(
-    jQuery.throttle(250, function() {
-      bumpIt();
-    })
-  );
-
   // FitVids init
   $("#main").fitVids();
 
@@ -140,7 +128,7 @@ $(document).ready(function() {
       var anchor = document.createElement("a");
       anchor.className = 'header-link';
       anchor.href = '#' + id;
-      anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>';
+      anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
       anchor.title = "Permalink";
       $(this).append(anchor);
     }
