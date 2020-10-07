@@ -43,21 +43,7 @@ comments:
     theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
 staticman:
-  allowedFields          :  ['name', 'email', 'url', 'message']
   branch                 :  "master"
-  commitMessage          :  "New comment."
-  filename               :  comment-{@timestamp}
-  format                 :  "yml"
-  moderation             :  true
-  path                   :  "_data/comments/{options.slug}" 
-  requiredFields         :  ['name', 'message']
-  transforms:
-    email                :  "md5"
-  generatedFields:
-    date:
-      type               :  "date"
-      options:
-        format           :  "iso8601" #(default), "timestamp-seconds", "timestamp-milliseconds"
   endpoint               :  https://embeddedinn-staticman.herokuapp.com/v2/entry/ # URL of your own deployment with trailing slash, will fallback to the public instance
 reCaptcha:
   siteKey                : "6LexGz8UAAAAAPzZExkmYhx-KKpen0-a95-h23Sd"
