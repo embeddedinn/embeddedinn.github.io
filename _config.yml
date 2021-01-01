@@ -132,7 +132,9 @@ footer:
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin-in"
       url: "https://www.linkedin.com/in/vysakh-pillai/"
-
+    - label: "Youtube"
+      icon: "fab fa-fw fa-youtube"
+      url: "https://www.youtube.com/channel/UC1rx0Zwpvd2hRQbQWSEpSrQ"
 
 # Reading Files
 include:
