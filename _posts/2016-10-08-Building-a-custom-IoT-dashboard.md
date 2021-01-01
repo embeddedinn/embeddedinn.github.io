@@ -2,6 +2,7 @@
 title: Building a custom IoT dashboard
 date: 2016-08-10 13:22:55.000000000 +05:30
 published: true 
+classes: wide
 categories:
 - Articles
 - Tutorial

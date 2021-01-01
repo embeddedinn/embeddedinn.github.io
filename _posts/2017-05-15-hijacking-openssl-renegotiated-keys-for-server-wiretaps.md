@@ -2,6 +2,7 @@
 title: Hijacking openssl renegotiated keys for server wiretaps
 date: 2017-05-15 23:30:19.000000000 +05:30
 published: true 
+classes: wide
 categories:
 - Articles
 - Tutorial

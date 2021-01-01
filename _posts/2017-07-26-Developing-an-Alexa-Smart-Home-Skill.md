@@ -2,6 +2,7 @@
 title: Developing an Alexa Smart Home Skill 
 date: 2017-07-25 02:30:19.000000000 +05:30
 published: true 
+classes: wide
 categories:
 - Articles
 - Tutorial

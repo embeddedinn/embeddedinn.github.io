@@ -2,6 +2,7 @@
 title: Developing a MQTT Custom Skill for Alexa 
 date: 2017-09-10 19:55:19.000000000 +05:30
 published: false 
+classes: wide
 categories:
 - Articles
 - Tutorial

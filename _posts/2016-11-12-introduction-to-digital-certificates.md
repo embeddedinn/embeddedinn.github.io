@@ -2,6 +2,7 @@
 title: Introduction to digital certificates 
 date: 2016-11-12 10:36:19.000000000 +05:30
 published: true
+classes: wide
 categories:
 - Articles
 - Tutorial

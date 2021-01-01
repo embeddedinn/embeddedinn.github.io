@@ -2,6 +2,7 @@
 title: A refresher of new C coding features for embedded system developers 
 date: 2017-12-25 22:36:19.000000000 +05:30
 published: true
+classes: wide
 categories:
 - Articles
 - Tutorial

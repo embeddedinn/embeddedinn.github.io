@@ -2,6 +2,7 @@
 title: Captive portal for embedded systems 
 date: 2018-08-16 22:36:19.000000000 +05:30
 published: false
+classes: wide
 categories:
 - Articles
 - Tutorial

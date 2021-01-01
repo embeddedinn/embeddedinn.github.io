@@ -4,6 +4,7 @@ date: 2020-02-13 16:30:19.000000000 +05:30
 header:
   og_image: /images/posts/githubActions/header.png
 published: true
+classes: wide
 categories:
 - Articles
 - Tutorial

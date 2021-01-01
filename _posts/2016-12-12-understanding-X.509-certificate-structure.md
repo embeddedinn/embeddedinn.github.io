@@ -2,6 +2,7 @@
 title: Understanding X.509 Certificate Sructure 
 date: 2016-12-12 18:36:19.000000000 +05:30
 published: true
+classes: wide
 categories:
 - Articles
 - Tutorial

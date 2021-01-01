@@ -2,6 +2,7 @@
 title: Understanding JSON Web Tokens 
 date: 2019-11-05 16:30:19.000000000 +05:30
 published: true
+classes: wide
 categories:
 - Articles
 - Tutorial
