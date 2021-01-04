@@ -81,16 +81,14 @@ I compiled a simple hello world C code using the freshly minted toolchain. I con
 I tried executing my code by issuing :
 
 ```sh
-
 ./fesvr-zedboard pk a.out
-
 ```
 
 But, I was greeted with an error : `An illegal instruction was executed!`
 
 {% include image.html
 	img="images/posts/riscv_fpga/image3.png"
-	width="480"
+	width="640"
 	caption="Illegal Instruction Error"
 %}
 
@@ -108,7 +106,7 @@ The mode in which the Rocket Core works in Zynq is called a tethered mode. In th
 
 {% include image.html
 	img="images/posts/riscv_fpga/image4.png"
-	width="480"
+	width="320"
 	caption="HIF used by fesvr"
 %}
 
@@ -120,7 +118,7 @@ This tethered model means that the core cannot work standalone. The ***<span cla
 
 The main memory (the DDR3 on the zybo, connected to the Zynq-7000) is shared between the ARM and Rocket cores. The lower 256MB is allocated to ARM and the upper 256 MB is allocated to the RISC-V core.
 
-When we execute a pk command, this loads the proxy kernel and executes the application on top of the PK. PK is responsible for initializing and configuring the system for code execution.
+When we execute a `pk` command, this loads the proxy kernel and executes the application on top of the PK. PK is responsible for initializing and configuring the system for code execution.
 
 To move out of the outdated tools, let us build our own HW bitstream and SW images.
 
@@ -130,7 +128,7 @@ After cloning and initializing the submodules from [ucb-bar](https://github.com/
 
 {% include image.html
 	img="images/posts/riscv_fpga/image5.png"
-	width="480"
+	width="720"
 	caption="Vivado Block design of ARM PS for RISCV tether"
 %}
 
@@ -158,7 +156,7 @@ This is how the old linux was.
 
 {% include image.html
 	img="images/posts/riscv_fpga/image8.png"
-	width="480"
+	width="520"
 	caption="Pre-Built Linux image"
 %}
 
@@ -166,7 +164,7 @@ This is how the new linux came up.
 
 {% include image.html
 	img="images/posts/riscv_fpga/image9.png"
-	width="480"
+	width="520"
 	caption="Newly built Linux image"
 %}
 
@@ -174,7 +172,7 @@ Finally, I copied the a.out that failed to execute before and ran it successfull
 
 {% include image.html
 	img="images/posts/riscv_fpga/image10.png"
-	width="480"
+	width="520"
 	caption="SUCCESS!!!"
 %}
 
