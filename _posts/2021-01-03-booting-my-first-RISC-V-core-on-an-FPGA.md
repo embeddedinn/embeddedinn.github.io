@@ -12,7 +12,7 @@ tags:
 - RISC-V
 
 header:
-  overlay_image: /images/posts/riscv_fpga/image10.png
+  teaser: /images/posts/riscv_fpga/image10.png
   og_image: images/posts/riscv_fpga/image10.png
 
 excerpt: "This article comments on how I built-up my first ARM host tethered Rocket RISC-V core on a Xilinx Zynq-7000 FPGA."
