@@ -33,21 +33,18 @@ RISC-V is an emerging open standard ISA that is set to take the computing world 
 
 Typically, I follow a bottom-up approach for activities like this. In this case, I decided to go top-down since the Xilinx toolchain is often finicky, and every version comes with some bug or the other. So, the first step was to go with the getting started steps given in [ucb-bar/FPGA-zynq](https://github.com/vppillai/fpga-zynq) . Though this is an abandoned project, I felt positive since I had access to the tools mentioned in the article – Xilinx Vivado and the Digilent Zybo board. The steps here mention that [Quick Instructions](https://github.com/vppillai/fpga-zynq#quickinst) is the easiest way to get started.
 
-I did the following steps from a git-bash since I wanted to use my Windows PC with my Vivado license.
+I did the following steps from bash shell:
 
 ```sh
-
 make fetch-images
-
 make load-sd SD=/e
-
 ```
 
 These steps essentially clone the images repo and copy the content to the SD card. I was happy to see the petalinux prompt, but that happiness was short-lived.
 
 {% include image.html
 	img="images/posts/riscv_fpga/image1.png"
-	width="480"
+	width="640"
 	caption="The first petalinux prompt"
 %}
 
@@ -55,25 +52,19 @@ These steps essentially clone the images repo and copy the content to the SD car
 
 When I tried `./fesvr-zynq pk hello,` I was disappointed. The manual says that this step should load a proxy kernel image into the Rocket Core memory and execute it. But, all I got was an `ERROR: No cores found` message. . However, this was resolved after a reboot. I am yet to figure out how/why this worked.
 
-The next step was to boot riscv-linux on the Rocket core. I was not yet ready to spend a lot of time re-compiling the kernel [following steps in the documentation.](https://github.com/vppillai/fpga-zynq#37--buildingobtaining-riscv-linux) So, after digging around, I found
-
-[pkorolov /zynq-fpga](https://github.com/pkorolov/zynq-fpga) with a pre-compiled RISC-V vmlinux image. So, I replaced the contents of the SD card with what I got from the repo and issued the command :
+The next step was to boot riscv-linux on the Rocket core. I was not yet ready to spend a lot of time re-compiling the kernel [following steps in the documentation.](https://github.com/vppillai/fpga-zynq#37--buildingobtaining-riscv-linux) So, after digging around, I found [pkorolov /zynq-fpga](https://github.com/pkorolov/zynq-fpga) with a pre-compiled RISC-V vmlinux image. So, I replaced the contents of the SD card with what I got from the repo and issued the command :
 
 ```sh
-
 mkdir /sdcard
-
 mount /dev/mmcblk0p1 /sdcard
-
 ./fesvr-zedboard +disk=/sdcard/riscv/root/_spike.bin /sdcard/riscv/vmlinux
-
 ```
 
 And we have liftoff. It doesn’t matter how many times you have seen Linux boot; the feeling you get when you see it coming up on an FPGA is always priceless.
 
 {% include image.html
 	img="images/posts/riscv_fpga/image2.png"
-	width="480"
+	width="640"
 	caption="Linux on RISC-V Rocket core."
 %}
 
@@ -85,7 +76,7 @@ To begin, I got the toolchain from [chipsalliance/rocket-tools](https://github.c
 
 > Or, as I figured out later, just run `sudo apt install gcc-riscv64-unknown-elf`
 
-I compiled a simple hello world c code using the freshly minted toolchain. I connected zybo to my home network, configured a static IP in the same subnet and copied the output (a.out) into the ARM linux root using Filezilla.
+I compiled a simple hello world C code using the freshly minted toolchain. I connected zybo to my home network, configured a static IP in the same subnet and copied the output (a.out) into the ARM linux root using Filezilla.
 
 I tried executing my code by issuing :
 
