@@ -52,7 +52,9 @@ I thought the easiest way to get all the tools in one-shot is to using the [risc
 So, I started by installing the dependencies with:
 
 ```sh
-sudo apt install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev
+sudo apt install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev \
+                 libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool \
+				 patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev
 ```
 
 Then clone the repo, init submodules, export the install location and trigger the build with :
@@ -108,7 +110,7 @@ This will generate `spike` tools:
 
 {% include image.html
 	img="images/posts/riscv_qemu/image3.png"
-	width="320"
+	width="240"
 	caption="Generated spike tools"
 %}
 
@@ -126,7 +128,7 @@ This will generate the following tools:
 
 {% include image.html
 	img="images/posts/riscv_qemu/image4.png"
-	width="320"
+	width="240"
 	caption="Generated `PK` and bbl"
 %}
 
@@ -136,7 +138,7 @@ Moment of truth. Let us compile and run a hello world application with RISC-V si
 
 {% include image.html
 	img="images/posts/riscv_qemu/image5.png"
-	width="480"
+	width="620"
 	caption="Successful first bare-metal program"
 %}
 
@@ -214,7 +216,7 @@ Enable static linking under `settings` to make it easier to prepare the rootFS l
 
 {% include image.html
 	img="images/posts/riscv_qemu/image7.png"
-	width="480"
+	width="620"
 	caption="Build options for statically linked `busybox`"
 %}
 
@@ -250,7 +252,7 @@ Now the rootFS looks like this:
 
 {% include image.html
 	img="images/posts/riscv_qemu/image8.png"
-	width="480"
+	width="320"
 	caption="rootFS tree"
 %}
 
@@ -278,7 +280,7 @@ At boot, execute the following command to make busybox install all the required 
 
 {% include image.html
 	img="images/posts/riscv_qemu/image9.png"
-	width="480"
+	width="620"
 	caption="SUCCESS!!"
 %}
 
@@ -310,7 +312,7 @@ virt-builder --list | grep riscv64
 
 {% include image.html
 	img="images/posts/riscv_qemu/image10.png"
-	width="480"
+	width="530"
 	caption="looking for fedora images"
 %}
 
@@ -354,13 +356,13 @@ You can see the system info after boot
 
 {% include image.html
 	img="images/posts/riscv_qemu/image11.png"
-	width="480"
+	width="620"
 	caption="RISC-V QEMU cpuinfo"
 %}
 
 
 {% include image.html
 	img="images/posts/riscv_qemu/image12.png"
-	width="480"
+	width="620"
 	caption="Python3 on RISC-V + Linux"
 %}
