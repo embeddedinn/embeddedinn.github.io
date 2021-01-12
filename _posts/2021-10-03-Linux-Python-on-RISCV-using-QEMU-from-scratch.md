@@ -1,6 +1,6 @@
 ---
 title: Linux & Python on RISC-V using QEMU from scratch
-date: 2021-01-10 21:01:06.000000000 +05:30
+date: 2021-01-11 21:01:06.000000000 +05:30
 classes: wide
 published: true
 categories:
