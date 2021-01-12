@@ -39,15 +39,11 @@ We need a bunch of tools to get started.
 
 1.  [riscv-gnu-toolchain](https://github.com/riscv/riscv-gnu-toolchain) is the toolchain to compile applications for RISC-V. Two flavors run on Linux:
 
-<!-- end list -->
+    - `riscv64-­unknown-­elf-gcc` that uses `newlib` and is used for small statically linked standalone programs and embedded targets.
 
-  - `riscv64-­unknown-­elf-gcc` that uses `newlib` and is used for small statically linked standalone programs and embedded targets.
+    - `riscv64-unknown-­linux-­gnu-­gcc` that uses `glibc` and can be used to build programs that can be dynamically linked and executed on an OS like Linux.
 
-  - `riscv64-unknown-­linux-­gnu-­gcc` that uses `glibc` and can be used to build programs that can be dynamically linked and executed on an OS like Linux.
-
-<!-- end list -->
-
-2.  [spike](https://github.com/riscv/riscv-isa-sim) is a RISC-V ISA Simulator that is the golden reference for the ISA. It provides full system emulation or proxied emulation (using HTIF/[FESVR](https://github.com/riscv/riscv-isa-sim/tree/master/fesvr)). It is the universal starting point to explore RISC-V targeted software.
+2.  [spike](https://github.com/riscv/riscv-isa-sim) is a RISC-V ISA Simulator that is the golden reference for the ISA. It provides full system emulation or proxied emulation (using `HTIF`/[FESVR](https://github.com/riscv/riscv-isa-sim/tree/master/fesvr)). It is the universal starting point to explore RISC-V targeted software.
 
 3.  [RISC-V Proxy Kernel](https://github.com/riscv/riscv-pk), commonly known as `pk` is an application execution environment that can host statically linked RISC-V ELF binaries. Besides initialization and basic system setup, `pk` primarily traps I/O system calls in a tethered I/O limited environment and proxies them to the host. If the RISC-V core runs tethered to an actual host over `FESVR`, `pk` send it back to the host. In the case of `spike`, the requests are relayed back to the OS hosting `spike.`
 
@@ -56,7 +52,7 @@ I thought the easiest way to get all the tools in one-shot is to using the [risc
 So, I started by installing the dependencies with:
 
 ```sh
-sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev
+sudo apt install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev
 ```
 
 Then clone the repo, init submodules, export the install location and trigger the build with :
@@ -88,11 +84,11 @@ git clone <https://github.com/riscv/riscv-gnu-toolchain>
 
 Pass the option `--enable-multilib` to build the toolchain with 32-bit and 64-bit support.
 
-To compile the embedded toolchain simply do `make -j $(nproc)`. For the linux version, give `make -j $(nproc) linux .`
+To compile the embedded toolchain simply do `make -j $(nproc)`. For the linux version, give `make -j $(nproc) linux` .
 
 This will clone all required submodules and compile the toolchain and install it to the $RISCV folder. At the end of the process, we will have both the toolchains.
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image2.png"
 	width="480"
 	caption="our newly-compiled GCC toolchain"
@@ -110,7 +106,7 @@ make install
 
 This will generate `spike` tools:
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image3.png"
 	width="320"
 	caption="Generated spike tools"
@@ -128,7 +124,7 @@ make install
 
 This will generate the following tools:
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image4.png"
 	width="320"
 	caption="Generated `PK` and bbl"
@@ -138,7 +134,7 @@ This will generate the following tools:
 
 Moment of truth. Let us compile and run a hello world application with RISC-V simulation in spike.
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image5.png"
 	width="480"
 	caption="Successful first bare-metal program"
@@ -172,7 +168,7 @@ make install
 
 This will generate the following files.
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image6.png"
 	width="320"
 	caption="newly built QEMU tools"
@@ -212,12 +208,11 @@ cd busybox
 git checkout 1_32_1
 CROSS_COMPILE=riscv64-unknown-linux-gnu- make defconfig
 CROSS_COMPILE=riscv64-unknown-linux-gnu- make menuconfig
-
 ```
 
 Enable static linking under `settings` to make it easier to prepare the rootFS later.
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image7.png"
 	width="480"
 	caption="Build options for statically linked `busybox`"
@@ -253,7 +248,7 @@ sudo umount mnt
 
 Now the rootFS looks like this:
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image8.png"
 	width="480"
 	caption="rootFS tree"
@@ -281,7 +276,7 @@ At boot, execute the following command to make busybox install all the required 
 /bin/busybox --install -s
 ```
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image9.png"
 	width="480"
 	caption="SUCCESS!!"
@@ -313,7 +308,7 @@ Now, we can see the RISC-V images by giving the command
 virt-builder --list | grep riscv64
 ```
 
-% include image.html
+{% include image.html
 	img="images/posts/riscv_qemu/image10.png"
 	width="480"
 	caption="looking for fedora images"
