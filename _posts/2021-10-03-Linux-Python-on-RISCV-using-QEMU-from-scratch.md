@@ -163,7 +163,7 @@ Clone the repo and move to the latest release tag:
 ```sh
 git clone <https://git.qemu.org/git/qemu.git>
 git checkout v5.2.0
-./configure --target-list=riscv64-softmmu --prefix=$RISCV
+./configure --target-list=riscv64-softmmu,riscv64-linux-user --prefix=$RISCV
 make -j $(nproc)
 make install
 ```
