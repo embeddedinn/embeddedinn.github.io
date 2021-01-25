@@ -42,6 +42,8 @@ We need a bunch of tools to get started.
     - `riscv64-­unknown-­elf-gcc` that uses `newlib` and is used for small statically linked standalone programs and embedded targets.
 
     - `riscv64-unknown-­linux-­gnu-­gcc` that uses `glibc` and can be used to build programs that can be dynamically linked and executed on an OS like Linux.
+    
+    > if you compile with `-nostartfiles -nostdlib -nostdinc` both the toolchains will work the same way.
 
 2.  [spike](https://github.com/riscv/riscv-isa-sim) is a RISC-V ISA Simulator that is the golden reference for the ISA. It provides full system emulation or proxied emulation (using `HTIF`/[FESVR](https://github.com/riscv/riscv-isa-sim/tree/master/fesvr)). It is the universal starting point to explore RISC-V targeted software.
 
