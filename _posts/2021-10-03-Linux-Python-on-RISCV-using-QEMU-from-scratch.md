@@ -80,7 +80,7 @@ So, I decided to compile each tool manually.
 For the GCC tools,
 
 ```sh
-git clone <https://github.com/riscv/riscv-gnu-toolchain>
+git clone https://github.com/riscv/riscv-gnu-toolchain
 ./configure --prefix=$RISCV
 ```
 
