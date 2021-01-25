@@ -164,7 +164,7 @@ sudo apt install ninja-build libglib2.0-dev libpixman-1-dev
 Clone the repo and move to the latest release tag:
 
 ```sh
-git clone <https://git.qemu.org/git/qemu.git>
+git clone https://git.qemu.org/git/qemu.git
 git checkout v5.2.0
 ./configure --target-list=riscv64-softmmu,riscv64-linux-user --prefix=$RISCV
 make -j $(nproc)
@@ -290,6 +290,15 @@ At boot, execute the following command to make busybox install all the required 
 ## Running an actual OS
 
 To build an embedded target rootFS, we typically use `buildroot` or `Yocto`. But, I decided to use a standard OS to start a complete RISC-V exploration.
+
+> If buildroot is used use the `qemu_riscv64_virt_defconfig` config and boot with the command below:
+
+```sh
+qemu-system-riscv64 -nographic -machine virt -kernel output/images/Image \
+                    -append "root=/dev/vda rw console=ttyS0"             \
+                    -drive file=output/images/rootfs.ext2,format=raw,id=hd0\
+                    -device virtio-blk-device,drive=hd0
+```
 
 We start by installing `virt-builder`, a tool that lets us quickly build virtual machines.
 
