@@ -54,7 +54,8 @@ So, I started by installing the dependencies with:
 ```sh
 sudo apt install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev \
                  libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool \
-				         patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev  
+				         patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev  \
+                 libncurses5-dev libncursesw5-dev
 ```
 
 Then clone the repo, init submodules, export the install location and trigger the build with :
