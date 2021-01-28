@@ -1,0 +1,19 @@
+msc {
+  wordwraparcs=true;
+
+  "crt.s" [linecolor="#008800", textbgcolor="#CCFFCC", arclinecolor="#008800"],
+  "crtm.s" [linecolor="#FF0000", textbgcolor="#FFCCCC", arclinecolor="#FF0000"],
+  "start.c" [linecolor="#0000FF", textbgcolor="#CCCCFF", arclinecolor="#0000FF"],
+  "device.c" [linecolor="#FF00FF", textbgcolor="#FFCCFF", arclinecolor="#FF00FF"],
+  "setup.c" [linecolor="black", textbgcolor="#DDDDDD", arclinecolor="black"],
+  "main.c" [linecolor="orange", textbgcolor="#FFFFCC", arclinecolor="orange"];
+
+  "crt.s" => "crtm.s" [label=".include"];
+  "crtm.s" => "crtm.s" [label="trap init"];
+  "crtm.s" => "start.c" [label="libfemto_start_main"];
+  "start.c" => "device.c" [label="reset and init"];
+  "device.c" => "setup.c" [label="arch_setup()"];
+  "setup.c" => "device.c" [label="register_console console_ns16550a"];
+  "setup.c" => "device.c" [label="register_poweroff"];
+  "start.c" => "main.c" [label="main()"];
+}

@@ -1,0 +1,20 @@
+msc {
+  wordwraparcs=true;
+
+  "ns16550a.c" [linecolor="#008800", textbgcolor="#CCFFCC", arclinecolor="#008800"],
+  "setup.c" [linecolor="#FF0000", textbgcolor="#FFCCCC", arclinecolor="#FF0000"],
+  "device.c" [linecolor="#0000FF", textbgcolor="#CCCCFF", arclinecolor="#0000FF"],
+  "printf.c" [linecolor="#FF00FF", textbgcolor="#FFCCFF", arclinecolor="#FF00FF"],
+  "vprintf.c" [linecolor="black", textbgcolor="#DDDDDD", arclinecolor="black"],
+  "putchar.c" [linecolor="orange", textbgcolor="#FFFFCC", arclinecolor="orange"];
+
+  "setup.c" => "setup.c" [label="init NS16550A_ UART0_CTRL_ADDR  to 0x10000000"];
+  "setup.c" => "device.c" [label="register_console (&console_ns16550a)"];
+  "device.c" x- "printf.c" [label="printf()"];
+  "printf.c" => "vprintf.c" [label="VA processing"];
+  "vprintf.c" => "putchar.c" [label="place individual chars"];
+  "putchar.c" => "device.c" [label="console_dev -> putchar()"];
+  "device.c" => "ns16550a.c" [label="ns16550a_putchar()"];
+  |||;
+  "ns16550a.c" => "ns16550a.c" [label="write to UART_THR offset from NS16550A_ UART0_CTRL_ADDR"];
+}

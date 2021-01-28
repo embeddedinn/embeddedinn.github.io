@@ -1,0 +1,13 @@
+msc {
+  wordwraparcs=true;
+
+  "virt.c" ,
+  "serial.c" ,
+  "char.c";
+
+  "virt.c" => "serial.c" [label="serial_mm_init() VIRT_UART0 address"];
+  "serial.c" => "serial.c" [label="serial_mm_realize=> serial_mm_read serial_mm_write"];
+  ...;
+  "serial.c">>"char.c" [label="qemu_chr_write()"];
+  "char.c"=>"char.c"[label="chr_write()"];
+}
