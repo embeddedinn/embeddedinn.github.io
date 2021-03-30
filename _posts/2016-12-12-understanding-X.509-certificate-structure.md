@@ -1,5 +1,5 @@
 ---
-title: Understanding X.509 Certificate Sructure 
+title: Understanding X.509 Certificate Structure 
 date: 2016-12-12 18:36:19.000000000 +05:30
 published: true
 classes: wide
