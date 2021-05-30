@@ -84,6 +84,7 @@ For the GCC tools,
 
 ```sh
 git clone https://github.com/riscv/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
 ./configure --prefix=$RISCV
 ```
 
