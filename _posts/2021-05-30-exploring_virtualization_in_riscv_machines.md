@@ -100,7 +100,7 @@ In a full-fledged implementation, the architecture will look like this:
 
 {% include image.html
 	img="images/posts/risc_virt_qemu/image1.png"
-	width="640"
+	width="840"
 	caption="bare-metal hello world"
 %}
 
@@ -140,13 +140,13 @@ There are primarily three types of hypervisors:
 
 {% include image.html
 	img="images/posts/risc_virt_qemu/image2.png"
-	width="640"
+	width="310"
 	caption="Type 1 Hypervisor"
 %}
 
 {% include image.html
 	img="images/posts/risc_virt_qemu/image3.png"
-	width="640"
+	width="310"
 	caption="Type 2 Hypervisor"
 %}
 
