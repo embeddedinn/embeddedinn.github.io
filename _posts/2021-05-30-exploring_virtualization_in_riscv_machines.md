@@ -101,7 +101,7 @@ In a full-fledged implementation, the architecture will look like this:
 {% include image.html
 	img="images/posts/risc_virt_qemu/image1.png"
 	width="840"
-	caption="bare-metal hello world"
+	caption="Layers in the RISC-V spec"
 %}
 
 Applications make requests to the application execution environment (typically an OS) using the ABI.
