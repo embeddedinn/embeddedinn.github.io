@@ -11,8 +11,8 @@ tags:
 - RISC-V
 - Virtualization
 header:
-  teaser: images/posts/risc_virt_qemu/image14.png
-  og_image: images/posts/risc_virt_qemu/image14.png
+  teaser: images/posts/risc_virt_qemu/image0.png
+  og_image: images/posts/risc_virt_qemu/image0.png
 excerpt: "“RISC-V is classically virtualizable” – We come across this statement very often when we read about the merits of the RISC-V ISA. This article looks at what this statement means and how practical virtualization works with the RISC-V architectures."
 
 ---
