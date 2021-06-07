@@ -11,8 +11,8 @@ tags:
 - RISC-V
 - Virtualization
 header:
-  teaser: images/posts/risc_virt_qemu/image0.png
-  og_image: images/posts/risc_virt_qemu/image0.png
+  teaser: images/posts/webpush/image2.png
+  og_image: images/posts/webpush/image2.png
 excerpt: "We use push notifications from web-sites on a daily basis. This article is about building one from the ground-up in order to understand how the whole system pipeline works."
 
 ---
