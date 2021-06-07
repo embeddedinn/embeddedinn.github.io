@@ -98,16 +98,16 @@ Since the subscription can be used to send asynchronous notifications to anyone 
 
 The full project and setup instructions are available in [https://github.com/vppillai/simpleWebPushServer](https://github.com/vppillai/simpleWebPushServer){:target="_blank"}.
 
-### codeFlow: Service worker registration
+### _codeFlow_: Service worker registration
 
 We register the file sw.js as a service worker in [index.html Line 12](https://github.com/vppillai/simpleWebPushServer/blob/0c3c10a2150550f9e0a8f40eca85aca5f89dacd0/index.html#L12){:target="_blank"}. This file will run in the background and will be invoked when the application server sends a push. In our case, it simply shows a notification using the content of the push. 
 
 
-### codeFlow: Creating a subscription
+### _codeFlow_: Creating a subscription
 
 Creating a subscription is straight forward. Take a look at the window.subscribe function  starting at [index.html line 34](https://github.com/vppillai/simpleWebPushServer/blob/0c3c10a2150550f9e0a8f40eca85aca5f89dacd0/index.html#L34){:target="_blank"} . In [line 42](https://github.com/vppillai/simpleWebPushServer/blob/0c3c10a2150550f9e0a8f40eca85aca5f89dacd0/index.html#L42){:target="_blank"}, you can see that the publicVapidKey defined in [Line 10](https://github.com/vppillai/simpleWebPushServer/blob/0c3c10a2150550f9e0a8f40eca85aca5f89dacd0/index.html#L10){:target="_blank"} is passed on to `registration.pushManager.subscribe()`. This is the public key is used to validate the VAPID Claim by the push server. Only the application server has access to the private key corresponding to this key. 
 
-### codeflow: Passing the subscription to the application server
+### _codeFlow_: Passing the subscription to the application server
 
 In [index.html Line 45](https://github.com/vppillai/simpleWebPushServer/blob/0c3c10a2150550f9e0a8f40eca85aca5f89dacd0/index.html#L45){:target="_blank"}, we pass this subscription to the CGI post handler in the system. The subscription looks like this:
 
@@ -126,7 +126,7 @@ The endpoint is unique to this subscription and an authenticated post to the end
 The test keys were generated with [https://vapidkeys.com/](https://vapidkeys.com/){:target="_blank"}
 
 
-### codeFlow: the “application server”
+### _codeFlow_: the “application server”
 
 Typical application servers handling webpush are large infrastructures. However, we are using 9 lines of python code to create a local https webserver in this case. An additional 9 lines of code are used to store the subscription and send the 1st notification. We also have an 8 loc helper that can be used to send notifications asynchronously. The code is pretty straightforward. Take a look at [server.py](https://github.com/vppillai/simpleWebPushServer/blob/main/server.py){:target="_blank"} , [subscription.py](https://github.com/vppillai/simpleWebPushServer/blob/main/subscription.py){:target="_blank"} & [sendNotification.py](https://github.com/vppillai/simpleWebPushServer/blob/main/sendNotification.py){:target="_blank"}
 
