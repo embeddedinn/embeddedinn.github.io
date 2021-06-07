@@ -77,7 +77,7 @@ msc {
 
 ## Voluntary Application Server Identification for Web Push (VAPID)
 
-Since the subscription can be used to send asynchronous notifications to anyone who has subscribed for notifications from a website, it is critical to have a way to establish a secure identity. VAPID is only helpful between the application servers and the push server. In the code below, you can see the VAPID Public Key being passed to `registration.pushManager.subscribe()`. The full VAPID spec is available [**here**](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-vapid-00). Key points and excerpts are given below:
+Since the subscription can be used to send asynchronous notifications to anyone who has subscribed for notifications from a website, it is critical to have a way to establish a secure identity. VAPID is only helpful between the application servers and the push server. In the code below, you can see the VAPID Public Key being passed to `registration.pushManager.subscribe()`. The full VAPID spec is available [**here**](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-vapid-00){:target="\_blank"}. Key points and excerpts are given below:
 
 -	There is no basis for an application server to be known to a push service before requesting a push message. Enforcing this places an unwanted constraint on the interactions between user agents and application servers.
 -	VAPID  provides a system whereby an application server can volunteer information about itself to a push service. At a minimum an identity.
@@ -90,7 +90,7 @@ Since the subscription can be used to send asynchronous notifications to anyone 
 
 -	When requesting delivery of to a push server, the application includes a JSON Web Token (JWT) [`RFC7519`], signed using its signing key. This is as defined in the VAPID spec as a VAPID claim
 
-    > ***Note***: To know more about JWT, you can refer to my previous article on Java Web Tokens [**here**](/articles/tutorial/understanding-JSON-web-tokens/). 
+    > ***Note***: To know more about JWT, you can refer to my previous article on Java Web Tokens [**here**](/articles/tutorial/understanding-JSON-web-tokens/){:target="\_blank"}. 
 
     - The VPAID claim can contain multiple items in the body. The 3 main items are given below. But, you can add additional items that are indicative of the application server instance that is triggering the push for additional audit trails and debug:
         - ***sub***: The “Subscriber” a mailto link for the administrative contact for this feed. Mainly used by the push server in case there is an issue. E.g: `"sub": "mailto:admin@example.com"`,
@@ -134,12 +134,3 @@ The test keys were generated with [https://vapidkeys.com/](https://vapidkeys.com
 Typical application servers handling webpush are large infrastructures. However, we are using 9 lines of python code to create a local https webserver in this case. An additional 9 lines of code are used to store the subscription and send the 1st notification. We also have an 8 loc helper that can be used to send notifications asynchronously. The code is pretty straightforward. Take a look at [server.py](https://github.com/vppillai/simpleWebPushServer/blob/main/server.py){:target="_blank"} , [subscription.py](https://github.com/vppillai/simpleWebPushServer/blob/main/subscription.py){:target="_blank"} & [sendNotification.py](https://github.com/vppillai/simpleWebPushServer/blob/main/sendNotification.py){:target="_blank"}
 
 Since this is a barebones system, we are not going to setup user identification or even multi user support. We just use the latest subscription in a text file and use it to trigger notifications. 
-
-
-
-
-
-
-
-
-
