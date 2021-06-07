@@ -38,8 +38,7 @@ Most modern websites offer to “push” a notification to you when there are up
 
 
 {% include image.html
-	img="images/posts/webpush/image2.png"
-	width="480"
+	img="images/posts/webpush/animation.gif"
 	caption="The webpush permission notification"
 %}
 
