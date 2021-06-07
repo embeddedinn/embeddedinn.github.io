@@ -38,7 +38,7 @@ Most modern websites offer to “push” a notification to you when there are up
 
 
 <div style="text-align: center;">
-![](images/posts/webpush/animation.gif)
+![](images/posts/webpush/Animation.gif)
 </div>
 
 ## Introduction
