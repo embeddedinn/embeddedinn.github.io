@@ -34,11 +34,11 @@ Source code for this article is at [vppillai/simpleWebPushServer](https://github
   src="/assets/js/thirdparty/mscgen-inpage.js ">
 </script>
 
-Most modern websites offer to “push” a notification to you when there are updates. This is typically enabled using the Notification permission ![](images/posts/webpush/image1.png) icon. This article looks at how web push notifications work.
+Most modern websites offer to “push” a notification to you when there are updates. This is typically enabled using the Notification permission ![]({{ site.url }}{{ site.baseurl }}/images/posts/webpush/image1.png)  icon. This article looks at how web push notifications work.
 
 
 <div style="text-align: center;">
-![](images/posts/webpush/Animation.gif)
+![]({{ site.url }}{{ site.baseurl }}/images/posts/webpush/Animation.gif)
 </div>
 
 ## Introduction
