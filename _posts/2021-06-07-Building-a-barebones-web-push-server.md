@@ -90,7 +90,7 @@ Since the subscription can be used to send asynchronous notifications to anyone 
 
 -	When requesting delivery of to a push server, the application includes a JSON Web Token (JWT) [`RFC7519`], signed using its signing key. This is as defined in the VAPID spec as a VAPID claim
 
-    > ***Note***: To know more about JWT, you can refer to my previous article on Java Web Tokens [**here**](articles/tutorial/understanding-JSON-web-tokens/). 
+    > ***Note***: To know more about JWT, you can refer to my previous article on Java Web Tokens [**here**](/articles/tutorial/understanding-JSON-web-tokens/). 
 
     - The VPAID claim can contain multiple items in the body. The 3 main items are given below. But, you can add additional items that are indicative of the application server instance that is triggering the push for additional audit trails and debug:
         - ***sub***: The “Subscriber” a mailto link for the administrative contact for this feed. Mainly used by the push server in case there is an issue. E.g: `"sub": "mailto:admin@example.com"`,
