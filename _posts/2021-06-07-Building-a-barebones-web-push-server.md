@@ -36,7 +36,7 @@ Most modern websites offer to “push” a notification to you when there are up
 
 {% include image.html
 	img="images/posts/webpush/image2.png"
-	width="320"
+	width="480"
 	caption="The webpush permission notification"
 %}
 
@@ -44,7 +44,7 @@ Most modern websites offer to “push” a notification to you when there are up
 
 Push & notifications are two different operations – a Push and a Notification. During a “push” operation the application server uses a ‘Push API’ to send a notification to a “service-worker” working in the background, in your PC, hosted by your browser. A Notification is an operation where the service worker displays the message coming from the push message on the user's screen. We will look into the details of these terminologies later. However, an overview of the process is shown in the sequence chart below.
 
-<pre class='code mscgen mscgen_js'>
+<pre class='code mscgen mscgen_js' style="text-align: center;">
 msc {
   hscale="0.7", wordwraparcs=1;
 
