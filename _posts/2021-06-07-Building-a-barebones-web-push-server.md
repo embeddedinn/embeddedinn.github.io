@@ -37,10 +37,9 @@ Source code for this article is at [vppillai/simpleWebPushServer](https://github
 Most modern websites offer to “push” a notification to you when there are updates. This is typically enabled using the Notification permission ![](images/posts/webpush/image1.png) icon. This article looks at how web push notifications work.
 
 
-{% include image.html
-	img="images/posts/webpush/animation.gif"
-	caption="The webpush permission notification"
-%}
+<div style="text-align: center;">
+![](images/posts/webpush/animation.gif)
+</div>
 
 ## Introduction
 
