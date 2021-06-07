@@ -7,9 +7,9 @@ categories:
 - Articles
 - Tutorial
 tags:
-- QEMU
-- RISC-V
-- Virtualization
+- webpush
+- PWA
+- webdev
 header:
   teaser: images/posts/webpush/image2.png
   og_image: images/posts/webpush/image2.png
