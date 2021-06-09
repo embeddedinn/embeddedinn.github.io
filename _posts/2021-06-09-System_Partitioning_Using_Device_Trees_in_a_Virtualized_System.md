@@ -68,7 +68,7 @@ In the case of a Virtualized system, we can pass different device trees to the g
     
     1.  It is not mandatory that we pass the full set of peripherals to the hypervisor since we can pass peripherals not visible even to the hypervisor to the guest OSes. This is ideal for embedded systems that partition a larger SoC into individual discrete “Virtual machines”.
 
-3.  Pass a subset (just 1 UART) to the guest OS.
+3.  Pass a subset (1 UART less) to the guest OS.
 
 The steps to build the system components from source is given in the appendix section of this article. We will look at the modifications and use the results here.
 
