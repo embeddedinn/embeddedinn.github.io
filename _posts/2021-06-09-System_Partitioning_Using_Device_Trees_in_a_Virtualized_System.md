@@ -29,8 +29,6 @@ div {
 {% include base_path %}
 
 
-# System Partitioning Using Device Trees in a Virtualized System
-
 If you have brought up Linux on an embedded target (or loosely, any non-PC target), you would have at least heard of the term Device Tree. Device trees have been around for a while and have changed over time. This article looks at how device trees can be leveraged to create sliced systems in a virtualized, embedded system.
 
 I strongly suggest that you read through [Motivation for virtualization in embedded systems](https://embeddedinn.xyz/articles/tutorial/exploring_virtualization_in_riscv_machines/#motivation-for-virtualization-in-embedded-systems){:target="_blank"} before proceeding. This will help you better appreciate what we are doing in this article and why it is relevant. 
