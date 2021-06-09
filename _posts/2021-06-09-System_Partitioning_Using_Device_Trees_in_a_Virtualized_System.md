@@ -1,5 +1,5 @@
 ---
-title: System Partitioning Using Device Trees in a Virtualized System
+title: System Hardware Partitioning Using Device Trees in a Virtualized System
 date: 2021-06-09 22:42:06.000000000 +05:30
 classes: wide
 published: true
