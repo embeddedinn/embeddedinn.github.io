@@ -29,7 +29,7 @@ masthead_title           : # overrides the website title displayed in the masthe
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "staticman_v2" #"none" 
+  provider               : "utterances" #"none" 
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -40,8 +40,8 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    theme                : # "github-light" (default), "github-dark"
-    issue_term           : # "pathname" (default)
+    theme                : "github-light" # (default), "github-dark"
+    issue_term           : "pathname" #(default)
 staticman:
   branch                 :  "master"
   endpoint               :  "https://embeddedinn-staticman.herokuapp.com/v2/entry" # URL of your own deployment with trailing slash, will fallback to the public instance
