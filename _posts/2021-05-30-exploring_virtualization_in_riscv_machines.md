@@ -32,7 +32,7 @@ div {
 
 “RISC-V is classically virtualizable” – We come across this statement very often when we read about the merits of the RISC-V ISA. This article looks at what this statement means and how practical virtualization works with the RISC-V architectures.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/posts/risc_virt_qemu/RISCV-Animation.gif" alt="" style="display: block;margin-left: auto;margin-right: auto;width: 70%;">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts/risc_virt_qemu/RISCV-Animation.gif" alt="" style="display: block;margin-left: auto;margin-right: auto;width: 80%;">
 
 ## Introduction
 
