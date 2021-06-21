@@ -32,6 +32,8 @@ div {
 
 “RISC-V is classically virtualizable” – We come across this statement very often when we read about the merits of the RISC-V ISA. This article looks at what this statement means and how practical virtualization works with the RISC-V architectures.
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts/risc_virt_qemu/RISCV-Animation.gif" alt="" style="display: block;margin-left: auto;margin-right: auto;width: 70%;">
+
 ## Introduction
 
 Virtualization is the key to cloud computing since that is the technology allowing us to partition a highly specced out machine into smaller independent and isolated virtual machines. However, virtualization is not just for enterprise or general-purpose computing. It is advantageous in embedded systems – especially the safety-critical ones, where we can leverage the computing power of a single modern CPU to implement smaller, independent systems. An implementation that would require multiple physical CPUs (chips) in a non-virtualized environment can all be “crammed” into a single chip/single-board solution while still maintaining the standalone nature of each system. The main driving factor for this approach is the need to minimize Size, Weight, Power, and Cost (SWaP+C) in system design.
