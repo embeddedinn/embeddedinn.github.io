@@ -281,3 +281,8 @@ defaults:
       share: true
       related: true
       show_date: true
+
+#clipboard for blocks (src: https://github.com/mmistakes/minimal-mistakes/discussions/2795)
+after_footer_scripts:
+  - https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
+  - assets/js/clipboardrouge.js
