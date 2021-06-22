@@ -195,10 +195,14 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
-
+#  syntax_highlighter_opts:
+#    block:
+#      line_numbers: true
+      
+#clipboard for blocks (src: https://github.com/mmistakes/minimal-mistakes/discussions/2795)
+after_footer_scripts:
+  - https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
+  - assets/js/clipboardrouge.js
 
 # Sass/SCSS
 sass:
@@ -282,7 +286,3 @@ defaults:
       related: true
       show_date: true
 
-#clipboard for blocks (src: https://github.com/mmistakes/minimal-mistakes/discussions/2795)
-after_footer_scripts:
-  - https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
-  - assets/js/clipboardrouge.js
