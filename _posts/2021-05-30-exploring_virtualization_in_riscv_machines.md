@@ -130,7 +130,7 @@ From a Virtual memory standpoint, having a Hypervisor mode means that there are 
 
 The V bit controls the virtualization mode. When V is set, either VU- or VS-mode are executing, and 2nd stage translation is in effect. When V is low, the system may execute in M-, HS- or U- mode. The extension defines a few new hypervisor instructions and CSRs and extends existing machine CSRs to control the guest virtual memory and execution. A hypervisor executing in HS-mode can directly access these registers to inspect the virtual machine state and efficiently perform context switches. The hypervisor must manually manage the original supervisor registers, which are not banked.
 
-## The two types of Hypervisors
+## The three types of Hypervisors
 
 There are primarily three types of hypervisors:
 
