@@ -138,6 +138,9 @@ footer:
     - label: "Youtube"
       icon: "fab fa-fw fa-youtube"
       url: "https://www.youtube.com/embeddedinn?sub_confirmation=1"
+    - label: "Telegram"
+      icon: "fab fa-fw fa-telegram"
+      url: "https://t.me/vysakhpillai"
 
 # Reading Files
 include:
