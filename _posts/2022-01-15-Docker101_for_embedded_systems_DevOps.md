@@ -68,12 +68,12 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 28%" />
 <col style="width: 71%" />
 </colgroup>
-<thead>
-<tr class="header">
-<th>pull</th>
-<th>Brings in images from a repo into your machine.</th>
+<tbody>
+<tr class="odd">
+<td>pull</td>
+<td>Brings in images from a repo into your machine.</td>
 </tr>
-</thead>
+</tbody>
 <tbody>
 <tr class="odd">
 <td>images</td>
