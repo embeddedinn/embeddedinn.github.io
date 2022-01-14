@@ -87,13 +87,11 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 20%" />
 <col style="width: 79%" />
 </colgroup>
-<thead>
+<tbody>
 <tr class="odd">
 <td>-d</td>
 <td>Run in detached mode</td>
 </tr>
-</thead>
-<tbody>
 <tr class="odd">
 <td>--name</td>
 <td>Provide a docker name</td>
@@ -121,12 +119,12 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 20%" />
 <col style="width: 79%" />
 </colgroup>
-<thead>
+<tbody>
 <tr class="odd">
 <td>-a</td>
 <td>List even stopped containers</td>
 </tr>
-</thead>
+</tbody>
 <tbody>
 </tbody>
 </table></td>
@@ -151,12 +149,12 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 20%" />
 <col style="width: 79%" />
 </colgroup>
-<thead>
+<tbody>
 <tr class="odd">
 <td>-it</td>
 <td>Two arguments i and t are used together for an interactive terminal.</td>
 </tr>
-</thead>
+</tbody>
 <tbody>
 </tbody>
 </table></td>
@@ -436,6 +434,7 @@ The execution result shows that the compiler is useable in the Action.
 
 {% include image.html
 	img="images/posts/dockerDevops/image3.png"
+    width="1000"
 	caption="Github Actions result"
 %}
 
