@@ -1,6 +1,6 @@
 ---
 title: Docker 101 for embedded systems DevOps
-date: 2022-01-13 22:42:06.000000000 +05:30
+date: 2022-01-15 12:42:06.000000000 +05:30
 classes: wide
 published: true
 categories:
