@@ -13,7 +13,7 @@ tags:
 header:
   teaser: images/posts/dockerDevops/teaser.png
   og_image: images/posts/dockerDevops/teaser.png
-excerpt: "I have been using docker for clean distributed builds for embedded systems for a while now. This article condenses the learning so that someone starting afresh can get to speed quickly. I started using docker started back in 2016. You can read my article on bring-up a buildroot image on docker in the article https://embeddedinn.xyz/articles/tutorial/docker-scratching-an-itch-to-build-from-ground-up/."
+excerpt: "I started using docker back in 2016 and ever since, I have been using it in the context of embedded systems DevOps. This article condenses the learning so that someone starting afresh can get to speed quickly. You can read my article on bring-up a buildroot image on docker in the article https://embeddedinn.xyz/articles/tutorial/docker-scratching-an-itch-to-build-from-ground-up/."
 
 ---
 
@@ -29,7 +29,7 @@ div {
 
 ## Docker 101 for embedded systems DevOps. 
 
-I have been using docker for clean distributed builds for embedded systems for a while now. This article condenses the learning so that someone starting afresh can get to speed quickly. I started using docker started back in 2016. You can read my article on bring-up a buildroot image on docker in the article [Docker: Scratching an itch to build from ground up](/articles/tutorial/docker-scratching-an-itch-to-build-from-ground-up/).
+I started using docker back in 2016 and ever since, I have been using it in the context of embedded systems DevOps. This article condenses the learning so that someone starting afresh can get to speed quickly. You can read my article on bring-up a buildroot image on docker in the article [Docker: Scratching an itch to build from ground up](/articles/tutorial/docker-scratching-an-itch-to-build-from-ground-up/).
 
 I’ll first introduce some of the key concepts and commands, and then we will look at some docker for embedded systems DevOps use-cases.
 
@@ -180,7 +180,7 @@ A docker image is built by layering different images. The base image is typicall
 
 ## Docker Networking 
 
-Like an application running in a VM, an application virtualized in a container is unaware it is executing within it. So, applications in different container instances can open the same ports. To use these ports, we need to bind a “host port” to a “container port.”
+Like an application running in a VM, an application virtualized in a container is unaware it is executing within it. So, applications in different container instances can open the same ports. To use these ports, we need to bind a `host port` to a `container port`.
 
 To bind a container port to a host port, use the `-p` argument to `docker run`.
 
@@ -190,7 +190,9 @@ docker run -p8000:6379 redis
 
 Docker also has internal networking that lets containers talk to each other. To list the networks that are available use:
 
+```bash
 docker network ls
+```
 
 To create a custom network, use:
 
