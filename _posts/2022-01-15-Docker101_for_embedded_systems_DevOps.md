@@ -206,8 +206,9 @@ Containers within the same network can talk to each other using the container na
 
 A Dockerfile is a recipe for building docker images. Key commands that can be used in a Dockerfile are listed below
 
-| FROM | Denotes the base image                          |
-|------|-------------------------------------------------|
+|        |                                                 |
+|-       |-                                                |
+| `FROM` | Denotes the base image                          |
 | `ENV`  | Environment variables                           |
 | `RUN`  | Execute a command within the container          |
 | `COPY` | Copy something from the host into the container |
