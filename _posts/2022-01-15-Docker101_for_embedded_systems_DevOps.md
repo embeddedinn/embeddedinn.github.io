@@ -88,7 +88,7 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 79%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr class="odd">
 <td>-d</td>
 <td>Run in detached mode</td>
 </tr>
@@ -122,7 +122,7 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 79%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr class="odd">
 <td>-a</td>
 <td>List even stopped containers</td>
 </tr>
@@ -152,7 +152,7 @@ A docker image is built by layering different images. The base image is typicall
 <col style="width: 79%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr class="odd">
 <td>-it</td>
 <td>Two arguments i and t are used together for an interactive terminal.</td>
 </tr>
@@ -273,15 +273,12 @@ Let’s consider a development ecosystem to enable developers and CI to use a st
     docker run -it -v /home/embeddedinn/docker/volume/toolInstall:/opt/riscv ubuntu:20.04 /bin/bash
 
     sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev bgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev bexpat-dev git
-
+    
     git clone https://github.com/riscv/riscv-gnu-toolchain
-
+    
     cd riscv-gnu-toolchain
-
     ./configure --prefix=/opt/riscv --with-arch=rv32gc --with-abi=ilp32d --enable-multilib
-
     make -j$(nproc)
-
     make -j$(nproc) linux
     ```
 
@@ -340,7 +337,7 @@ Microchip MPLABX project builds can be automated in a CI/CD pipeline using a Doc
 {% include image.html
 	img="images/posts/dockerDevops/image1.png"
 	width="640"
-	caption="(source: Device tree for dummies)"
+	caption="MPLAB X CI/CD Wizard"
 %}
 
 A sample Dockerfile generated using the wizard looks like this:
@@ -412,7 +409,7 @@ Alternately, we can include git into the Docker image, clone the repo into the c
 {% include image.html
 	img="images/posts/dockerDevops/image2.png"
 	width="640"
-	caption="(source: Device tree for dummies)"
+	caption="Container with the new RISC-V toolchain"
 %}
 
 If you want to compile a codebase in your local machine with this toolchain, you can mount the volume into the container while running it.
@@ -435,10 +432,11 @@ jobs:
             run: riscv32-unknown-linux-gnu-gcc -v
 ```
 
+The execution result shows that the compiler is useable in the Action.
+
 {% include image.html
 	img="images/posts/dockerDevops/image3.png"
-	width="640"
-	caption="(source: Device tree for dummies)"
+	caption="Github Actions result"
 %}
 
-Though this file lists the tool version, we can use additional run commands to clone your code, compile it, and run tests.
+Though this file simply lists the tool version, we can use additional run commands to clone your code, compile it, and run tests.
