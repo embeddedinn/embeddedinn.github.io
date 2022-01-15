@@ -55,6 +55,19 @@ followed by `docker attach <container ID>`
 
 If you ended up opening many, close all with `docker container prune`.
 
+# Architecture
+
+Docker has a client-server architecture. The client communicates to the daemon (server) using a REST API. So, the daemon can be local or be in the network. 
+
+{% include image.html
+	img="images/posts/dockerDevops/architecture.svg"
+    width="800"
+	caption="(Source: docs.docker.com)"
+%}
+
+
+> Docker is written in the Go programming language and takes advantage of several features of the Linux kernel to deliver its functionality. Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace. (Source: <docs.docker.com>)
+
 ## Docker Images
 
 A docker container “executes” a docker image. The container includes all the essential components required to execute an image. This consists of a virtual FS, networking, etc.
