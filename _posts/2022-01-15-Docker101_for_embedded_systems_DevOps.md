@@ -57,7 +57,7 @@ If you ended up opening many, close all with `docker container prune`.
 
 # Architecture
 
-Docker has a client-server architecture. The client communicates to the daemon (server) using a REST API. So, the daemon can be local or be in the network. 
+Docker has a client-server architecture. The client communicates to the daemon (server) using a REST API. So, the daemon can be local or be in the network. You will read more about the components shown in teh diagram below in the following sections.
 
 {% include image.html
 	img="images/posts/dockerDevops/architecture.svg"
