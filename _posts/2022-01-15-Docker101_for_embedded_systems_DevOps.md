@@ -304,7 +304,7 @@ If you have a container up and running, you can attach to it and start operating
 
 {% include image.html
 	img="images/posts/dockerDevops/image4.png"
-	width="640"
+	width="440"
 	caption="VS Code remote explorer menu"
 %}
 
