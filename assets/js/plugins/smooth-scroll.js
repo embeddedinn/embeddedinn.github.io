@@ -515,7 +515,7 @@
 
 			// Check if event.target has closest() method
 			// By @totegi - https://github.com/cferdinandi/smooth-scroll/pull/401/
-			if(!('closest' in event.target))return;
+			if (!('closest' in event.target)) return;
 
 			// Check if a smooth scroll link was clicked
 			toggle = event.target.closest(selector);

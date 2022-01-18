@@ -462,7 +462,7 @@ zh-TW: &DEFAULT_ZH_HANT
   undefined_wpm              : "_config.yml 中未定義 words_per_minute"
   comment_form_info          : "您的電子信箱不會被公開. 必填部份已標記"
   comment_form_comment_label : "留言內容"
-  comment_form_md_info       : "支援Markdown語法。"
+  comment_form_md_info       : "支援 Markdown 語法。"
   comment_form_name_label    : "名字"
   comment_form_email_label   : "電子信箱帳號"
   comment_form_website_label : "網頁 (可選填)"
@@ -953,10 +953,10 @@ id: &DEFAULT_ID
   comment_success_msg        : "Terimakasih atas komentar Anda! Komentar akan tampil setelah disetujui."
   comment_error_msg          : "Maaf, ada kesalahan pada komentar Anda. Pastikan seluruh kolom sudah dilengkapi dan coba kembali."
   loading_label              : "Sedang memuat..."
-  search_label_text          : "Masukkan kata kunci percarian..."
-  search_placeholder_text    : "Masukkan kata kunci percarian..."
+  search_label_text          : "Masukkan kata kunci pencarian..."
+  search_placeholder_text    : "Masukkan kata kunci pencarian..."
   search_algolia_no_results  : "Tidak ada hasil"
-  results_found              : "Hasil percarian ditemukan"
+  results_found              : "Hasil pencarian ditemukan"
   back_to_top                : "Kembali ke awal"
 id-ID:
   <<: *DEFAULT_ID
@@ -1591,7 +1591,7 @@ hi: &DEFAULT_HI
   back_to_top                : "शीर्ष पर वापस"
 hi-IN:
   <<: *DEFAULT_HI
-  
+
 # Catalan
 # --------------
 ca: &DEFAULT_CA
@@ -1644,7 +1644,7 @@ ca: &DEFAULT_CA
   back_to_top                : "Torna a dalt"
 ca-ES:
   <<: *DEFAULT_CA
-  
+
 # Irish (Gaeilge)
 # --------------
 ga: &DEFAULT_GA
@@ -1851,6 +1851,118 @@ no-NB:
   <<: *DEFAULT_NO
 no-NN:
   <<: *DEFAULT_NO
+
+# Hebrew
+# -------
+he: &DEFAULT_HE
+  skip_links                 : "דלגו על קישור"
+  skip_primary_nav           : "דלגו לראשי"
+  skip_content               : "דלגו לתוכן"
+  skip_footer                : "דלגו לתחתית"
+  page                       : "דף"
+  pagination_previous        : "קודם"
+  pagination_next            : "הבא"
+  breadcrumb_home_label      : "בית"
+  breadcrumb_separator       : "/"
+  menu_label                 : "סגירה/פתיחה של תפריט"
+  search_label               : "סגירה/פתיחה של חיפוש"
+  toc_label                  : "בדף זה"
+  ext_link_label             : "קישור ישיר"
+  less_than                  : "פחות מ"
+  minute_read                : "דקת קריאה"
+  share_on_label             : "שתפו ב"
+  meta_label                 :
+  tags_label                 : "תגיות:"
+  categories_label           : "קטגוריות:"
+  date_label                 : "מעודכן:"
+  comments_label             : "השאירו הערה"
+  comments_title             : "הערות"
+  more_label                 : "קראו עוד"
+  related_label              : "אולי יעניין אותך גם"
+  follow_label               : "עקבו אחרי"
+  feed_label                 : "פיד"
+  powered_by                 : "Powered by"
+  website_label              : "אתר"
+  email_label                : "אימייל"
+  recent_posts               : "פוסטים אחרונים"
+  undefined_wpm              : "Undefined parameter words_per_minute at _config.yml"
+  comment_form_info          : "האימייל שלך נשמר חסוי. שדות חובה מסומנים"
+  comment_form_comment_label : "הערה"
+  comment_form_md_info       : "Markdown is supported."
+  comment_form_name_label    : "שם"
+  comment_form_email_label   : "כתובת אימייל"
+  comment_form_website_label : "אתר (אפשרות)"
+  comment_btn_submit         : "שלחו הערה"
+  comment_btn_submitted      : "נשלח"
+  comment_success_msg        : "תודה על ההערה שלך! היא תופיע באתר ברגע שתאושר."
+  comment_error_msg          : "סליחה, קרתה תקלה בשליחה. אנא וודאו שכל השדות מלאים ונסו שנית."
+  loading_label              : "טוען..."
+  search_label_text          : "מילות חיפוש..."
+  search_placeholder_text    : "מילות חיפוש..."
+  search_algolia_no_results  : "אין תוצאות"
+  results_found              : "תוצאות נמצאו"
+  back_to_top                : "חזרה להתחלה"
+he-IL:
+  <<: *DEFAULT_HE
+
+# Arabic (عربي)
+# --------------
+ar: &DEFAULT_AR
+  skip_links                 : "تخطي الروابط"
+  skip_primary_nav           : "تخطى الى شريط التنقل"
+  skip_content               : "الانتقال الى المحتوى"
+  skip_footer                : "الانتقال الى ذيل الصفحة"
+  page                       : "صفحه"
+  pagination_previous        : "قبل"
+  pagination_next            : "بعد"
+  breadcrumb_home_label      : "الرئيس"
+  breadcrumb_separator       : "/"
+  menu_label                 : "الخيارات"
+  search_label               : "البحث"
+  toc_label                  : "على هذه الصفحة"
+  ext_link_label             : "رابط مباشر"
+  less_than                  : "اقل من"
+  minute_read                : "دقيقة قرائية"
+  share_on_label             : "مشاركة"
+  meta_label                 :
+  tags_label                 : "العلامات الوصفية:"
+  categories_label           : "الفئات:"
+  date_label                 : "تم التحديث:"
+  comments_label             : "اترك تعليق"
+  comments_title             : "التعليقات"
+  more_label                 : "اقرأ المزيد"
+  related_label              : "قد يعجبك أيضا"
+  follow_label               : "تابع:"
+  feed_label                 : "الاخبار - RSS"
+  powered_by                 : "تم تطوير بواسطة"
+  website_label              : "موقع"
+  email_label                : "ايميل"
+  recent_posts               : "المشاركات الأخيرة"
+  undefined_wpm              : "معامل غير معرف في words_per_minute (كلمة في الدقيقة) في ملف _config.yml"
+  comment_form_info          : "لن يتم نشر عنوان بريدك الإلكتروني. الحقول المطلوبة إلزامية"
+  comment_form_comment_label : "تعليق"
+  comment_form_md_info       : "لغة ال Markdown مدعومة."
+  comment_form_name_label    : "الاسم"
+  comment_form_email_label   : "البريد الالكتروني"
+  comment_form_website_label : "الموقع (اختياري)"
+  comment_btn_submit         : "أضف تعليق"
+  comment_btn_submitted      : "تم الإرسال"
+  comment_success_msg        : "شكراً على التعليق! سيتم اظهاره عندما يتم موافقة عليه."
+  comment_error_msg          : "للأسف, هناك خطأ في المحاولة. الرجاء الحرص على تعبئة جميع الخانات و محاولة مجدداً."
+  loading_label              : "جاري التحميل..."
+  search_label_text          : "اكتب مصطلح للبحث..."
+  search_placeholder_text    : "اكتب مصطلح للبحث..."
+  search_algolia_no_results  : "لا توجد نتائج"
+  results_found              : "تم إيجاد نتيجة"
+  back_to_top                : "الانتقال الى الأعلى"
+ar-SD:
+  <<: *DEFAULT_AR
+ar-SA:
+  <<: *DEFAULT_AR
+ar-AE:
+  <<: *DEFAULT_AR
+ar-EG:
+  <<: *DEFAULT_AR
 
 # Another locale
 # --------------

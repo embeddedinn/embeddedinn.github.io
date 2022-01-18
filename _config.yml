@@ -42,9 +42,16 @@ comments:
   utterances:
     theme                : "github-light" # (default), "github-dark"
     issue_term           : "pathname" #(default)
-staticman:
-  branch                 :  "master"
-  endpoint               :  "https://embeddedinn-staticman.herokuapp.com/v2/entry" # URL of your own deployment with trailing slash, will fallback to the public instance
+  giscus:
+    repo_id              : # Shown during giscus setup at https://giscus.app
+    category_name        : # Full text name of the category
+    category_id          : # Shown during giscus setup at https://giscus.app
+    discussion_term      : # "pathname" (default), "url", "title", "og:title"
+    reactions_enabled    : # '1' for enabled (default), '0' for disabled
+    theme                : # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
+  staticman:
+    branch               : # "master"
+    endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
 reCaptcha:
   siteKey                : "6LexGz8UAAAAAPzZExkmYhx-KKpen0-a95-h23Sd"
   secret                 : "NzFahHccRWrpststqUgMBzRMk+zHY1xDAXlSkHQyJUOJYb4dABRwyhCBPtpwaKfiEgf1CGYqoMJUK+Qs5cAsLLIVPeZcCEwkH7OVCL3f4etIK7t2tk47g9fBBHx/EB5Pi9nkitWewYZbQNNVnFOhYQoxX/PAYx3PuBpkhqU5h90="
