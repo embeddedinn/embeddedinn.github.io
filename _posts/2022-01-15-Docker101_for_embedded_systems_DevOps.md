@@ -275,6 +275,70 @@ They are three types of volumes
 
     This is the recommended method. For shared volumes, the same name can be used across containers.
 
+## Performance Impact
+
+***Typically***, Docker containers are not running on a virtualized environment. They operate on top of a thin isolation layer implemented between the host kernel and the container (`Cgroups`, `VLANs`, etc.). This means, inherently, there will be minimal performance impact when running a dockerized application if the host and container OSes are the same (e.g. Linux host running a Linux container). Practically, the applications are just running in a different namespace. (If the host OS is different from the container OS, there will be a significant performance.)
+
+But, if we take a closer look at the kernel features enabling the containerization namespaces, we see that there are kernel traps set to limit access to certain features from within the container. This feature is called `seccomp` and you can see the full list of features blocked by the default profile in docker documentation. In short around 44 out of the 300+ system calls are blocked inside the container and if your application extensively relies on these, there will be a significant hit to the performance. This variation in performance can be easily seen by running a standard benchmarking suite. A snapshot of the results of my `pyperformance` run inside and outside a container is given in Appendix A at the end of this article. 
+The containerization layer also implements a virtual filesystem using a non-persistent sparse file system. We saw in previous sections that host directories can be mounted in the contains using volumes. This introduces some performance issues, mainly based on the differences between how the container and the host OS handle the underlying native FS. 
+
+If you understand what you are doing, the `seccomp:unconfined` profile can be used to disable the kernel traps and regain performance.
+
+Some other tricks to improve performance are given below. (These tips just addresses the issues discussed in this article. There are many more application specific improvements that can be done to improve performance.)
+
+1. Use `--privileged` to run the container in privileged mode. This will allow the container to access all the host features.
+2. Use `--net=host` to run the container in host networking mode. This will allow the container to talk to other containers in the host.
+3. Work with the non-persistent virtual filesystem and clone your code into the container when you want to work on it.
+4. Use a named volume to share the same data between containers. (not exavtly a performance improvement, but it is a good idea for certain cases.)
+
+
+## Using an IDE to develop using tools within the container
+
+VS Code supports using docker containers as full fledged development environments while also having access to the full set of VS Code features. 
+
+Make sure that you have the latest version of VS Code installed with the remote container extension enabled. 
+
+If you have a container up and running, you can attach to it and start operating inside the container by selecting "Remote-Containers: Attach to running container..." from the command menu or by selecting the containe from the "Remote Explorer" menu. 
+
+{% include image.html
+	img="images/posts/dockerDevops/image4.png"
+	width="640"
+	caption="VS Code remote explorer menu"
+%}
+
+Once the container is attached, you can select the folder within the container to be added to the workspace and start working on it. If you start a terminal, it will be started within the container. This way, you get a full fledged workspace that uses the tools within the container. This process will create a work space configuration file that is specific to the image you are using. So, the next time you connect to the container, the workspace will be restored.
+
+If we always operate in this manner, we can ease the process a bit more by automatically starting a container when we open the project from a folder. This is done by including a `.devcontainer.json` file in the root of the project (or `.devcontainer/devcontainer.json`). Once you open a folder that containes the `.devcontainer.json` file, a new container can be auto launched by the IDE with the `reopen in container` option. The workspace folder will be auto-mounted in the container. 
+
+{% include image.html
+    img="images/posts/dockerDevops/image6.png"
+    width="640"
+    caption="VS Code remote re-launch option"
+%}
+
+The `.devcontainer.json` in this case was:
+
+```json
+{
+  "image": "tuxmake/riscv_clang-nightly"
+}
+```
+
+Instead of specifying the image here, a Dockerfile can be used to build the image dynamically by including it in the `.devcontainer` folder.
+
+
+
+
+> you can launch the container menu by clicking on the container button on the botton left of the VSCode ribbon.
+
+{% include image.html
+    img="images/posts/dockerDevops/image5.png"
+    width="640"
+    caption="VS Code remote options"
+%}
+
+
+
 ## Usecase 1: Setting up a custom RISC-V toolchain image
 
 Let’s consider a development ecosystem to enable developers and CI to use a standard, custom toolchain version. This can be enabled using docker with the following steps.
@@ -456,3 +520,258 @@ The execution result shows that the compiler is useable in the Action.
 %}
 
 Though this file simply lists the tool version, we can use additional run commands to clone your code, compile it, and run tests.
+
+
+## Appendix A : Performance analysis results from `pyperfromance`
+
+```bash
+docker.json
+===========
+
+Performance version: 1.0.2
+Report on Linux-5.11.0-46-generic-x86_64-with-glibc2.29
+Number of logical CPUs: 8
+Start date: 2022-01-14 06:51:08.203980
+End date: 2022-01-14 07:09:17.066526
+
+native.json
+===========
+
+Performance version: 1.0.2
+Report on Linux-5.11.0-46-generic-x86_64-with-glibc2.29
+Number of logical CPUs: 8
+Start date: 2022-01-14 11:56:55.840045
+End date: 2022-01-14 12:15:11.153045
+
+### 2to3 ###
+Mean +- std dev: 309 ms +- 11 ms -> 302 ms +- 6 ms: 1.02x faster
+Significant (t=4.81)
+
+### chameleon ###
+Mean +- std dev: 8.29 ms +- 0.49 ms -> 7.96 ms +- 0.26 ms: 1.04x faster
+Significant (t=4.66)
+
+### chaos ###
+Mean +- std dev: 96.1 ms +- 3.0 ms -> 95.9 ms +- 2.5 ms: 1.00x faster
+Not significant
+
+### crypto_pyaes ###
+Mean +- std dev: 92.6 ms +- 2.2 ms -> 93.8 ms +- 5.6 ms: 1.01x slower
+Not significant
+
+### deltablue ###
+Mean +- std dev: 5.97 ms +- 0.14 ms -> 6.02 ms +- 0.21 ms: 1.01x slower
+Not significant
+
+### django_template ###
+Mean +- std dev: 45.6 ms +- 1.0 ms -> 45.6 ms +- 1.2 ms: 1.00x slower
+Not significant
+
+### dulwich_log ###
+Mean +- std dev: 86.2 ms +- 3.4 ms -> 86.5 ms +- 2.1 ms: 1.00x slower
+Not significant
+
+### fannkuch ###
+Mean +- std dev: 406 ms +- 10 ms -> 402 ms +- 5 ms: 1.01x faster
+Not significant
+
+### float ###
+Mean +- std dev: 99.4 ms +- 2.4 ms -> 97.7 ms +- 1.7 ms: 1.02x faster
+Not significant
+
+### go ###
+Mean +- std dev: 212 ms +- 4 ms -> 227 ms +- 43 ms: 1.07x slower
+Significant (t=-2.68)
+
+### hexiom ###
+Mean +- std dev: 8.09 ms +- 0.17 ms -> 9.05 ms +- 2.74 ms: 1.12x slower
+Significant (t=-2.70)
+
+### json_dumps ###
+Mean +- std dev: 10.9 ms +- 0.3 ms -> 11.3 ms +- 0.4 ms: 1.04x slower
+Significant (t=-6.52)
+
+### json_loads ###
+Mean +- std dev: 21.6 us +- 0.8 us -> 23.2 us +- 2.4 us: 1.07x slower
+Significant (t=-4.64)
+
+### logging_format ###
+Mean +- std dev: 9.37 us +- 0.18 us -> 9.19 us +- 0.20 us: 1.02x faster
+Not significant
+
+### logging_silent ###
+Mean +- std dev: 161 ns +- 9 ns -> 156 ns +- 7 ns: 1.03x faster
+Significant (t=3.26)
+
+### logging_simple ###
+Mean +- std dev: 8.13 us +- 0.23 us -> 8.13 us +- 0.14 us: 1.00x faster
+Not significant
+
+### mako ###
+Mean +- std dev: 13.0 ms +- 0.3 ms -> 13.0 ms +- 0.2 ms: 1.00x faster
+Not significant
+
+### meteor_contest ###
+Mean +- std dev: 89.9 ms +- 2.3 ms -> 90.4 ms +- 1.4 ms: 1.01x slower
+Not significant
+
+### nbody ###
+Mean +- std dev: 109 ms +- 2 ms -> 108 ms +- 2 ms: 1.01x faster
+Not significant
+
+### nqueens ###
+Mean +- std dev: 79.6 ms +- 1.8 ms -> 79.9 ms +- 1.3 ms: 1.00x slower
+Not significant
+
+### pathlib ###
+Mean +- std dev: 21.0 ms +- 0.7 ms -> 17.8 ms +- 0.5 ms: 1.18x faster
+Significant (t=27.16)
+
+### pickle ###
+Mean +- std dev: 8.14 us +- 0.16 us -> 8.25 us +- 0.24 us: 1.01x slower
+Not significant
+
+### pickle_dict ###
+Mean +- std dev: 18.4 us +- 0.2 us -> 18.4 us +- 0.4 us: 1.00x faster
+Not significant
+
+### pickle_list ###
+Mean +- std dev: 2.29 us +- 0.04 us -> 2.32 us +- 0.04 us: 1.02x slower
+Not significant
+
+### pickle_pure_python ###
+Mean +- std dev: 385 us +- 7 us -> 393 us +- 17 us: 1.02x slower
+Significant (t=-3.31)
+
+### pidigits ###
+Mean +- std dev: 157 ms +- 3 ms -> 162 ms +- 7 ms: 1.03x slower
+Significant (t=-5.41)
+
+### pyflate ###
+Mean +- std dev: 571 ms +- 10 ms -> 580 ms +- 18 ms: 1.02x slower
+Not significant
+
+### python_startup ###
+Mean +- std dev: 9.94 ms +- 0.18 ms -> 9.59 ms +- 0.15 ms: 1.04x faster
+Significant (t=21.49)
+
+### python_startup_no_site ###
+Mean +- std dev: 6.77 ms +- 0.14 ms -> 6.59 ms +- 0.12 ms: 1.03x faster
+Significant (t=14.26)
+
+### raytrace ###
+Mean +- std dev: 406 ms +- 8 ms -> 399 ms +- 5 ms: 1.02x faster
+Not significant
+
+### regex_compile ###
+Mean +- std dev: 152 ms +- 3 ms -> 150 ms +- 2 ms: 1.02x faster
+Not significant
+
+### regex_dna ###
+Mean +- std dev: 144 ms +- 3 ms -> 141 ms +- 2 ms: 1.02x faster
+Significant (t=6.85)
+
+### regex_effbot ###
+Mean +- std dev: 2.44 ms +- 0.15 ms -> 2.30 ms +- 0.03 ms: 1.06x faster
+Significant (t=7.41)
+
+### regex_v8 ###
+Mean +- std dev: 18.6 ms +- 0.5 ms -> 18.3 ms +- 0.4 ms: 1.01x faster
+Not significant
+
+### richards ###
+Mean +- std dev: 56.1 ms +- 1.0 ms -> 56.8 ms +- 1.7 ms: 1.01x slower
+Not significant
+
+### scimark_fft ###
+Mean +- std dev: 289 ms +- 6 ms -> 286 ms +- 2 ms: 1.01x faster
+Not significant
+
+### scimark_lu ###
+Mean +- std dev: 121 ms +- 4 ms -> 120 ms +- 3 ms: 1.00x faster
+Not significant
+
+### scimark_monte_carlo ###
+Mean +- std dev: 86.2 ms +- 1.8 ms -> 84.6 ms +- 1.5 ms: 1.02x faster
+Not significant
+
+### scimark_sor ###
+Mean +- std dev: 166 ms +- 4 ms -> 165 ms +- 4 ms: 1.01x faster
+Not significant
+
+### scimark_sparse_mat_mult ###
+Mean +- std dev: 3.48 ms +- 0.07 ms -> 3.41 ms +- 0.06 ms: 1.02x faster
+Significant (t=6.18)
+
+### spectral_norm ###
+Mean +- std dev: 110 ms +- 2 ms -> 109 ms +- 1 ms: 1.01x faster
+Not significant
+
+### sqlalchemy_declarative ###
+Mean +- std dev: 152 ms +- 10 ms -> 150 ms +- 3 ms: 1.01x faster
+Not significant
+
+### sqlalchemy_imperative ###
+Mean +- std dev: 24.0 ms +- 0.8 ms -> 23.6 ms +- 0.7 ms: 1.02x faster
+Not significant
+
+### sqlite_synth ###
+Mean +- std dev: 2.68 us +- 0.06 us -> 2.60 us +- 0.07 us: 1.03x faster
+Significant (t=7.24)
+
+### sympy_expand ###
+Mean +- std dev: 485 ms +- 7 ms -> 480 ms +- 7 ms: 1.01x faster
+Not significant
+
+### sympy_integrate ###
+Mean +- std dev: 21.6 ms +- 0.4 ms -> 21.5 ms +- 0.3 ms: 1.00x faster
+Not significant
+
+### sympy_str ###
+Mean +- std dev: 297 ms +- 6 ms -> 297 ms +- 5 ms: 1.00x slower
+Not significant
+
+### sympy_sum ###
+Mean +- std dev: 180 ms +- 3 ms -> 179 ms +- 3 ms: 1.00x faster
+Not significant
+
+### telco ###
+Mean +- std dev: 5.54 ms +- 0.23 ms -> 5.56 ms +- 0.10 ms: 1.00x slower
+Not significant
+
+### tornado_http ###
+Mean +- std dev: 178 ms +- 12 ms -> 178 ms +- 10 ms: 1.00x slower
+Not significant
+
+### unpack_sequence ###
+Mean +- std dev: 47.8 ns +- 1.0 ns -> 47.3 ns +- 0.8 ns: 1.01x faster
+Not significant
+
+### unpickle ###
+Mean +- std dev: 11.5 us +- 0.4 us -> 11.4 us +- 0.8 us: 1.01x faster
+Not significant
+
+### unpickle_list ###
+Mean +- std dev: 3.99 us +- 0.08 us -> 3.94 us +- 0.07 us: 1.01x faster
+Not significant
+
+### unpickle_pure_python ###
+Mean +- std dev: 274 us +- 9 us -> 270 us +- 5 us: 1.02x faster
+Not significant
+
+### xml_etree_generate ###
+Mean +- std dev: 76.8 ms +- 2.8 ms -> 75.6 ms +- 1.3 ms: 1.02x faster
+Not significant
+
+### xml_etree_iterparse ###
+Mean +- std dev: 91.3 ms +- 1.6 ms -> 91.0 ms +- 1.9 ms: 1.00x faster
+Not significant
+
+### xml_etree_parse ###
+Mean +- std dev: 133 ms +- 4 ms -> 133 ms +- 2 ms: 1.00x slower
+Not significant
+
+### xml_etree_process ###
+Mean +- std dev: 62.2 ms +- 1.3 ms -> 61.5 ms +- 1.1 ms: 1.01x faster
+Not significant
+```
