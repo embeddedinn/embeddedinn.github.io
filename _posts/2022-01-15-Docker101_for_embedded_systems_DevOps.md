@@ -341,7 +341,7 @@ Instead of specifying the image here, a Dockerfile can be used to build the imag
 
 
 
-## Usecase 1: Setting up a custom RISC-V toolchain image
+## **Usecase 1**: Setting up a custom RISC-V toolchain image
 
 Let’s consider a development ecosystem to enable developers and CI to use a standard, custom toolchain version. This can be enabled using docker with the following steps.
 
@@ -418,7 +418,7 @@ Once pushed, you can see the image details from the hub interface  <https://hub.
 
 If you want to compile a codebase in your local machine with this toolchain, you can mount the volume into the container while running it.
 
-## Usecase 2: Compiling MPLABX projects with a custom Docker image
+## **Usecase 2**: Compiling MPLABX projects with a custom Docker image
 
 Microchip MPLABX project builds can be automated in a CI/CD pipeline using a Docker image with the tools pre-configured. MPLABX 6.0 even provides a CI/CD wizard tool to generate Docker files finetuned for your project needs.
 
@@ -495,7 +495,7 @@ Once you build the docker image, you can mount volumes and compile code with the
 Alternately, we can include git into the Docker image, clone the repo into the container, and compile it without mounting a volume. This might be useful in the case of some CI systems.
 
 
-## Usecase 3: Using the container with GitHub Actions
+## **Usecase 3**: Using the container with GitHub Actions
 
 The GitHub actions file to use the container we created in the previous use-case will look like this.
 
@@ -524,7 +524,7 @@ The execution result shows that the compiler is useable in the Action.
 Though this file simply lists the tool version, we can use additional run commands to clone your code, compile it, and run tests.
 
 
-## Appendix A : Performance analysis results from `pyperfromance`
+## **Appendix A** : Performance analysis results from `pyperfromance`
 
 ```bash
 docker.json
