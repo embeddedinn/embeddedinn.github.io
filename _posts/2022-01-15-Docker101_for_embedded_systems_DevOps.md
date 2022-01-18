@@ -526,7 +526,7 @@ Though this file simply lists the tool version, we can use additional run comman
 
 ## **Appendix A** : Performance analysis results from `pyperfromance`
 <details>
-<summary> Click to open the `pyperformance` analysis comparison</summary>
+<summary> Click to open the pyperformance analysis comparison</summary>
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">docker.json
 ===========
