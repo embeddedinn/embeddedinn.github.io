@@ -528,9 +528,7 @@ Though this file simply lists the tool version, we can use additional run comman
 <details>
 <summary> Click to open the `pyperformance` analysis comparison</summary>
 
-```bash
-
-docker.json
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">docker.json
 ===========
 
 Performance version: 1.0.2
@@ -548,237 +546,238 @@ Number of logical CPUs: 8
 Start date: 2022-01-14 11:56:55.840045
 End date: 2022-01-14 12:15:11.153045
 
-### 2to3 ###
-Mean +- std dev: 309 ms +- 11 ms -> 302 ms +- 6 ms: 1.02x faster
+<span style="color: #008000">### 2to3 ###</span>
+Mean +- std dev: 309 ms +- 11 ms -&gt; 302 ms +- 6 ms: 1.02x faster
 Significant (t=4.81)
 
-### chameleon ###
-Mean +- std dev: 8.29 ms +- 0.49 ms -> 7.96 ms +- 0.26 ms: 1.04x faster
+<span style="color: #008000">### chameleon ###</span>
+Mean +- std dev: 8.29 ms +- 0.49 ms -&gt; 7.96 ms +- 0.26 ms: 1.04x faster
 Significant (t=4.66)
 
-### chaos ###
-Mean +- std dev: 96.1 ms +- 3.0 ms -> 95.9 ms +- 2.5 ms: 1.00x faster
+<span style="color: #008000">### chaos ###</span>
+Mean +- std dev: 96.1 ms +- 3.0 ms -&gt; 95.9 ms +- 2.5 ms: 1.00x faster
 Not significant
 
-### crypto_pyaes ###
-Mean +- std dev: 92.6 ms +- 2.2 ms -> 93.8 ms +- 5.6 ms: 1.01x slower
+<span style="color: #008000">### crypto_pyaes ###</span>
+Mean +- std dev: 92.6 ms +- 2.2 ms -&gt; 93.8 ms +- 5.6 ms: 1.01x slower
 Not significant
 
-### deltablue ###
-Mean +- std dev: 5.97 ms +- 0.14 ms -> 6.02 ms +- 0.21 ms: 1.01x slower
+<span style="color: #008000">### deltablue ###</span>
+Mean +- std dev: 5.97 ms +- 0.14 ms -&gt; 6.02 ms +- 0.21 ms: 1.01x slower
 Not significant
 
-### django_template ###
-Mean +- std dev: 45.6 ms +- 1.0 ms -> 45.6 ms +- 1.2 ms: 1.00x slower
+<span style="color: #008000">### django_template ###</span>
+Mean +- std dev: 45.6 ms +- 1.0 ms -&gt; 45.6 ms +- 1.2 ms: 1.00x slower
 Not significant
 
-### dulwich_log ###
-Mean +- std dev: 86.2 ms +- 3.4 ms -> 86.5 ms +- 2.1 ms: 1.00x slower
+<span style="color: #008000">### dulwich_log ###</span>
+Mean +- std dev: 86.2 ms +- 3.4 ms -&gt; 86.5 ms +- 2.1 ms: 1.00x slower
 Not significant
 
-### fannkuch ###
-Mean +- std dev: 406 ms +- 10 ms -> 402 ms +- 5 ms: 1.01x faster
+<span style="color: #008000">### fannkuch ###</span>
+Mean +- std dev: 406 ms +- 10 ms -&gt; 402 ms +- 5 ms: 1.01x faster
 Not significant
 
-### float ###
-Mean +- std dev: 99.4 ms +- 2.4 ms -> 97.7 ms +- 1.7 ms: 1.02x faster
+<span style="color: #008000">### float ###</span>
+Mean +- std dev: 99.4 ms +- 2.4 ms -&gt; 97.7 ms +- 1.7 ms: 1.02x faster
 Not significant
 
-### go ###
-Mean +- std dev: 212 ms +- 4 ms -> 227 ms +- 43 ms: 1.07x slower
+<span style="color: #008000">### go ###</span>
+Mean +- std dev: 212 ms +- 4 ms -&gt; 227 ms +- 43 ms: 1.07x slower
 Significant (t=-2.68)
 
-### hexiom ###
-Mean +- std dev: 8.09 ms +- 0.17 ms -> 9.05 ms +- 2.74 ms: 1.12x slower
+<span style="color: #008000">### hexiom ###</span>
+Mean +- std dev: 8.09 ms +- 0.17 ms -&gt; 9.05 ms +- 2.74 ms: 1.12x slower
 Significant (t=-2.70)
 
-### json_dumps ###
-Mean +- std dev: 10.9 ms +- 0.3 ms -> 11.3 ms +- 0.4 ms: 1.04x slower
+<span style="color: #008000">### json_dumps ###</span>
+Mean +- std dev: 10.9 ms +- 0.3 ms -&gt; 11.3 ms +- 0.4 ms: 1.04x slower
 Significant (t=-6.52)
 
-### json_loads ###
-Mean +- std dev: 21.6 us +- 0.8 us -> 23.2 us +- 2.4 us: 1.07x slower
+<span style="color: #008000">### json_loads ###</span>
+Mean +- std dev: 21.6 us +- 0.8 us -&gt; 23.2 us +- 2.4 us: 1.07x slower
 Significant (t=-4.64)
 
-### logging_format ###
-Mean +- std dev: 9.37 us +- 0.18 us -> 9.19 us +- 0.20 us: 1.02x faster
+<span style="color: #008000">### logging_format ###</span>
+Mean +- std dev: 9.37 us +- 0.18 us -&gt; 9.19 us +- 0.20 us: 1.02x faster
 Not significant
 
-### logging_silent ###
-Mean +- std dev: 161 ns +- 9 ns -> 156 ns +- 7 ns: 1.03x faster
+<span style="color: #008000">### logging_silent ###</span>
+Mean +- std dev: 161 ns +- 9 ns -&gt; 156 ns +- 7 ns: 1.03x faster
 Significant (t=3.26)
 
-### logging_simple ###
-Mean +- std dev: 8.13 us +- 0.23 us -> 8.13 us +- 0.14 us: 1.00x faster
+<span style="color: #008000">### logging_simple ###</span>
+Mean +- std dev: 8.13 us +- 0.23 us -&gt; 8.13 us +- 0.14 us: 1.00x faster
 Not significant
 
-### mako ###
-Mean +- std dev: 13.0 ms +- 0.3 ms -> 13.0 ms +- 0.2 ms: 1.00x faster
+<span style="color: #008000">### mako ###</span>
+Mean +- std dev: 13.0 ms +- 0.3 ms -&gt; 13.0 ms +- 0.2 ms: 1.00x faster
 Not significant
 
-### meteor_contest ###
-Mean +- std dev: 89.9 ms +- 2.3 ms -> 90.4 ms +- 1.4 ms: 1.01x slower
+<span style="color: #008000">### meteor_contest ###</span>
+Mean +- std dev: 89.9 ms +- 2.3 ms -&gt; 90.4 ms +- 1.4 ms: 1.01x slower
 Not significant
 
-### nbody ###
-Mean +- std dev: 109 ms +- 2 ms -> 108 ms +- 2 ms: 1.01x faster
+<span style="color: #008000">### nbody ###</span>
+Mean +- std dev: 109 ms +- 2 ms -&gt; 108 ms +- 2 ms: 1.01x faster
 Not significant
 
-### nqueens ###
-Mean +- std dev: 79.6 ms +- 1.8 ms -> 79.9 ms +- 1.3 ms: 1.00x slower
+<span style="color: #008000">### nqueens ###</span>
+Mean +- std dev: 79.6 ms +- 1.8 ms -&gt; 79.9 ms +- 1.3 ms: 1.00x slower
 Not significant
 
-### pathlib ###
-Mean +- std dev: 21.0 ms +- 0.7 ms -> 17.8 ms +- 0.5 ms: 1.18x faster
+<span style="color: #008000">### pathlib ###</span>
+Mean +- std dev: 21.0 ms +- 0.7 ms -&gt; 17.8 ms +- 0.5 ms: 1.18x faster
 Significant (t=27.16)
 
-### pickle ###
-Mean +- std dev: 8.14 us +- 0.16 us -> 8.25 us +- 0.24 us: 1.01x slower
+<span style="color: #008000">### pickle ###</span>
+Mean +- std dev: 8.14 us +- 0.16 us -&gt; 8.25 us +- 0.24 us: 1.01x slower
 Not significant
 
-### pickle_dict ###
-Mean +- std dev: 18.4 us +- 0.2 us -> 18.4 us +- 0.4 us: 1.00x faster
+<span style="color: #008000">### pickle_dict ###</span>
+Mean +- std dev: 18.4 us +- 0.2 us -&gt; 18.4 us +- 0.4 us: 1.00x faster
 Not significant
 
-### pickle_list ###
-Mean +- std dev: 2.29 us +- 0.04 us -> 2.32 us +- 0.04 us: 1.02x slower
+<span style="color: #008000">### pickle_list ###</span>
+Mean +- std dev: 2.29 us +- 0.04 us -&gt; 2.32 us +- 0.04 us: 1.02x slower
 Not significant
 
-### pickle_pure_python ###
-Mean +- std dev: 385 us +- 7 us -> 393 us +- 17 us: 1.02x slower
+<span style="color: #008000">### pickle_pure_python ###</span>
+Mean +- std dev: 385 us +- 7 us -&gt; 393 us +- 17 us: 1.02x slower
 Significant (t=-3.31)
 
-### pidigits ###
-Mean +- std dev: 157 ms +- 3 ms -> 162 ms +- 7 ms: 1.03x slower
+<span style="color: #008000">### pidigits ###</span>
+Mean +- std dev: 157 ms +- 3 ms -&gt; 162 ms +- 7 ms: 1.03x slower
 Significant (t=-5.41)
 
-### pyflate ###
-Mean +- std dev: 571 ms +- 10 ms -> 580 ms +- 18 ms: 1.02x slower
+<span style="color: #008000">### pyflate ###</span>
+Mean +- std dev: 571 ms +- 10 ms -&gt; 580 ms +- 18 ms: 1.02x slower
 Not significant
 
-### python_startup ###
-Mean +- std dev: 9.94 ms +- 0.18 ms -> 9.59 ms +- 0.15 ms: 1.04x faster
+<span style="color: #008000">### python_startup ###</span>
+Mean +- std dev: 9.94 ms +- 0.18 ms -&gt; 9.59 ms +- 0.15 ms: 1.04x faster
 Significant (t=21.49)
 
-### python_startup_no_site ###
-Mean +- std dev: 6.77 ms +- 0.14 ms -> 6.59 ms +- 0.12 ms: 1.03x faster
+<span style="color: #008000">### python_startup_no_site ###</span>
+Mean +- std dev: 6.77 ms +- 0.14 ms -&gt; 6.59 ms +- 0.12 ms: 1.03x faster
 Significant (t=14.26)
 
-### raytrace ###
-Mean +- std dev: 406 ms +- 8 ms -> 399 ms +- 5 ms: 1.02x faster
+<span style="color: #008000">### raytrace ###</span>
+Mean +- std dev: 406 ms +- 8 ms -&gt; 399 ms +- 5 ms: 1.02x faster
 Not significant
 
-### regex_compile ###
-Mean +- std dev: 152 ms +- 3 ms -> 150 ms +- 2 ms: 1.02x faster
+<span style="color: #008000">### regex_compile ###</span>
+Mean +- std dev: 152 ms +- 3 ms -&gt; 150 ms +- 2 ms: 1.02x faster
 Not significant
 
-### regex_dna ###
-Mean +- std dev: 144 ms +- 3 ms -> 141 ms +- 2 ms: 1.02x faster
+<span style="color: #008000">### regex_dna ###</span>
+Mean +- std dev: 144 ms +- 3 ms -&gt; 141 ms +- 2 ms: 1.02x faster
 Significant (t=6.85)
 
-### regex_effbot ###
-Mean +- std dev: 2.44 ms +- 0.15 ms -> 2.30 ms +- 0.03 ms: 1.06x faster
+<span style="color: #008000">### regex_effbot ###</span>
+Mean +- std dev: 2.44 ms +- 0.15 ms -&gt; 2.30 ms +- 0.03 ms: 1.06x faster
 Significant (t=7.41)
 
-### regex_v8 ###
-Mean +- std dev: 18.6 ms +- 0.5 ms -> 18.3 ms +- 0.4 ms: 1.01x faster
+<span style="color: #008000">### regex_v8 ###</span>
+Mean +- std dev: 18.6 ms +- 0.5 ms -&gt; 18.3 ms +- 0.4 ms: 1.01x faster
 Not significant
 
-### richards ###
-Mean +- std dev: 56.1 ms +- 1.0 ms -> 56.8 ms +- 1.7 ms: 1.01x slower
+<span style="color: #008000">### richards ###</span>
+Mean +- std dev: 56.1 ms +- 1.0 ms -&gt; 56.8 ms +- 1.7 ms: 1.01x slower
 Not significant
 
-### scimark_fft ###
-Mean +- std dev: 289 ms +- 6 ms -> 286 ms +- 2 ms: 1.01x faster
+<span style="color: #008000">### scimark_fft ###</span>
+Mean +- std dev: 289 ms +- 6 ms -&gt; 286 ms +- 2 ms: 1.01x faster
 Not significant
 
-### scimark_lu ###
-Mean +- std dev: 121 ms +- 4 ms -> 120 ms +- 3 ms: 1.00x faster
+<span style="color: #008000">### scimark_lu ###</span>
+Mean +- std dev: 121 ms +- 4 ms -&gt; 120 ms +- 3 ms: 1.00x faster
 Not significant
 
-### scimark_monte_carlo ###
-Mean +- std dev: 86.2 ms +- 1.8 ms -> 84.6 ms +- 1.5 ms: 1.02x faster
+<span style="color: #008000">### scimark_monte_carlo ###</span>
+Mean +- std dev: 86.2 ms +- 1.8 ms -&gt; 84.6 ms +- 1.5 ms: 1.02x faster
 Not significant
 
-### scimark_sor ###
-Mean +- std dev: 166 ms +- 4 ms -> 165 ms +- 4 ms: 1.01x faster
+<span style="color: #008000">### scimark_sor ###</span>
+Mean +- std dev: 166 ms +- 4 ms -&gt; 165 ms +- 4 ms: 1.01x faster
 Not significant
 
-### scimark_sparse_mat_mult ###
-Mean +- std dev: 3.48 ms +- 0.07 ms -> 3.41 ms +- 0.06 ms: 1.02x faster
+<span style="color: #008000">### scimark_sparse_mat_mult ###</span>
+Mean +- std dev: 3.48 ms +- 0.07 ms -&gt; 3.41 ms +- 0.06 ms: 1.02x faster
 Significant (t=6.18)
 
-### spectral_norm ###
-Mean +- std dev: 110 ms +- 2 ms -> 109 ms +- 1 ms: 1.01x faster
+<span style="color: #008000">### spectral_norm ###</span>
+Mean +- std dev: 110 ms +- 2 ms -&gt; 109 ms +- 1 ms: 1.01x faster
 Not significant
 
-### sqlalchemy_declarative ###
-Mean +- std dev: 152 ms +- 10 ms -> 150 ms +- 3 ms: 1.01x faster
+<span style="color: #008000">### sqlalchemy_declarative ###</span>
+Mean +- std dev: 152 ms +- 10 ms -&gt; 150 ms +- 3 ms: 1.01x faster
 Not significant
 
-### sqlalchemy_imperative ###
-Mean +- std dev: 24.0 ms +- 0.8 ms -> 23.6 ms +- 0.7 ms: 1.02x faster
+<span style="color: #008000">### sqlalchemy_imperative ###</span>
+Mean +- std dev: 24.0 ms +- 0.8 ms -&gt; 23.6 ms +- 0.7 ms: 1.02x faster
 Not significant
 
-### sqlite_synth ###
-Mean +- std dev: 2.68 us +- 0.06 us -> 2.60 us +- 0.07 us: 1.03x faster
+<span style="color: #008000">### sqlite_synth ###</span>
+Mean +- std dev: 2.68 us +- 0.06 us -&gt; 2.60 us +- 0.07 us: 1.03x faster
 Significant (t=7.24)
 
-### sympy_expand ###
-Mean +- std dev: 485 ms +- 7 ms -> 480 ms +- 7 ms: 1.01x faster
+<span style="color: #008000">### sympy_expand ###</span>
+Mean +- std dev: 485 ms +- 7 ms -&gt; 480 ms +- 7 ms: 1.01x faster
 Not significant
 
-### sympy_integrate ###
-Mean +- std dev: 21.6 ms +- 0.4 ms -> 21.5 ms +- 0.3 ms: 1.00x faster
+<span style="color: #008000">### sympy_integrate ###</span>
+Mean +- std dev: 21.6 ms +- 0.4 ms -&gt; 21.5 ms +- 0.3 ms: 1.00x faster
 Not significant
 
-### sympy_str ###
-Mean +- std dev: 297 ms +- 6 ms -> 297 ms +- 5 ms: 1.00x slower
+<span style="color: #008000">### sympy_str ###</span>
+Mean +- std dev: 297 ms +- 6 ms -&gt; 297 ms +- 5 ms: 1.00x slower
 Not significant
 
-### sympy_sum ###
-Mean +- std dev: 180 ms +- 3 ms -> 179 ms +- 3 ms: 1.00x faster
+<span style="color: #008000">### sympy_sum ###</span>
+Mean +- std dev: 180 ms +- 3 ms -&gt; 179 ms +- 3 ms: 1.00x faster
 Not significant
 
-### telco ###
-Mean +- std dev: 5.54 ms +- 0.23 ms -> 5.56 ms +- 0.10 ms: 1.00x slower
+<span style="color: #008000">### telco ###</span>
+Mean +- std dev: 5.54 ms +- 0.23 ms -&gt; 5.56 ms +- 0.10 ms: 1.00x slower
 Not significant
 
-### tornado_http ###
-Mean +- std dev: 178 ms +- 12 ms -> 178 ms +- 10 ms: 1.00x slower
+<span style="color: #008000">### tornado_http ###</span>
+Mean +- std dev: 178 ms +- 12 ms -&gt; 178 ms +- 10 ms: 1.00x slower
 Not significant
 
-### unpack_sequence ###
-Mean +- std dev: 47.8 ns +- 1.0 ns -> 47.3 ns +- 0.8 ns: 1.01x faster
+<span style="color: #008000">### unpack_sequence ###</span>
+Mean +- std dev: 47.8 ns +- 1.0 ns -&gt; 47.3 ns +- 0.8 ns: 1.01x faster
 Not significant
 
-### unpickle ###
-Mean +- std dev: 11.5 us +- 0.4 us -> 11.4 us +- 0.8 us: 1.01x faster
+<span style="color: #008000">### unpickle ###</span>
+Mean +- std dev: 11.5 us +- 0.4 us -&gt; 11.4 us +- 0.8 us: 1.01x faster
 Not significant
 
-### unpickle_list ###
-Mean +- std dev: 3.99 us +- 0.08 us -> 3.94 us +- 0.07 us: 1.01x faster
+<span style="color: #008000">### unpickle_list ###</span>
+Mean +- std dev: 3.99 us +- 0.08 us -&gt; 3.94 us +- 0.07 us: 1.01x faster
 Not significant
 
-### unpickle_pure_python ###
-Mean +- std dev: 274 us +- 9 us -> 270 us +- 5 us: 1.02x faster
+<span style="color: #008000">### unpickle_pure_python ###</span>
+Mean +- std dev: 274 us +- 9 us -&gt; 270 us +- 5 us: 1.02x faster
 Not significant
 
-### xml_etree_generate ###
-Mean +- std dev: 76.8 ms +- 2.8 ms -> 75.6 ms +- 1.3 ms: 1.02x faster
+<span style="color: #008000">### xml_etree_generate ###</span>
+Mean +- std dev: 76.8 ms +- 2.8 ms -&gt; 75.6 ms +- 1.3 ms: 1.02x faster
 Not significant
 
-### xml_etree_iterparse ###
-Mean +- std dev: 91.3 ms +- 1.6 ms -> 91.0 ms +- 1.9 ms: 1.00x faster
+<span style="color: #008000">### xml_etree_iterparse ###</span>
+Mean +- std dev: 91.3 ms +- 1.6 ms -&gt; 91.0 ms +- 1.9 ms: 1.00x faster
 Not significant
 
-### xml_etree_parse ###
-Mean +- std dev: 133 ms +- 4 ms -> 133 ms +- 2 ms: 1.00x slower
+<span style="color: #008000">### xml_etree_parse ###</span>
+Mean +- std dev: 133 ms +- 4 ms -&gt; 133 ms +- 2 ms: 1.00x slower
 Not significant
 
-### xml_etree_process ###
-Mean +- std dev: 62.2 ms +- 1.3 ms -> 61.5 ms +- 1.1 ms: 1.01x faster
+<span style="color: #008000">### xml_etree_process ###</span>
+Mean +- std dev: 62.2 ms +- 1.3 ms -&gt; 61.5 ms +- 1.1 ms: 1.01x faster
 Not significant
+</pre></div>
 
-```
+
 </details>
