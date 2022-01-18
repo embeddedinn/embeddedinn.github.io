@@ -525,6 +525,8 @@ Though this file simply lists the tool version, we can use additional run comman
 
 
 ## **Appendix A** : Performance analysis results from `pyperfromance`
+<details>
+<summary> Click to open the `pyperformance` analysis comparison</summary>
 
 ```bash
 docker.json
@@ -777,3 +779,4 @@ Not significant
 Mean +- std dev: 62.2 ms +- 1.3 ms -> 61.5 ms +- 1.1 ms: 1.01x faster
 Not significant
 ```
+</details>
