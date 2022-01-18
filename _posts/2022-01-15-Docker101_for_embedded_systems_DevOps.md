@@ -1,5 +1,5 @@
 ---
-title: Docker 101 for embedded systems DevOps
+title: Docker 101 for embedded systems Dev and DevOps
 date: 2022-01-15 12:42:06.000000000 +05:30
 classes: wide
 published: true
@@ -29,7 +29,7 @@ div {
 
 {% include toc title="Table of contents" icon="file-text" %}
 
-## Docker 101 for embedded systems DevOps. 
+## Docker 101 for embedded systems Dev & DevOps. 
 
 I started using docker back in 2016 and ever since, I have been using it in the context of embedded systems DevOps. This article condenses the learning so that someone starting afresh can get to speed quickly. You can read my article on bring-up a buildroot image on docker in the article [Docker: Scratching an itch to build from ground up](/articles/tutorial/docker-scratching-an-itch-to-build-from-ground-up/).
 
