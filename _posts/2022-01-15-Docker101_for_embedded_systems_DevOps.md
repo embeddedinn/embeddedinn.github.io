@@ -373,8 +373,14 @@ Let’s consider a development ecosystem to enable developers and CI to use a st
     ```docker
     FROM ubuntu:20.04
     RUN mkdir /opt/riscv
-    COPY toolInstall/\* /opt/riscv/
-    ENV PATH="/opt/riscv:${PATH}"
+    COPY toolInstall/* /opt/riscv/
+    ENV PATH="/opt/riscv/bin:${PATH}"
+    RUN apt-get update
+    RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
+    RUN apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev \
+                    libusb-1.0-0-dev gawk build-essential bison flex gperf libtool \
+                    patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev  \
+                    libncurses5-dev libncursesw5-dev python python3 git vim -y
     CMD /bin/bash
     ```
 
