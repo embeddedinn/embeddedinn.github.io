@@ -374,7 +374,7 @@ Let’s consider a development ecosystem to enable developers and CI to use a st
     FROM ubuntu:20.04
     RUN mkdir /opt/riscv
     COPY toolInstall/* /opt/riscv/
-    ENV PATH="/opt/riscv/bin:${PATH}"
+    ENV PATH="/opt/riscv:${PATH}"
     RUN apt-get update
     RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
     RUN apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev \
