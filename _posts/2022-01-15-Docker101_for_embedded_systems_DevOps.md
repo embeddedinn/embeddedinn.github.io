@@ -277,6 +277,23 @@ They are three types of volumes
 
     This is the recommended method. For shared volumes, the same name can be used across containers.
 
+### Volume access issues
+    
+Especially when the container and host OSes are different (even different Linux distros), the volumes might face access issues due to the differences in the user and group ID mappings of the volume and the container user. 
+
+One option is to use the `docker run -u` with the argument `-u $(id -u):$(id -g)` to map the container user to the host user. However, if a user with the same uid:gid is not present in the container already then you will face run time issues. Most notably, you will see an `I have no name!` prompt in the container bash prompt. 
+
+An alternate mechanism is to create the required user in the host and then map the user to the container. The same user should be used to create and operate on the volume source before and after mount. To create the user with a specific `uid` and `gid`, use the following commands. 
+
+```bash
+addgroup --gid 24 user
+adduser --disabled-password --gecos '' --uid 1367 --gid 24 user
+```
+
+The magic numbers are the user id and group id of the user to be created. This can be obtained using the `id` command with the `-u` flag for the user and `-g` flag for the group ID.
+
+Once the user is created, switch to the user with `su user`. `user` being the user name we created.
+
 ## Performance Impact
 
 ***Typically***, Docker containers are not running on a virtualized environment. They operate on top of a thin isolation layer implemented between the host kernel and the container (`Cgroups`, `VLANs`, etc.). This means, inherently, there will be minimal performance impact when running a dockerized application if the host and container OSes are the same (e.g. Linux host running a Linux container). Practically, the applications are just running in a different namespace. (If the host OS is different from the container OS, there will be a significant performance.)
