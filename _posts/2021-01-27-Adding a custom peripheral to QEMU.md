@@ -103,6 +103,13 @@ qemu-system-riscv64 -nographic -machine virt -kernel build/bin/rv64imac/virt/hel
 	caption="bare-metal hello world"
 %}
 
+  > Added on 23-Jan-2022
+  > {: .notice}
+  >
+  > ### what is a `virt` machine 
+  >
+  > The virt board is a platform which does not correspond to any real hardware; it is designed for use in virtual machines. More information can be found in the [QEMU Documentation page here.](https://qemu-project.gitlab.io/qemu/system/riscv/virt.html)
+
 ### Understanding the libfemto code flow
 
 Here are the initialization and execution sequence of the `riscv-probe` `femto` ecosystem. This understanding is essential to generate a stripped out version of `riscv-probe` for us to use.
