@@ -129,6 +129,6 @@ In this case, I am executing the generated RFS on a RISCV QEMU virt machine usin
     
 {% include image.html
     img="images/posts/buildrootCust/qemu.png"
-    width="800"
+    width="600"
     caption="EMBEDDEDINN command in RFS"
 %}
