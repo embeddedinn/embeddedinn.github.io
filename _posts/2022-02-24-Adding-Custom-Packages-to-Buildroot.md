@@ -110,13 +110,13 @@ At this stage , the package will become visible in he menu and can be enabled to
 
 {% include image.html
     img="images/posts/buildrootCust/menu1.png"
-    width="800"
+    width="600"
     caption="Menu for EMBEDDEDINN packages"
 %}
 
 {% include image.html
     img="images/posts/buildrootCust/menu2.png"
-    width="800"
+    width="600"
     caption="EMBEDDEDINN package details"
 %}
 
