@@ -45,7 +45,7 @@ printf("EMBEDDEDINN\r\n");
 
 #### Makefile
 
-```Makefile
+```
 
 .PHONY: clean
 
@@ -63,7 +63,7 @@ Within the Buildroot source tree, you can create an `embeddedinn` directory unde
 
 #### `package/embeddedinn/Config.in`
 
-```Conf
+```
 config BR2_PACKAGE_EMBEDDEDINN
     bool "embeddedinn"
     help
@@ -74,7 +74,7 @@ config BR2_PACKAGE_EMBEDDEDINN
 
 #### `package/embeddedinn/embeddedinn.mk`
 
-```mk
+```
 ################################################################################
 #
 # embeddedinn package
@@ -100,7 +100,7 @@ Now create a link to the `Config.in` file by making an entry in the `package/Con
 
 #### `package/Config.in`:
 
-```conf
+```
 menu "EMBEDDEDINN Packages"
     source "package/embeddedinn/Config.in"
 endmenu
