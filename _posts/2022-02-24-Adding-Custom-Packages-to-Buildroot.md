@@ -132,3 +132,7 @@ In this case, I am executing the generated RFS on a RISCV QEMU virt machine usin
     width="600"
     caption="EMBEDDEDINN command in RFS"
 %}
+
+## BR2_EXTERNAL
+
+In case you want to maintain the project specific source code outside the buildroot tree, you can use the `BR2_EXTERNAL` mechanism detailed in the [Buildroot documentation](https://buildroot.org/downloads/manual/manual.html#outside-br-custom). The path to BR2_EXTERNAL is passed to `make` invocation and from that point onwards, buildroot considers the external tree to be part of the buildroot build process. A `.br2-external.mk` file is also generated in the output directory to avoid haivng to ented the `BR2_EXTERNAL` paths for every `make` invocation. 
