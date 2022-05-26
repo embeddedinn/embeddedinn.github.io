@@ -333,7 +333,7 @@ sudo apt-get install python genext2fs
 ```
 git clone https://github.com/xvisor/xvisor.git
 cd xvisor
-CROSS_COMPILE=riscv64-unknown-linux-gnu-
+export CROSS_COMPILE=riscv64-unknown-linux-gnu-
 make ARCH=riscv generic-64b-defconfig
 make
 ```
