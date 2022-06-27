@@ -7,7 +7,8 @@ categories:
 - Tutorials
 tags:
 - Blogging
-
+- workspace
+  
 excerpt: "My notes on how to setup the blogging environment for adding pages to embeddedinn"
 
 ---
