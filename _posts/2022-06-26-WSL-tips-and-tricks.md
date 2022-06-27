@@ -106,16 +106,16 @@ Pageant is an SSH authentication agent. It holds your private keys in memory, al
 Download and setup instructions are available in the [wsl2-ssh-pageant](https://github.com/BlackReloaded/wsl2-ssh-pageant) GitHub page. However, the `.bashrc` entry prints warnings from `ss` at startup. Since these are harmless, I am routing them to `/dev/null` with the modification below. (Only line2 is modified from the original instructions)
 
 
-    ```bash
-    export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
-    if ! ss -a 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
-    rm -f "$SSH_AUTH_SOCK"
-    wsl2_ssh_pageant_bin="$HOME/.ssh/wsl2-ssh-pageant.exe"
-    if test -x "$wsl2_ssh_pageant_bin"; then
-        (setsid nohup socat UNIX-LISTEN:"$SSH_AUTH_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin" >/dev/null 2>&1 &)
-    else
-        echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
-    fi
-    unset wsl2_ssh_pageant_bin
-    fi
-    ```
+  ```bash
+  export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+  if ! ss -a 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
+  rm -f "$SSH_AUTH_SOCK"
+  wsl2_ssh_pageant_bin="$HOME/.ssh/wsl2-ssh-pageant.exe"
+  if test -x "$wsl2_ssh_pageant_bin"; then
+      (setsid nohup socat UNIX-LISTEN:"$SSH_AUTH_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin" >/dev/null 2>&1 &)
+  else
+      echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
+  fi
+  unset wsl2_ssh_pageant_bin
+  fi
+  ```
