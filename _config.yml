@@ -192,7 +192,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
-highlighter: coderay
+highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
