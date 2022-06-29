@@ -140,7 +140,7 @@ The following steps are just a snapshot of what I did following the official doc
         caption="Jenkins welcome page"
     %}
 
-# Configuring Jenkins
+## Configuring Jenkins
 
 1. To unlock Jenkins, we need to access `/var/jenkins_home/secrets/initialAdminPassword`. For that :
 
@@ -164,7 +164,7 @@ The following steps are just a snapshot of what I did following the official doc
         caption="Recommended Plugins"
     %}
 
-3. And create an Admin User. 
+3. And create an Admin User.
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image4.png"
