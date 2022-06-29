@@ -35,7 +35,7 @@ Bitbucket lets you trigger webhooks for git events that are interesting to your 
 
 Webhooks are more efficient than a regular Jenkins pipeline since it is triggered only in case of a change instead of a periodic poll/scan by Jenkins.
 
-## Setting up Jenkins. 
+## Setting up Jenkins in a Docker container. 
 
 Using the official Jenkins Docker image is the easiest way to get started – especially while exploring what the possibilities are. 
 
@@ -140,21 +140,23 @@ The following steps are just a snapshot of what I did following the official doc
         caption="Jenkins welcome page"
     %}
 
-8. To unlock Jenkins, we need to access `/var/jenkins_home/secrets/initialAdminPassword`. For that :
+# Configuring Jenkins
+
+1. To unlock Jenkins, we need to access `/var/jenkins_home/secrets/initialAdminPassword`. For that :
 
     ```bash
     docker exec -it jenkins-blueocean bash
     cat /var/jenkins_home/secrets/initialAdminPassword
         And then paste the password in the web console. 
     ```
-    
+
     {% include image.html
         img="images/posts/jenkinsWebhooks/image2.png"
         width="600"
         caption="Unlocking Jenkins"
     %}
 
-9. Next, install the recommended plugins
+2. Next, install the recommended plugins
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image3.png"
@@ -162,7 +164,7 @@ The following steps are just a snapshot of what I did following the official doc
         caption="Recommended Plugins"
     %}
 
-10. And create an Admin User. 
+3. And create an Admin User. 
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image4.png"
@@ -170,13 +172,12 @@ The following steps are just a snapshot of what I did following the official doc
         caption="Create Admin User"
     %}
 
-11. After logging in to the Jenkins page and settings up the basic configurations got to  Manage Jenkins > Manage Plugins and install the following plugins:
+4. After logging in to the Jenkins page and settings up the basic configurations got to  Manage Jenkins > Manage Plugins and install the following plugins:
 
     - [Generic Webhook Trigger Plugin](https://plugins.jenkins.io/generic-webhook-trigger)
     - [Bitbucket](https://plugins.jenkins.io/bitbucket)
     - [Bitbucket Server Notifier](https://plugins.jenkins.io/stashNotifier)
   
-
 ## Create a Bitbucket repo
 
 I am using the free bitbucket.org web version for this writeup. However, I have tested this first on an on-premise Bitbucket Server instance. 
