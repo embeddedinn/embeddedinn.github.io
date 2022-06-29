@@ -211,7 +211,7 @@ After the job is created, go to the job configuration page.
 
     {% include image.html
     img="images/posts/jenkinsWebhooks/image7.png"
-    width="400"
+    width="600"
     caption="Setup Credentials"
     %}
 
