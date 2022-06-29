@@ -45,7 +45,7 @@ Following the official instructions, we can set up a Jenkins docker within anoth
 
 The following steps are just a snapshot of what I did following the official documentation. There are additional steps here since I am setting it up on a fresh EC2 instance.
 
-1. Update the system and install Docker. (Instructions from [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+- Update the system and install Docker. (Instructions from [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
 
     ```bash
     sudo apt-get update
@@ -67,13 +67,13 @@ The following steps are just a snapshot of what I did following the official doc
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     ```
 
-2. Setup a network
+- Setup a network
 
     ```bash
     docker network create jenkins
     ```
 
-3. Create the first `DinD` layer
+- Create the first `DinD` layer
 
     ```bash
     docker run \
@@ -91,7 +91,7 @@ The following steps are just a snapshot of what I did following the official doc
     --storage-driver overlay2
     ```
 
-4. Make sure you install the tools required to run your actual build commands from Jenkins by modifying the `Dockerfile` in the official documentation. This is my modified `Dockerfile` that installs `make`, `python`, and `python-venv` in the container.
+- Make sure you install the tools required to run your actual build commands from Jenkins by modifying the `Dockerfile` in the official documentation. This is my modified `Dockerfile` that installs `make`, `python`, and `python-venv` in the container.
 
     ```Dockerfile
     FROM jenkins/jenkins:2.346.1-jdk11
@@ -108,13 +108,13 @@ The following steps are just a snapshot of what I did following the official doc
     RUN jenkins-plugin-cli --plugins "blueocean:1.25.5 docker-workflow:1.28"
     ```
 
-5. Build the docker image with
+- Build the docker image with
 
     ```bash
     docker build -t myjenkins-blueocean:2.346.1-1 .
     ```
 
-6. Now run the new docker image within the `DinD` with 
+- Now run the new docker image within the `DinD` with 
 
     ```bash
     docker run \
@@ -132,17 +132,17 @@ The following steps are just a snapshot of what I did following the official doc
     myjenkins-blueocean:2.346.1-1 
     ```
 
-7. I can now access the Jenkins installation on port `8080` using the public DNS / IP.
+- I can now access the Jenkins installation on port `8080` using the public DNS / IP.
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image1.png"
-        width="800"
-        caption="Jenkins welcome page"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image1.png"
+    width="800"
+    caption="Jenkins welcome page"
+%}
 
 ## Configuring Jenkins
 
-1. To unlock Jenkins, we need to access `/var/jenkins_home/secrets/initialAdminPassword`. For that :
+- To unlock Jenkins, we need to access `/var/jenkins_home/secrets/initialAdminPassword`. For that :
 
     ```bash
     docker exec -it jenkins-blueocean bash
@@ -150,33 +150,33 @@ The following steps are just a snapshot of what I did following the official doc
         And then paste the password in the web console. 
     ```
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image2.png"
-        width="600"
-        caption="Unlocking Jenkins"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image2.png"
+    width="600"
+    caption="Unlocking Jenkins"
+%}
 
-2. Next, install the recommended plugins
+- Next, install the recommended plugins
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image3.png"
-        width="600"
-        caption="Recommended Plugins"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image3.png"
+    width="600"
+    caption="Recommended Plugins"
+%}
 
 3. And create an Admin User.
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image4.png"
-        width="600"
-        caption="Create Admin User"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image4.png"
+    width="600"
+    caption="Create Admin User"
+%}
 
-4. After logging in to the Jenkins page and settings up the basic configurations got to  Manage Jenkins > Manage Plugins and install the following plugins:
+- After logging in to the Jenkins page and settings up the basic configurations got to  Manage Jenkins > Manage Plugins and install the following plugins:
 
-    - [Generic Webhook Trigger Plugin](https://plugins.jenkins.io/generic-webhook-trigger)
-    - [Bitbucket](https://plugins.jenkins.io/bitbucket)
-    - [Bitbucket Server Notifier](https://plugins.jenkins.io/stashNotifier)
+  - [Generic Webhook Trigger Plugin](https://plugins.jenkins.io/generic-webhook-trigger)
+  - [Bitbucket](https://plugins.jenkins.io/bitbucket)
+  - [Bitbucket Server Notifier](https://plugins.jenkins.io/stashNotifier)
   
 ## Create a Bitbucket repo
 
@@ -184,30 +184,30 @@ I am using the free bitbucket.org web version for this writeup. However, I have 
 
 ## Creating a Jenkins Job
 
-1. Create a new Job by clicking on the `New Item` button in the top left corner.
+- Create a new Job by clicking on the `New Item` button in the top left corner.
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image5.png"
-        width="600"
-        caption="Create Job"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image5.png"
+    width="600"
+    caption="Create Job"
+%}
 
-2. Select FreeStyle Project from the list.
+- Select FreeStyle Project from the list.
 
-    {% include image.html
-        img="images/posts/jenkinsWebhooks/image6.png"
-        width="600"
-        caption="Select FreeStyle Project"
-    %}
+{% include image.html
+    img="images/posts/jenkinsWebhooks/image6.png"
+    width="600"
+    caption="Select FreeStyle Project"
+%}
 
 
 ## Configuring the Job
 
 After the job is created, go to the job configuration page.
 
-1. Under the `Source Code Management tab`, select `Git` and  enter details of the repository you want to build for.
+- Under the `Source Code Management tab`, select `Git` and  enter details of the repository you want to build for.
 
-    - Make sure you also set up credentials for the repository. We will use this in the server notification step as well. I am using a bitbucket app password with repo read permission. You can also set up a personal access token or private key.
+  - Make sure you also set up credentials for the repository. We will use this in the server notification step as well. I am using a bitbucket app password with repo read permission. You can also set up a personal access token or private key.
 
     {% include image.html
     img="images/posts/jenkinsWebhooks/image7.png"
@@ -215,11 +215,11 @@ After the job is created, go to the job configuration page.
     caption="Setup Credentials"
     %}
 
-2. For branches, select `*` since we will be building for changes in all branches. This can further be filtered for your use.
+- For branches, select `*` since we will be building for changes in all branches. This can further be filtered for your use.
 
-   - We will obtain information about the specific branch that triggered the job in the next step.
+  - We will obtain information about the specific branch that triggered the job in the next step.
   
-3. Under repository browser, provide the `repo View link`. This will help us quickly navigate the code corresponding to a build Job. In this case, I am using a test repo in `bitbucket.org` to play around with the Jenkins setup. So, I selected bitbucket web.
+- Under repository browser, provide the `repo View link`. This will help us quickly navigate the code corresponding to a build Job. In this case, I am using a test repo in `bitbucket.org` to play around with the Jenkins setup. So, I selected bitbucket web.
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image8.png"
@@ -227,15 +227,15 @@ After the job is created, go to the job configuration page.
         caption="SCM Configuration"
     %}
 
-4. Under build trigger, select Generic Webhook Trigger. 
-    - Make a note of the webhook URL format `http://JENKINS_URL/generic-webhook-trigger/invoke`
+- Under build trigger, select Generic Webhook Trigger. 
+  - Make a note of the webhook URL format `http://JENKINS_URL/generic-webhook-trigger/invoke`
   
-5. Under token, enter a `GUID`. This will be used to distinguish build triggers coming from the server. 
-    - I am using the `uuidgen` Linux command for this. You can also use  [https://www.guidgenerator.com/online-guid-generator.aspx](https://www.guidgenerator.com/online-guid-generator.aspx) or provide a random string. 
+- Under token, enter a `GUID`. This will be used to distinguish build triggers coming from the server. 
+  - I am using the `uuidgen` Linux command for this. You can also use  [https://www.guidgenerator.com/online-guid-generator.aspx](https://www.guidgenerator.com/online-guid-generator.aspx) or provide a random string. 
   
-6. For now, we will keep the cause as a `Generic cause` and revisit this later in the next step.
-    
-7. I am just running an `ls` shell command for the build step. The actual build steps will be project-specific. 
+- For now, we will keep the cause as a `Generic cause` and revisit this later in the next step.
+
+- I am just running an `ls` shell command for the build step. The actual build steps will be project-specific. 
 
 {% include image.html
     img="images/posts/jenkinsWebhooks/image9.png"
@@ -243,9 +243,9 @@ After the job is created, go to the job configuration page.
     caption="Test Command"
 %}
 
-8. For the time being, we will leave the post-build action empty. We will revisit this in the next step. 
+- For the time being, we will leave the post-build action empty. We will revisit this in the next step. 
 
-9.	Save the job and trigger a test job with the `build now` button. This will start a clone of the repo and run the test command. Steps can be observed in the job result console output
+-	Save the job and trigger a test job with the `build now` button. This will start a clone of the repo and run the test command. Steps can be observed in the job result console output
 
     {% include image.html
     img="images/posts/jenkinsWebhooks/image10.png"
@@ -255,7 +255,7 @@ After the job is created, go to the job configuration page.
 
 ## Setup Webhooks
 
-1. Go to the bitbucket repository and select webhooks under repository settings
+- Go to the bitbucket repository and select webhooks under repository settings
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image11.png"
@@ -263,9 +263,9 @@ After the job is created, go to the job configuration page.
         caption="Webhooks"
     %}
 
-2. Add a new webhook and enter the URL from the webhook template. Make sure that you add the actual server URL into the template. 
-    - Make sure you add the token as a query parameter to the URL. Otherwise the webhook trigger will return a `404`.
-        - Query parameter `/invoke?token=TOKEN_HERE`
+- Add a new webhook and enter the URL from the webhook template. Make sure that you add the actual server URL into the template.
+  - Make sure you add the token as a query parameter to the URL. Otherwise the webhook trigger will return a `404`.
+    - Query parameter `/invoke?token=TOKEN_HERE`
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image12.png"
@@ -273,7 +273,7 @@ After the job is created, go to the job configuration page.
         caption="Configure Webhooks"
     %}
 
-3. Click on `view requests` and enable requests history.
+- Click on `view requests` and enable requests history.
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image13.png"
@@ -281,9 +281,9 @@ After the job is created, go to the job configuration page.
         caption="View Requests"
     %}
 
-4. Now go to your repo and make a dummy change to trigger a webhook call to our Jenkins server
-    - I just edited the readme from the web IDE and added a newline to its end.
-        - In my first try, I got an error since I missed adding the port number (`8080`) into the webhook URL, and the second one failed since the Token parameter was missing in the URL.
+- Now go to your repo and make a dummy change to trigger a webhook call to our Jenkins server
+  - I just edited the readme from the web IDE and added a newline to its end.
+    - In my first try, I got an error since I missed adding the port number (`8080`) into the webhook URL, and the second one failed since the Token parameter was missing in the URL.
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image14.png"
@@ -291,7 +291,7 @@ After the job is created, go to the job configuration page.
         caption="Trigger Webhook"
     %}
 
-5. Now you can see that a new build has been triggered automatically in the Jenkins console
+- Now you can see that a new build has been triggered automatically in the Jenkins console
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image15.png"
@@ -299,9 +299,9 @@ After the job is created, go to the job configuration page.
         caption="Jenkins Console"
     %}
 
-6.	However, you could see that there is no build feedback given to bitbucket after the build. We will now set up build notifications. 
+- However, you could see that there is no build feedback given to bitbucket after the build. We will now set up build notifications.
 
-7.	Under the bitbucket webhooks page, click on view details and copy the request body. This is the contents posted into our Jenkins webhook by bitbucket on each trigger. 
+- Under the bitbucket webhooks page, click on view details and copy the request body. This is the contents posted into our Jenkins webhook by bitbucket on each trigger. 
 
 {% include image.html
     img="images/posts/jenkinsWebhooks/image16.png"
@@ -309,14 +309,14 @@ After the job is created, go to the job configuration page.
     caption="Webhook Request Body"
 %}
 
-8. We will use [https://jsonpath.curiousconcept.com/](https://jsonpath.curiousconcept.com/) to explore and figure out the JSONPath expressions of the `commit ID`, `branch name`, and `change actor`. 
+- We will use [https://jsonpath.curiousconcept.com/](https://jsonpath.curiousconcept.com/) to explore and figure out the JSONPath expressions of the `commit ID`, `branch name`, and `change actor`. 
 
-    - Actor  : `actor.display_name`
-    - commitID: `push.changes[0].new.target.hash`
-    - branch: `push.changes[0].new.name`
+  - Actor  : `actor.display_name`
+  - commitID: `push.changes[0].new.target.hash`
+  - branch: `push.changes[0].new.name`
 
-9. We need to extract now these variables from the `POST` contents in the webhook. For this, go to the test build configuration and under `generic webhook trigger`  > `Post content parameters`, click `Add`. 
-    - Add the three variables and their paths we identified in the last step. One of them is shown here.
+- We need to extract now these variables from the `POST` contents in the webhook. For this, go to the test build configuration and under `generic webhook trigger`  > `Post content parameters`, click `Add`. 
+  - Add the three variables and their paths we identified in the last step. One of them is shown here.
   
     {% include image.html
         img="images/posts/jenkinsWebhooks/image17.png"
@@ -324,10 +324,10 @@ After the job is created, go to the job configuration page.
         caption="Add Parameters"
     %}
 
-10. Now, we can use these variables in entries like the cause string
-    - Change `generic Cause` to `Push to $branch by $actor`
+- Now, we can use these variables in entries like the cause string
+  - Change `generic Cause` to `Push to $branch by $actor`
   
-18.	To test this, save the changes and trigger a test with a content change from bitbucket. 
+- To test this, save the changes and trigger a test with a content change from bitbucket. 
 
     {% include image.html
         img="images/posts/jenkinsWebhooks/image18.png"
@@ -335,11 +335,10 @@ After the job is created, go to the job configuration page.
         caption="Test Job"
     %}
 
-
 ## Server Notification
 
-1. Now, let’s configure a build response to the server. 
-2. Under post-build actions of the job configurations, select “notify bitbucket instance”
+- Now, let’s configure a build response to the server. 
+- Under post-build actions of the job configurations, select “notify bitbucket instance”
    
    {% include image.html
         img="images/posts/jenkinsWebhooks/image19.png"
@@ -347,8 +346,8 @@ After the job is created, go to the job configuration page.
         caption="Notify Bitbucket Post-Build"
     %}
 
-3. Under advanced configurations, enter the bitbucket server URL, credentials, and commit ID. 
-   - For commit ID, use the variable we extracted from the POST data using JSONPath.
+- Under advanced configurations, enter the bitbucket server URL, credentials, and commit ID. 
+  - For commit ID, use the variable we extracted from the POST data using JSONPath.
   
     {% include image.html
         img="images/posts/jenkinsWebhooks/image20.png"
@@ -356,5 +355,5 @@ After the job is created, go to the job configuration page.
         caption="Configure Bitbucket Server"
     %}
 
-4. This worked for my on-prem instance but is failing with bitbucket.org cloud since API access with username and password has been deprecated. I am yet to figure out how this can be worked around. 
-    - I already tried the app password with username (instead of email) and SSH key, but it did not work. “Bitbucket Build Status Notifier” plugin relies on OAuth, but Bitbucket.org has also deprecated it.
+- This worked for my on-prem instance but is failing with bitbucket.org cloud since API access with username and password has been deprecated. I am yet to figure out how this can be worked around. 
+  - I already tried the app password with username (instead of email) and SSH key, but it did not work. “Bitbucket Build Status Notifier” plugin relies on OAuth, but Bitbucket.org has also deprecated it.
