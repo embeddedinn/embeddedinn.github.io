@@ -313,6 +313,7 @@ After the job is created, go to the job configuration page.
 
   - Actor  : `actor.display_name`
   - commitID: `push.changes[0].new.target.hash`
+    - If you dont want to parse the post data for this, you can directly use $GIT_COMMIT  
   - branch: `push.changes[0].new.name`
 
 - We need to extract now these variables from the `POST` contents in the webhook. For this, go to the test build configuration and under `generic webhook trigger`  > `Post content parameters`, click `Add`. 
@@ -348,6 +349,7 @@ After the job is created, go to the job configuration page.
 
 - Under advanced configurations, enter the bitbucket server URL, credentials, and commit ID. 
   - For commit ID, use the variable we extracted from the POST data using JSONPath.
+    - Alternatively, $GIT_COMMIT can also be used.  
   
     {% include image.html
         img="images/posts/jenkinsWebhooks/image20.png"
