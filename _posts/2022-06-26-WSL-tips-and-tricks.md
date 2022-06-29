@@ -1,6 +1,6 @@
 ---
 title: Windows subsystem for Linux - tips, tricks and notes
-date: 2022-06-26 12:42:06.000000000 +05:30
+date: 2022-06-26 12:42:06.000000000 -07:00
 classes: wide
 published: true
 categories:
