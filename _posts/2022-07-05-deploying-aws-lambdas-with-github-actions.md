@@ -156,7 +156,7 @@ To test the deployment flow enabled by the action we created now, we will create
 
     {% include image.html
         img="images/posts/GithubActionLambda/Picture1.png"
-        width="400"
+        width="600"
         caption="Function URL output"
     %}
  
