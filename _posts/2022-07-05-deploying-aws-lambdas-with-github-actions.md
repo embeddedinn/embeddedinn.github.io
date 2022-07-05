@@ -12,8 +12,8 @@ tags:
 - GitHub
 - Actions
 header:
-  teaser: "images/posts/jenkinsWebhooks/webhookTeaser.png"
-  og_image: "images/posts/jenkinsWebhooks/webhookTeaser.png"
+  teaser: "images/posts/GithubActionLambda/lambdaDeployTeaser.png"
+  og_image: "images/posts/GithubActionLambda/lambdaDeployTeaser.png"
 excerpt: "In this article, we look at how to create a custom Github action that can deploy AWS Lambda Code and upload it to the marketplace."
 
 ---
@@ -108,11 +108,13 @@ GitHub actions can be built as `docker` container, `JavaScript` or `composite`. 
     using: 'docker'
     image: 'Dockerfile'
     args:
+    {% raw %}
         - ${{ inputs.access-key-id }}
         - ${{ inputs.access-key-secret }}
         - ${{ inputs.region }}
         - ${{ inputs.lambda-name }}
         - ${{ inputs.zip-file }}
+    {% endraw %}
     ```
 
 -	Now, we add the entry point function that would use the user inputs and perform the actual deployment. Make sure that the file has execute permissions. Note that we are using `update-function-code` that expects the lambda function to be already available. Args are passed to teh script in the order defined in the `action.yml` file. 
