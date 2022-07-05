@@ -1,5 +1,5 @@
 ---
-title: Deploying AWS Lambdas with GitHub Actions
+title: Deploying AWS Lambdas with Custom GitHub Actions
 date: 2022-07-05 00:58:06.000000000 -07:00
 classes: wide
 published: true
