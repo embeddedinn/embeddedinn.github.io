@@ -2,7 +2,7 @@
 title: Booting up my first RISC-V core on an FPGA.
 date: 2021-01-04 22:15:06.000000000 +05:30
 classes: wide
-published: false
+published: true
 categories:
 - Articles
 - Tutorial
