@@ -108,11 +108,11 @@ GitHub actions can be built as `docker` container, `JavaScript` or `composite`. 
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.access-key-id }}
-        - ${{ inputs.access-key-secret }}
-        - ${{ inputs.region }}
-        - ${{ inputs.lambda-name }}
-        - ${{ inputs.zip-file }}
+        - $\{{ inputs.access-key-id }}
+        - $\{{ inputs.access-key-secret }}
+        - $\{{ inputs.region }}
+        - $\{{ inputs.lambda-name }}
+        - $\{{ inputs.zip-file }}
     ```
 
 -	Now, we add the entry point function that would use the user inputs and perform the actual deployment. Make sure that the file has execute permissions. Note that we are using `update-function-code` that expects the lambda function to be already available. Args are passed to teh script in the order defined in the `action.yml` file. 
