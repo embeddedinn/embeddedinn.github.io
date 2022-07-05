@@ -223,6 +223,7 @@ This workflow will checkout main, compress the code into a zip file, and deploy 
         width="600"
         caption="Lambda Code Change in Repo"
     %}
+
 -	Once the change is committed, we can now see that the workflow has been picked up under the `actons` tab of the code repo. 
 
     {% include image.html
@@ -230,6 +231,8 @@ This workflow will checkout main, compress the code into a zip file, and deploy 
         width="600"
         caption="Action workflow picked up"
     %}
+   
+    This is how the execution output looks like
 
     {% include image.html
         img="images/posts/GithubActionLambda/Picture6.png"
@@ -244,6 +247,8 @@ This workflow will checkout main, compress the code into a zip file, and deploy 
         width="600"
         caption="Lambda Code updated in console"
     %}
+
+    This is how the URL output looks like after the change.
 
     {% include image.html
         img="images/posts/GithubActionLambda/Picture8.png"
