@@ -102,8 +102,7 @@ GitHub actions can be built as `docker` container, `JavaScript` or `composite`. 
     zip-file:  
         description: 'Zip File to deploy'
         required: true
-
-
+        
     runs:
     using: 'docker'
     image: 'Dockerfile'
