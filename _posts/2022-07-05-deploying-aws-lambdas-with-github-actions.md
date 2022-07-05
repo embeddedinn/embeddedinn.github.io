@@ -226,35 +226,33 @@ This workflow will checkout main, compress the code into a zip file, and deploy 
 
 -	Once the change is committed, we can now see that the workflow has been picked up under the `actons` tab of the code repo. 
 
-    {% include image.html
-        img="images/posts/GithubActionLambda/Picture5.png"
-        width="600"
-        caption="Action workflow picked up"
-    %}
+{% include image.html
+    img="images/posts/GithubActionLambda/Picture5.png"
+    width="600"
+    caption="Action workflow picked up"
+%}
    
-    This is how the execution output looks like
 
-    {% include image.html
-        img="images/posts/GithubActionLambda/Picture6.png"
-        width="600"
-        caption="Action workflow execution output"
-    %}
+{% include image.html
+    img="images/posts/GithubActionLambda/Picture6.png"
+    width="600"
+    caption="Action workflow execution output"
+%}
 
 - Once the workflow is completed, you can see that the code has changed in the lambda console. It will also reflect in the URL base invocation. 
 
-    {% include image.html
-        img="images/posts/GithubActionLambda/Picture7.png"
-        width="600"
-        caption="Lambda Code updated in console"
-    %}
+{% include image.html
+    img="images/posts/GithubActionLambda/Picture7.png"
+    width="600"
+    caption="Lambda Code updated in console"
+%}
 
-    This is how the URL output looks like after the change.
 
-    {% include image.html
-        img="images/posts/GithubActionLambda/Picture8.png"
-        width="600"
-        caption="Lambda Code updated in API"
-    %}
+{% include image.html
+    img="images/posts/GithubActionLambda/Picture8.png"
+    width="600"
+    caption="Lambda Code updated in API"
+%}
 
 ## Notes:
 
