@@ -78,7 +78,7 @@ GitHub actions can be built as `docker` container, `JavaScript` or `composite`. 
 
 -	Next, we create an action metadata file (`action.yml`) that defines parameters like input, output, . Note that the function expects the lambda code to be deployed to be provided as a `Zip file`. This is designed to allow execution of pre-deployment steps in the code repo workflow file. 
 
-    ```yml
+    ```yaml
     # action.yml
     name: 'Deploy AWS Lambda'
     description: 'Deploys repo code into AWS Lambda'
