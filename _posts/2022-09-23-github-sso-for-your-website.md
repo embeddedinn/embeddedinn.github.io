@@ -38,7 +38,7 @@ An overview of how the flow works are shown below:
 
 {% include image.html
     img="images/posts/github_vouch-proxy/dataFlow.png"
-    width="600"
+    width="800"
     caption="Authentication workflow"
 %}
 
