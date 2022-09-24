@@ -378,9 +378,11 @@ Now that the site is up and running, we can test it. Open the browser and go to 
 
 ## Accessing contents over the command line
 
-Vouch-proxy is built to work with a web browser. This makes accessing contents behind the proxy via the command line a bit difficult. To solve this, we will provide an alternate access mechanism to the contents via the `content.yourdomain.io` domain. This domain will utilize the GitHub API Key and Username passed in the request header to authenticate the user. This makes it easy to frame CuRL commands to access contents. We will restrict access using this mechanism to only the items under the `content` directory. This is because documentation and other items that are not meant to be accessed via the command line should not be accessible via this mechanism.
+Vouch-proxy is built to work with a web browser. This makes accessing contents behind the proxy via the command line a bit difficult. To solve this, we will provide an alternate access mechanism to the contents via the `content.yourdomain.io` domain. This domain will utilize the GitHub API Key and Username passed in the request header to authenticate the user. This makes it easy to frame `curl` commands to access contents. We will restrict access using this mechanism to only the items under the `content` directory. This is because documentation and other items that are not meant to be accessed via the command line should not be accessible via this mechanism.
 
 To do this, we will create a new site configuration file for the `content.yourdomain.io` domain within the `yourdomain.io` configuration file with the following changes:
+
+An API key can be created by going to [https://github.com/settings/tokens/ne](https://github.com/settings/tokens/new) and creating a new token with the `read:org` scope. This token will be used to authenticate the user. The username is the GitHub username of the user.
 
 ```nginx
 server {
@@ -431,6 +433,7 @@ curl -H "apikey: <your_apikey>" -H "user: <your_username>" https://content.yourd
 ```
 
 In case the membership of the user is not verified, the GitHub request will return a `404` error. Since `auth_request` honours only `2xx` and `401`, this will be returned as a `500` to the user. Hence, we do additional configuration to map the `500` error to the `401` error. This will make it easy to handle the error on the client side.
+
 
 ## Conclusion
 
