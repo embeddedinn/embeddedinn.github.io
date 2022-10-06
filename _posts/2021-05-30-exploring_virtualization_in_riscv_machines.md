@@ -27,6 +27,8 @@ div {
 
 {% include base_path %}
 
+This article forms the basis for the publication [System Partitioning with Virtualization for Federated and Distributed Machine Learning on Critical IoT Edge Systems](https://link.springer.com/chapter/10.1007/978-981-16-9113-3_33)
+{: .notice--info}
 
 # Virtualizing RISC-V
 
