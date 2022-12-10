@@ -28,6 +28,8 @@ div {
 
 {% include base_path %}
 
+This article forms the basis for the publication [System Partitioning with Virtualization for Federated and Distributed Machine Learning on Critical IoT Edge Systems](https://link.springer.com/chapter/10.1007/978-981-16-9113-3_33)
+{: .notice--info}
 
 If you have brought up Linux on an embedded target (or loosely, any non-PC target), you would have at least heard of the term Device Tree. Device trees have been around for a while and have changed over time. This article looks at how device trees can be leveraged to create sliced systems in a virtualized, embedded system.
 

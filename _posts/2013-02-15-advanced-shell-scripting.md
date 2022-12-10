@@ -200,4 +200,14 @@ When a session terminates, all processes that started from the session will rece
     #my_script.sh & disown
 		```
 
+## using shopt to make shell more intelligent
+
+`shopt` provides a bunch of options to make the shell more "intelligent"
+
+I use this in my `.bashrc`
+
+```bash
+shopt -s autocd direxpand dirspell histverify checkwinsize cdspell cdable_vars
+```
+
 I will keep adding more or these interesting  shell scripting stuff here. So, keep tuned . . .
