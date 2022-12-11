@@ -94,8 +94,8 @@ The spec defines 24 semihosting calls. The following table shows the semihosting
 Each semihosting call is identified by a number. This number will be placed in the `a0` register before the semihosting ebreak sequence is performed. If the operation requires arguments, they will be placed in the system memory and the address will be placed in the `a1` register. The debugger will place the return value in the `a0` register before "un-halting" the CPU from the `EBREAK` instruction.
 
 The following diagram shows the semihosting sequence. On the left is the target system and on the right is the debugger:
-
-```mermaid
+<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+<div class="mermaid">
 stateDiagram-v2
     direction LR
     state semihosting  {
@@ -127,7 +127,7 @@ stateDiagram-v2
         }
         
     }
-```
+</div>
 
 Lets see semihosting in action
 
