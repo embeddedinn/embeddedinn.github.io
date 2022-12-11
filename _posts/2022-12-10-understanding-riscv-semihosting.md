@@ -1,6 +1,6 @@
 ---
 title: Understanding RISC-V semihosting
-date: 2022-12-10 00:58:06.000000000 -07:00
+date: 2022-10-12 00:58:06.000000000 -07:00
 classes: wide
 published: true
 categories:
