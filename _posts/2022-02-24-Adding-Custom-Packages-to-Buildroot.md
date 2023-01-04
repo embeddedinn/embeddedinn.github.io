@@ -60,7 +60,7 @@ clean:
 
 Now, let us create a package definition for this package in the buildroot source tree. In this case, we are assuming that the package is located in the `/packages/` directory and is locally available. Buildroot also lets you pull package contents from `git`, `svn`, `wget`, `tar.gz` etc. 
 
-Within the Buildroot source tree, you can create an `embeddedinn` directory under the `package` directory and create two files: `hello.mk` and `Config.in` within the `hello` directory.
+Within the Buildroot source tree, you can create an `embeddedinn` directory under the `package` directory and create two files: `embeddedinn.mk` and `Config.in` within the `embeddedinn` directory.
 
 
 #### `package/embeddedinn/Config.in`
