@@ -171,7 +171,7 @@ We will touch upon the portions relevant to the boot process. We'll do a deep di
 
 ### Reset Vector
 
-The default reset vector of the emulated CPUs is defined with `DEFAULT_RSTVEC` as `0x1000` in (`target/riscv/cpu_bits.h:579`)[https://github.com/qemu/qemu/blob/621da7789083b80d6f1ff1c0fb499334007b4f51/target/riscv/cpu_bits.h#L579]. Its set as the default using the `resetvec` property if the CPU in (`target/riscv/cpu.c:951`)[https://github.com/qemu/qemu/blob/621da7789083b80d6f1ff1c0fb499334007b4f51/target/riscv/cpu.c#L951]. It can be altered while creating the machine CPUs using the `qdev_prop_set_uint64()` API to set `resetvec` property of the CPU. The `virt` machine leaves to the default value.
+The default reset vector of the emulated CPUs is defined with `DEFAULT_RSTVEC` as `0x1000` in [`target/riscv/cpu_bits.h:579`](https://github.com/qemu/qemu/blob/621da7789083b80d6f1ff1c0fb499334007b4f51/target/riscv/cpu_bits.h#L579). Its set as the default using the `resetvec` property if the CPU in [`target/riscv/cpu.c:951`](https://github.com/qemu/qemu/blob/621da7789083b80d6f1ff1c0fb499334007b4f51/target/riscv/cpu.c#L951). It can be altered while creating the machine CPUs using the `qdev_prop_set_uint64()` API to set `resetvec` property of the CPU. The `virt` machine leaves to the default value.
 
 The value of `resetvec` is consumed by `riscv_cpu_reset()` to set the CPUs PC value at reset, which is in turn used by `cpu_loop()`. 
 
