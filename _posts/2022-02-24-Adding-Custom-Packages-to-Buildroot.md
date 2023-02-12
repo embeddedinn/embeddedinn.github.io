@@ -35,7 +35,7 @@ There are two main methods to add a custom package into buildroot. The first met
 
 Let us consider that you have a custom package (`embeddedinn`) that you would like to include in your Root FS created with buildroot. This package will consist of a source file and a makefile in the most straightforward case.
 
-#### Source (`embeddedinn.c`): 
+#### Source (`package/embeddedinn/src/embeddedinn.c`): 
 
 ```c
 #include <stdio.h>
@@ -45,20 +45,23 @@ printf("EMBEDDEDINN\r\n");
 }
 ```
 
-#### Makefile
+#### `package/embeddedinn/src/Makefile`
 
 ```
 
 .PHONY: clean
+.PHONY: embeddedinn
 
 embeddedinn: embeddedinn.c
     $(CC) -o '$@' '$<'
 
 clean:
-    rm embeddedinn
+    -rm embeddedinn
 ```
 
-Now, let us create a package definition for this package in the buildroot source tree. In this case, we are assuming that the package is located in the `/packages/` directory and is locally available. Buildroot also lets you pull package contents from `git`, `svn`, `wget`, `tar.gz` etc. 
+> Note: Makefile requires a tab character for indentation. Spaces will not work.
+
+Now, let us create a package definition for this package in the buildroot source tree. In this case, we are assuming that the package is located in the `/package/` directory and is locally available. Buildroot also lets you pull package contents from `git`, `svn`, `wget`, `tar.gz` etc. 
 
 Within the Buildroot source tree, you can create an `embeddedinn` directory under the `package` directory and create two files: `embeddedinn.mk` and `Config.in` within the `embeddedinn` directory.
 
@@ -84,8 +87,8 @@ config BR2_PACKAGE_EMBEDDEDINN
 ################################################################################
 
 EMBEDDEDINN_VERSION = 1.0
-EMBEDDEDINN_SITE = /packages/embeddedinn/src
-EMBEDDEDINN_SITE_METHOD = local # Other methods like git,wget,scp,file etc. are also available.
+EMBEDDEDINN_SITE = package/embeddedinn/src
+EMBEDDEDINN_SITE_METHOD = local# Other methods like git,wget,scp,file etc. are also available.
 
 define EMBEDDEDINN_BUILD_CMDS
     $(MAKE) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D)
@@ -97,6 +100,8 @@ endef
 
 $(eval $(generic-package))
 ```
+
+> Note: In the latest version of buildroot that I tested (`2022.11.1`), a trailing space after `local` in the `EMBEDDEDINN_SITE_METHOD` variable causes buildroot to fail since it then tries to download the package over the network.
 
 Now create a link to the `Config.in` file by making an entry in the `package/Config.in` file of Buildroot.
 
@@ -138,3 +143,27 @@ In this case, I am executing the generated RFS on a RISCV QEMU `virt` machine us
 ## BR2_EXTERNAL
 
 If you want to maintain the project-specific source code outside the buildroot tree, you can use the `BR2_EXTERNAL` mechanism detailed in the [Buildroot documentation](https://buildroot.org/downloads/manual/manual.html#outside-br-custom). The path to BR2_EXTERNAL is passed to `make` invocation, and from that point onwards, buildroot considers the external tree as a part of the buildroot build process. A `.br2-external.mk` file is also generated in the output directory to avoid entering the `BR2_EXTERNAL` paths for every `make` invocation. 
+
+
+## Some useful commands when working with packages
+
+The following commands are for the `embeddedinn` package we added here. But it works for any package in buildroot. Just replace `embeddedinn` with the package name.
+
+|command|description|
+|:-|:-|
+|make embeddedinn| Build the package and install it on target|
+|make embeddedinn-dirclean|Remove the build directory for the package|
+|make embeddedinn-rebuild|restart the compilation and installation of the package|
+
+
+Stages are tracked by buildroot by creating the following stamp files in the `output/build/<package>-<version>` directory.
+
+```bash
+ .stamp_built
+ .stamp_configured
+ .stamp_installed
+ .stamp_rsynced
+ .stamp_target_installed
+```
+
+You can restart the build process at any stage by deleting the corresponding stamp file. For example, if you want to restart the build process after the package has been built, you can delete the `.stamp_built` file.
