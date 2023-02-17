@@ -434,6 +434,61 @@ curl -H "apikey: <your_apikey>" -H "user: <your_username>" https://content.yourd
 
 In case the membership of the user is not verified, the GitHub request will return a `404` error. Since `auth_request` honours only `2xx` and `401`, this will be returned as a `500` to the user. Hence, we do additional configuration to map the `500` error to the `401` error. This will make it easy to handle the error on the client side.
 
+## Accessing contents over the command line - supporting multiple teams
+
+This section was added on 17-Feb--2023, after the original post was published.
+{: .notice--info}
+
+
+The above configuration supports only one team for command line access of content. To support multiple teams, we can build a local authentication server that will validate the user membership in the team. This server would run in parallel to `vouch-proxy` and can be used as the `proxy_pass` endpoint in the nginx configuration. 
+
+The server code would look something like this:
+
+```python
+# A fastapi server listening on port 8000
+# This server is used to authenticate users and return a 401 if the user is not authenticated
+# Sample curl command to test the API is as follows:
+# curl -H "apikey: <your_apikey>" -H "user: <your_username>" localhost:8000/auth
+# Github teams to check are in the list github_teams. 
+
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.responses import JSONResponse
+import requests
+import os
+
+app = FastAPI()
+
+github_teams = ["team1","team2","team3"]
+orgName = "your_orgName"
+
+@app.get("/auth")
+async def auth_user(apikey: str = Header(...), user: str = Header(...)):
+    #strip the apikey of any leading or trailing spaces
+    apikey = apikey.strip()
+    if check_user(user,apikey):
+        return JSONResponse(status_code=200, content="")
+    else:
+        return JSONResponse(status_code=401, content="")
+
+def check_user(user,apikey):
+    # check if the user is part of one of the given github teams
+    for team in github_teams:
+        url = f"https://api.github.com/orgs/{orgName}/teams/{team}/memberships/{user}"
+        request_headers = {
+            'Authorization': 'Bearer ' + apikey,
+            'Accept': 'application/vnd.github.v3+json'
+        }
+        response = requests.get(url, headers=request_headers)
+        print("response: ", response.status_code)
+        if response.status_code == 200:
+            return True
+    
+    return False
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
+```
 
 ## Conclusion
 
