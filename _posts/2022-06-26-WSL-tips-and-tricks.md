@@ -119,3 +119,19 @@ Download and setup instructions are available in the [wsl2-ssh-pageant](https://
   unset wsl2_ssh_pageant_bin
   fi
   ```
+
+## Auto starting `systemd` services
+
+Section added on 2023-04-14
+{: .notice--info}
+
+To start `systemd` services in WSL, you need to add the following to your `/etc/wsl.conf` file
+
+```bash
+[boot]
+systemd=true
+```
+
+Restart WSL with `wsl --shutdown` and then you can start your services with `systemctl start <service-name>`
+
+Note that enabling `systemd` increases the boot time of WSL.
