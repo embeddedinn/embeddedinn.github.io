@@ -299,3 +299,8 @@ defaults:
       related: true
       show_date: true
 
+sidebar:
+  - title: "Buy Me a Coffee"
+    image: "buy-me-a-coffee.png"
+    image_alt: "Buy Me a Coffee"
+    url: "https://www.buymeacoffee.com/embeddedinn"
