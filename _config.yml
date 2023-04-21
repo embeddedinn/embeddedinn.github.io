@@ -152,7 +152,8 @@ footer:
       icon: "fab fa-fw fa-telegram"
       url: "https://t.me/vysakhpillai"
     - label: "Buy Me a Coffee"
-      icon: "fab fa-fw fa-coffee-pot"
+      image: "images/buy-me-a-coffee.png"
+      image_alt: "Buy Me a Coffee"
       url: "https://www.buymeacoffee.com/embeddedinn"
 
 # Reading Files
