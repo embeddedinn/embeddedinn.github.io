@@ -1,6 +1,8 @@
 {% if page.author_profile or layout.author_profile or page.sidebar %}
   <div class="sidebar sticky">
-  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
+  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}
+  <a href="https://www.buymeacoffee.com/embeddedinn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;"></a>
+  {% endif %}
   {% if page.sidebar %}
     {% for s in page.sidebar %}
       {% if s.image %}
@@ -13,8 +15,7 @@
     {% endfor %}
     {% if page.sidebar.nav %}
       {% include nav_list nav=page.sidebar.nav %}      
-    {% endif %}
-  <a href="https://www.buymeacoffee.com/embeddedinn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;"></a>
+    {% endif %}  
   {% endif %}
   </div>
 {% endif %}
