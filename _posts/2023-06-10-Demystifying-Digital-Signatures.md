@@ -577,7 +577,7 @@ GPG provides a similar functionality for email signing and encryption. It uses a
 
 ARC (Authenticated Received Chain) and DKIM (DomainKeys Identified Mail) aim at protecting emails in transit:
 
-1. Authenticated Received Chain (ARC):
+### Authenticated Received Chain (ARC):
   
   ARC is a protocol designed to address the challenges of email authentication when messages pass through intermediaries, such as mailing lists or forwarding services. These intermediaries can modify the message or its headers, potentially breaking the existing email authentication mechanisms like SPF, DKIM, and DMARC.
 
@@ -585,7 +585,7 @@ ARC (Authenticated Received Chain) and DKIM (DomainKeys Identified Mail) aim at 
 
   When an email recipient receives a message with ARC headers, they can use these headers to validate the authenticity and integrity of the authentication results. By examining the ARC-Seal and ARC-Message-Signature, the recipient can ensure that the email's authentication results have not been tampered with during transit.
 
-2. DomainKeys Identified Mail (DKIM):
+### DomainKeys Identified Mail (DKIM):
   
   DKIM is an email authentication method that allows the receiver to verify the authenticity of an email's domain and ensure that the message hasn't been altered during transit.
 
