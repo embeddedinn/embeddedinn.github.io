@@ -12,7 +12,7 @@ tags:
 
 header:
   teaser: "images/posts/digitalSignatures/digisig_poster.png"
-  og_image: "images/posts/qemu-sshfs/qemu_sshfs.png"
+  og_image: "images/posts/digitalSignatures/digisig_poster.png"
 excerpt: "We use digital signatures hundreds of times a day without realizing it. Yet its often seen as a mystery, even by developers. We'll explore how digital signature works, how to generate and verify digital signatures, and how to use digital signatures to sign and verify files in this article. "
 
 ---
