@@ -14,7 +14,7 @@ tags:
 header:
   teaser: "images/posts/gitGuts/gitgut_poster.png"
   og_image: "images/posts/gitGuts/gitgut_poster.png"
-excerpt: "Recently I had a workplace Git incident that made me brush up on my Git internals knowledge, and learn a whole bunch of new things about Git. This article is a result of that learning while hoping that even the worst of my enemies don't have to go through the same pain that I went through. I hope you find this article useful and learn something new about Git." 
+excerpt: "Recently, I experienced a workplace Git incident that compelled me to refresh my understanding of Git internals and learn numerous new aspects about the system. This article is a product of that learning experience, with the hope that even my worst adversaries will never have to endure such pain. I hope you find this article useful and acquire new insights into Git." 
 
 ---
 
