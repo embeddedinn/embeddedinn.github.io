@@ -33,7 +33,7 @@ div {
 
 I am not going to re-iterate what Git is and why it is so popular. There are plenty of articles and videos out there that do a great job of explaining that. I am going to assume that you already know what Git is and how to use it. If you don't, I would recommend you to go through the [official Git documentation](https://git-scm.com/doc) and [Pro Git book](https://git-scm.com/book/en/v2) before reading this article.
 
-The target audience for this article is the curious ones who wants to waddle in the internals of Git and learn how it works under the hood. 
+The target audience for this article is the curious ones who wants to waddle in the internals of Git and learn how it works under the hood. For instance, we will be creating git objects with Python code and creating commits with git plumbing commands that are not meant to be used by end users. If you are not comfortable with git in the first place, this article is not for you.
 
 
 ## How does Git store data?
