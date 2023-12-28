@@ -255,7 +255,7 @@ All the files below are created within the config folder.
 
 This is a relatively random list of packages that I want to install in the distro. This is not a complete list and is just for demonstration purposes.
 
-file: `package-lists/embeddedinn-sid-server.list.chroot`
+**filename**: `package-lists/embeddedinn-sid-server.list.chroot`
 
 ```bash
 mkdir -p "./config/package-lists"
@@ -445,7 +445,7 @@ EOM
 
 ### user customizations
 
-file: `includes.chroot/root/.profile`
+**filename**: `includes.chroot/root/.profile`
 
 ```bash
 mkdir -p "./config/includes.chroot/root"
@@ -454,7 +454,7 @@ export LD_LIBRARY_PATH=$LIB:$LIBUSR:$LD_LIBRARY_PATH
 EOM
 ```
 
-file: `includes.chroot/root/.bashrc`
+**filename**: `includes.chroot/root/.bashrc`
 
 ```bash
 mkdir -p "./config/includes.chroot/root"
@@ -465,7 +465,7 @@ EOM
 
 ### etc files
 
-filename: `includes.chroot/etc/resolv.conf`
+**filename**: `includes.chroot/etc/resolv.conf`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -474,7 +474,7 @@ nameserver 8.8.8.8
 EOM
 ```
 
-filename: `includes.chroot/etc/rc.local`
+**filename**: `includes.chroot/etc/rc.local`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -509,7 +509,7 @@ EOM
 chmod +x "./config/includes.chroot/etc/rc.local"
 ```
 
-filename: `includes.chroot/etc/os-release`
+**filename**: `includes.chroot/etc/os-release`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -526,7 +526,7 @@ BUG_REPORT_URL="https://embeddedinn.com/"
 EOM
 ```
 
-filename: `includes.chroot/etc/lsb-release`
+**filename**: `includes.chroot/etc/lsb-release`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -538,7 +538,7 @@ DISTRIB_DESCRIPTION="embeddedinn Sid"
 EOM
 ```
 
-filename: `includes.chroot/etc/legal`
+**filename**: `includes.chroot/etc/legal`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -554,7 +554,7 @@ applicable law.
 EOM
 ```
 
-filename: `includes.chroot/etc/issue.net`
+**filename**: `includes.chroot/etc/issue.net`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -563,7 +563,7 @@ Embeddedinn Sid riscv64
 EOM
 ```
 
-filename: `includes.chroot/etc/issue`
+**filename**: `includes.chroot/etc/issue`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -572,7 +572,7 @@ Embeddedinn Sid RISC/V  \n \l
 EOM
 ```
 
-filename: `includes.chroot/etc/hosts`
+**filename**: `includes.chroot/etc/hosts`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -587,7 +587,7 @@ ff02::2		ip6-allrouters
 EOM
 ```
 
-filename: `includes.chroot/etc/hostname`
+**filename**: `includes.chroot/etc/hostname`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc"
@@ -596,7 +596,7 @@ embeddedinn
 EOM
 ```
 
-filename: `includes.chroot/etc/fstab`
+**filename**: `includes.chroot/etc/fstab`
 
 ```bash 
 mkdir -p "./config/includes.chroot/etc"
@@ -613,7 +613,7 @@ tmpfs /var/cache tmpfs defaults 0 0
 EOM
 ```
 
-filename: `includes.chroot/etc/update-motd.d/10-help-text`
+**filename**: `includes.chroot/etc/update-motd.d/10-help-text`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc/update-motd.d"
@@ -654,7 +654,7 @@ EOM
 chmod +x "./config/includes.chroot/etc/update-motd.d/10-help-text"
 ```
 
-filename: `includes.chroot/etc/skel/.profile`
+**filename**: `includes.chroot/etc/skel/.profile`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc/skel"
@@ -688,7 +688,7 @@ export LD_LIBRARY_PATH=$LIB:$LIBUSR:$LD_LIBRARY_PATH
 EOM
 ```
 
-filename: `includes.chroot/etc/skel/.bashrc`
+**filename**: `includes.chroot/etc/skel/.bashrc`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc/skel"
@@ -814,7 +814,7 @@ export LD_LIBRARY_PATH=$LIB:$LIBUSR:$LD_LIBRARY_PATH
 EOM
 ```
 
-filename: `includes.chroot/etc/network/interfaces.d/eth0`
+**filename**: `includes.chroot/etc/network/interfaces.d/eth0`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc/network/interfaces.d"
@@ -825,7 +825,7 @@ iface eth0 inet dhcp
 EOM
 ```
 
-filename: `includes.chroot/etc/default/locale`
+**filename**: `includes.chroot/etc/default/locale`
 
 ```bash
 mkdir -p "./config/includes.chroot/etc/default"
@@ -838,7 +838,7 @@ EOM
 
 Files in the `hooks/live` directory are executed during the live boot process. We will add a few hooks to customize the live boot process. filenames ending with `.chroot` are executed in the chroot environment.
 
-filename: `hooks/live/98-update_password.chroot`
+**filename**: `hooks/live/98-update_password.chroot`
 
 ```bash
 mkdir -p "./config/hooks/live"
@@ -935,7 +935,7 @@ output/images/start-qemu.sh
 ```
 
 <div id="buildroot-cast"></div>
-<script>AsciinemaPlayer.create('images/posts/debianDistro/buildroot.cast', document.getElementById('buildroot-cast'));</script>
+<script>AsciinemaPlayer.create('/images/posts/debianDistro/buildroot.cast', document.getElementById('buildroot-cast'));</script>
 
 
 ## Booting the distro on QEMU
@@ -948,7 +948,7 @@ exec qemu-system-riscv64 -M virt -bios fw_jump.elf -kernel Image -append "rootwa
 
 
 <div id="debian-cast"></div>
-<script>AsciinemaPlayer.create('images/posts/debianDistro/debian.cast', document.getElementById('debian-cast'));</script>
+<script>AsciinemaPlayer.create('/images/posts/debianDistro/debian.cast', document.getElementById('debian-cast'));</script>
 
 Note that QEMU is using `virt-io` block device emulation to mount the disk image. In a real system, we would use a real block device like an SD card or an eMMC. The bootloader or the system ROM would initialise the hardwre interface and get it ready to be mounted by the kernel.
 
