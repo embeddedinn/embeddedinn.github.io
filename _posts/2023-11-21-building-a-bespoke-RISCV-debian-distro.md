@@ -1,5 +1,5 @@
 ---
-title: Building a bespoke RISC-V Debian distro
+title: Building Bespoke Debian Distros for RISC-V
 date: 2023-11-21 22:10:06.000000000 -07:00
 classes: wide
 published: true
@@ -25,8 +25,8 @@ div {
   text-justify: inter-word;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="assets/css/asciinema-player.css" />
-<script src="assets/js/thirdparty/asciinema-player.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/asciinema-player.css" />
+<script src="/assets/js/thirdparty/asciinema-player.min.js"></script>
 
 {% include base_path %}
 
