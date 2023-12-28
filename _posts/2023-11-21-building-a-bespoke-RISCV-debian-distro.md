@@ -257,6 +257,8 @@ This is a relatively random list of packages that I want to install in the distr
 
 **filename**: `package-lists/embeddedinn-sid-server.list.chroot`
 
+<!-- wrap ```bash in a div with max-height 150 -->
+<div style="max-height:150px;overflow:auto;">
 ```bash
 mkdir -p "./config/package-lists"
 cat >"./config/package-lists/embeddedinn-sid-server.list.chroot" <<"EOM"
@@ -442,6 +444,7 @@ xz-utils
 zerofree
 EOM
 ```
+<div>
 
 ### user customizations
 
