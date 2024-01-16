@@ -219,6 +219,9 @@ jobs:
 
 Before creating a release tag, we need to ensure that the version number in `setup.py` is updated. This is because `PyPI` prevents overriding package versions. The `PyPI` upload token is added as a `Github Action Secret` in the `PYPI_API_TOKEN` variable. Though executing twine commands directly from the actions workflow is more optimal, I am using the [pypi-publish](https://github.com/marketplace/actions/pypi-publish) actions from the marketplace published by the Python Packaging Authority ([pypa](https://github.com/pypa)). The deployment workflow file as of version `1.0.4` looks like this:
 
+**Update from Jan 2024**: OpenID Connect (OIDC) allows your GitHub Actions workflows to authenticate with PyPI to publish Python packages and is the preferred mechanism now. Read more about the setup [here]( https://blog.pypi.org/posts/2023-04-20-introducing-trusted-publishers/)
+{: .notice--success}
+
 ```yml
 name: Publish package to pypi on tag
 
