@@ -24,6 +24,7 @@ div {
   text-justify: inter-word;
 }
 </style>
+<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
 
 {% include base_path %}
 
@@ -40,6 +41,8 @@ We will follow the latest 0.4 version of the [Device Tree Specification](https:/
 A Device tree is a hierarchical data structure often used to describe the hardware components and their configuration in a system. A device tree source (DTS) is a human-readable representation of the tree. The device tree compiler (DTC) is used to convert the DTS to a binary device tree blob (DTB) that can be used by software like a bootloader or the kernel.
 
 Device tree bindings are similar to a schema in XML. It describes the properties and nodes used to describe a hardware component. The bindings are used to validate the device tree source and to generate documentation.
+
+Device tree overlays (`dtbo`) are used to modify the device tree at runtime. This is useful for adding or removing hardware components from the device tree without modifying the device tree source. For example, when a beaglebone cape is added to the system, the device tree overlay can be used to add the cape to the device tree without modifying the device tree source.
 
 Systems like Zephyr primarily convert device tree sources and bindings to produce a generated C header. However, in some systems, like an embedded system running Linux, the DTB is stored in a known location and is loaded into the kernel by the bootloader.
 
@@ -123,15 +126,15 @@ Comments in the device tree source are similar to comments in the C programming 
 
 Practically, a device tree corresponds to a hardware component. For example, consider an embedded system with a UART, a GPIO, and a SPI controller. The SPI controller is connected to a Flash memory, a temperature sensor, and an accelerometer. 
 
-```mermaid
-graph TD
-    soc --> uart[UART @ 0x800000]
-    soc --> gpio[GPIO @ 0x800100]
-    soc --> spi[SPI @ 0x800200]
-    spi --> flash[Flash @ CS0]
-    spi --> temp-sensor[Temp Sensor @ CS1]
-    spi --> accel[Accelerometer @ CS2]
-```
+  <div class="mermaid">
+  graph TD
+      soc --> uart[UART @ 0x800000]
+      soc --> gpio[GPIO @ 0x800100]
+      soc --> spi[SPI @ 0x800200]
+      spi --> flash[Flash @ CS0]
+      spi --> temp-sensor[Temp Sensor @ CS1]
+      spi --> accel[Accelerometer @ CS2]
+  </div>
 
 The DTS for this system would look something like this:
 
@@ -209,34 +212,34 @@ The output of the device tree compiler is a binary device tree blob, often calle
 
 The Devicetree `.dtb` Structure is depicted in the following diagram:
 
-  ```mermaid
-  classDiagram
-    class FDT {
-      struct fdt_header
-      free space
-      memory reservation block
-      free space
-      structure block
-      free space
-      strings block
-      free space
-    }
-  ```
+  <div class="mermaid">
+    classDiagram
+      class FDT {
+        struct fdt_header
+        free space
+        memory reservation block
+        free space
+        structure block
+        free space
+        strings block
+        free space
+      }
+  </div>
 
 The `fdt_header` is a fixed-size header that contains information about the device tree. The layout of the header for the device tree is defined by the following `C` structure.
 
 ```c
 struct fdt_header {
-uint32_t magic;              //0xd00dfeed
-uint32_t totalsize;          //total size of the device tree in bytes
-uint32_t off_dt_struct;      //offset in bytes of the structure block
-uint32_t off_dt_strings;     //offset in bytes of the strings block
-uint32_t off_mem_rsvmap;     //offset in bytes of the memory reservation block
-uint32_t version;            //format version
-uint32_t last_comp_version;  //last compatible version
-uint32_t boot_cpuid_phys;    //physical ID of the boot CPU. Not applicable in non-standard systems
-uint32_t size_dt_strings;   //size of the strings block in bytes
-uint32_t size_dt_struct;    //size of the structure block in bytes
+  uint32_t magic;              //0xd00dfeed
+  uint32_t totalsize;          //total size of the device tree in bytes
+  uint32_t off_dt_struct;      //offset in bytes of the structure block
+  uint32_t off_dt_strings;     //offset in bytes of the strings block
+  uint32_t off_mem_rsvmap;     //offset in bytes of the memory reservation block
+  uint32_t version;            //format version
+  uint32_t last_comp_version;  //last compatible version
+  uint32_t boot_cpuid_phys;    //physical ID of the boot CPU. Not applicable in non-standard systems
+  uint32_t size_dt_strings;   //size of the strings block in bytes
+  uint32_t size_dt_struct;    //size of the structure block in bytes
 };
 ```
 
