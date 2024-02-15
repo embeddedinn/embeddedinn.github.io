@@ -24,7 +24,7 @@ div {
   text-justify: inter-word;
 }
 </style>
-<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+<script src="https://unpkg.com/mermaid@10.8.0/dist/mermaid.min.js"></script>
 
 {% include base_path %}
 
