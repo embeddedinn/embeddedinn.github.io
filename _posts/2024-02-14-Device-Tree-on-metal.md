@@ -1,5 +1,5 @@
 ---
-title: Harnessing Device Tree for Bare-Metal Embedded Systems - A Non-Linux Approach
+title: Harnessing Devicetree for Bare-Metal Embedded Systems - A Non-Linux Approach
 date: 2024-02-13 06:00:06.000000000 -07:00
 classes: wide
 published: true
