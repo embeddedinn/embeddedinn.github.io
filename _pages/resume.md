@@ -1,5 +1,6 @@
 ---
 title: "Resume"
+style: gcapes
 layout: cv
 type: pages
 excerpt: "Vysakh P Pillai's Resume"
