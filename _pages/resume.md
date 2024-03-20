@@ -101,3 +101,5 @@ Experienced Technical Staff Engineer and Secure Systems Architect with over 14 y
 - **Full-Stack System Design** - Regularly contribute to the silicon to cloud system design community through blog posts at [embeddedinn.com](https://embeddedinn.com) and open-source projects in [github.com/vppillai](https://github.com/vppillai).
 - **Woodworking** - Hobbyist woodworker, creating custom furniture and home decor items.
 - **Travel** - Enthusiastic traveler, exploring new places and cultures. 
+
+<!--pandoc resume.md -f markdown+yaml_metadata_block   --template .\templates\resumetemplate.latex -o resume.pdf --pdf-engine C:\Users\c16658\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe-->
