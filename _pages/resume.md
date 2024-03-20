@@ -1,5 +1,5 @@
 ---
-title: "Page Not Found"
+title: "Resume"
 layout: single
 type: pages
 excerpt: "Vysakh P Pillai's Resume"
