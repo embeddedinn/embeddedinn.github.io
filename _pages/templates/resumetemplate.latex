@@ -19,7 +19,7 @@
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\def\name{$name$}
+\def\name{$author$}
 
 % The following metadata will show up in the PDF properties
 \hypersetup{
@@ -28,16 +28,16 @@
   linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,  
   pdfauthor = {\name},
   pdfkeywords = {$keywords$},
-  pdftitle = {\name: Curriculum Vitae},
-  pdfsubject = {Curriculum Vitae},
+  pdftitle = {\name: Resume},
+  pdfsubject = {Resume},
   pdfpagemode = UseNone
 }
 
 \geometry{
   body={6.5in, 9.0in},
   left=1.0in,
-  top=1.0in,
-  bottom=0.75in
+  top=.5in,
+  bottom=0.25in
 }
 
 % Fix  for "! Undefined control sequence. <recently read> \tightlist",
@@ -48,8 +48,8 @@
 
 % Page number is top right, and it is possible to control the rest of
 % the header.
-\pagestyle{myheadings}
-\markright{\name}
+% \pagestyle{myheadings}
+% \markright{\name}
 \thispagestyle{empty}
 
 % Custom section fonts
