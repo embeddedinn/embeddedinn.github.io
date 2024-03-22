@@ -24,7 +24,7 @@ right-column:
 
 ## PROFESSIONAL SUMMARY
 
-Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specialize in high performance System-on-Chip Software, System Security, Device Drivers, Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Skilled in innovative security solutions, reliable system ROM code, and secure boot solutions. Proficient in C and Python, adept at debugging complex issues and developing hardware, software, and firmware. Expertise in MIPS and RISC-V based Linux and real-time systems, Linux scripting, cloud solutions and end-to-end system-level design. Strong communicator and proactive team player dedicated to delivering top-notch results.
+Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance System-on-Chip Software, System Security & Device Drivers. Adept at Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
 
 ---
 
@@ -36,13 +36,13 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 
 - Spearheading the design and development of pre-silicon SoC software solutions, leveraging HW and SW emulation techniques for first-generation RISC-V based High-Performance SoC.
 - Implemented the device QEMU model, accelerating pre-silicon software development.
-- Architected innovative security solutions and enhanced HW capabilities for system security.
+- Architect innovative HSM in-loop security solutions and enhanced HW capabilities for system security.
+- Manage the design and implementation of multi-core, partitioned, multi-instance Linux solutions, encompassing kernel customization, driver development, and the creation of a bespoke Debian distribution.
 - Designed and Developed reliable system ROM code and secure boot solutions.
-- Managed the design and implementation of multi-core, partitioned, multi-instance Linux solutions, encompassing kernel customization, driver development, and the creation of a bespoke Debian distribution.
 - Established a new release process to encourage early customer involvement.
 - Resolved intricate performance optimization issues within multi-core real-time systems.
 - Developed comprehensive test frameworks using Python for both pre-silicon and post-silicon testing.
-- Fostered productive collaboration with product development, application, marketing and validation engineering teams throughout the project lifecycle.
+- Fostering productive collaboration with product development, application, marketing and validation engineering teams throughout the project lifecycle.
 
 
 **Technical Staff Engineer - Software**  
@@ -52,11 +52,11 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 - Led the firmware bring-up, verification, and validation for multi-generational Wi-Fi and BLE microcontroller SoC development.
 - Designed bootloader, OTA update, and compiler features for RTOS-based and bare-metal secure wireless IoT solutions.
 - Architected and implemented end-to-end solutions for cloud, serverless & mobile connectivity, and device security.
-- Customer interaction for early product adoption, solutioning and continued support. 
+- Extensive customer interaction for early product adoption, solutioning and continued support. 
 - Coordinated manufacturing and led the development of the comprehensive apps DevOps framework.
 - Managed the engineering development and applications teams.
 
-**Embedded Software Engineer**  
+**Software Engineer**  
 *Cisco Systems India Pvt Ltd, Bangalore*  
 *August 2011 - January 2015*
 
@@ -65,7 +65,7 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 - Implemented security modules for cable card and legacy security systems.
 - Optimized system performance and led process improvement initiatives.
 
-**Embedded Software Engineer**  
+**Software Engineer**
 *Sasken Technologies Ltd, Bangalore*  
 *March 2010 - January 2011*
 
