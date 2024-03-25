@@ -65,7 +65,7 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 - Implemented security modules for cable card and legacy security systems.
 - Optimized system performance and led process improvement initiatives.
 
-**Software Engineer**
+**Software Engineer**  
 *Sasken Technologies Ltd, Bangalore*  
 *March 2010 - January 2011*
 
