@@ -1,6 +1,6 @@
 ---
-title: Bridging the Gap - Why I Share My Engineering Journey Through Blogging
-date: 2024-03-07 06:00:06.000000000 -07:00
+title: CV
+date: 2024-03-25 06:00:06.000000000 -07:00
 classes: wide
 published: true
 related: false
@@ -9,6 +9,7 @@ comments: false
 show_date: true
 categories:
 - Articles
+- Tutorial
 tags:
 - cv
 - resume
