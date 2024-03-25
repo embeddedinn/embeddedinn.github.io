@@ -1,9 +1,7 @@
 {% if page.author_profile or layout.author_profile or page.sidebar %}
   <div class="sidebar sticky">
   {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}
-    {% if coffee_link != false %}
-      <a href="https://www.buymeacoffee.com/embeddedinn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee!&emoji=&slug=embeddedinn&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-    {% endif %}
+  <a href="https://www.buymeacoffee.com/embeddedinn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee!&emoji=&slug=embeddedinn&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
   {% endif %}
   {% if page.sidebar %}
     {% for s in page.sidebar %}
