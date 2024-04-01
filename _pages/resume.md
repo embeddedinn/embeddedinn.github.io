@@ -30,48 +30,48 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 
 ## WORK EXPERIENCE
 
-**Technical Staff Engineer – Software**  
-*Microsemi Storage Solutions Ltd - A Microchip Company, Burnaby, British Columbia*  
+### **Technical Staff Engineer – Software**  
+*Microsemi Storage Solutions Ltd - A Microchip Company, Burnaby, British Columbia, Canada*  
 *April 2022 - Present*
 
-- Spearheading the design and development of pre-silicon SoC software solutions, leveraging HW and SW emulation techniques for first-generation RISC-V based High-Performance SoC.
-- Implemented the device QEMU model, accelerating pre-silicon software development.
-- Architect innovative HSM in-loop security solutions and enhanced HW capabilities for system security.
-- Manage the design and implementation of multi-core, partitioned, multi-instance Linux solutions, encompassing kernel customization, driver development, and the creation of a bespoke Debian distribution.
-- Designed and Developed reliable system ROM code and secure boot solutions.
-- Established a new release process to encourage early customer involvement.
-- Resolved intricate performance optimization issues within multi-core real-time systems.
-- Developed comprehensive test frameworks using Python for both pre-silicon and post-silicon testing.
-- Fostering productive collaboration with product development, application, marketing and validation engineering teams throughout the project lifecycle.
+  - Security Sub-system Firmware Architect for the first-generation RISC-V based High-Performance Spaceflight Computing (HPSC) System-on-Chip (SoC)
+  - Developed a heterogeneous RISC-V core software emulation platform using QEMU, driving pre-silicon development and early customer engagement.
+  - Engineered robust early-boot architecture for Linux and application software systems, optimizing system resilience.
+  - End-to-end design and development of a Secure System Boot ROM.
+  - Implemented buildroot-based Linux System on QEMU and Protium emulation systems, ensuring easy pre-silicon development.
+  - Created a bespoke Debian distribution and apt-repo for a RISC-V System, enhancing performance and compatibility.
+  - Established release infrastructure and DevOps systems, streamlining processes for early customer adoption.
 
-
-**Technical Staff Engineer - Software**  
+### **Technical Staff Engineer - Software**  
 *Microchip Technology India Pvt. Ltd., Bangalore, India*  
 *February 2015 - April 2022*
 
-- Led the firmware bring-up, verification, and validation for multi-generational Wi-Fi and BLE microcontroller SoC development.
-- Designed bootloader, OTA update, and compiler features for RTOS-based and bare-metal secure wireless IoT solutions.
-- Architected and implemented end-to-end solutions for cloud, serverless & mobile connectivity, and device security.
-- Extensive customer interaction for early product adoption, solutioning and continued support. 
-- Coordinated manufacturing and led the development of the comprehensive apps DevOps framework.
-- Managed the engineering development and applications teams.
+  -	Applications lead for new Wi-Fi and BLE IoT silicon development at the wireless solutions group.
+  -	E2E Systems architect for cloud, serverless & mobile connectivity, end-node authentication & device security. 
+  -	Post silicon bring-up and validation of SoC, RF modules, and development boards.
+  -	Design and architecture of bootloaders, OTA, and compiler features for RTOS-based and bare-metal secure wireless solutions.
+  -	Voice control interfacing using Amazon Alexa™ and Google Assistant™.
+  -	Manufacturing co-ordination and lead architect for apps DevOps framework.
 
-**Software Engineer**  
-*Cisco Systems India Pvt Ltd, Bangalore*  
+### **Software Engineer**  
+*Cisco Systems India Pvt Ltd, Bangalore, India*  
 *August 2011 - January 2015*
 
-- Developed Linux Device Drivers for high-end set-top box peripherals.
-- Integrated networked personalization features for STBs.
-- Implemented security modules for cable card and legacy security systems.
-- Optimized system performance and led process improvement initiatives.
+  -	Linux Device Driver development for high-end set-top box peripherals.
+  -	Development and integration of networked personalization features for STBs.
+  -	Security module integration of cable card and legacy security modules. 
+  -	End to end system integration and performance optimization.
+  -	Build and test automation, process improvement, and release management.  
+  -	Building proof of concepts for next-generation product ideas.
 
-**Software Engineer**  
-*Sasken Technologies Ltd, Bangalore*  
+### **Software Engineer**  
+*Sasken Technologies Ltd, Bangalore, India*  
 *March 2010 - January 2011*
 
-- Implemented embedded system software as per design specifications.
-- Conducted maintenance activities on existing software.
-- Ported drivers and protocol layers for compatibility.
+  -	Implementation of embedded system software as per design specification.
+  -	Maintenance activities on existing software.
+  -	Forward and backward porting of drivers and protocol layers. 
+  -	Interaction with the client for the above activities and to provide support.
 
 ---
 
