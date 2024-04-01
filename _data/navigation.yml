@@ -3,9 +3,11 @@ main:
   - title: "About"
     url: /about/
 
+  - title: "Curriculum Vitae"
+    url: /cv
+
   - title: "Tutorials and writeups"
     url: /tutorials/
 
-  - title: "Curriculum Vitae"
-    url: /cv
+
 
