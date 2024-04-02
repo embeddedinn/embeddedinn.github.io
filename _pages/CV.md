@@ -19,7 +19,7 @@ div {
   text-justify: inter-word;
 }
 .page__content p, .page__content li, .page__content dl {
-    font-size: 0.9em !important;
+    font-size: 0.8em !important;
 }
 .download-button {
   display: inline-block;
@@ -456,6 +456,7 @@ Collaborated with the Department of Electrical and Computer Engineering, Univers
 
 **Achievements**
   - Successfully collaborated with the Department of Electrical and Computer Engineering, University of Texas, Austin (USA), to develop an innovative educational tool for the OLPC XO platform.
+  - Results and design Published in the International Journal of Telemedicine and e-Health : [10.1089/tmj.2011.0017](10.1089/tmj.2011.0017)
   - Designed and implemented in-house developed sensors, including ECG, Blood Oximeter, and Body Temperature sensors, providing students with hands-on experience in biomedical data acquisition.
   - Developed a robust data processing system to digitize vital signals collected by the sensors and transmit them over USB to the OLPC XO for analysis.
   - Created an intuitive graphical user interface (GUI) using Adobe Flex, enhancing the user experience and facilitating interactive learning for students.
