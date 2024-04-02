@@ -9,6 +9,7 @@ comments: false
 show_date: true
 recent_posts: false
 author_profile: true
+no_coffee: true
 permalink: /cv
 
 ---
