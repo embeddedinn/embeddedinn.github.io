@@ -18,6 +18,9 @@ div {
   text-align: justify;
   text-justify: inter-word;
 }
+.page__content p, .page__content li, .page__content dl {
+    font-size: 0.9em !important;
+}
 .download-button {
   display: inline-block;
   background-color: rgba(0, 140, 186, 0.7); /* Blue */
