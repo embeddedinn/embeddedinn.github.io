@@ -151,7 +151,9 @@ footer:
     - label: "Telegram"
       icon: "fab fa-fw fa-telegram"
       url: "https://t.me/vysakhpillai"
-
+    - label: "Professional Experience"
+      icon: "fas fa-briefcase"
+      url: "/cv"
 # Reading Files
 include:
   - .htaccess

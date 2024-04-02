@@ -8,7 +8,7 @@ related: false
 read_time: false
 comments: false
 show_date: true
-coffee_link: false
+recent_posts: false
 permalink: /cv
 tags:
 - cv
