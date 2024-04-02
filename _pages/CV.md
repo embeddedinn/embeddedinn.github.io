@@ -1,14 +1,13 @@
 ---
 title: Vysakh P Pillai's Curriculum Vitae
 layout: single
-date: 2024-03-27 06:00:06.000000000 -07:00
+date: 2024-04-02 06:00:06.000000000 -07:00
 classes: wide
 published: true
 related: false
 read_time: false
 comments: false
 show_date: true
-recent_posts: false
 coffee_link: false
 permalink: /cv
 tags:
@@ -73,7 +72,7 @@ window.addEventListener('scroll', function() {
 Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance System-on-Chip Software, System Security & Device Drivers. Adept at Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
 
 <!--Button to download 2 page resume PDF -->
-<a href="/_pages/resume.pdf" id="downloadButton" class="download-button">2 Page Resume</a>
+<a href="/_pages/vysakh_pillai-resume.pdf" id="downloadButton" class="download-button">2 Page Resume</a>
 
 ## EDUCATION
 

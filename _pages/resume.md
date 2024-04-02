@@ -4,7 +4,7 @@ style: gcapes
 layout: cv
 type: pages
 excerpt: "Vysakh P Pillai's Resume"
-permalink: /profile
+permalink: /resume
 
 author: Vysakh P Pillai
 keywords: System Integration, Device drivers, Python, C, DevOps, Cloud architectures, System-on-Chip Software, System Security, Secure Systems Architect, Technical Staff Engineer, Principal Engineer
