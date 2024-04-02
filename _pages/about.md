@@ -29,5 +29,6 @@ My experiences have brought me to a level where I can contribute to product defi
 
 Some of my favorite pastimes include carpentry, tinkering with PCB design and building utility boards, python programming, tech evangelism at university levels, and learning.
 
+You can find a detailed list of my professional experiences on my [Curriculum Vitae page](/cv).
 
 Contact me : vysakhpillai [ at ] gmail [dot] com
