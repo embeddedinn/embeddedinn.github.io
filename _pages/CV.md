@@ -4,18 +4,12 @@ layout: single
 date: 2024-04-02 06:00:06.000000000 -07:00
 classes: wide
 published: true
-related: false
 read_time: false
 comments: false
 show_date: true
 recent_posts: false
+author_profile: true
 permalink: /cv
-tags:
-- cv
-- resume
-- profile
-
-header:
 
 ---
 
