@@ -24,10 +24,10 @@ right-column:
 
 ## PROFESSIONAL SUMMARY
 
-Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance System-on-Chip Software, System Security & Device Drivers. Adept at Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
+Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance system-on-chip software, system security & device drivers. Adept at Python, system integration, devOps, and cloud architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
 
 
-A detailed professional history with project details is available on my web profile at [embeddedinn.com/cv](https://embeddedinn.com/cv).
+A detailed professional history with project details is available in my online profile at [embeddedinn.com/cv](https://embeddedinn.com/cv).
 
 ---
 
@@ -37,12 +37,12 @@ A detailed professional history with project details is available on my web prof
 *Microsemi Storage Solutions Ltd - A Microchip Company, Burnaby, British Columbia, Canada*  
 *April 2022 - Present*
 
-  - Security Sub-system Firmware Architect for the first-generation RISC-V based High-Performance Spaceflight Computing (HPSC) System-on-Chip (SoC)
+  - Security sub-system firmware architect for the first-generation RISC-V based High-Performance Spaceflight Computing (HPSC) System-on-Chip (SoC)
   - Developed a heterogeneous RISC-V core software emulation platform using QEMU, driving pre-silicon development and early customer engagement.
   - Engineered robust early-boot architecture for Linux and application software systems, optimizing system resilience.
-  - End-to-end design and development of a Secure System Boot ROM.
+  - End-to-end design and development of a secure system boot ROM.
   - Implemented buildroot-based Linux System on QEMU and Protium emulation systems, ensuring easy pre-silicon development.
-  - Created a bespoke Debian distribution and apt-repo for a RISC-V System, enhancing performance and compatibility.
+  - Created a bespoke Debian distribution and apt-repo for a RISC-V system, enhancing performance and compatibility.
   - Established release infrastructure and DevOps systems, streamlining processes for early customer adoption.
 
 ### **Technical Staff Engineer - Software**  
