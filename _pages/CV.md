@@ -9,6 +9,10 @@ comments: false
 show_date: true
 recent_posts: false
 author_profile: true
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "cog"
+toc_sticky: true
 no_coffee: true
 permalink: /cv
 
