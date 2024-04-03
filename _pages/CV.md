@@ -140,6 +140,7 @@ Communication.
   -	Design and architecture of bootloaders, OTA, and compiler features for RTOS-based and bare-metal secure wireless solutions.
   -	Voice control interfacing using Amazon Alexa™ and Google Assistant™.
   -	Manufacturing co-ordination and lead architect for apps DevOps framework.
+  - Extensive customer interaction for new product development and support.
 
 ### **Software Engineer**  
 *Cisco Systems India Pvt Ltd, Bangalore, India*  

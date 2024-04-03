@@ -55,7 +55,7 @@ A detailed professional history with project details is available in my online p
 ## WORK EXPERIENCE
 
 ### **Technical Staff Engineer – Software**  
-*Microsemi Storage Solutions Ltd - A Microchip Company, Burnaby, British Columbia, Canada*  
+*Microchip Technology Inc. , Burnaby, British Columbia, Canada*  
 *April 2022 - Present*
 
   - Security sub-system firmware architect for the first-generation RISC-V based High-Performance Spaceflight Computing (HPSC) System-on-Chip (SoC)
@@ -76,6 +76,7 @@ A detailed professional history with project details is available in my online p
   -	Design and architecture of bootloaders, OTA, and compiler features for RTOS-based and bare-metal secure wireless solutions.
   -	Voice control interfacing using Amazon Alexa™ and Google Assistant™.
   -	Manufacturing co-ordination and lead architect for apps DevOps framework.
+  -	Extensive customer interaction for new product development and support.
 
 ### **Software Engineer**  
 *Cisco Systems India Pvt Ltd, Bangalore, India*  
@@ -92,10 +93,10 @@ A detailed professional history with project details is available in my online p
 *Sasken Technologies Ltd, Bangalore, India*  
 *March 2010 - August 2011*
 
-  -	Implementation of embedded system software as per design specification.
-  -	Maintenance activities on existing software.
-  -	Forward and backward porting of drivers and protocol layers. 
-  -	Interaction with the client for the above activities and to provide support.
+  -	Implementation of Nokia S40 USB device drivers.
+  -	Maintenance activities on existing S40 media connectivity stack.
+  -	Forward and backward porting of drivers and protocol layers to support device models. 
+  -	Client interaction to ensure seamless feature delivery.
 
 ---
 
