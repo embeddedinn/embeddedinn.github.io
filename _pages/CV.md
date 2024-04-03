@@ -166,35 +166,11 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 
 ## CERTIFICATIONS
 
-**Applications of TinyML**  
-*HarvardX*  
-Issued Jan 2022  
-[View Certificate](https://courses.edx.org/certificates/9c1798c7c8224e438ba758240e679e52)
+| | ||
+|-------------------------|-------------------------|-------------------------|
+|**Applications of TinyML**  <br/>*HarvardX*  <br/>Jan 2022  <br/>[View Certificate](https://courses.edx.org/certificates/9c1798c7c8224e438ba758240e679e52) |**Deploying TinyML**  <br/>*HarvardX*  <br/>Jan 2022  <br/>[View Certificate](https://courses.edx.org/certificates/36983a3194464a10896a5d4b626b0fd1) |**Fundamentals of TinyML**  <br/>*HarvardX*  <br/>Jan 2022  <br/>[View Certificate](https://courses.edx.org/certificates/4678189a89aa4a36a2cd4076be20fcd9) |
+|**Professional Certificate in Tiny Machine Learning (TinyML)**  <br/>*HarvardX*  <br/>Jan 2022  <br/>[View Certificate](https://credentials.edx.org/credentials/720c5858d05242f481be79616537ae03/) |**Trust Platform Design Suite v2**  <br/>*Microchip Technology Inc.*  <br/>Dec 2021  <br/>[View Certificate](https://verify.skilljar.com/c/naaocueohzwe) |**AWS IoT: Developing and Deploying an Internet of Things**  <br/>*Coursera*  <br/>Oct 2021  <br/>[View Certificate](https://www.coursera.org/account/accomplishments/certificate/TW3GK7LLCR8S) |
 
-**Deploying TinyML**  
-*HarvardX*  
-Issued Jan 2022  
-[View Certificate](https://courses.edx.org/certificates/36983a3194464a10896a5d4b626b0fd1)
-
-**Fundamentals of TinyML**  
-*HarvardX*  
-Issued Jan 2022  
-[View Certificate](https://courses.edx.org/certificates/4678189a89aa4a36a2cd4076be20fcd9)
-
-**Professional Certificate in Tiny Machine Learning (TinyML)**  
-*HarvardX*  
-Issued Jan 2022  
-[View Certificate](https://credentials.edx.org/credentials/720c5858d05242f481be79616537ae03/)
-
-**Trust Platform Design Suite v2**  
-*Microchip Technology Inc.*  
-Issued Dec 2021  
-[View Certificate](https://verify.skilljar.com/c/naaocueohzwe)  
-
-**AWS IoT: Developing and Deploying an Internet of Things**  
-*Coursera*  
-Issued Oct 2021  
-[View Certificate](https://www.coursera.org/account/accomplishments/certificate/TW3GK7LLCR8S)  
 
 ## PROFESSIONAL PROJECTS
 
