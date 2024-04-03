@@ -36,8 +36,8 @@
 \geometry{
   body={6.5in, 9.0in},
   left=1.0in,
-  top=1.0in,
-  bottom=1.3in
+  top=0.8in,
+  bottom=1.0in
 }
 
 % Fix  for "! Undefined control sequence. <recently read> \tightlist",

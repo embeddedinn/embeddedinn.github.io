@@ -1,7 +1,7 @@
 ---
 title: Vysakh P Pillai's Curriculum Vitae
 layout: single
-date: 2024-04-02 06:00:06.000000000 -07:00
+date: 2024-04-03 06:00:06.000000000 -07:00
 classes: wide
 published: true
 read_time: false
@@ -67,10 +67,32 @@ window.addEventListener('scroll', function() {
 
 ## PROFESSIONAL SUMMARY
 
-Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance System-on-Chip Software, System Security & Device Drivers. Adept at Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
+- Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. 
+- Specializes in high performance System-on-Chip doftware, system security & device drivers. 
+- Adept at Python, System Integration, DevOps, and Cloud Architectures. 
+- Proven track record leading cross-functional teams from conception to implementation and customer delivery. 
+- Strong communicator and proactive team player dedicated to delivering top-notch results.
 
 <!--Button to download 2 page resume PDF -->
 <a href="/_pages/vysakh_pillai-resume.pdf" id="downloadButton" class="download-button">2 Page Resume</a>
+
+## SKILLS & TECHNOLOGIES
+
+- **System Design**                : Secure systems architecture, System-on-Chip software, system software. 
+- **Programming Languages**        : C, Python, Shell Scripting, "HTML", JavaScript.
+- **Firmware Development**         : system Software, RTOS, Device Drivers, Bootloaders, Linux.
+- **Security**                     : Secure Boot, Secure Firmware Update, Secure platform 
+- **Debugging and Testing**        : JTAG, GDB, Lauterbach, JIRA, Confluence, complex systems debug.
+- **Platforms**                    : MIPS, RISC-V, Microcontrollers, SoCs, Wi-Fi, BLE, IoT.
+- **Version Control Systems**      : Git (Bitbucket, GitHub, GitLab).
+- **DevOps**                       : CI/CD (Jenkins, Github Actions), Build Automation, Release Management, Test Automation.
+- **Communication Protocols**      : UART, SPI, I2C, USB, Ethernet, TCP/IP, MQTT, Wi-Fi, BLE.
+Communication.
+- **Cloud Technologies**           : AWS, Azure IoT, Google Cloud IoT, Docker.
+- **Tools**                        : MPLAB X, TPDS, Jupyter Notebook, Visual Studio Code, WSL.
+- **Operating Systems**            : Linux, Windows, FreeRTOS.
+- **Soft Skills**                  : Team Leadership, Communication, Problem-solving, Collaboration.
+
 
 ## EDUCATION
 
@@ -81,6 +103,15 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 **Bachelor of Technology, Electronics and Communication Engineering**  
 *Amrita Vishwa Vidyapeetham, Kollam, India*  
 *May 2005 - May 2009*
+
+## EMPLOYMENT HISTORY
+
+| Company | Position | Timeframe |
+|---------|----------|-----------|
+| Microchip Technology | Technical Staff Engineer - Software | February 2022 - Present |
+| Cisco Systems India Pvt Ltd | Software Engineer | August 2011 - January 2015 |
+| Sasken Technologies Ltd | Software Engineer | March 2010 - August 2011 |
+
 
 ## PROFESSIONAL EXPERIENCE
 
@@ -112,7 +143,7 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 
 ### **Software Engineer**  
 *Cisco Systems India Pvt Ltd, Bangalore, India*  
-*August 2011 - January 2015*
+*August 2011 - February 2015*
 
   **RESPONSIBILITIES**
 
@@ -125,7 +156,7 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 
 ### **Software Engineer**  
 *Sasken Technologies Ltd, Bangalore, India*  
-*March 2010 - January 2011*
+*March 2010 - August 2011*
 
   **RESPONSIBILITIES**
 
@@ -148,21 +179,6 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 ### **Technology Freelancing**
 
   Seek challenging and interesting technical jobs that can be done within a small period utilizing personal free time resulting in technical growth.
-
-
-## SKILLS & TECHNOLOGIES
-
-- **Programming Languages**        : C, Python, Shell Scripting, HTML, JavaScript.
-- **Firmware Development**         : Embedded C, RTOS, Device Drivers, Bootloaders.
-- **Embedded Systems**             : MIPS, RISC-V, Microcontrollers, SoCs, Wi-Fi, BLE, IoT.
-- **Version Control Systems**      : Git (Bitbucket, GitHub, GitLab).
-- **Debugging and Testing**        : JTAG, GDB, Lauterbach, JIRA, Jenkins, Confluence.
-- **Communication Protocols**      : UART, SPI, I2C, USB, Ethernet, TCP/IP, MQTT, Wi-Fi, BLE.
-- **Problem-solving**              : System Architecture, Design, and Debugging.
-- **Security**                     : Secure Boot, Secure Firmware Update, Secure Communication.
-- **Cloud Technologies**           : AWS, Azure IoT, Google Cloud IoT, Docker.
-- **Tools**                        : MPLAB X, TPDS, Jupyter Notebook, Visual Studio Code, WSL.
-- **Operating Systems**            : Linux, Windows, FreeRTOS.
 
 ## CERTIFICATIONS
 
