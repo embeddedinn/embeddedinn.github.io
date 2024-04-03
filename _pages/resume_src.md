@@ -26,8 +26,8 @@ right-column:
 ## PROFESSIONAL SUMMARY
 
 - Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. 
-- Specializes in high performance system-on-chip software, system security & device drivers. 
-- Adept at Python, system integration, devOps, and cloud architectures. 
+- Specializes in high-performance system-on-chip software, system security & device drivers. 
+- Adept at Python, system integration, DevOps, and cloud architectures. 
 - Proven track record leading cross-functional teams from conception to implementation and customer delivery. 
 - Natural leader, strong communicator and proactive team player dedicated to delivering top-notch results.
 
@@ -62,7 +62,7 @@ A detailed professional history with project details is available in my online p
   - Developed a heterogeneous RISC-V core software emulation platform using QEMU, driving pre-silicon development and early customer engagement.
   - Engineered robust early-boot architecture for Linux and application software systems, optimizing system resilience.
   - End-to-end design and development of a secure system boot ROM.
-  - Implemented buildroot-based Linux System on QEMU and Protium emulation systems, ensuring easy pre-silicon development.
+  - Implemented a buildroot-based Linux System on QEMU and Protium emulation systems, ensuring easy pre-silicon development.
   - Created a bespoke Debian distribution and apt-repo for a RISC-V system, enhancing performance and compatibility.
   - Established release infrastructure and DevOps systems, streamlining processes for early customer adoption.
 
@@ -72,10 +72,10 @@ A detailed professional history with project details is available in my online p
 
   -	Applications lead for new Wi-Fi and BLE IoT silicon development at the wireless solutions group.
   -	E2E Systems architect for cloud, serverless & mobile connectivity, end-node authentication & device security. 
-  -	Post silicon bring-up and validation of SoC, RF modules, and development boards.
+  -	Post-silicon bring-up and validation of SoC, RF modules, and development boards.
   -	Design and architecture of bootloaders, OTA, and compiler features for RTOS-based and bare-metal secure wireless solutions.
   -	Voice control interfacing using Amazon Alexa™ and Google Assistant™.
-  -	Manufacturing co-ordination and lead architect for apps DevOps framework.
+  -	Manufacturing coordination and lead architect for apps DevOps framework.
   -	Extensive customer interaction for new product development and support.
 
 ### **Software Engineer**  
@@ -85,7 +85,7 @@ A detailed professional history with project details is available in my online p
   -	Linux Device Driver development for high-end set-top box peripherals.
   -	Development and integration of networked personalization features for STBs.
   -	Security module integration of cable card and legacy security modules. 
-  -	End to end system integration and performance optimization.
+  -	End-to-end system integration and performance optimization.
   -	Build and test automation, process improvement, and release management.  
   -	Building proof of concepts for next-generation product ideas.
 
@@ -114,10 +114,10 @@ A detailed professional history with project details is available in my online p
 
 ## Activities
 
-- **Full-Stack System Design** - Regularly contribute to the silicon to cloud system design community through blog posts at [embeddedinn.com](https://embeddedinn.com) and open-source projects in [github.com/vppillai](https://github.com/vppillai).
-- **Woodworking** - Hobbyist woodworker, creating custom furniture and home decor items.
+- **Full-Stack System Design** - Regularly contribute to the silicon-to-cloud system design community through blog posts at [embeddedinn.com](https://embeddedinn.com) and open-source projects in [github.com/vppillai](https://github.com/vppillai).
+- **Woodworking** - Hobbyist woodworker, creating custom furniture and home decor.
 - **Travel** - Enthusiastic traveler, exploring new places and cultures. 
-- **Training** - Regularly conduct training sessions on system design, high performance computing and system security for junior engineers and new graduates.
+- **Training** - Regularly conduct training sessions on system design, high-performance computing and system security for junior engineers and new graduates.
 
 
 
