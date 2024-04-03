@@ -26,6 +26,9 @@ right-column:
 
 Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+ years in the semiconductor industry. Specializes in high performance System-on-Chip Software, System Security & Device Drivers. Adept at Python, System Integration, DevOps, and Cloud Architectures. Proven track record leading cross-functional teams from conception to implementation and customer delivery. Strong communicator and proactive team player dedicated to delivering top-notch results.
 
+
+A detailed professional history with project details is available on my web profile at [embeddedinn.com/cv](https://embeddedinn.com/cv).
+
 ---
 
 ## WORK EXPERIENCE
@@ -105,4 +108,6 @@ Seasoned Technical Staff Software Engineer and Secure Systems Architect with 14+
 - **Travel** - Enthusiastic traveler, exploring new places and cultures. 
 - **Training** - Regularly conduct training sessions on system design, high performance computing and system security for junior engineers and new graduates.
 
-<!--pandoc resume.md -f markdown+yaml_metadata_block   --template .\templates\resumetemplate.latex -o resume.pdf --pdf-engine C:\Users\c16658\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe-->
+
+
+<!--pandoc resume.md -f markdown+yaml_metadata_block   --template .\templates\resumetemplate.latex -o vysakh_pillai-resume.pdf --pdf-engine C:\Users\c16658\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe-->
