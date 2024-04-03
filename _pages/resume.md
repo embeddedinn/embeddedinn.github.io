@@ -1,6 +1,6 @@
 ---
 title: "Vysakh P Pillai's Resume"
-layout: single
+layout: wide
 type: pages
 excerpt: "Vysakh P Pillai's 2 Page resume"
 sitemap: false
