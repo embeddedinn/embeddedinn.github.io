@@ -86,7 +86,7 @@ A detailed professional history with project details is available in my online p
   -	Development and integration of networked personalization features for STBs.
   -	Security module integration of cable card and legacy security modules. 
   -	End-to-end system integration and performance optimization.
-  -	Build and test automation, process improvement, and release management.  
+  -	Build and test automation, process improvement, and release management.
   -	Building proof of concepts for next-generation product ideas.
 
 ### **Software Engineer**  
