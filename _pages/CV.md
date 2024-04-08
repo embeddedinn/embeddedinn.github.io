@@ -1,7 +1,7 @@
 ---
 title: Vysakh P Pillai's Curriculum Vitae
 layout: single
-date: 2024-04-03 06:00:06.000000000 -07:00
+date: 2024-04-08 06:00:06.000000000 -07:00
 classes: wide
 published: true
 read_time: false
@@ -80,8 +80,8 @@ window.addEventListener('scroll', function() {
 
 - **System Design**                : Secure systems architecture, System-on-Chip software, system software. 
 - **Programming Languages**        : C, Python, Shell Scripting, "HTML", JavaScript.
-- **Firmware Development**         : system Software, RTOS, Device Drivers, Bootloaders, Linux.
 - **Security**                     : Secure Boot, Secure Firmware Update, Secure platform 
+- **Firmware Development**         : system Software, RTOS, Device Drivers, Bootloaders, Linux.
 - **Debugging and Testing**        : JTAG, GDB, Lauterbach, JIRA, Confluence, complex systems debug.
 - **Platforms**                    : MIPS, RISC-V, Microcontrollers, SoCs, Wi-Fi, BLE, IoT.
 - **Version Control Systems**      : Git (Bitbucket, GitHub, GitLab).
@@ -90,7 +90,7 @@ window.addEventListener('scroll', function() {
 Communication.
 - **Cloud Technologies**           : AWS, Azure IoT, Google Cloud IoT, Docker.
 - **Tools**                        : MPLAB X, TPDS, Jupyter Notebook, Visual Studio Code, WSL.
-- **Operating Systems**            : Linux, Windows, FreeRTOS.
+- **Operating Systems**            : Linux, FreeRTOS.
 - **Soft Skills**                  : Team Leadership, Communication, Problem-solving, Collaboration.
 
 
@@ -101,7 +101,7 @@ Communication.
 *January 2011 - February 2013*
 
 **Bachelor of Technology, Electronics and Communication Engineering**  
-*Amrita Vishwa Vidyapeetham, Kollam, India*  
+*Amrita Vishwa Vidyapeetham, Kerala, India*  
 *May 2005 - May 2009*
 
 ## EMPLOYMENT HISTORY

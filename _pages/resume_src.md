@@ -39,16 +39,16 @@ A detailed professional history with project details is available in my online p
 ## SKILLS & TECHNOLOGIES
 
 - **Programming Languages**        : C, Python, Shell Scripting, HTML, JavaScript.
+- **Security**                     : Secure Boot, Secure Firmware Update, Secure Communication.
 - **Firmware Development**         : Embedded C, RTOS, Device Drivers, Bootloaders, Linux.
 - **Embedded Systems**             : MIPS, RISC-V, Microcontrollers, SoCs, Wi-Fi, BLE, IoT.
 - **Version Control Systems**      : Git (Bitbucket, GitHub, GitLab).
 - **Debugging and Testing**        : JTAG, GDB, Lauterbach, JIRA, Jenkins, Confluence.
 - **Communication Protocols**      : UART, SPI, I2C, USB, Ethernet, TCP/IP, MQTT, Wi-Fi, BLE.
 - **Problem-solving**              : System Architecture, Design, and Debugging.
-- **Security**                     : Secure Boot, Secure Firmware Update, Secure Communication.
 - **Cloud Technologies**           : AWS, Azure IoT, Google Cloud IoT, Docker.
 - **Tools**                        : MPLAB X, TPDS, Jupyter Notebook, Visual Studio Code, WSL.
-- **Operating Systems**            : Linux, Windows, FreeRTOS.
+- **Operating Systems**            : Linux, FreeRTOS.
 
 ---
 
@@ -107,7 +107,7 @@ A detailed professional history with project details is available in my online p
 *January 2011 - February 2013*
 
 **Bachelor of Technology, Electronics and Communication Engineering**  
-*Amrita Vishwa Vidyapeetham, Kollam, India*  
+*Amrita Vishwa Vidyapeetham, Kerala, India*  
 *May 2005 - May 2009*
 
 ---
