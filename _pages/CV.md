@@ -193,7 +193,7 @@ Communication.
 
 <details markdown="1" >
 
-  <summary>
+  <summary markdown="1">
 
   ### 1. Security Subsystem Firmware Architecture - HPSC
 
