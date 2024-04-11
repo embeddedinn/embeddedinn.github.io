@@ -108,7 +108,7 @@ Communication.
 
 | Company | Position | Timeframe |
 |---------|----------|-----------|
-| Microchip Technology | Technical Staff Engineer - Software | February 2022 - Present |
+| Microchip Technology | Technical Staff Engineer - Software | February 2015 - Present |
 | Cisco Systems India Pvt Ltd | Software Engineer | August 2011 - January 2015 |
 | Sasken Technologies Ltd | Software Engineer | March 2010 - August 2011 |
 
