@@ -240,7 +240,7 @@ ___Click on items below to expand them___
 
   <summary>
 
-  <h3>1. <u>Security Subsystem Firmware Architecture - HPSC<u></h3>
+  <h3>1. Security Subsystem Firmware Architecture - HPSC</h3>
 
   </summary>
 
