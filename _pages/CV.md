@@ -49,6 +49,15 @@ div {
 .fixed {
   position: fixed; /* Switch to fixed positioning when scrolling */
 }
+
+details summary > * {
+  display: inline;
+}
+
+details summary { 
+  cursor: pointer;
+  color: #8cb4ff;
+}
 </style>
 
 <script>
@@ -60,6 +69,40 @@ window.addEventListener('scroll', function() {
   } else {
     downloadButton.classList.remove('fixed');
   }
+});
+
+// open closed details elements for printing
+window.addEventListener('beforeprint',() =>
+{
+    const allDetails = document.body.querySelectorAll('details');
+    for(let i=0; i<allDetails.length; i++)
+    {
+        if(allDetails[i].open)
+        {
+            allDetails[i].dataset.open = '1';
+        }
+        else
+        {
+            allDetails[i].setAttribute('open', '');
+        }
+    }
+});
+
+// after printing close details elements not opened before
+window.addEventListener('afterprint',() =>
+{
+    const allDetails = document.body.querySelectorAll('details');
+    for(let i=0; i<allDetails.length; i++)
+    {
+        if(allDetails[i].dataset.open)
+        {
+            allDetails[i].dataset.open = '';
+        }
+        else
+        {
+            allDetails[i].removeAttribute('open');
+        }
+    }
 });
 </script>
 
@@ -191,11 +234,13 @@ Communication.
 
 ## PROFESSIONAL PROJECTS
 
+___Click on items below to expand them___
+
 <details markdown="1">
 
   <summary>
 
-  <h3>1. Security Subsystem Firmware Architecture - HPSC</h3>
+  <h3>1. <u>Security Subsystem Firmware Architecture - HPSC<u></h3>
 
   </summary>
 
