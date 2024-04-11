@@ -191,15 +191,14 @@ Communication.
 
 ## PROFESSIONAL PROJECTS
 
-<details>
+<details markdown="1">
 
   <summary>
 
-  <h3>1. <u>Security Subsystem Firmware Architecture - HPSC</h3></u>
+  1. Security Subsystem Firmware Architecture - HPSC
 
   </summary>
 
-<div markdown="1">
 
 *Microchip Technology, Canada, 2024*
 
@@ -209,9 +208,7 @@ Led the architectural design and implementation of platfrom firmware security so
   - Architected comprehensive system firmware security solutions, ensuring robust protection for the HPSC platform against potential vulnerabilities.
   - Facilitated seamless coordination among diverse teams, fostering effective communication and synergy between design, product engineering, and application teams.
   - Orchestrated collaboration with Hardware Security Module (HSM) vendors and cross-functional business units, resulting in the development of a customer-friendly solution that prioritized usability without compromising security standards.
-
-<div>
-
+  
 </details>
 
 ### 2. <u>QEMU emulation model of the hetrocore RISC-V based HPSC system</u>
