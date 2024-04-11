@@ -195,7 +195,7 @@ Communication.
 
   <summary>
 
-  1. Security Subsystem Firmware Architecture - HPSC
+  <h3>1. Security Subsystem Firmware Architecture - HPSC</h3>
 
   </summary>
 
