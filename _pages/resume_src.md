@@ -120,5 +120,4 @@ A detailed professional history with project details is available in my online p
 - **Training** - Regularly conduct training sessions on system design, high-performance computing and system security for junior engineers and new graduates.
 
 
-
 <!--pandoc resume_src.md -f markdown+yaml_metadata_block   --template .\templates\resumetemplate.latex -o vysakh_pillai-resume.pdf --pdf-engine C:\Users\c16658\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe-->
