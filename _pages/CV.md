@@ -193,9 +193,9 @@ Communication.
 
 <details markdown="1" >
 
-  <summary markdown="1">
+  <summary>
 
-  ### 1. Security Subsystem Firmware Architecture - HPSC
+  <h3>1. <u>Security Subsystem Firmware Architecture - HPSC</h</u>3>
 
   </summary>
 
