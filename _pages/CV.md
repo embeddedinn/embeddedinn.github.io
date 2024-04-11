@@ -411,7 +411,7 @@ Led the architecture and implementation of a complete software release infrastru
 
   <summary>
 
-  <h3>9. Applications Program Management for first generation Wi-Fi Silicon Product Line</h3>
+  <h3>9. Applications Program Management for Wi-Fi Silicon Product Line</h3>
 
   </summary>
 
@@ -584,7 +584,7 @@ Developed a proof of concept (PoC) system for patient orientation monitoring uti
 
   <summary>
 
-  <h3>4. Implementation of Linux-Based Systems Framework on Xilinx-MicroBlaze Full SoC Platforms</h3>
+  <h3>4. Linux-Based Systems Framework on Xilinx-MicroBlaze SoC Platforms</h3>
 
   </summary>
 
