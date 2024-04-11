@@ -58,6 +58,10 @@ details summary {
   cursor: pointer;
   color: #8cb4ff;
 }
+
+details[open] summary {
+  color: inherit;
+}
 </style>
 
 <script>
