@@ -260,7 +260,15 @@ Led the architectural design and implementation of platfrom firmware security so
   
 </details>
 
-### 2. <u>QEMU emulation model of the hetrocore RISC-V based HPSC system</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>2. QEMU emulation model of the hetrocore RISC-V based HPSC system</h3>
+
+
+  </summary>
+
 *Microchip Technology, Canada, 2023*
 
   Pioneered the development of the first QEMU model for a heterogeneous RISC-V based HPSC system, comprising an octo-core Application complex, system controller, and secure controller. This model enabled early customer engagement and accelerated application development for the HPSC platform.
@@ -270,7 +278,16 @@ Led the architectural design and implementation of platfrom firmware security so
   - Implemented emulation of essential peripherals crucial for early boot and ROM development, ensuring comprehensive functionality and compatibility testing within a simulated environment.
   - Demonstrated technical proficiency and innovation in creating a robust and versatile QEMU model, laying the groundwork for efficient pre-silicon development and validation processes.
 
-###	3. <u>Early-boot architecture for RISC-V based Linux and application software systems</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>3. Early-boot architecture for RISC-V based Linux and application software systems</h3> 
+
+  </summary>
+
 *Microchip Technology, Canada, 2023*
 
   Conceptualized, designed, and executed a robust early-boot architecture tailored to RISC-V based Linux and application software systems within the Multicore High-Performance Computing (HPSC) project. Integrated a dedicated boot manager subsystem and implemented early-boot functionality on QEMU and Protium emulation systems. Spearheaded the development of a new boot media and configuration controller, paving the way for future enhancements in boot architecture.
@@ -281,7 +298,16 @@ Led the architectural design and implementation of platfrom firmware security so
   -	Led the development effort for a novel boot media and configuration controller integrating littleFS.
   -	Pioneered multi-Linux boot with system partitioning and boot management, optimizing system performance.
 
-### 4. <u>Secure System ROM for HPSC</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>4. Secure System ROM for HPSC</h3>
+  
+  </summary>
+
 *Microchip Technology, Canada, 2024*
 
   Designed and developed a robust and secure ROM for the system controller of the High-Performance Computing System (HPSC). Implemented a comprehensive security infrastructure to safeguard the integrity and confidentiality of the ROM.
@@ -292,7 +318,16 @@ Led the architectural design and implementation of platfrom firmware security so
   -	Collaborated closely with silicon design and verification teams to ensure seamless integration and compatibility with the overall system architecture.
   -	Delivered the secure system ROM on schedule, meeting all technical specifications and quality standards.
 
-### 5. <u>Design and Development of Buildroot-Based Linux System for RISC-V based HPSC</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>5. Design and Development of Buildroot-Based Linux System for RISC-V based HPSC</h3>
+
+  </summary>
+
 *Microchip Technology, Canada, 2023*
 
   Led the design and development efforts to create a buildroot-based Linux system tailored for the RISC-V based HPSC platform. Seamlessly integrated essential components and configurations to ensure optimal performance and compatibility with the unique architecture of the HPSC system. Spearheaded successful Linux bring-up on Protium and QEMU-based emulation systems, laying the foundation for comprehensive testing and validation procedures.
@@ -302,8 +337,18 @@ Led the architectural design and implementation of platfrom firmware security so
   - Executed successful Linux bring-up on Protium and QEMU-based emulation systems, demonstrating proficiency in system configuration and troubleshooting to ensure smooth operation across different environments.
   - Established a versatile buildroot-based framework, enabling the seamless integration and development of benchmark suites, middleware, and applications, thereby facilitating further innovation and expansion within the HPSC ecosystem.
 
-### 6. <u>RISC-V Bespoke Debian Distro and Package Infrastructure for HPSC</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>6. RISC-V Bespoke Debian Distro and Package Infrastructure for HPSC</h3>
+
+  </summary>
+
 *Microchip Technology, Canada, 2023*
+
 
   Developed a bespoke RISC-V Debian distribution, "shellfire," for the RISC-V based HPSC Application complex. Additionally, implemented a private package repository to streamline the release of HPSC packages for the shellfire distribution, ensuring efficient access to essential software components.
 
@@ -313,7 +358,14 @@ Led the architectural design and implementation of platfrom firmware security so
   - Pioneered a QEMU-based CI/CD framework for distribution and testing, enhancing the development processes.
   - Deployed and maintained the private repository hosting shellfire apt packages, enhancing system stability and usability for HPSC users.
 
-### 7. <u>Software Release Infrastructure and Pipeline for First-Generation HPSC Project</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>7. Software Release Infrastructure and Pipeline for First-Generation HPSC Project</h3>
+  </summary>
 *Microchip Technology, Canada, 2022*
 
 
@@ -325,7 +377,16 @@ Led the architecture and implementation of a complete software release infrastru
   - Setup processes for release of both open-source and proprietary software, ensuring compliance with licensing requirements and facilitating dissemination of project collateral.
   - Implemented a GitHub-based customer access control and release management pipeline, optimizing collaboration and streamlining release workflow for internal and external stakeholders.
   
-### 8. <u>Architecting Secure Solutions for Wireless IoT Products</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>8. Architecting Secure Solutions for Wireless IoT Products</h3>
+
+  </summary>
+
 *Microchip Technology (India) Private Limited, Bangalore, 2021*
 
   Served as the IoT device security and Cloud unification architect, overseeing the development and implementation of robust security infrastructure for wireless IoT products. Led technical program management initiatives to ensure product security, guiding developers and customers in secure product development practices and designing secure cloud-connected embedded systems.
@@ -338,7 +399,16 @@ Led the architecture and implementation of a complete software release infrastru
   - Architected a secure OTA firmware upgrade framework for PIC32WK family, enabling seamless updates to enhance functionality and security.
   - Architected a unified secure cloud mobile application connector for IoT and Cloud demos, streamlining integration efforts and ensuring a cohesive user experience.
 
-### 9. <u>Applications Program Management for first generation Wi-Fi Silicon Product Line</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>9. Applications Program Management for first generation Wi-Fi Silicon Product Line</h3>
+
+  </summary>
+
 *Microchip Technology (India) Private Limited, Bangalore, 2021*
 
   As the Applications Lead, drove the development of innovative silicon features tailored for the IoT market in first-generation wireless IoT silicon products. Led post-silicon bring-up and validation efforts, engaging with customers to address field issues and design requirements. Conducted competitor analysis and collaborated with cross-functional teams for product competitiveness and market relevance.
@@ -353,7 +423,16 @@ Led the architecture and implementation of a complete software release infrastru
   - Ported basic peripheral drivers like SPI, I2C, USB, etc., ensuring compatibility with a wide range of peripheral devices.
   - Contributed to sales demos and cloud integration solutions for the IoT market, showcasing potential applications of the organic Wi-Fi silicon product line.
 
-### 10. <u>Distributed secure voice cloud-based ecosystem</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>10. Distributed secure voice cloud-based ecosystem</h3>
+
+  </summary>
+
 *Microchip Technology (India) Private Limited, Bangalore, 2021*
 
   Led the architecture and implementation of a distributed serverless secure cloud model and firmware for voice-controlled system application deployment. Designed for seamless integration with Amazon Alexa and Google Home interfaces, aiming to create a low-cost, distributed cloud ecosystem for efficient product deployment.
@@ -365,8 +444,16 @@ Led the architecture and implementation of a complete software release infrastru
   - Conducted firmware development and optimizations to ensure compatibility and efficiency of device-side firmware within voice-controlled systems.
   - Implemented REST APIs for mobile app integration and voice skills deployment, enabling seamless interaction between the cloud-based ecosystem and mobile applications, as well as facilitating deployment of voice-controlled skills and functionalities.
 
+</details>
 
-### 11. <u>Hardware in the loop Automation framework</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>11. Hardware in the loop Automation framework</h3>
+
+  </summary>
+
 *Microchip Technology (India) Private Limited, Bangalore, 2021*
 
   As the architect and team manager, led the development of an advanced "hardware in the loop" automated system test framework project ("bumblebee"). This involved architecting and designing a comprehensive test harness using modern web-based tools and managing the implementation team to ensure timely delivery of releases to internal teams.
@@ -378,7 +465,16 @@ Led the architecture and implementation of a complete software release infrastru
   - Delivered releases and comprehensive packages with training material to cross-functional teams, facilitating seamless adoption and utilization of the automation framework.
   - Implemented an HTML and JS-based frontend integrated with a Python-based automation backend, enabling user-friendly interaction and robust automation capabilities for hardware in the loop testing.
 
-### 12. <u>Development and integration of STB platform software</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>12. Development and integration of STB platform software</h3>
+
+  </summary>
+
   *CISCO, Bangalore, 2015*
 
   Contributed to the development of custom STB middleware modules and facilitated their integration with Linux drivers (CDI) for end-to-end integration, enhancing IPTV services with personalized features in multi-CPE-households and optimizing system-level performance.
@@ -396,8 +492,16 @@ Led the architecture and implementation of a complete software release infrastru
 - Designed and implemented automated build and test system, streamlining development processes and ensuring code quality.
 - Developed RESTful web services for interaction with head-end server, enabling efficient data exchange and management.
 
+</details>
 
-### 13. <u>Development and Maturation of Nokia S40 USB Device and Host</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>13. Development and Maturation of Nokia S40 USB Device and Host</h3>
+
+  </summary>
+
 *Sasken communication Technologies ltd, Bangalore, 2011*
 
   Contributed to the development and maturation of low-level device drivers, protocol layers, and hardware abstraction layer (HAL) for USB on Nokia S40 running on NOS RTOS, aiming to enhance USB communication functionality and reliability on Nokia S40 devices.
@@ -409,10 +513,17 @@ Led the architecture and implementation of a complete software release infrastru
   - Conducted forward and backward porting of drivers, ensuring compatibility across different versions of NOS RTOS and hardware platforms.
   - Managed certification-related maintenance tasks, ensuring compliance with industry standards and certifications for USB communication on Nokia S40 devices.
 
+</details>
 
 ## MAJOR FREELANCE PROJECTS
 
-### 1. <u>Design of FPGA-Based P-Radar Controller Architecture</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>1. Design of FPGA-Based P-Radar Controller Architecture</h3>
+
+  </summary>
 
 Led the design effort for the FPGA-based architecture of a P-Radar controller, aimed at implementing a standalone version of an existing mixed-mode, PC-based PR weather radar transceiver controller. This project focused on developing a robust micro-architecture design to integrate new and existing discrete modules provided by the client.
 
@@ -422,7 +533,16 @@ Led the design effort for the FPGA-based architecture of a P-Radar controller, a
   - Designed a comprehensive micro-architecture that seamlessly integrated new and existing discrete modules, ensuring compatibility and functionality across the radar controller system.
   - Provided ongoing support and revision of modules and test plans during implementation and testing phases, ensuring the successful integration and validation of the FPGA-based radar controller architecture.
 
-### 2. <u>Digital Control of Voltage Inverter Circuit</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>2. Digital Control of Voltage Inverter Circuit</h3>
+
+  </summary>
+
 
 Led the translation of Matlab-based digital subsystems into a real hardware implementation for digital control of a voltage inverter circuit. This project focused on converting theoretical models into practical, hardware-based solutions for efficient voltage control.
 
@@ -431,7 +551,15 @@ Led the translation of Matlab-based digital subsystems into a real hardware impl
   - Identified patterns between discrete channels from the Matlab model to generate optimized firmware, streamlining the translation process and enhancing the efficiency of the digital control system.
   - Designed and developed a prototype to demonstrate the ruggedness and functionality of the digital control system, including PCB design to ensure robustness and reliability in real-world applications.
   
-### 3. <u>Patient Orientation Monitoring (PoC)</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>3. A PoC for Patient Orientation Monitoring </h3>
+
+  </summary>
 
 Developed a proof of concept (PoC) system for patient orientation monitoring utilizing Linux-based software, MPU6050 sensors, and a web-based visualization interface. This project aimed to provide real-time monitoring of patient orientation and visualization of data for healthcare professionals.
 
@@ -442,7 +570,15 @@ Developed a proof of concept (PoC) system for patient orientation monitoring uti
   - Developed Linux drivers and interfaces to facilitate seamless communication between the MPU6050 sensors and the monitoring system, ensuring reliable data acquisition and processing.
   - Successfully integrated the various components of the PoC system to create a comprehensive solution for patient orientation monitoring, demonstrating feasibility and effectiveness in healthcare settings.
 
-### 4. <u> Implementation of Linux-Based Systems on Xilinx-MicroBlaze Full SoC Platforms</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>4. Implementation of Linux-Based Systems Framework on Xilinx-MicroBlaze Full SoC Platforms</h3>
+
+  </summary>
 
 Led the implementation of MicroBlaze soft processor-based systems on Xilinx Spartan 6 FPGA, specifically the lx9 micro board. This project involved board bring-up, custom Linux kernel bring-up, designing and implementing various peripherals for the System-on-Chip (SoC) in Verilog, and developing drivers and software adaptation layers for the system.
 
@@ -453,7 +589,15 @@ Led the implementation of MicroBlaze soft processor-based systems on Xilinx Spar
 - Developed drivers and software adaptation layers to facilitate seamless integration of peripherals with the Linux-based system, ensuring efficient operation and compatibility.
 - Demonstrated proficiency in system-level design and integration, culminating in the successful deployment of Linux-based systems on Xilinx-MicroBlaze full SoC platforms.
 
-### 5. <u> USB-Based Authentication Token for Custom Software</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>5. USB-Based HW Authentication Token for Custom Software</h3>
+
+  </summary>
 
 Led the design and implementation of a USB-based authentication token for custom software, incorporating PIC 18f4550 microcontroller for end-to-end (E2E) USB hardware design of the authentication token. Developed a Visual Basic-based software design for a simple authenticated notepad demo application, incorporating two-phase security with passcode and hardware-based authentication.
 
@@ -464,7 +608,15 @@ Led the design and implementation of a USB-based authentication token for custom
 - Ensured seamless communication and compatibility between the hardware authentication token and the software application, enabling secure access and authentication for authorized users.
 - Successfully demonstrated the functionality and reliability of the USB-based authentication token system, providing a robust solution for secure software authentication.
 
-### 6. <u> Messaging Mechanisms for Digital Radar Control Systems</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3>6. Secure Messaging Mechanism for Digital Radar Control Systems</h3>
+
+  </summary>
 
 
 Led the development of messaging mechanisms for digital radar control systems, implementing XML-based messaging for multi-location radar controllers. Enhanced XMPP for collaborative networks and incorporated encrypted message bodies for heightened security over TLS, serving as a stepping stone to the Internet of Things (IoT) for radar systems.
@@ -476,7 +628,15 @@ Led the development of messaging mechanisms for digital radar control systems, i
   - Positioned the messaging mechanisms as a stepping stone to the Internet of Things (IoT) for radar systems, laying the foundation for future integration with IoT technologies and platforms.
   - Demonstrated proficiency in designing and implementing advanced messaging solutions for digital radar control systems, enhancing interoperability, security, and collaboration capabilities.
 
-### 7. <u> Custom Daughter-Card for Raspberry Pi</u>
+</details>
+
+<details markdown="1">
+
+  <summary>
+
+  <h3> 7. Design and Manufacturing of a Custom Daughter-Card for Raspberry Pi</h3>
+
+  </summary>
 
 Led the end-to-end design and fabrication of a custom daughter-card for Raspberry Pi, incorporating a PIC microcontroller-based PCB. Established I2C and GPIO-based communication with the daughter-card and developed a custom Linux build with minimal BusyBox Root File System (RFS). Designed and implemented custom kernel modules for daughter-card control and proposed an I2C bootloader and Linux drivers for firmware upgrade to eliminate ICSP.
 
@@ -487,10 +647,18 @@ Led the end-to-end design and fabrication of a custom daughter-card for Raspberr
   - Designed and implemented custom kernel modules to enable control and management of the daughter-card functionalities within the Linux environment.
   - Proposed an innovative solution for firmware upgrade using an I2C bootloader and Linux drivers, eliminating the need for ICSP and simplifying the upgrade process for enhanced efficiency and convenience.
 
+</details>
+
 
 ## ACADEMIC PROJECTS
 
-### 1. <u>H/W-S/W Co-design of a Web Interface for FPGA-Based Radar Control Systems</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>1. H/W-S/W Co-design of a Web Interface for FPGA-Based Radar Control Systems</h3>
+
+  </summary>
 
 Undertook a postgraduate project focusing on the hardware-software co-design of a web interface for FPGA-based radar control systems. This project aimed to design and implement a standalone radar control configuration unit based on a MicroBlaze soft-core processor, utilizing LWIP and Xilkernel for implementing HTTP over TCP/IP. Principles of hardware-software co-design were applied to ensure parallel and efficient development of both hardware and software components.
 
@@ -501,8 +669,15 @@ Undertook a postgraduate project focusing on the hardware-software co-design of 
   - Successfully integrated hardware and software components to create a cohesive system for radar control, demonstrating proficiency in both FPGA-based hardware design and software development.
   - Presented findings and outcomes of the project as part of the academic curriculum, contributing to the advancement of knowledge in the field of H/W-S/W co-design for radar control systems.
 
+</details>
 
-### 2. <u>BioMedical Kit for the OLPC XO</u>
+<details markdown="1">
+
+  <summary>
+
+  <h3>2. BioMedical Kit for the OLPC XO - A collaborative project with UT, Austin</h3>
+
+  </summary>
 
 Collaborated with the Department of Electrical and Computer Engineering, University of Texas, Austin (USA), to design and implement an educational biomedical kit for the One Laptop Per Child (OLPC) XO platform. This project aimed to develop a comprehensive educational tool for students, incorporating in-house developed sensors such as ECG, Blood Oximeter, and Body Temperature sensors. Vital signals were digitized, collected, and transmitted over USB to the OLPC XO for processing. The graphical user interface (GUI) was developed using Adobe Flex, providing an interactive and user-friendly experience for students. Embedded error control mechanisms were implemented to ensure reliable data acquisition and processing, enhancing the educational value of the kit.
 
@@ -515,6 +690,7 @@ Collaborated with the Department of Electrical and Computer Engineering, Univers
   - Implemented embedded error control mechanisms to ensure reliable data acquisition and processing, improving the accuracy and reliability of the educational biomedical kit.
   - Contributed to the advancement of Indo-US academic collaboration through the successful completion of the project, fostering knowledge exchange and innovation in biomedical education.
 
+</details>
 
 ## PUBLICATIONS
 
