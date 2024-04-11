@@ -244,7 +244,7 @@ Communication.
 
 ## PROFESSIONAL PROJECTS
 
-___Click on items below to expand them___
+_Click on items below to expand them_
 
 <details markdown="1">
 
@@ -523,6 +523,8 @@ Led the architecture and implementation of a complete software release infrastru
 
 ## MAJOR FREELANCE PROJECTS
 
+_Click on items below to expand them_
+
 <details markdown="1">
 
   <summary>
@@ -657,6 +659,8 @@ Led the end-to-end design and fabrication of a custom daughter-card for Raspberr
 
 
 ## ACADEMIC PROJECTS
+
+_Click on items below to expand them_
 
 <details markdown="1">
 
