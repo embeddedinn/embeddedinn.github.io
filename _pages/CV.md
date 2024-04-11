@@ -191,7 +191,7 @@ Communication.
 
 ## PROFESSIONAL PROJECTS
 
-<details>
+<details markdown="1" >
 
   <summary>
 
