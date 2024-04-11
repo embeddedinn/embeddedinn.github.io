@@ -62,6 +62,12 @@ details summary {
 details[open] summary {
   color: inherit;
 }
+
+/*Highlight summary on hover when not open*/
+details:not([open]) summary:hover {
+  color: #ff8c8c;
+}
+
 </style>
 
 <script>
