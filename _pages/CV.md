@@ -192,7 +192,7 @@ Communication.
   -	Post silicon bring-up and validation of SoC, RF modules, and development boards.
   -	Design and architecture of bootloaders, OTA, and compiler features for RTOS-based and bare-metal secure wireless solutions.
   -	Voice control interfacing using Amazon Alexa™ and Google Assistant™.
-  -	Manufacturing co-ordination and lead architect for apps DevOps framework.
+  -	Manufacturing coordinator and lead architect for apps DevOps framework.
   - Extensive customer interaction for new product development and support.
 
 ### **Software Engineer**  
@@ -257,7 +257,7 @@ _Click on items below to expand them_
 
 *Microchip Technology, Canada, 2024*
 
-Led the architectural design and implementation of platfrom firmware security solutions for the First-Generation RISC-V based HPSC system, Collaborated closely with design, product engineering, and application teams to integrate security measures throughout the device development lifecycle.
+Led the architectural design and implementation of platform firmware security solutions for the First-Generation RISC-V based HPSC system, Collaborated closely with design, product engineering, and application teams to integrate security measures throughout the device development lifecycle.
 
   **Achievements**
   - Architected comprehensive system firmware security solutions, ensuring robust protection for the HPSC platform against potential vulnerabilities.
@@ -483,11 +483,11 @@ Led the architecture and implementation of a complete software release infrastru
 
   *CISCO, Bangalore, 2015*
 
-  Contributed to the development of custom STB middleware modules and facilitated their integration with Linux drivers (CDI) for end-to-end integration, enhancing IPTV services with personalized features in multi-CPE-households and optimizing system-level performance.
+  Contributed to the development of custom set-top-box (STB) middleware modules and facilitated their integration with Linux drivers (CDI) for end-to-end integration, enhancing IPTV services with personalized features in multi-CPE-households and optimizing system-level performance.
 
 
   **Achievements**
-  - Leveraged deep understanding of IPTV and broadcast protocols to drive development of custom STB middleware modules.
+  - Leveraged deep understanding of IPTV and broadcast protocols to drive development of custom set-top-box (STB) middleware modules.
 - Successfully integrated middleware components with device drivers and head-end systems for personalized features in multi-CPE-households.
 - Executed integration of CableCARD into existing stack, ensuring compatibility and functionality within STB environment.
 - Integrated components with Linux device drivers, optimizing system performance and functionality.
