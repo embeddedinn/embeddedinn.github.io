@@ -12,9 +12,9 @@ tags:
 - QEMU
 
 header:
-  teaser: "images/posts/whyBlog/whyBlog.png"
-  og_image: "images/posts/whyBlog/whyBlog.png"
-excerpt: "I recently had a discussion about the importance of writing about what you learn. This post delves into why this practice is essential and how it has personally benefited me and why I think you should do it too."
+  teaser: "images/posts/freertosQemuGdb/rtosBanner.png"
+  og_image: "images/posts/freertosQemuGdb/rtosBanner.png"
+excerpt: "In this post, we will explore how to setup a development environment for FreeRTOS on RISCV using QEMU. this includes setting up the RISCV toolchain, QEMU, and building and executing FreeRTOS examples. We will also explore some techniques to debug FreeRTOS applications running on QEMU."
 
 ---
 
