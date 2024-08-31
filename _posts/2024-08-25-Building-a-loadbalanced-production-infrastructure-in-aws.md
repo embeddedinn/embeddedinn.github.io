@@ -42,6 +42,15 @@ Note that this is not one of those ultra high scale applications. But it is a go
   - The load balancer is configured as a VPC link on the API Gateway that exposes the services to the public.
 - A load balancer and API Gateway should be used to distribute the traffic.
 
+The complete setup as seen in AWS application composer would look like this:
+
+{% include image.html
+    img="images/posts/aws_production_lb/fullSetup.png"
+    width="800"
+    caption="AWS Application Composer view of the setup"
+%}
+
+
 ## Architecture
 
 The Diagram below shows an approximation of the architecture that we will be setting up. Details will be discussed in the following sections.
@@ -1217,14 +1226,6 @@ Outputs:
     Description: "ARN of the ECS Task Definition Name"
     Value: !Ref ECSTaskDefinition
 ```
-
-The complete setup as seen in AWS application composer would look like this:
-
-{% include image.html
-    img="images/posts/aws_production_lb/fullSetup.png"
-    width="800"
-    caption="AWS Application Composer view of the setup"
-%}
 
 ## Conclusion
 
