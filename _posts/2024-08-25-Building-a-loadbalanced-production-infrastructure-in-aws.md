@@ -32,6 +32,9 @@ There are hundreds if not thousands of tutorials on how to set up a load-balance
 
 Note that this is not one of those ultra high scale applications. But it is a good starting point to build a scalable and production-ready infrastructure in AWS that could serve a few million users.
 
+<b>NOTE:</b> The Cloud Formation Template and Code for this article is available in GitHub at [embeddedinn/aws_production_lb](https://github.com/embeddedinn/aws_production_lb)
+{: .notice--info}
+
 ## Requirements
 
 - Application development has been in Docker containers in GitHub and we will be using the same for deployment.
