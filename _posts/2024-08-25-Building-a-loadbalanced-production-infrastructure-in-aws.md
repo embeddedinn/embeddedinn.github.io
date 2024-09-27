@@ -32,6 +32,9 @@ There are hundreds if not thousands of tutorials on how to set up a load-balance
 
 Note that this is not one of those ultra high scale applications. But it is a good starting point to build a scalable and production-ready infrastructure in AWS that could serve a few million users.
 
+<b>NOTE:</b> The Cloud Formation Template and Code for this article is available in GitHub at [embeddedinn/aws_production_lb](https://github.com/embeddedinn/aws_production_lb)
+{: .notice--info}
+
 ## Requirements
 
 - Application development has been in Docker containers in GitHub and we will be using the same for deployment.
@@ -55,60 +58,8 @@ The complete setup as seen in AWS application composer would look like this:
 
 The Diagram below shows an approximation of the architecture that we will be setting up. Details will be discussed in the following sections.
 
+[![](https://mermaid.ink/img/pako:eNqVVm1r4kAQ_itDSuUOIlhrW87CgYkvV-iVUuUKh1_WzaiLcTfsbmql9r_fbhLXjbYc9VMy88wzMzvPbHwLqEgw6AbzVGzokkgNk_6Ug_mdn8OD8anybcT0r3zWo5oJrr5NgznpzklzwfQynzVJqisAVIhp8L2M6wu6Qnm3Jgs8hCWFsfJB6XQRvefxIH5yWCLpkr2gNYOxe7BBPHYoms9QVZgxxGmuNEqfspdrMaYkZXzhUUuxUUX1NtJCoMLASIo8q9fUdoEK5YspvEzXhjuuNOHU68FY70nO6XKC6ywlGl3onKXY1PiqoQTAHuFiJ0QuUBf5XdQsT1OFW6ycR9U93EcOia9minyB8NCbwMjwbsj20MbjXWVyeClIYu0n2LvR82HMqZihtTjvn8fYeTnqjZCr5oZJTKynQDkRDRJTDRWcYykNmBk8Igdu1WVBHygMms2fsItyliYKCE8gwSwVW7WrCepUYmXcY66W5pkVpl2lKF9dJaxfcno4Ix5PXQWqrp2P9FTllOKF2YYoyQhlelvlbX8eEgs-Z4tc2twnijmuY_eEC2ZVrUATtTIhnlBOlHMaYl0myGjFiabsz2niWCOF2w59P3FXtSbMjMjULXJJqxP2u2tUrRcPtoFGrbZGkbzhp2qUiZxoxnp7OG6aEqX6OAdCKXJtbyUwe5R2z4bDQXQZhUpLsULzGsWtdr96NXpM9LLbzl5DKlIhu2etVuv2iDGZeWxRKxrEV46tc3XVu-58ha3aBJ8y6g-GhwJb_c5N7-IrlFSss1xjrec4jmJHGQ0vr1vxVyiFXqKsEQ5_xJ3DIV7dDC9u_kPoUZYjDsuJhyc6Do-04TXkF1Zf_9Df6bDaWVd3Lc4TVmhkFXqi8sZx62mrwDpxqXy2kCRbwjQorq7SCpCY26woBibR3uZdEPDhxQC1nYfPthpOdxcOmwknOwmHNUSeBGGwRrkmLDHf7TdrngbmaNbmE9I1jwmRK9vGu8HlWWJ4BgnTQgbmrjYfkTAgtuotp0FXyxz3oD4j5hzWeyMWMb_LPwfFf4QwyAj_K8S6Inr_B_JOo3U?type=png)](https://mermaid.live/edit#pako:eNqVVm1r4kAQ_itDSuUOIlhrW87CgYkvV-iVUuUKh1_WzaiLcTfsbmql9r_fbhLXjbYc9VMy88wzMzvPbHwLqEgw6AbzVGzokkgNk_6Ug_mdn8OD8anybcT0r3zWo5oJrr5NgznpzklzwfQynzVJqisAVIhp8L2M6wu6Qnm3Jgs8hCWFsfJB6XQRvefxIH5yWCLpkr2gNYOxe7BBPHYoms9QVZgxxGmuNEqfspdrMaYkZXzhUUuxUUX1NtJCoMLASIo8q9fUdoEK5YspvEzXhjuuNOHU68FY70nO6XKC6ywlGl3onKXY1PiqoQTAHuFiJ0QuUBf5XdQsT1OFW6ycR9U93EcOia9minyB8NCbwMjwbsj20MbjXWVyeClIYu0n2LvR82HMqZihtTjvn8fYeTnqjZCr5oZJTKynQDkRDRJTDRWcYykNmBk8Igdu1WVBHygMms2fsItyliYKCE8gwSwVW7WrCepUYmXcY66W5pkVpl2lKF9dJaxfcno4Ix5PXQWqrp2P9FTllOKF2YYoyQhlelvlbX8eEgs-Z4tc2twnijmuY_eEC2ZVrUATtTIhnlBOlHMaYl0myGjFiabsz2niWCOF2w59P3FXtSbMjMjULXJJqxP2u2tUrRcPtoFGrbZGkbzhp2qUiZxoxnp7OG6aEqX6OAdCKXJtbyUwe5R2z4bDQXQZhUpLsULzGsWtdr96NXpM9LLbzl5DKlIhu2etVuv2iDGZeWxRKxrEV46tc3XVu-58ha3aBJ8y6g-GhwJb_c5N7-IrlFSss1xjrec4jmJHGQ0vr1vxVyiFXqKsEQ5_xJ3DIV7dDC9u_kPoUZYjDsuJhyc6Do-04TXkF1Zf_9Df6bDaWVd3Lc4TVmhkFXqi8sZx62mrwDpxqXy2kCRbwjQorq7SCpCY26woBibR3uZdEPDhxQC1nYfPthpOdxcOmwknOwmHNUSeBGGwRrkmLDHf7TdrngbmaNbmE9I1jwmRK9vGu8HlWWJ4BgnTQgbmrjYfkTAgtuotp0FXyxz3oD4j5hzWeyMWMb_LPwfFf4QwyAj_K8S6Inr_B_JOo3U)
 
-```mermaid
-flowchart TD
-    %% Nodes
-    GitHubActions("fa:fa-github-alt GitHub Actions")
-    DockerImages("fa:fa-docker Docker Images")
-    AWSECR("fa:fa-archive AWS ECR")
-    AWECS("fa:fa-cubes AWS ECS Cluster")
-    AWSAutoScaling("fa:fa-arrows-alt AWS Auto Scaling Group")
-    AWSEC2("fa:fa-server AWS EC2 Instances")
-    EC2LaunchTemplate("fa:fa-file-text Launch Template")
-    TargetGroup("fa:fa-bullseye Target Group")
-    NLB("fa:fa-exchange NAT Gateway")
-    APIGateway("fa:fa-road API Gateway")
-    IGW("fa:fa-globe IGW")
-    VPC("fa:fa-network-wired VPC")
-
-    %% Edge connections between nodes    
-    GitHubActions --> |Builds and deploys| DockerImages
-    DockerImages --> |Pushes images| AWSECR
-    AWSECR --> |Deploys images| AWECS
-    AWECS --> AWSAutoScaling
-    AWSAutoScaling --> |Provides capacity| AWSEC2
-    AWSAutoScaling --> |Configures| EC2LaunchTemplate
-    AWECS --> |Registers tasks| TargetGroup
-    TargetGroup --> |Registers targets| NLB
-    NLB --> APIGateway
-    APIGateway --> IGW
-    VPC --> |Contains resources| AWSAutoScaling & AWSEC2 & AWECS & TargetGroup & NLB & APIGateway & IGW
-
-    %% Styling
-    classDef accentNode fill:#FFEB3B,stroke:#FBC02D,stroke-width:2px,color:#000;
-    classDef dbNode fill:#B0BEC5,stroke:#455A64,stroke-width:2px,color:#000;
-    classDef networkNode fill:#BBDEFB,stroke:#0D47A1,stroke-width:2px,color:#000;
-    classDef computeNode fill:#FFCCBC,stroke:#BF360C,stroke-width:2px,color:#000;
-    classDef otherNode fill:#FFF9C4,stroke:#F57F17,stroke-width:2px,color:#000;
-
-    class AWECS,AWSEC2,EC2LaunchTemplate,AWSAutoScaling computeNode;
-    class GitHubActions,DockerImages,AWSECR otherNode;
-    class TargetGroup,NLB,APIGateway networkNode;
-
-    %% Grouping
-    subgraph "VPC"
-      direction TB
-      AWECS
-      AWSAutoScaling
-      AWSEC2
-      EC2LaunchTemplate
-      TargetGroup
-      NLB
-      APIGateway
-      IGW
-    end
-```
 
 ## Network Architecture Overview and Setup
 
