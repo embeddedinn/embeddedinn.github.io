@@ -24,7 +24,7 @@ div {
 {% include base_path %}
 
 update from 25-May-2025:
-A tool to visualize the JTAG statemachine interactions is available at https://vppillai.github.io/jtag-sim/{:target="_blank"}.
+A tool to visualize the JTAG statemachine interactions is available at [https://vppillai.github.io/jtag-sim/](https://vppillai.github.io/jtag-sim/){:target="_blank"}.
 {: .notice--info}
 
 ## Introduction
