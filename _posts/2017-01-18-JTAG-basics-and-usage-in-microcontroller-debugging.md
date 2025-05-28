@@ -23,6 +23,10 @@ div {
 
 {% include base_path %}
 
+update from 25-May-2025:
+A tool to visualize the JTAG statemachine interactions is available at https://vppillai.github.io/jtag-sim/{:target="_blank"}.
+{: .notice--info}
+
 ## Introduction
 
 JTAG stands for **J**oint **T**est **A**ccess **G**roup and is an association that was formed initially to derive a specification to test connectivity between chips in a PCB. Later this spec was formalized into an IEEE standard (1149.1), entitled "Standard Test Access Port and Boundary-Scan Architecture". The latest update to this spec was done in 2013.
