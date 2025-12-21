@@ -7,10 +7,9 @@ categories:
 - Articles
 - Tutorial
 tags:
-- RISCV
-- Interrupts
-- QEMU
-- 
+- AWS
+- Load Balancer
+- Auto Scaling Groups
 
 
 header:
@@ -53,13 +52,11 @@ The complete setup as seen in AWS application composer would look like this:
     caption="AWS Application Composer view of the setup"
 %}
 
-
 ## Architecture
 
 The Diagram below shows an approximation of the architecture that we will be setting up. Details will be discussed in the following sections.
 
 [![](https://mermaid.ink/img/pako:eNqVVm1r4kAQ_itDSuUOIlhrW87CgYkvV-iVUuUKh1_WzaiLcTfsbmql9r_fbhLXjbYc9VMy88wzMzvPbHwLqEgw6AbzVGzokkgNk_6Ug_mdn8OD8anybcT0r3zWo5oJrr5NgznpzklzwfQynzVJqisAVIhp8L2M6wu6Qnm3Jgs8hCWFsfJB6XQRvefxIH5yWCLpkr2gNYOxe7BBPHYoms9QVZgxxGmuNEqfspdrMaYkZXzhUUuxUUX1NtJCoMLASIo8q9fUdoEK5YspvEzXhjuuNOHU68FY70nO6XKC6ywlGl3onKXY1PiqoQTAHuFiJ0QuUBf5XdQsT1OFW6ycR9U93EcOia9minyB8NCbwMjwbsj20MbjXWVyeClIYu0n2LvR82HMqZihtTjvn8fYeTnqjZCr5oZJTKynQDkRDRJTDRWcYykNmBk8Igdu1WVBHygMms2fsItyliYKCE8gwSwVW7WrCepUYmXcY66W5pkVpl2lKF9dJaxfcno4Ix5PXQWqrp2P9FTllOKF2YYoyQhlelvlbX8eEgs-Z4tc2twnijmuY_eEC2ZVrUATtTIhnlBOlHMaYl0myGjFiabsz2niWCOF2w59P3FXtSbMjMjULXJJqxP2u2tUrRcPtoFGrbZGkbzhp2qUiZxoxnp7OG6aEqX6OAdCKXJtbyUwe5R2z4bDQXQZhUpLsULzGsWtdr96NXpM9LLbzl5DKlIhu2etVuv2iDGZeWxRKxrEV46tc3XVu-58ha3aBJ8y6g-GhwJb_c5N7-IrlFSss1xjrec4jmJHGQ0vr1vxVyiFXqKsEQ5_xJ3DIV7dDC9u_kPoUZYjDsuJhyc6Do-04TXkF1Zf_9Df6bDaWVd3Lc4TVmhkFXqi8sZx62mrwDpxqXy2kCRbwjQorq7SCpCY26woBibR3uZdEPDhxQC1nYfPthpOdxcOmwknOwmHNUSeBGGwRrkmLDHf7TdrngbmaNbmE9I1jwmRK9vGu8HlWWJ4BgnTQgbmrjYfkTAgtuotp0FXyxz3oD4j5hzWeyMWMb_LPwfFf4QwyAj_K8S6Inr_B_JOo3U?type=png)](https://mermaid.live/edit#pako:eNqVVm1r4kAQ_itDSuUOIlhrW87CgYkvV-iVUuUKh1_WzaiLcTfsbmql9r_fbhLXjbYc9VMy88wzMzvPbHwLqEgw6AbzVGzokkgNk_6Ug_mdn8OD8anybcT0r3zWo5oJrr5NgznpzklzwfQynzVJqisAVIhp8L2M6wu6Qnm3Jgs8hCWFsfJB6XQRvefxIH5yWCLpkr2gNYOxe7BBPHYoms9QVZgxxGmuNEqfspdrMaYkZXzhUUuxUUX1NtJCoMLASIo8q9fUdoEK5YspvEzXhjuuNOHU68FY70nO6XKC6ywlGl3onKXY1PiqoQTAHuFiJ0QuUBf5XdQsT1OFW6ycR9U93EcOia9minyB8NCbwMjwbsj20MbjXWVyeClIYu0n2LvR82HMqZihtTjvn8fYeTnqjZCr5oZJTKynQDkRDRJTDRWcYykNmBk8Igdu1WVBHygMms2fsItyliYKCE8gwSwVW7WrCepUYmXcY66W5pkVpl2lKF9dJaxfcno4Ix5PXQWqrp2P9FTllOKF2YYoyQhlelvlbX8eEgs-Z4tc2twnijmuY_eEC2ZVrUATtTIhnlBOlHMaYl0myGjFiabsz2niWCOF2w59P3FXtSbMjMjULXJJqxP2u2tUrRcPtoFGrbZGkbzhp2qUiZxoxnp7OG6aEqX6OAdCKXJtbyUwe5R2z4bDQXQZhUpLsULzGsWtdr96NXpM9LLbzl5DKlIhu2etVuv2iDGZeWxRKxrEV46tc3XVu-58ha3aBJ8y6g-GhwJb_c5N7-IrlFSss1xjrec4jmJHGQ0vr1vxVyiFXqKsEQ5_xJ3DIV7dDC9u_kPoUZYjDsuJhyc6Do-04TXkF1Zf_9Df6bDaWVd3Lc4TVmhkFXqi8sZx62mrwDpxqXy2kCRbwjQorq7SCpCY26woBibR3uZdEPDhxQC1nYfPthpOdxcOmwknOwmHNUSeBGGwRrkmLDHf7TdrngbmaNbmE9I1jwmRK9vGu8HlWWJ4BgnTQgbmrjYfkTAgtuotp0FXyxz3oD4j5hzWeyMWMb_LPwfFf4QwyAj_K8S6Inr_B_JOo3U)
-
 
 ## Network Architecture Overview and Setup
 
@@ -82,7 +79,7 @@ The Internet Gateway allows instances in the public subnet to communicate with t
 
 The NAT Gateway is deployed in the public subnet to provide outbound internet access for resources in the private subnet. Instances in the private subnet cannot be accessed directly from the internet, but they can initiate outbound connections (e.g., to download software updates or access external APIs) through the NAT Gateway. This ensures that backend resources remain secure while still having access to necessary external services.
 
-###  Route Tables
+### Route Tables
 
 - The `Public Route Table` is associated with the public subnet. It contains a route that directs all outbound traffic (0.0.0.0/0) to the Internet Gateway, allowing instances in the public subnet (like the NAT Gateway and API Gateway) to communicate with the internet.
 
@@ -92,7 +89,7 @@ The NAT Gateway is deployed in the public subnet to provide outbound internet ac
 
 The NLB is placed in the private subnet and configured as an internal load balancer (Scheme: "internal"). This means it is not exposed to the internet and can only be accessed from within the VPC or through other AWS services like the API Gateway. The internal NLB distributes incoming traffic across multiple backend resources (e.g., ECS tasks, EC2 instances) running in the private subnet. By keeping the NLB internal, the architecture adds a layer of security, ensuring that only authorized traffic (routed through the API Gateway) can reach the backend services.
 
-###  API Gateway
+### API Gateway
 
 The API Gateway is the sole internet-facing component in this architecture. It is deployed in the public subnet and acts as a reverse proxy, handling all incoming HTTP requests from the internet. The API Gateway is configured to forward these requests to the internal NLB, which then routes the traffic to the appropriate backend services. This setup ensures that the backend services are not directly exposed to the internet, enhancing security and providing a single entry point for all external traffic.
 
@@ -112,7 +109,6 @@ The API Gateway is the sole internet-facing component in this architecture. It i
 - **Load Balancing** : The NLB receives the traffic from the API Gateway and distributes it across multiple instances or containers running in the private subnet. This ensures that the application can handle varying loads by automatically scaling the number of backend resources.
 - **Outbound Traffic** : Instances in the private subnet can initiate outbound connections to the internet via the NAT Gateway. This allows backend services to access external resources (such as downloading updates) without exposing themselves to inbound internet traffic.
 
-
 The CloudFormation template below can be used to set up the network described here. Once created , you can see it in the console like this:
 
 {% include image.html
@@ -120,7 +116,6 @@ The CloudFormation template below can be used to set up the network described he
     width="800"
     caption="Generated Netwpork in AWS Console"
 %}
-
 
 ```yaml
 AWSTemplateFormatVersion: "2010-09-09"
@@ -145,7 +140,7 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "InternetGateway"
-  
+
   # Attach Internet Gateway to VPC
   AttachGateway:
     Type: "AWS::EC2::VPCGatewayAttachment"
@@ -184,7 +179,7 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "PublicRouteTable"
-  
+
   # Route Table for Public Subnet
   PublicRoute:
     Type: "AWS::EC2::Route"
@@ -351,7 +346,7 @@ Resources:
 
 ## Application Deployment - Local Setup
 
-Now that we have setup the network, we can deploy the application. But before that , we must be able to test it locally. 
+Now that we have setup the network, we can deploy the application. But before that , we must be able to test it locally.
 
 The application is a simple web app that consists of a HTML frontend and a python backend. The frontend is a simple HTML page that calls a backend API to show the API status. The application is containerized using Docker. The frontend will be served on port `80`, and the backend will be served on port `8000`.
 
@@ -451,7 +446,7 @@ def run_frontend():
 if __name__ == "__main__":
     backend_thread = threading.Thread(target=run_backend)
     frontend_thread = threading.Thread(target=run_frontend)
-    
+
     backend_thread.start()
     frontend_thread.start()
 
@@ -493,16 +488,15 @@ EXPOSE 8000
 the docker container can be built and run using the following commands:
 
 ```bash
-docker build . -t app 
+docker build . -t app
 docker run -p 80:80 -p 8000:8000 app:latest
 ```
-
 
 ## AWS Deployment
 
 Now that we have a working version of the application, we can deploy it to AWS. We will use AWS ECS to deploy the application in a scalable and fault-tolerant manner. The application will be deployed as a service in an ECS cluster. The docker image will be built and pushed to AWS ECR, and the ECS service will be configured to use this image.
 
-Add the following statements to the cloudformation template to setup a private ECR repo to host the docker images. 
+Add the following statements to the cloudformation template to setup a private ECR repo to host the docker images.
 
 ```yaml
   # ECR Repository
@@ -535,9 +529,9 @@ The launch template will pull in Amazon Linux image optimized for ECS. This imag
 
 Using the launch template, we will define the Auto Scaling Group. We will set the max capacity to 10 instances, with a desired capacity of 0. This will ensure that no instances are running initially, and the Auto Scaling Group will scale up based on the demand from ECS tasks.
 
-The autoscaling group will be then wrapped into a capacity provider. The capacity provider will be used by the ECS service to manage the capacity of the ECS cluster. 
+The autoscaling group will be then wrapped into a capacity provider. The capacity provider will be used by the ECS service to manage the capacity of the ECS cluster.
 
-We will omit attaching a key pair to the instances as we will be using the ECS service to manage the instances. 
+We will omit attaching a key pair to the instances as we will be using the ECS service to manage the instances.
 
 The following CloudFormation template can be used to setup these items:
 
@@ -569,7 +563,7 @@ The following CloudFormation template can be used to setup these items:
       InstanceProfileName: "ecsInstanceProfile"
       Roles:
         - !Ref ECSInstanceRole
-  
+
   # Launch Template for ECS Instance
   ECSLaunchTemplate:
     Type: "AWS::EC2::LaunchTemplate"
@@ -596,7 +590,7 @@ The following CloudFormation template can be used to setup these items:
         UserData: !Base64 |
           #!/bin/bash
           echo ECS_CLUSTER=appCluster >> /etc/ecs/ecs.config
-  
+
   # ECS Auto Scaling Group
   ECSAutoScalingGroup:
     Type: "AWS::AutoScaling::AutoScalingGroup"
@@ -749,7 +743,7 @@ Note that the cluster name here should match the userdata in the launch template
           Essential: true
           Memory: 512
       Family: "appTaskDefinition"
-  
+
   # ECS Service
   ECSService:
     Type: "AWS::ECS::Service"
@@ -779,7 +773,7 @@ Note that the cluster name here should match the userdata in the launch template
           Value: "appService"
         - Key: "LoadBalancer"
           Value: !Ref LoadBalancer
-```    
+```
 
 The tags includes a reference to the load balancer to ensure that the cloudfomration stack waits for the load balancer to be created before creating the service.
 
@@ -791,8 +785,7 @@ At the end of this process, we can see the load balancer in the console like thi
     caption="Load Balancer in AWS Console"
 %}
 
-
-Two tasks have been brought up in two different EC2 instances that we configured using the template. The target group performs health checks on the tasks and routes traffic to them based on the health checks. 
+Two tasks have been brought up in two different EC2 instances that we configured using the template. The target group performs health checks on the tasks and routes traffic to them based on the health checks.
 
 ## API Gateway Setup
 
@@ -930,11 +923,10 @@ You can see these resources and methods in the console like this:
 
 The deployment API can be seen under the stages section of the API Gateway. It would look something like this: `https://3al3x2812j.execute-api.us-east-2.amazonaws.com/prod`
 
-You can invoke the frontend HTML page with the following URL: `https://3al3x2812j.execute-api.us-east-2.amazonaws.com/prod/frontend`. 
+You can invoke the frontend HTML page with the following URL: `https://3al3x2812j.execute-api.us-east-2.amazonaws.com/prod/frontend`.
 The backend `STATUS API` can be invoked with the following URL: `https://3al3x2812j.execute-api.us-east-2.amazonaws.com/prod/backend/status`
 
 **Note**: We have not updated the frontend HTML page to use the API resource paths. This is something that can be done in the deployment pipeline using GitHub actions in the following sections.
-
 
 ## Scaling and Monitoring
 
@@ -942,7 +934,7 @@ We did not setup CPU load based scaling for the ECS tasks. This can be done by s
 
 The ECS tasks can be monitored using CloudWatch logs and metrics. The logs can be viewed in the CloudWatch console, and the metrics can be used to set up alarms and dashboards to monitor the performance of the ECS tasks.
 
-Demand based scaling is a feature of the ECS service that can be used to automatically scale the ECS tasks based on the demand from the backend services. The ECS service will monitor the demand and scale up or down the tasks based on the demand. We are not going into the details of this setup for the time being. 
+Demand based scaling is a feature of the ECS service that can be used to automatically scale the ECS tasks based on the demand from the backend services. The ECS service will monitor the demand and scale up or down the tasks based on the demand. We are not going into the details of this setup for the time being.
 
 To manually add capacity to the infrastructure, you can update the desired count of the ECS service. This will bring up more tasks in the ECS cluster to handle the load. In the template we setup, the infrastructure is limited to scale up to a maximum of 10 instances. This can be increased based on the requirements.
 
@@ -956,19 +948,17 @@ I am setting up the repository at `https://github.com/embeddedinn/aws_production
 
 Follow the instructions for [Configuring OpenID Connect in Amazon Web Services](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to setup the authentication for the GitHub actions.
 
-
 The openID connect setup can be done with the following in the cloudformation template:
 
 ```yml
 # OpenID Connect for GitHub
 AppGithubOpenIDConnect:
   Type: "AWS::IAM::OIDCProvider"
-  Properties: 
+  Properties:
     Url: "https://token.actions.githubusercontent.com"
-    ClientIdList: 
+    ClientIdList:
       - sts.amazonaws.com # since we will be using the official GitHub actions
 ```
-
 
 A role for this can be created with the following entry in the cloudformation template:
 
@@ -976,24 +966,24 @@ A role for this can be created with the following entry in the cloudformation te
   # IAM Role for GitHub
   AppGithubRole:
     Type: "AWS::IAM::Role"
-    Properties: 
+    Properties:
       RoleName: "appGithubRole"
-      AssumeRolePolicyDocument: 
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement: 
+        Statement:
           - Effect: "Allow"
-            Principal: 
+            Principal:
               Federated: !GetAtt AppGithubOpenIDConnect.Arn
-            Action: 
+            Action:
               - "sts:AssumeRoleWithWebIdentity"
-            Condition: 
-              StringEquals: 
+            Condition:
+              StringEquals:
                 # allow only a soecific GitHub account, repo and branch
-                token.actions.githubusercontent.com:sub: "repo:embeddedinn/aws_production_lb:ref:refs/heads/main" 
+                token.actions.githubusercontent.com:sub: "repo:embeddedinn/aws_production_lb:ref:refs/heads/main"
                 token.actions.githubusercontent.com:aud: "sts.amazonaws.com"
       Policies:
         - PolicyName: "AppGithubPolicy"
-          PolicyDocument: 
+          PolicyDocument:
             Version: "2012-10-17"
             Statement:
               - Sid: "ECSPermissions"
@@ -1005,7 +995,7 @@ A role for this can be created with the following entry in the cloudformation te
                   - "ecs:DescribeTaskSets"
                   - "ecs:UpdateService"
                   - "ecs:CreateService"
-                  - "ecs:RunTask"                 
+                  - "ecs:RunTask"
                   - "ecs:StopTask"
                   - "ecs:DescribeServices"
                   - "ecs:DescribeTasks"
@@ -1024,7 +1014,7 @@ A role for this can be created with the following entry in the cloudformation te
                   - !Sub "arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:task-set/appCluster/*"
                   - !Sub "arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service/appCluster/*"
                   - !Sub "arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:container-instance/appCluster/*"
-                  
+
               - Sid: "ECRPermissions"
                 Effect: "Allow"
                 Action:
@@ -1062,9 +1052,9 @@ A role for this can be created with the following entry in the cloudformation te
 
               - Sid: "VisualEditor3"
                 Effect: "Allow"
-                Action: 
+                Action:
                   - "iam:PassRole"
-                Resource: 
+                Resource:
                   - !Sub "arn:aws:iam::${AWS::AccountId}:role/ecsTaskExecutionRole"
                   - !Sub "arn:aws:iam::${AWS::AccountId}:role/ecsServiceRole"
                   - !Sub "arn:aws:iam::${AWS::AccountId}:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
@@ -1098,7 +1088,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::338186951935:role/appGithubRole
           aws-region: us-east-2
-        
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
@@ -1133,10 +1123,10 @@ jobs:
           service: appService
           cluster: appCluster
           wait-for-service-stability: true
-          
+
 ```
 
-Now, once we update the app and commit the changes to Github, we can trigger the action to build and deploy the app to the ECS cluster. Existing tasks will be replaced with the new tasks with the updated image. Since we chose a t2.micro instance that might not be able to host two tasks, we set the `MinimumHealthyPercent` of the service to 50. This will ensure that at least one task is running at all times, and lets the deployment process take down one task at a time to replace it. 
+Now, once we update the app and commit the changes to Github, we can trigger the action to build and deploy the app to the ECS cluster. Existing tasks will be replaced with the new tasks with the updated image. Since we chose a t2.micro instance that might not be able to host two tasks, we set the `MinimumHealthyPercent` of the service to 50. This will ensure that at least one task is running at all times, and lets the deployment process take down one task at a time to replace it.
 
 ## Tracking resource outputs
 
@@ -1172,7 +1162,7 @@ Outputs:
   AppGithubRoleARN:
     Description: "ARN of the IAM Role for GitHub"
     Value: !GetAtt AppGithubRole.Arn
-  
+
   TaskDefinition:
     Description: "ARN of the ECS Task Definition Name"
     Value: !Ref ECSTaskDefinition
