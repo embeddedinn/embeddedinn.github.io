@@ -2,7 +2,7 @@
 title: Building a RISC-V processor with Chipyard
 date: 2025-12-20 21:49:06.000000000 -07:00
 classes: wide
-published: false
+published: true
 categories:
 - Articles
 - Tutorial
@@ -353,7 +353,10 @@ Expected output:
   io.status.isa := reg_misa
 ```
 
-### The debug Story
+### The debug Journey
+
+It might be better to skip this section if you are not interested in the nitty-gritty details of the debugging process. This section also jumps ahead and uses some commands that are explained later in the post. Maybe you can come back to this section after reading the rest of the post.
+{: .notice--warning}
 
 While I Was trying to set up GDB and OpenOCD to debug my RISC-V core, I ran into an issue that took me a while to figure out. It started manifesting as TileLink monitor assertion failures during memory write operations initiated by OpenOCD and when unblocked by moving to `FastRTLSimRocketConfig` started showing the cores not halting when requested by openocd/gdb.
 
@@ -368,11 +371,46 @@ Error: [riscv.cpu] Unable to halt. dmcontrol=0x80000001, dmstatus=0x00030ca2
 Error: [riscv.cpu] Fatal: Hart 0 failed to halt during examine
 ```
 
-Dumping the waveforms during simulation
+From my previous experience with RocketCore, I had some idea of where to look for this. Like with all other hardware simulation debug, dumping the waveforms during simulation to look at the `io_status_debug` and related signals in the CSR module helped me understand what was going on.
 
-## Building the verilator simulation
+#### Capturing VCD Waveforms
 
-Once hte patch is applied, we can proceed to build the verilator simulation using the `FastRTLSimRocketConfig` configuration using the following commands:
+To capture waveforms, I rebuilt the simulator with debug symbols and VCD support:
+
+```bash
+cd sims/verilator
+make CONFIG=FastRTLSimRocketConfig debug
+```
+
+Then ran it with VCD dumping enabled:
+
+```bash
+./simulator-chipyard.harness-FastRTLSimRocketConfig-debug \
+    main.elf \
+    +jtag_rbb_enable=1 \
+    +vcdfile=debug_halt.vcd \
+    +max-cycles=300000
+```
+
+The `+max-cycles` flag is important because WFI would cause an infinite loop otherwise.
+
+#### Analyzing the Waveforms
+
+Opening the VCD in GTKWave, I focused on these signals:
+
+- `trapToDebug` - When debug exception is taken
+- `reg_debug` - The registered debug status
+- `io_status_debug` - What the TLB sees
+- `io_ptw_status_debug` - TLB's specific view
+- `core_PC` - Program counter
+
+When PC jumped to 0x800, `trapToDebug` went HIGH immediately, but `io_status_debug` was still LOW because it was driven by `reg_debug` which updates one cycle later.
+
+The TLB checks debug status **in the same cycle** as the PC change. Seeing `io_status_debug = 0`, it denied access to the debug ROM region at 0x800, causing an instruction access fault.
+
+#### Building the verilator simulation
+
+Once the patch is applied, we can proceed to build the verilator simulation using the `FastRTLSimRocketConfig` configuration using the following commands:
 
 ```bash
 cd sims/verilator
@@ -380,6 +418,88 @@ make CONFIG=FastRTLSimRocketConfig -j$(nproc)
 ```
 
 This generates the verilator simulation binary named `simulator-chipyard.harness-FastRTLSimRocketConfig` in the`sims/verilator/` directory.
+
+#### The Fix
+
+Looking at `generators/rocket-chip/src/main/scala/rocket/CSR.scala` around line 1004:
+
+```scala
+// Original buggy code:
+io.status.debug := reg_debug  // ← Uses registered signal!
+
+// The fix:
+io.status.debug := trapToDebug  // ← Use combinational signal!
+```
+
+The signal `trapToDebug` is already computed and goes HIGH immediately when the debug exception is taken. By routing it directly to `io.status.debug`, the TLB sees the correct debug status in the same cycle.
+
+{% include image.html
+    img="images/posts/chipyard_rocketcore/wave_debug_postfix.png"
+    width="800"
+    caption="After the fix `io.status.debug` goes HIGH in the same cycle as `trapToDebug`, allowing TLB to grant access to debug ROM."
+%}
+
+#### WFI Limitation
+
+After applying the CSR fix and rebuilding, I started running ingo another issue where the OpenOCD still could not halt the core. But the verbose logging was showing slightly different behavior now.
+
+The error was the same:
+
+```bash
+Error: [riscv.cpu] Unable to halt
+```
+
+In the simulation, when verbose logging is enabled, I saw the core was stuck at a specific PC:
+
+```bash
+C0: 54 [1] pc=[0000000000010034] inst=[10500073] DASM(10500073)
+```
+
+That instruction is WFI in the bootrom.
+
+#### BootROM waiting for MSIP interrupt in WFI loop
+
+Taking a closer look at the bootrom code, I realized the core was stuck in the WFI loop waiting for an MSIP interrupt to wake it up. This works well when using TSI to load programs, as TSI triggers the MSIP after loading the program. But with JTAG debug, there is no automatic MSIP trigger.
+
+When we run with a normal program with
+
+```bash
+  ./simulator-chipyard.harness-FastRTLSimRocketConfig main.elf +jtag_rbb_enable=1
+```
+
+The sequence is:
+
+  1. Core boots, enters bootrom at 0x10000
+  2. Bootrom sets up trap handler
+  3. Bootrom enters WFI loop waiting for MSIP from HTIF/TSI
+  4. HTIF/TSI would normally:
+    - Load your program to 0x80000000
+    - Write boot address register
+    - Send MSIP interrupt to wake core
+  5. Core wakes from WFI, takes MSIP interrupt, handler jumps to 0x80000000
+
+But with JTAG debug:
+
+  1. Core boots, enters bootrom
+  2. Bootrom enters WFI waiting for MSIP
+  3. User tries to attach debugger
+  4. Debug interrupt arrives
+  5. PROBLEM: HTIF never sent MSIP because you're trying to use JTAG instead!
+  6. Bootrom is waiting for MSIP specifically
+  7. Even though debug interrupt might wake from WFI temporarily, the bootrom code just... stays in its WFI loop forever
+
+The solution is to pass `BINARY=none` when runnning the simulation and manually load the program via GDB after attaching. This way, the test harness TSI immediately triggers the MSIP after reset, allowing the core to exit WFI and be ready for debugging.
+
+## Building the Verilator Simulation
+
+> **Important:** Before building, make sure you've applied the CSR fix described in the previous section. The fix must be in place before you build, as it's compiled into the simulator binary.
+
+Once the patch is applied, we can proceed to build the verilator simulation using the `FastRTLSimRocketConfig` configuration using the following commands:
+
+```bash
+cd sims/verilator
+make CONFIG=FastRTLSimRocketConfig -j$(nproc)
+```
 
 ## Building Source Code Test Programs
 
@@ -439,25 +559,31 @@ We intentionally skipped using uart or printing a message to keep things simple.
 To enable debugging with OpenOCD and GDB, we need to configure OpenOCD to connect to the verilator simulation's JTAG interface. We will create a configuration file named `jtag_sim.cfg` with the following content adjested for our source code location:
 
 ```cfg
-adapter_khz 10000
+# Adapter configuration
+adapter speed 10000
+adapter driver remote_bitbang
+remote_bitbang host localhost
+# !!! UPDATE THIS PORT FROM SIMULATOR OUTPUT !!!
+remote_bitbang port 12345
 
-interface remote_bitbang
-remote_bitbang_host localhost
-# !!! UPDATE THIS PORT MANUALLY EACH TIME !!!
-remote_bitbang_port 99999
-
+# RISC-V target configuration
 set _CHIPNAME riscv
 jtag newtap $_CHIPNAME cpu -irlen 5
 
 set _TARGETNAME $_CHIPNAME.cpu
 target create $_TARGETNAME riscv -chain-position $_TARGETNAME
 
-# --- ROBUST DEFAULTS ---
-# Force hardware breakpoints (faster/cleaner than writing to RAM)
-gdb_breakpoint_override hard
+# With BINARY=none, CPU can halt properly during init
+# No need to defer examination
+# $_TARGETNAME configure -defer-examine
 
-# Use abstract access (reliable CPU-based memory access)
-riscv set_mem_access abstract
+# --- Debug Configuration ---
+# Force hardware breakpoints (no memory writes needed)
+gdb breakpoint_override hard
+
+# Use sysbus for memory access (faster, supports all memory regions)
+# System bus access is enabled via WithDebugSBA in Chipyard config
+riscv set_mem_access sysbus
 
 # Disable virtual memory lookup (prevents random page table walks)
 riscv set_enable_virt2phys off
@@ -465,11 +591,74 @@ riscv set_enable_virt2phys off
 # 5 second timeout for simulator latency
 riscv set_command_timeout_sec 5
 
+# Note: set_prefer_sba is not available in OpenOCD 0.12.0
+# System bus will be used automatically via set_mem_access sysbus
+
 init
-# Don't auto-halt - let GDB control this
+
+# With BINARY=none, halt should work during init
+halt
+```
+
+> **Note:** The `riscv set_mem_access sysbus` setting is critical. Without it, GDB's `load` command will fail with "Failed to write memory" errors. Chipyard's `AbstractConfig` includes `WithDebugSBA` which enables system bus access in hardware.
+
+We will also create a `gdb_init.gdb` file to automate GDB commands:
+
+```gdb
+# GDB initialization script for Chipyard debugging
+# Usage: riscv64-unknown-elf-gdb ~/riscv-test/main.elf -x ~/riscv-test/gdb_init.gdb
+
+echo \n=== Chipyard RISC-V GDB Setup ===\n\n
+
+# Increase timeout for slow simulator
+set remotetimeout 300
+
+# Connect using extended-remote (recommended by OpenOCD)
+target extended-remote localhost:3333
+
+echo Resetting and halting CPU...\n
+monitor reset halt
+
+echo Loading program...\n
+load
+
+echo \nProgram loaded. Entry point at 0x80000026\n
+
+# Skip C runtime startup  and jump directly to main
+echo Skipping C runtime startup, jumping directly to main...\n
+
+# Set PC to main
+set $pc = 0x800000b6
+
+# Set up stack
+set $sp = 0x80010000
+set $fp = 0x80010000
+
+# Set arguments to 0
+set $a0 = 0
+set $a1 = 0
+
+echo \nNow at main():\n
+info registers pc
+x/5i $pc
+
+echo \nSetting breakpoint in main loop...\n
+hbreak *0x800000c2
+
+echo \n=== Ready to debug! ===\n
+echo Type 'continue' to run to breakpoint\n
+echo Type 'stepi' to step one instruction\n
+echo Type 'next' to step one source line\n
+echo Type 'print counter' to examine variables\n\n
 ```
 
 We can now run and attach the debugger. This requires a three terminal setup:
+
+{% include image.html
+    img="images/posts/chipyard_rocketcore/three_terminal_setup.png"
+    width="800"
+    caption="Three terminal setup: 1) Verilator sim, 2) OpenOCD, 3) GDB"
+%}
 
 1. Terminal 1: Run the Verilator simulation
 
@@ -479,8 +668,22 @@ We can now run and attach the debugger. This requires a three terminal setup:
 
     cd sims/verilator
     ./simulator-chipyard.harness-FastRTLSimRocketConfig \
-      ~/riscv-test/main.elf +jtag_rbb_enable=1
+      none \
+      +verbose \
+      +jtag_rbb_enable=1
     ```
+
+   Expected output:
+
+   ```bash
+
+    [UART] UART0 is here (stdin/stdout).
+
+    This emulator compiled with JTAG Remote Bitbang client. To enable, use +jtag_rbb_enable=1.
+    Listening on port 37823
+    Attempting to accept client socket
+
+   ```
 
 2. Terminal 2: Run OpenOCD to connect to the simulation
 
@@ -501,118 +704,65 @@ We can now run and attach the debugger. This requires a three terminal setup:
     openocd -f jtag_sim.cfg
    ```
 
+   Expected output:
+
+   ```bash
+    Open On-Chip Debugger 0.12.0+dev-04007-g3bed4c801 (2025-12-20-15:48)
+    Licensed under GNU GPL v2
+    For bug reports, read
+            <http://openocd.org/doc/doxygen/bugs.html>
+    Info : auto-selecting first available session transport "jtag". To override use 'transport select <transport>'.
+    force hard breakpoints
+    Info : Initializing remote_bitbang driver
+    Info : Connecting to localhost:34321
+    Info : remote_bitbang driver initialized
+    Info : Note: The adapter "remote_bitbang" doesn't support configurable speed
+    Info : JTAG tap: riscv.cpu tap/device found: 0x00000001 (mfg: 0x000 (<invalid>), part: 0x0000, ver: 0x0)
+    Info : [riscv.cpu] datacount=8 progbufsize=16
+    Info : [riscv.cpu] Disabling abstract command reads from CSRs.
+    Info : [riscv.cpu] Disabling abstract command writes to CSRs.
+    Info : [riscv.cpu] Examined RISC-V core
+    Info : [riscv.cpu]  XLEN=64, misa=0x800000000094112d
+    [riscv.cpu] Target successfully examined.
+    Info : [riscv.cpu] Examination succeed
+    Info : [riscv.cpu] starting gdb server on 3333
+    Info : Listening on port 3333 for gdb connections
+    riscv.cpu halted due to debug-request.
+    Info : Listening on port 6666 for tcl connections
+    Info : Listening on port 4444 for telnet connections
+    ```
+
 3. Terminal 3: Run GDB to connect to OpenOCD and debug the core
 
----------------------------------------------------------------
+    ```bash
+      cd chipyard
+      source env.sh
 
-  📚 Complete Documentation Suite
+      cd ~/riscv-test
 
-  Main Documents (in /home/vpillai/chipyard/)
+      riscv64-unknown-elf-gdb main.elf -x gdb_init.gdb
+    ```
 
-  1. SETUP_GUIDE_GDB_OPENOCD.md 📘 (MOST IMPORTANT)
-    - Complete step-by-step setup from scratch
-    - Git clone → Install dependencies → Apply fix → Build → Test
-    - ~60-90 minutes total
-    - START HERE for fresh installations
-  2. QUICK_REFERENCE.md ⚡
-    - Cheat sheet for daily use
-    - Common commands, workflows
-    - Troubleshooting quick fixes
-    - USE DAILY after setup
-  3. CHANGES_SUMMARY.md 📋
-    - Lists ALL changes made
-    - Shows git diffs
-    - Explains what's required vs optional
-    - Clean vs investigation changes
-  4. README_DEBUG_FIX.md 📖
-    - Overview and index of all docs
-    - Quick start guide
-    - File structure reference
-  5. csr_debug_fix.patch 🔧
-    - Ready-to-apply patch file
-    - git apply this in rocket-chip submodule
+    Expected output:
 
-  Key Findings from Analysis
+    ```bash
+      GNU gdb (GDB) 14.1
 
-  Required Changes (Minimal!)
+      Copyright (C) 2023 Free Software Foundation, Inc.
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+      This is free software: you are free to change and redistribute it.
+      There is NO WARRANTY, to the extent permitted by law.
+      Type "show copying" and "show warranty" for details.
+      This GDB was configured as "--host=x86_64-pc-linux-gnu --target=riscv64-unknown-elf".
+      Type "show configuration" for configuration details.
+      For bug reporting instructions, please see:
+      <https://www.gnu.org/software/gdb/bugs/>.
+      Find the GDB manual and other documentation resources online at:
+          <http://www.gnu.org/software/gdb/documentation/>.
 
-  ✅ ONLY ONE FILE needs modification:
+      For help, type "help".
+      Type "apropos word" to search for commands related to "word"...
+      Reading symbols from main.elf...
 
-- generators/rocket-chip/src/main/scala/rocket/CSR.scala line 1005
-- Change: io.status.debug := reg_debug → io.status.debug := trapToDebug
-
-  ✅ Use FastRTLSimRocketConfig (no code changes needed)
-
-- Already has WithoutTLMonitors built-in
-- Prevents TileLink assertion failures
-
-  Changes You Found (But DON'T Need to Apply)
-
-  ❌ sims/common-sim-flags.mk - STOP_COND=0 change
-  ❌ sims/verilator/Makefile - --no-assert flags
-  ❌ generators/rocket-chip/src/main/scala/devices/debug/Debug.scala - Debug printfs
-
-  Why skip these? FastRTLSimRocketConfig already solves the TileLink monitor issue without these changes!
-
-  The Complete Setup Recipe
-
-  For someone starting fresh:
-
-# 1. Clone and checkout
-
-  git clone <https://github.com/ucb-bar/chipyard.git>
-  cd chipyard && git checkout 1.13.0 && cd chipyard
-
-# 2. Install conda-lock
-
-  conda install -n base -c conda-forge conda-lock
-
-# 3. Initialize and build tools
-
-  git submodule update --init --recursive generators sims software toolchains tools
-  ./build-setup.sh riscv-tools
-  ./scripts/build-openocd.sh
-
-# 4. Apply THE FIX (only change needed!)
-
-  cd generators/rocket-chip
-  git apply /path/to/csr_debug_fix.patch
-
-# 5. Build simulator
-
-  cd ../../sims/verilator
-  source ../../env.sh
-  make CONFIG=FastRTLSimRocketConfig -j$(nproc)
-
-# 6. Create test programs (see SETUP_GUIDE for details)
-
-# 7. Configure OpenOCD (see SETUP_GUIDE for jtag_sim.cfg)
-
-# 8. Run and debug
-
-  Documentation Hierarchy
-
-  For Setup:
-    └─ SETUP_GUIDE_GDB_OPENOCD.md  (Complete guide)
-        └─ CHANGES_SUMMARY.md      (What to apply)
-            └─ csr_debug_fix.patch (The actual fix)
-
-  For Daily Use:
-    └─ QUICK_REFERENCE.md          (Commands & workflows)
-
-  For Understanding:
-    └─ README_DEBUG_FIX.md         (Overview)
-        ├─ claude.md               (Investigation summary)
-        ├─ DEBUG_FIX_SUMMARY.md    (Technical deep-dive)
-        └─ DEBUG_FIX_VERIFICATION.md (Test results)
-
-  All documentation is in /home/vpillai/chipyard/ and includes:
-
-- Prerequisites and dependencies
-- Exact commands to run
-- Expected outputs at each step
-- Verification procedures
-- Troubleshooting guide
-- GDB command reference
-
-  The guide is ready for someone to follow step-by-step to get a working GDB+OpenOCD debug environment! 🎉
+      === Chipyard RISC-V GDB Setup ===
+    ```
