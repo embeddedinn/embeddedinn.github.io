@@ -633,7 +633,7 @@ We intentionally skipped using uart or printing a message to keep things simple.
 
 To enable debugging with OpenOCD and GDB, we need to configure OpenOCD to connect to the verilator simulation's JTAG interface. We will create a configuration file named `jtag_sim.cfg` with the following content adjested for our source code location:
 
-```cfg
+```
 # Adapter configuration
 adapter speed 10000
 adapter driver remote_bitbang
@@ -679,7 +679,7 @@ halt
 
 We will also create a `gdb_init.gdb` file to automate GDB commands:
 
-```gdb
+```
 # GDB initialization script for Chipyard debugging
 # Usage: riscv64-unknown-elf-gdb ~/riscv-test/main.elf -x ~/riscv-test/gdb_init.gdb
 
