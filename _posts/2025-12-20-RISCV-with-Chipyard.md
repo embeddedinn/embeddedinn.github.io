@@ -215,7 +215,7 @@ java -cp <classpath> chipyard.Generator \
 
 The overall module hirearchy of the generated design looks like this:
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[TestDriver.v<br/>Verilog Testbench] --> B[TestHarness<br/>Chisel Module]
     B --> C[ChipTop<br/>LazyModule]
@@ -237,7 +237,7 @@ graph TD
     style C fill:#e1f5ff
     style F fill:#fff4e1
     style H fill:#f0f0f0
-```
+</div>
 
 These are some pointers to the Code organisation resulting in this hireacrchy:
 
@@ -294,7 +294,7 @@ When we execute the sim, we will be passing an elf file to parse and load into t
 
 The boot sequence looks like this:
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant TSI as SimTSI/HTIF
     participant Core as Rocket Core
@@ -322,7 +322,7 @@ sequenceDiagram
     BootROM->>Core: mret (jump to program)
 
     Core->>DRAM: Execute program at 0x80000000
-```
+</div>
 
 The key steps are:
 
@@ -453,7 +453,7 @@ The TLB checks debug status **in the same cycle** as the PC change. Seeing `io_s
 
 Here's the timing issue visualized:
 
-```mermaid
+<div class="mermaid">
 %%{init: {'theme':'base'}}%%
 sequenceDiagram
     participant OpenOCD
@@ -481,7 +481,7 @@ sequenceDiagram
     TLB->>DebugROM: Access Granted
     DebugROM-->>Core: Debug code
     Note over Core: Halt SUCCESS ✓
-```
+</div>
 
 #### Building the verilator simulation
 
