@@ -60,7 +60,7 @@ The objective we are setting out to achieve is to:
 
 Yeah, as I stated earlier, I was naive. But hey, where is the fun in taking the easy route ?
 
-I thought I knew how RISC-V debug works but I was wrong. I had to learn a lot more about how RISC-V debug works in order to get everything working with Chipyard.
+I thought I knew how RISC-V debug works. But I had to learn a lot more about how RISC-V debug works in order to get everything working with Chipyard.
 
 When I first brought up a rocket core back in 2020 on an FPGA to boot linux, Chipyard was in its infancy and I used the rocket core repo directly.  You can find my old blog post about that [here](https://embeddedinn.com/articles/tutorial/booting-my-first-RISC-V-core-on-an-FPGA/). Since then, Chipyard has matured a lot and now provides a much better framework for building RISC-V processors and systems.
 
