@@ -221,6 +221,7 @@ kramdown:
 after_footer_scripts:
   - assets/js/clipboard.min.js  #https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
   - assets/js/clipboardrouge.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
 
 # Sass/SCSS
 sass:

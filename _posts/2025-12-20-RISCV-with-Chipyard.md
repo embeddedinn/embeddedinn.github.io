@@ -1,8 +1,12 @@
 ---
-title: Building a RISC-V processor with Chipyard
-date: 2025-12-20 21:49:06.000000000 -07:00
+title: "Building a RISC-V Processor with Chipyard: Debugging the Halt Failure"
+date: 2025-12-22 21:49:06.000000000 -07:00
 classes: wide
 published: true
+toc: true
+toc_label: "Contents"
+toc_icon: "list-ul"
+toc_sticky: true
 categories:
 - Articles
 - Tutorial
@@ -15,7 +19,7 @@ tags:
 header:
   teaser: "images/posts/aws_production_lb/aws_production_lb_header.png"
   og_image: "images/posts/aws_production_lb/aws_production_lb_header.png"
-excerpt: "Building a RISC-V processor using Chipyard involves setting up the Chipyard environment, configuring the desired RISC-V core, and generating the hardware design files. This guide walks you through the essential steps to get started with Chipyard and create your own RISC-V processor."
+excerpt: "I thought building a RISC-V processor with Chipyard would be straightforward - clone, build, run. Instead, I spent days debugging a halt failure that took me deep into RocketCore's CSR implementation. Here's everything I learned along the way, including the fix you'll need to actually get debugging working."
 ---
 
 <style>
@@ -211,23 +215,28 @@ java -cp <classpath> chipyard.Generator \
 
 The overall module hirearchy of the generated design looks like this:
 
-```bash
-TestDriver.v (Verilog testbench wrapper)
-  └─ TestHarness (Chisel Module - chipyard.harness.TestHarness)
-       ├─ chiptop0 (LazyModule instance - chipyard.ChipTop)
-       │    └─ system (LazyModule - chipyard.DigitalTop)
-       │         └─ tile_prci_domain (contains the Rocket core)
-       │              └─ tile (freechips.rocketchip.tile.RocketTile)
-       │                   ├─ core (Rocket CPU pipeline)
-       │                   ├─ frontend (instruction fetch)
-       │                   └─ dcache, etc.
-       │
-       └─ Harness Binders (simulation models attached to ChipTop ports):
-            ├─ SimDRAM (memory model)
-            ├─ SimTSI (test serial interface for loading programs)
-            ├─ SimJTAG (debug interface)
-            ├─ UARTAdapter (console I/O)
-            └─ Clock generators
+```mermaid
+graph TD
+    A[TestDriver.v<br/>Verilog Testbench] --> B[TestHarness<br/>Chisel Module]
+    B --> C[ChipTop<br/>LazyModule]
+    B --> H[Harness Binders<br/>Simulation Models]
+
+    C --> D[system<br/>DigitalTop]
+    D --> E[tile_prci_domain]
+    E --> F[RocketTile]
+    F --> G1[Rocket Core<br/>CPU Pipeline]
+    F --> G2[Frontend<br/>Instruction Fetch]
+    F --> G3[DCache]
+
+    H --> H1[SimDRAM<br/>Memory Model]
+    H --> H2[SimTSI<br/>Program Loader]
+    H --> H3[SimJTAG<br/>Debug Interface]
+    H --> H4[UARTAdapter<br/>Console I/O]
+    H --> H5[Clock Generators]
+
+    style C fill:#e1f5ff
+    style F fill:#fff4e1
+    style H fill:#f0f0f0
 ```
 
 These are some pointers to the Code organisation resulting in this hireacrchy:
@@ -281,7 +290,41 @@ wfi_loop:                // WAIT FOR INTERRUPT
   j wfi_loop
 ```
 
-When we execute the sim, we will be passing an elf file to parse and load into the memory through a commandline argument. The code in `chipyard/generators/testchipip/src/main/resources/testchipip/csrc/testchip_tsi.cc` implements the TSI protocol to load the elf file into the simulated memory. The steps areL
+When we execute the sim, we will be passing an elf file to parse and load into the memory through a commandline argument. The code in `chipyard/generators/testchipip/src/main/resources/testchipip/csrc/testchip_tsi.cc` implements the TSI protocol to load the elf file into the simulated memory.
+
+The boot sequence looks like this:
+
+```mermaid
+sequenceDiagram
+    participant TSI as SimTSI/HTIF
+    participant Core as Rocket Core
+    participant BootROM as BootROM<br/>0x10000
+    participant BootReg as BootAddr Reg<br/>0x1000
+    participant CLINT as CLINT<br/>0x2000000
+    participant DRAM as DRAM<br/>0x80000000
+
+    Note over Core: Reset
+    Core->>BootROM: Jump to 0x10000
+    BootROM->>BootROM: Setup trap handler
+    BootROM->>BootROM: Enable MSIP interrupt
+    BootROM->>BootROM: Enter WFI loop
+
+    Note over TSI: Load program via TSI
+    TSI->>DRAM: Write ELF to 0x80000000
+    TSI->>BootReg: Write boot address
+    TSI->>CLINT: Trigger MSIP (wake core)
+
+    CLINT-->>Core: MSIP interrupt
+    Core->>BootROM: Handle interrupt (_start)
+    BootROM->>CLINT: Clear MSIP
+    BootROM->>BootReg: Read boot address
+    BootROM->>Core: Set mepc = 0x80000000
+    BootROM->>Core: mret (jump to program)
+
+    Core->>DRAM: Execute program at 0x80000000
+```
+
+The key steps are:
 
 1. Loads your program into DRAM (at `0x80000000`) via TSI write commands
 2. Writes boot address to bootaddr_reg (`0x1000`) via +init_write or automatically
@@ -407,6 +450,38 @@ Opening the VCD in GTKWave, I focused on these signals:
 When PC jumped to 0x800, `trapToDebug` went HIGH immediately, but `io_status_debug` was still LOW because it was driven by `reg_debug` which updates one cycle later.
 
 The TLB checks debug status **in the same cycle** as the PC change. Seeing `io_status_debug = 0`, it denied access to the debug ROM region at 0x800, causing an instruction access fault.
+
+Here's the timing issue visualized:
+
+```mermaid
+%%{init: {'theme':'base'}}%%
+sequenceDiagram
+    participant OpenOCD
+    participant Core
+    participant CSR
+    participant TLB
+    participant DebugROM as Debug ROM<br/>0x800
+
+    Note over OpenOCD,DebugROM: BUGGY BEHAVIOR (Before Fix)
+    OpenOCD->>Core: Send halt request
+    Core->>CSR: trapToDebug = 1
+    Note over CSR: reg_debug still 0<br/>(updates next cycle)
+    CSR->>TLB: io_status_debug = 0
+    Core->>TLB: Fetch from 0x800
+    TLB->>TLB: Check debug status = 0
+    TLB-->>Core: Access Denied!
+    Note over Core: Instruction Fault<br/>Halt FAILS
+
+    Note over OpenOCD,DebugROM: FIXED BEHAVIOR (After Fix)
+    OpenOCD->>Core: Send halt request
+    Core->>CSR: trapToDebug = 1
+    CSR->>TLB: io_status_debug = trapToDebug = 1
+    Core->>TLB: Fetch from 0x800
+    TLB->>TLB: Check debug status = 1
+    TLB->>DebugROM: Access Granted
+    DebugROM-->>Core: Debug code
+    Note over Core: Halt SUCCESS ✓
+```
 
 #### Building the verilator simulation
 
