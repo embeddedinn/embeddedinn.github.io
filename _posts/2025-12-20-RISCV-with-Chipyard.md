@@ -17,8 +17,8 @@ tags:
 
 
 header:
-  teaser: "images/posts/aws_production_lb/aws_production_lb_header.png"
-  og_image: "images/posts/aws_production_lb/aws_production_lb_header.png"
+  teaser: "images/posts/chipyard_rocketcore/chipyard_rocketcore_header.png"
+  og_image: "images/posts/chipyard_rocketcore/chipyard_rocketcore_header.png"
 excerpt: "I thought building a RISC-V processor with Chipyard would be straightforward - clone, build, run. Instead, I spent days debugging a halt failure that took me deep into RocketCore's CSR implementation. Here's everything I learned along the way, including the fix you'll need to actually get debugging working."
 ---
 
