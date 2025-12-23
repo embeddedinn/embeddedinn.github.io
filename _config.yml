@@ -212,10 +212,10 @@ kramdown:
   entity_output: as_char
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-#  syntax_highlighter_opts:
-#    block:
-#      line_numbers: true
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
       
 #clipboard for blocks (src: https://github.com/mmistakes/minimal-mistakes/discussions/2795)
 after_footer_scripts:
