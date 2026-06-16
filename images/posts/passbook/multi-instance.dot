@@ -1,0 +1,34 @@
+digraph multi {
+  rankdir=LR;
+  bgcolor="transparent";
+  pad=0.2;
+  nodesep=0.4;
+  ranksep=0.75;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11, penwidth=1.4, margin="0.18,0.10"];
+  edge [fontname="Helvetica", fontsize=9, color="#5B6B73", arrowsize=0.8];
+
+  repo [label="one repository\nconfig/instances/*.yaml", shape=folder, fillcolor="#EAF3F6", color="#357A8A"];
+  ci   [label="CI matrix\nauto-discovers every YAML", fillcolor="#FDF6E3", color="#B58900"];
+
+  subgraph cluster_kids {
+    label="kids   →   /passbook/kids/";
+    labeljust="l"; style="rounded"; color="#5B7FD9"; fontname="Helvetica"; fontsize=10;
+    k1 [label="CFN stack\npassbook-kids-prod", fillcolor="#EAF0FB", color="#5B7FD9"];
+    k2 [label="DynamoDB · Lambda(Go)\n· HTTP API", fillcolor="#EAF0FB", color="#5B7FD9"];
+    k1->k2;
+  }
+  subgraph cluster_eat {
+    label="eatout   →   /passbook/eatout/";
+    labeljust="l"; style="rounded"; color="#E07856"; fontname="Helvetica"; fontsize=10;
+    e1 [label="CFN stack\npassbook-eatout-prod", fillcolor="#FFF0EA", color="#E07856"];
+    e2 [label="DynamoDB · Lambda(Go)\n· HTTP API", fillcolor="#FFF0EA", color="#E07856"];
+    e1->e2;
+  }
+
+  boot [label="shared bootstrap stack\nS3 artifacts · GitHub OIDC · CI role", shape=box3d, fillcolor="#F1F1F1", color="#5B6B73"];
+
+  repo -> ci;
+  ci -> k1 [label="instance = kids"];
+  ci -> e1 [label="instance = eatout"];
+  ci -> boot [style=dashed, label="assumes role in", constraint=false];
+}

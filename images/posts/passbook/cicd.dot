@@ -1,0 +1,50 @@
+digraph cicd {
+  rankdir=LR;
+  bgcolor="transparent";
+  pad=0.2;
+  nodesep=0.35;
+  ranksep=0.6;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11,
+        color="#357A8A", fillcolor="#EAF3F6", penwidth=1.4, margin="0.18,0.10"];
+  edge [fontname="Helvetica", fontsize=9, color="#5B6B73", arrowsize=0.8];
+
+  pr  [label="Pull Request → main", shape=oval, fillcolor="#FFF3E0", color="#E07856"];
+  push [label="Merge / push to main", shape=oval, fillcolor="#FFF3E0", color="#E07856"];
+
+  subgraph cluster_test {
+    label="test.yaml   (CI gate · no AWS access)";
+    labeljust="l"; style="rounded,dashed"; color="#9AA7AD"; fontname="Helvetica"; fontsize=10;
+    t1 [label="go test -race\n+ coverage"];
+    t2 [label="go vet · gofmt -l"];
+    t3 [label="node --check\n(frontend lint)"];
+  }
+
+  subgraph cluster_be {
+    label="deploy-backend.yaml   (push: backend/** · template.yaml · config/**)";
+    labeljust="l"; style="rounded"; color="#357A8A"; fontname="Helvetica"; fontsize=10;
+    b1 [label="test\n(re-gate push)"];
+    b2 [label="discover\ninstances"];
+    b3 [label="build arm64\nLambda zip → S3"];
+    b4 [label="deploy (matrix)\ncloudformation deploy", fillcolor="#CFE6EC"];
+    b5 [label="prune artifacts\n(keep newest 2)"];
+    b1->b2->b3->b4->b5;
+  }
+
+  subgraph cluster_fe {
+    label="deploy-frontend.yaml   (workflow_run, after backend succeeds)";
+    labeljust="l"; style="rounded"; color="#357A8A"; fontname="Helvetica"; fontsize=10;
+    f1 [label="inject config.js,\ntheme.css, version"];
+    f2 [label="tighten CSP,\ngenerate PNG icons"];
+    f3 [label="deploy-pages\n→ GitHub Pages", fillcolor="#CFE6EC"];
+    f1->f2->f3;
+  }
+
+  oidc [label="GitHub OIDC\nassume passbook-github-actions\n(short-lived, no stored keys)",
+        shape=note, fillcolor="#FDF6E3", color="#B58900", fontsize=10];
+
+  pr -> t1 [label="gate"];
+  push -> b1;
+  b5 -> f1 [label="workflow_run\n(on success)", style=bold, color="#357A8A"];
+  b3 -> oidc [style=dashed, dir=none, constraint=false];
+  b4 -> oidc [style=dashed, dir=none, constraint=false];
+}
