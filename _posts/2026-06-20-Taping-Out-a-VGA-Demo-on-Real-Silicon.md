@@ -38,8 +38,9 @@ header:
 Every once in a while I get the itch to do something from scratch. Not a subsystem, not a block, not a firmware module dropped into somebody else's codebase, but a full cycle, soup to nuts.  Day-to-day I work very close to advanced AI accelerator silicon: RTL, emulation, low-level firmware, high-level software and python-based test infrastructure. All of it sitting inside large multi-team programmes.  The work is deep and interesting, but it also means you spend a lot of time ten layers deep in somebody else's memory controller or NoC interconnect. At some point we all start feeling FOMO and want to get back to the basics.
 
 
-{% include image.html
-    img="images/posts/tiny_tapeout/tv_video.gif"
+{% include video.html
+    mp4="images/posts/tiny_tapeout/tv_video.mp4"
+    poster="images/posts/tiny_tapeout/tv_video_poster.jpg"
     width="800"
     caption="The final result: a VGA demo rendered gate-by-gate on a real monitor, with no CPU and no ROM. "
 %}
@@ -344,10 +345,11 @@ save_gif(preview_frames, Path("vga_preview.gif"), 20, "browser-compensated")
 
 That is a genuinely nice catch. The hardware runs at true 60 Hz regardless; this only matters for the README animation. The whole GIF job runs in CI after tests pass and auto-commits the result.
 
-{% include image.html
-    img="images/posts/tiny_tapeout/vga_preview.gif"
+{% include video.html
+    mp4="images/posts/tiny_tapeout/vga_preview.mp4"
+    poster="images/posts/tiny_tapeout/vga_preview_poster.jpg"
     width="800"
-    caption="The Verilator-rendered preview GIF, which was the agent's main feedback mechanism during design and verification."
+    caption="The Verilator-rendered preview, which was the agent's main feedback mechanism during design and verification."
 %}
 
 ## Hardware in the loop: FPGA, a custom board, and a logic analyzer in a closed loop
@@ -512,8 +514,9 @@ The LibreLane place-and-route run for this design placed the logic at reasonable
 The font logic accounts for a disproportionate share of the cell count: eleven characters × 7 rows × 8 columns = 616 pixel decisions, each requiring a small combinational expression. The synthesis tool does a reasonable job of sharing logic between identical letters (the two 'E's, the two 'D's, etc.) but it still shows up in the area report.
 
 
-{% include image.html
-    img="images/posts/tiny_tapeout/gds_3d.gif"
+{% include video.html
+    mp4="images/posts/tiny_tapeout/gds_3d.mp4"
+    poster="images/posts/tiny_tapeout/gds_3d_poster.jpg"
     width="800"
     caption="The 3D GDS render of the hardened design, which is also published as an interactive WebGL view in the datasheet"
 %}
