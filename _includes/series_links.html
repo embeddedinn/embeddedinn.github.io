@@ -1,0 +1,20 @@
+{% comment %}
+  Greys out links to parts of a post series that are not published yet.
+  Usage: {% include series_links.html match="AI-Agents-Built-a-QSFP-DD-Cable-Tester" %}
+  The list is fixed at build time, so publishing a part turns its links on in every older post.
+{% endcomment %}
+{% assign series_live = site.posts | where_exp: "p", "p.url contains include.match" | map: "url" %}
+<style>a.series-off{color:#9aa0a6!important;text-decoration:none;cursor:default}.series-nav li a.series-off{background:#f6f7f8;border-style:dashed}.series-nav li a.series-off .sn-num{background:#eef0f2;color:#9aa0a6}</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var live = {{ series_live | jsonify }}, match = {{ include.match | jsonify }};
+  document.querySelectorAll(".page__content a[href]").forEach(function (a) {
+    var path = new URL(a.href, location.href).pathname;
+    if (path.indexOf(match) < 0 || live.indexOf(path.replace({{ site.baseurl | default: "" | jsonify }}, "")) >= 0) return;
+    a.removeAttribute("href");
+    a.classList.add("series-off");
+    a.title = "Coming soon";
+    if (a.closest(".series-nav")) a.lastElementChild.insertAdjacentHTML("beforeend", '<span class="sn-here">coming soon</span>');
+  });
+});
+</script>
