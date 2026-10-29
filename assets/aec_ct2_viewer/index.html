@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AEC-CT2 case viewer</title>
+<meta name="description" content="Interactive 3D assembly viewer for the AEC-CT2-MINI printed case: orbit, explode and step through the build.">
+<style>
+:root {
+  --bg: #f4f5f7; --panel: rgba(255,255,255,.92); --ink: #1d1f24; --muted: #5b606b; --line: #d5d8de;
+  --accent: #6a55f0; --accent-ink: #fff; --tip: #1d1f24; --tip-ink: #fff;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15171c; --panel: rgba(30,33,40,.92); --ink: #e8e9ec; --muted: #a3a8b3; --line: #3a3f4a;
+    --accent: #8f7dff; --accent-ink: #0f1014; --tip: #e8e9ec; --tip-ink: #15171c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15171c; --panel: rgba(30,33,40,.92); --ink: #e8e9ec; --muted: #a3a8b3; --line: #3a3f4a;
+  --accent: #8f7dff; --accent-ink: #0f1014; --tip: #e8e9ec; --tip-ink: #15171c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; }
+#view { position: fixed; inset: 0; background: var(--bg) url(poster.jpg) center / contain no-repeat; touch-action: none; }
+#view.ready { background-image: none; }
+canvas { display: block; outline: none; }
+#tip { position: fixed; pointer-events: none; padding: 4px 8px; border-radius: 6px; background: var(--tip); color: var(--tip-ink);
+  font-size: 12.5px; white-space: nowrap; transform: translate(-50%, -140%); display: none; z-index: 5; }
+#top { position: fixed; top: 10px; left: 10px; right: 10px; display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; pointer-events: none; }
+#top > * { pointer-events: auto; }
+.title { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-weight: 600; font-size: 13px; }
+.title small { display: block; font-weight: 400; color: var(--muted); font-size: 11.5px; }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+button, .seg label, a.btn { font: inherit; font-size: 13px; color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 8px; padding: 6px 10px; cursor: pointer; text-decoration: none; min-height: 34px; display: inline-flex; align-items: center; }
+button:hover, .seg label:hover, a.btn:hover { border-color: var(--accent); }
+button:focus-visible, .seg input:focus-visible + span, input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .45; cursor: default; border-color: var(--line); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.seg label { border: 0; border-radius: 0; padding: 0; min-height: 0; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg span { padding: 8px 10px; display: block; }
+.seg input:checked + span { background: var(--accent); color: var(--accent-ink); }
+#panel { position: fixed; left: 10px; right: 10px; bottom: 10px; margin: 0 auto; max-width: 760px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; backdrop-filter: blur(6px); }
+#step-row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; }
+#caption { min-height: 2.8em; }
+#caption b { display: block; font-size: 13.5px; }
+#caption span { color: var(--muted); font-size: 13px; }
+#count { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+#ctl-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+#ctl-row label.slider { display: flex; align-items: center; gap: 8px; flex: 1 1 200px; color: var(--muted); font-size: 12.5px; }
+input[type=range] { flex: 1; accent-color: var(--accent); min-width: 80px; }
+.hint { color: var(--muted); font-size: 11.5px; }
+#msg { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); pointer-events: none; }
+#auto { display: none; }
+body.auto #top, body.auto #panel, body.auto #tip { display: none; }
+body.auto #view { cursor: pointer; touch-action: auto; }
+body.auto #auto { display: block; }
+#auto button { position: fixed; bottom: 10px; min-height: 34px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+#pause { left: 10px; width: 38px; justify-content: center; padding: 0; }
+#explore { right: 10px; border-radius: 999px; padding: 6px 14px; font-weight: 600; }
+@media (max-width: 560px) {
+  .title small, .hint { display: none; }
+  #panel { left: 6px; right: 6px; bottom: 6px; padding: 8px; }
+  #top { top: 6px; left: 6px; right: 6px; }
+  button, .seg span, a.btn { font-size: 12.5px; }
+  #caption { font-size: 12.5px; }
+}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="view" role="img" aria-label="3D model of the AEC-CT2-MINI case and board"></div>
+<div id="msg">Loading the model…</div>
+<div id="tip"></div>
+<div id="top">
+  <div class="title">AEC-CT2-MINI case<small>Drag to orbit. Scroll or pinch to zoom.</small></div>
+  <div class="tools">
+    <div class="seg" role="radiogroup" aria-label="Hood type" title="Pick the hood that goes on the case">
+      <label><input type="radio" name="hood" value="plain" checked><span>Plain hood</span></label>
+      <label><input type="radio" name="hood" value="fan"><span>Fan hood</span></label>
+    </div>
+    <button id="reset" type="button" title="Put the camera back to the view for this step">Reset view</button>
+    <a id="full" class="btn" href="./" target="_blank" rel="noopener" title="Open the viewer in its own tab" hidden>New tab ↗</a>
+  </div>
+</div>
+<div id="auto">
+  <button id="pause" type="button" aria-label="Pause the animation" title="Pause or play the animation">❚❚</button>
+  <button id="explore" type="button" title="Open the interactive viewer">Click to explore</button>
+</div>
+<div id="panel">
+  <div id="step-row">
+    <button id="prev" type="button" aria-label="Previous step" title="Previous step">◀</button>
+    <div id="caption" aria-live="polite"></div>
+    <button id="next" type="button" aria-label="Next step" title="Next step">▶</button>
+  </div>
+  <div id="ctl-row">
+    <span id="count"></span>
+    <label class="slider" title="Pull the parts apart along their assembly direction">Explode
+      <input id="explode" type="range" min="0" max="1" step="0.01" value="0" aria-label="Explode the parts"></label>
+    <span class="hint">Hover or tap a part to see its name.</span>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+// Scene frame (mm, Y up): x = board X, y = height above the board bottom, z = -board Y (the front edge, the cage end, at z 0).
+// kf = [[step, offset]]: the part appears at the first step at that offset and moves at each later key. ex = explode direction. from = where it flies in from.
+const UP = (y) => [0, y, 0];
+const PARTS = {
+  body:           { label: "Body (printed PETG)", color: 0x2b2d33, kf: [[1, 0]], ex: UP(0), edges: true },
+  inserts:        { label: "Heat-set inserts, M3 (4)", color: 0xc9a24a, metal: 1, kf: [[1, 0]], ex: UP(-8), from: UP(-22) },
+  body_magnets:   { label: "Body magnets, front pair (2)", color: 0xa9adb5, metal: 1, kf: [[2, 0]], ex: UP(14), from: UP(26) },
+  station_left:   { label: "Coupling magnets, left face (2)", color: 0xa9adb5, metal: 1, kf: [[2, 0]], ex: [-12, 0, 0], from: [-22, 0, 0] },
+  station_right:  { label: "Coupling magnets, right face (2)", color: 0xa9adb5, metal: 1, kf: [[2, 0]], ex: [12, 0, 0], from: [22, 0, 0] },
+  hood:           { label: "Plain hood (printed PETG)", color: 0x2b2d33, kf: [[3, UP(42)], [10, 0]], ex: UP(42), edges: true, only: "plain", from: UP(70) },
+  hood_magnets:   { label: "Hood magnets, front pair (2)", color: 0xa9adb5, metal: 1, kf: [[3, UP(42)], [10, 0]], ex: UP(36), only: "plain", from: UP(30) },
+  fan_hood:       { label: "Fan hood with roof grille (printed PETG)", color: 0x2b2d33, kf: [[3, UP(42)], [10, 0]], ex: UP(64), edges: true, only: "fan", from: UP(70) },
+  fan_magnets:    { label: "Fan hood magnets, press fit (2)", color: 0xa9adb5, metal: 1, kf: [[3, UP(42)], [10, 0]], ex: UP(58), only: "fan", from: UP(30) },
+  deck:           { label: "Deck (printed PLA)", color: 0x24262b, kf: [[4, UP(24)], [5, 0]], ex: UP(22), edges: true, from: UP(50) },
+  pipes:          { label: "Light pipes (8)", color: 0xe6edf5, opacity: 0.8, kf: [[4, UP(24)], [5, 0]], ex: UP(32), from: UP(52) },
+  well_label:     { label: "Switch-well label (printed PLA)", color: 0xdedfe3, kf: [[5, 0]], ex: UP(27), from: UP(30) },
+  hood_plate:     { label: "Hood plate (printed PLA)", color: 0xe9e9ec, kf: [[6, UP(42)], [10, 0]], ex: UP(52), only: "plain", from: UP(75), edges: true },
+  fan:            { label: "Fan, 30 x 30 x 10 mm", color: 0x3a3c42, kf: [[6, UP(42)], [10, 0]], ex: UP(30), only: "fan", from: UP(20) },
+  fan_lead:       { label: "Fan lead and plug", color: 0xc62828, kf: [[6, UP(42)], [10, 0]], ex: UP(30), only: "fan", from: UP(20) },
+  board:          { label: "Tester board, 42 x 136 mm", kf: [[7, 0]], ex: UP(-18), from: [0, -26, -40] },
+  tray:           { label: "Tray and sole (printed PETG)", color: 0x26282d, kf: [[8, 0]], ex: UP(-32), edges: true, from: UP(-34) },
+  screws:         { label: "Sole screws, M3 (4)", color: 0xb8bcc4, metal: 1, kf: [[8, 0]], ex: UP(-56), from: UP(-46) },
+  feet:           { label: "Rubber feet (4)", color: 0x18191b, kf: [[9, 0]], ex: UP(-46), from: UP(-30) },
+};
+// Board sub-parts: built here, not in the glb. Each one moves with the board.
+const BOARD_BITS = {
+  cage: "QSFP-DD cage with heat sink", usb: "USB-C port", j104: "Fan header",
+};
+
+const STEPS = [
+  { t: "The parts", c: "A printed body, tray, deck and hood around the tester board. Drag the slider to pull them apart.", cam: "iso" },
+  { t: "1 · Inserts", c: "Turn the body upside down. Heat-set a brass insert into the end of each of the four pillars.", cam: "under" },
+  { t: "2 · Body magnets", c: "Glue two discs into the front pockets of the collar. Glue four coupling discs into the side faces.", cam: "iso" },
+  { t: "3 · Hood magnets", c: "Let each hood disc find its pole on a body disc. Then glue it into the hood.",
+    fan: { t: "3 · Fan hood magnets", c: "Press two discs into the front pockets of the fan hood. The press fit holds them." }, cam: "iso" },
+  { t: "4 · Light pipes", c: "Press eight light pipes into the deck from the top face. Each lens sits flush.", cam: "iso" },
+  { t: "5 · Deck", c: "Glue the deck into the body opening. Then glue the label into the switch well.", cam: "iso" },
+  { t: "6 · Hood plate", c: "Glue the plate into the roof pocket of the plain hood.",
+    fan: { t: "6 · Fan", c: "Snap the fan into the hood until four fingers click. Hook the lead at the rear corner." }, cam: "iso" },
+  { t: "7 · Board", c: "With the body upside down, slide the board in nose first. The cage goes through the front bezel.", cam: "under" },
+  { t: "8 · Tray and screws", c: "Put the tray on. Drive the four screws through the sole by hand, not with a power driver.", cam: "under" },
+  { t: "9 · Feet", c: "Press four rubber feet into the sole pockets beside the screws.", cam: "under" },
+  { t: "10 · Hood on", c: "Set the hood on the body. Two magnets hold it, so it lifts off with one finger.",
+    fan: { t: "10 · Fan hood on", c: "Plug the fan lead into the header on the board. Then set the fan hood on the body." }, cam: "iso" },
+  { t: "Done", c: "The finished unit. Plug a cable into the cage at the front and USB-C at the rear.", cam: "iso" },
+];
+const LAST = STEPS.length - 1;
+
+// ---- theme
+const q = new URLSearchParams(location.search);
+if (q.get("theme") === "dark" || q.get("theme") === "light") document.documentElement.dataset.theme = q.get("theme");
+const mq = matchMedia("(prefers-color-scheme: dark)");
+const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : mq.matches;
+// ---- mode: "autoplay" = the looping preview in the post; anything else = the full interactive viewer
+let auto = q.get("mode") === "autoplay";
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let userPaused = reduced, hostPaused = false, offscreen = false, hostPresent = false;
+let autoT = 0, lastNow = null, loopSeen = 0;
+if (auto) document.body.classList.add("auto");
+if (matchMedia("(pointer: coarse)").matches) document.getElementById("explore").textContent = "Tap to explore";
+if (window.top !== window.self) { const a = document.getElementById("full"); a.hidden = false; a.href = location.pathname + location.search; }
+
+// ---- renderer
+const view = document.getElementById("view"), msg = document.getElementById("msg"), tip = document.getElementById("tip");
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true }); } catch (e) {
+  msg.textContent = "This browser cannot show 3D here. The picture shows the case."; throw e;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+view.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(32, 1, 1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.autoRotateSpeed = 0.6; controls.enabled = !auto; controls.minDistance = 40; controls.maxDistance = 900;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8890a0, 1.6));
+const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(120, 220, 160); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.9); fill.position.set(-160, -60, -120); scene.add(fill);
+const camLight = new THREE.DirectionalLight(0xffffff, 0.6); camera.add(camLight); scene.add(camera);
+
+const root = new THREE.Group(); scene.add(root);
+const groups = {};      // name -> Group (moves)
+const pickables = [];   // meshes for hover
+const edgeMats = [];
+
+function mat(def) {
+  const m = new THREE.MeshStandardMaterial({ color: def.color ?? 0x888888, roughness: def.metal ? 0.35 : 0.7, metalness: def.metal ? 0.8 : 0.0, flatShading: true });
+  if (def.opacity) { m.transparent = true; m.opacity = def.opacity; }
+  return m;
+}
+function addMesh(group, mesh, label, edges) {
+  mesh.userData.label = label; group.add(mesh); pickables.push(mesh);
+  if (edges) {
+    const e = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, 35), new THREE.LineBasicMaterial({ transparent: true }));
+    edgeMats.push(e.material); e.raycast = () => {}; group.add(e);
+  }
+}
+
+// ---- the board: a slab with the board renders as textures, plus simple blocks for the connectors
+function buildBoard(g) {
+  const tl = new THREE.TextureLoader();
+  const top = tl.load("board_top.jpg"), bot = tl.load("board_bottom.jpg");
+  for (const t of [top, bot]) { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; }
+  bot.center.set(0.5, 0.5); bot.rotation = Math.PI;      // the bottom render is seen from below: X mirrored, rear at the top
+  const side = new THREE.MeshStandardMaterial({ color: 0x3b4a2a, roughness: 0.8 });
+  const mats = [side, side, new THREE.MeshStandardMaterial({ map: top, roughness: 0.6 }), new THREE.MeshStandardMaterial({ map: bot, roughness: 0.6 }), side, side];
+  const slab = new THREE.Mesh(new THREE.BoxGeometry(42, 1.6, 136), mats);
+  slab.position.set(21, 0.8, -68); slab.userData.label = PARTS.board.label; g.add(slab); pickables.push(slab);
+  const box = (x0, y0, z0, x1, y1, z1, color, label, metal) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, y1 - y0, z1 - z0), mat({ color, metal }));
+    m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2); m.userData.label = label; g.add(m); pickables.push(m); return m;
+  };
+  box(10.6, 1.6, -60, 31.4, 11.3, 11.3, 0xb9bec7, BOARD_BITS.cage, 1);                         // cage body, its nose through the bezel
+  box(12.2, 3.2, 11.3, 29.8, 9.8, 11.4, 0x111214, BOARD_BITS.cage);                           // cage mouth
+  box(11.8, 11.3, -56, 30.2, 12.1, -2, 0x9aa0aa, BOARD_BITS.cage, 1);                          // heat sink base
+  for (let x = 12.2; x < 30; x += 2.9) box(x, 12.1, -56, x + 0.9, 16.7, -2, 0x9aa0aa, BOARD_BITS.cage, 1);   // fins
+  for (const cx of [14.5, 27.5]) box(cx - 4.47, 1.6, -136.6, cx + 4.47, 4.86, -129.2, 0xc7cbd2, BOARD_BITS.usb, 1);   // board Y 131.8
+  box(33.6, 1.6, -27.95, 38.1, 7.6, -22.05, 0xf0eee6, BOARD_BITS.j104);                      // fan header beside the cage
+}
+
+// ---- load
+const loader = new GLTFLoader();
+loader.load("case.glb", (gltf) => {
+  for (const [name, def] of Object.entries(PARTS)) {
+    const g = new THREE.Group(); g.name = name; root.add(g); groups[name] = g;
+    if (name === "board") { buildBoard(g); continue; }
+    const src = gltf.scene.getObjectByName(name);
+    if (!src) { console.warn("missing part", name); continue; }
+    const mesh = new THREE.Mesh(src.geometry, mat(def));
+    addMesh(g, mesh, def.label, def.edges);
+  }
+  applyTheme(); view.classList.add("ready"); msg.remove();
+  go(LAST, true);
+  if (auto) {      // frame the tallest pose (fan hood, fully exploded) so the loop never leaves the view
+    variant = "fan"; explode = AUTO_MAX; retarget(); fitCamera(true);
+    variant = "plain"; explode = 0; retarget();
+  } else fitCamera(true);
+  updateLoop();
+}, undefined, (err) => { msg.textContent = "The model did not load. The picture shows the case."; console.error(err); });
+
+// ---- state
+let step = LAST, variant = "plain", explode = 0;
+const anim = { t0: 0, dur: 900, from: {}, to: {}, vis: {} };
+
+function inVariant(def) { return !def.only || def.only === variant; }
+function keyOffset(def, s) {     // null = hidden at this step
+  if (!inVariant(def) || s < def.kf[0][0]) return null;
+  let off = def.kf[0][1];
+  for (const [ks, o] of def.kf) if (s >= ks) off = o;
+  return new THREE.Vector3(...(Array.isArray(off) ? off : [0, 0, 0]));
+}
+function target(name, s) {
+  const def = PARTS[name], k = keyOffset(def, s);
+  if (!k) return null;
+  return k.add(new THREE.Vector3(...def.ex).multiplyScalar(explode * 1.4));
+}
+function go(s, instant) {
+  const prev = step; step = Math.max(0, Math.min(LAST, s));
+  // step 0 shows every part, exploded
+  if (step === 0 && prev !== 0) { explode = 1; slider.value = 1; }
+  else if (prev === 0 && step !== 0) { explode = 0; slider.value = 0; }
+  for (const name of Object.keys(PARTS)) {
+    const g = groups[name]; if (!g) continue;
+    const def = PARTS[name];
+    const effStep = step === 0 ? LAST : step;
+    const to = target(name, effStep);
+    anim.to[name] = to;
+    if (!to) { g.visible = false; continue; }
+    const appearing = !g.visible || keyOffset(def, prev === 0 ? LAST : prev) === null;
+    anim.from[name] = appearing && !instant ? to.clone().add(new THREE.Vector3(...(def.from || [0, 25, 0]))) : g.position.clone();
+    g.visible = true;
+    if (instant) g.position.copy(to);
+  }
+  anim.t0 = instant ? -1e9 : performance.now();
+  const st = STEPS[step], v = (variant === "fan" && st.fan) || st;
+  document.getElementById("caption").innerHTML = `<b>${v.t}</b><span>${v.c}</span>`;
+  document.getElementById("count").textContent = step === 0 ? "Overview" : step === LAST ? "Assembled" : `Step ${step} of ${LAST - 1}`;
+  document.getElementById("prev").disabled = step === 0;
+  document.getElementById("next").disabled = step === LAST;
+  if (!instant) fitCamera(false);
+}
+function retarget() {     // the slider or the hood type changed: move at once, no fly-in
+  for (const name of Object.keys(PARTS)) {
+    const g = groups[name]; if (!g) continue;
+    const to = target(name, step === 0 ? LAST : step);
+    anim.to[name] = to; g.visible = !!to;
+    if (to) { anim.from[name] = to; g.position.copy(to); }
+  }
+}
+
+// ---- camera
+const camAnim = { t0: -1e9, fromP: new THREE.Vector3(), toP: new THREE.Vector3(), fromT: new THREE.Vector3(), toT: new THREE.Vector3() };
+function fitCamera(instant) {
+  const box = new THREE.Box3();
+  for (const name of Object.keys(PARTS)) {
+    const g = groups[name], to = anim.to[name]; if (!g || !to) continue;
+    const b = new THREE.Box3().setFromObject(g); b.translate(to.clone().sub(g.position)); box.union(b);
+  }
+  if (box.isEmpty()) return;
+  const c = box.getCenter(new THREE.Vector3()), r = box.getBoundingSphere(new THREE.Sphere()).radius;
+  const dir = (STEPS[step].cam === "under" ? new THREE.Vector3(1.0, -0.75, 0.9) : new THREE.Vector3(1.1, 0.85, 0.95)).normalize();
+  const fov = THREE.MathUtils.degToRad(camera.fov), tf = Math.tan(fov / 2);
+  const fit = Math.min(2 * Math.atan(tf * useFrac), 2 * Math.atan(tf * camera.aspect));
+  const dist = r / Math.sin(fit / 2) * (camera.aspect < 0.8 ? 1.0 : auto ? 0.9 : 0.88) + 10;
+  camAnim.fromP.copy(camera.position); camAnim.fromT.copy(controls.target);
+  camAnim.toP.copy(c).addScaledVector(dir, dist); camAnim.toT.copy(c);
+  if (instant) { camera.position.copy(camAnim.toP); controls.target.copy(c); camAnim.t0 = -1e9; controls.update(); }
+  else camAnim.t0 = performance.now();
+}
+
+// ---- hover
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+let hovered = null, ptrXY = null;
+function setHover(m) {
+  if (hovered === m) return;
+  const tint = (x, on) => { for (const mm of [].concat(x.material)) if (mm.emissive) mm.emissive.setHex(on ? (isDark() ? 0x3a2f8a : 0x4a3bd0) : 0x000000); };
+  if (hovered) tint(hovered, false);
+  hovered = m;
+  if (m) tint(m, true);
+  tip.style.display = m ? "block" : "none";
+  if (m) tip.textContent = m.userData.label;
+}
+renderer.domElement.addEventListener("pointermove", (e) => { ptrXY = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener("pointerdown", (e) => { ptrXY = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener("pointerleave", () => { ptrXY = null; setHover(null); });
+function pick() {
+  if (!ptrXY) return;
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.set((ptrXY[0] - r.left) / r.width * 2 - 1, -(ptrXY[1] - r.top) / r.height * 2 + 1);
+  ray.setFromCamera(ptr, camera);
+  const hit = ray.intersectObjects(pickables.filter((m) => m.parent.visible), false).find((h) => !h.object.material.transparent || h.object.material.opacity > 0.5);
+  setHover(hit ? hit.object : null);
+  if (hit) { tip.style.left = ptrXY[0] + "px"; tip.style.top = ptrXY[1] + "px"; }
+}
+
+// ---- theme
+function applyTheme() {
+  const dark = isDark();
+  scene.background = new THREE.Color(dark ? 0x15171c : 0xf4f5f7);
+  for (const m of edgeMats) { m.color.setHex(dark ? 0x9aa0b0 : 0x000000); m.opacity = dark ? 0.35 : 0.3; }
+  if (hovered) { const h = hovered; hovered = null; setHover(h); }
+}
+mq.addEventListener("change", applyTheme);
+
+// ---- loop
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : 1 - Math.pow(1 - x, 3);
+const PH = [3500, 1800, 3500, 1800], CYCLE = PH.reduce((a, b) => a + b);   // explode, hold, compact, hold (ms)
+const smooth = (x) => x * x * (3 - 2 * x), AUTO_MAX = 0.75;
+function autoStep(now) {
+  const dt = lastNow === null ? 0 : Math.min(now - lastNow, 100); lastNow = now;
+  autoT += dt;
+  const loop = Math.floor(autoT / CYCLE), p = autoT % CYCLE;
+  if (loop !== loopSeen) { loopSeen = loop; if (loop % 2 === 0) variant = variant === "plain" ? "fan" : "plain"; }   // swap the hood every other loop, while assembled
+  explode = AUTO_MAX * (p < PH[0] ? smooth(p / PH[0]) : p < PH[0] + PH[1] ? 1 : p < PH[0] + PH[1] + PH[2] ? 1 - smooth((p - PH[0] - PH[1]) / PH[2]) : 0);
+  retarget();
+}
+let running = false;
+function updateLoop() {      // autoplay renders only while it moves: paused, hidden or off screen = no frames
+  const run = !auto || !(userPaused || hostPaused || offscreen || document.hidden);
+  controls.autoRotate = auto && run;
+  lastNow = null;
+  renderer.setAnimationLoop(run ? tick : null); running = run;
+  if (!run) { controls.update(); renderer.render(scene, camera); }
+  const b = document.getElementById("pause");
+  b.textContent = userPaused ? "▶" : "❚❚"; b.setAttribute("aria-label", userPaused ? "Play the animation" : "Pause the animation");
+}
+function tick(now) {
+  if (auto) autoStep(now);
+  const k = ease((now - anim.t0) / anim.dur);
+  for (const name of Object.keys(PARTS)) {
+    const g = groups[name], to = anim.to[name], from = anim.from[name];
+    if (g && to && from) g.position.lerpVectors(from, to, k);
+  }
+  const kc = ease((now - camAnim.t0) / 800);
+  if (kc < 1) { camera.position.lerpVectors(camAnim.fromP, camAnim.toP, kc); controls.target.lerpVectors(camAnim.fromT, camAnim.toT, kc); }
+  controls.update(); if (!auto) pick();
+  renderer.render(scene, camera);
+}
+let useFrac = 1;
+function resize() {
+  const w = view.clientWidth, h = view.clientHeight;
+  // keep the model centred in the space between the top bar and the step panel
+  const ph = auto ? 0 : document.getElementById("panel").offsetHeight + 10, th = auto ? 0 : 50;
+  const full = h + ph - th; useFrac = Math.max(0.3, (h - ph - th) / full);
+  renderer.setSize(w, h); camera.aspect = w / full;
+  camera.setViewOffset(w, full, 0, ph - th, w, h); camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize); resize();
+
+// ---- controls
+const slider = document.getElementById("explode");
+slider.addEventListener("input", () => { explode = +slider.value; retarget(); });
+document.getElementById("prev").onclick = () => go(step - 1);
+document.getElementById("next").onclick = () => go(step + 1);
+document.getElementById("reset").onclick = () => fitCamera(false);
+for (const r of document.querySelectorAll('input[name="hood"]')) r.addEventListener("change", () => { variant = r.value; retarget(); go(step, true); });
+addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && window.parent !== window) window.parent.postMessage({ type: "aec-ct2-viewer:close" }, location.origin);   // the host closes its modal
+  if (e.target.matches?.("input[type=range]")) return;
+  if (auto) return;
+  if (e.key === "ArrowRight") go(step + 1); else if (e.key === "ArrowLeft") go(step - 1);
+});
+// ---- autoplay: click opens the full viewer (the host page's modal, or this page when there is no host)
+function enterFull() {
+  auto = false; document.body.classList.remove("auto"); controls.enabled = true;
+  explode = 0; slider.value = 0;
+  document.querySelector(`input[name="hood"][value="${variant}"]`).checked = true;
+  resize(); retarget(); go(LAST, true); fitCamera(true); updateLoop();
+}
+function openFull() {
+  if (!auto) return;
+  if (hostPresent) window.parent.postMessage({ type: "aec-ct2-viewer:open" }, location.origin);
+  else enterFull();
+}
+view.addEventListener("click", openFull);
+document.getElementById("explore").addEventListener("click", openFull);
+document.getElementById("pause").addEventListener("click", (e) => { e.stopPropagation(); userPaused = !userPaused; updateLoop(); });
+addEventListener("message", (e) => {
+  if (e.origin !== location.origin || !e.data) return;
+  if (e.data.type === "aec-ct2-viewer:host") hostPresent = true;
+  else if (e.data.type === "aec-ct2-viewer:pause") { hostPaused = true; updateLoop(); }
+  else if (e.data.type === "aec-ct2-viewer:resume") { hostPaused = false; updateLoop(); }
+});
+new IntersectionObserver((es) => { offscreen = !es[0].isIntersecting; updateLoop(); }).observe(view);
+document.addEventListener("visibilitychange", updateLoop);
+// test hook for screenshots: ?step=N&explode=X&hood=fan
+window.viewer = { go, state: () => ({ running, auto, explode, variant, userPaused, hostPaused, offscreen }), set: (o) => {
+  if (o.hood) { variant = o.hood; document.querySelector(`input[name="hood"][value="${o.hood}"]`).checked = true; }
+  go(o.step ?? step, true);
+  if (o.explode !== undefined) { explode = o.explode; slider.value = o.explode; }
+  retarget(); fitCamera(true);
+} };
+</script>
+</body>
+</html>
