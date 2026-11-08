@@ -25,7 +25,7 @@ excerpt: >
   their data came from, and why each part sits where it does.
 header:
   teaser: images/posts/aec_ct2/aec_ct2_part2_header.jpg
-  og_image: images/posts/aec_ct2/aec_ct2_part2_header.jpg
+  og_image: https://embeddedinn.com/images/posts/aec_ct2/aec_ct2_part2_header.jpg
 
 ---
 
