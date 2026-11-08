@@ -40,11 +40,11 @@ header:
 
 ## 1. Why I wanted one {#why-i-wanted-one}
 
-Active cables connector ends and optical transciever modules hve powerful DSPs, firmware, a temperature sensor, power classes and a register map with hundreds of fields with interesting data, and it behaves differently at low power, at full power, warm, cold, half-inserted, or right after a firmware update. I wanted to *see* all of that for myself: read every register, push a module to full power and watch it heat up, update its firmware, and run its built-in pattern tests across a real cable.
+Active cables connector ends and optical transciever modules have powerful DSPs, firmware, a temperature sensor, power classes and a register map with hundreds of fields with interesting data, and it behaves differently at low power, at full power, warm, cold, half-inserted, or right after a firmware update. I wanted to *see* all of that for myself: read every register, push a module to full power and watch it heat up, update its firmware, and run its built-in pattern tests across a real cable.
 
 The usual ways of doing that are not very friendly if all you have is a bench and some curiosity. You can plug the cable into a switch or a server, which shows you whatever the host decides to show you and hides the rest. Or you can use a very expensive lab cable tester or a bit error rate tester (BERT), which is the right tool for qualification work and lives in a lab rather than on a desk. I wanted something in between, a small and cheap platform where I plug in a cable and explore every parameter it has from a laptop, with every step recorded.
 
-There was a second itch as well. As with everyone else in the industry, I have been using AI extensively for work and personal projects. I wront about a few in the previous blogs, like the [TinyTapeout VGA chip]({% post_url 2026-06-20-Taping-Out-a-VGA-Demo-on-Real-Silicon %}) I developed with AI agents and [Passbook]({% post_url 2026-06-15-Passbook-Serverless-Allowance-Tracker-Built-With-AI-Agents %}) recently. This project follows a similar vein, but is much more extensive.
+There was a second itch as well. As with everyone else in the industry, I have been using AI extensively for work and personal projects. I wrote about a few in the previous blogs, like the [TinyTapeout VGA chip]({% post_url 2026-06-20-Taping-Out-a-VGA-Demo-on-Real-Silicon %}) I developed with AI agents and [Passbook]({% post_url 2026-06-15-Passbook-Serverless-Allowance-Tracker-Built-With-AI-Agents %}) recently. This project follows a similar vein, but is much more extensive.
 
 The Idea: give AI agents a written brief and let them take a piece of hardware all the way to a filled-in order, with me providing some extensive initial guardrails and stepping in only where judgment is needed and to pay where an order gets placed.
 
@@ -66,7 +66,7 @@ I also set myself one more constraint, which is that every design tool, from EDA
 
 The AI tools themselves are not open source: Claude Code, plus Cursor's `agent` command line and the Gemini app for reviews. JLC's online manufacturability checks and DigiKey's parts API are free web services, and the connector drawings sit behind a vendor's sign-in and licence. The tool, the case and the method are public. The board's generator scripts and the licensed drawings stay private.
 
-This first part of teh sries stays with the finished unit, what it does, what it found on real cables and how it was built. The five parts after it go deep on each piece.
+This first part of the series stays with the finished unit, what it does, what it found on real cables and how it was built. The five parts after it go deep on each piece.
 
 ## 2. What I ended up with {#what-i-ended-up-with}
 
