@@ -24,8 +24,8 @@ excerpt: >
   plain words, and the board itself: the block diagram, the parts, where
   their data came from, and why each part sits where it does.
 header:
-  teaser: images/posts/aec_ct2/pcb_iso_top.png
-  og_image: images/posts/aec_ct2/pcb_iso_top.png
+  teaser: images/posts/aec_ct2/aec_ct2_part2_header.jpg
+  og_image: images/posts/aec_ct2/aec_ct2_part2_header.jpg
 
 ---
 
